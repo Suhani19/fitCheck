@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"primary-container":"#35c6d9","surface-container-lowest":"#0a0e13","on-secondary-fixed-variant":"#4f319c","on-primary-fixed":"#001f24","surface-variant":"#31353b","secondary-container":"#4f319c","on-surface-variant":"#bbc9cb","surface-container-highest":"#31353b","tertiary-container":"#36cc92","on-surface":"#e0e2ea","on-primary":"#00363d","on-primary-container":"#004e57","on-secondary-fixed":"#21005e","surface":"#101419","error":"#ffb4ab","secondary":"#cebdff","inverse-primary":"#006874","on-secondary":"#381385","on-error":"#690005","error-container":"#93000a","surface-container-high":"#262a30","outline":"#869395","on-background":"#e0e2ea","surface-container-low":"#181c21","tertiary-fixed":"#6ffbbe","on-secondary-container":"#bea8ff","inverse-surface":"#e0e2ea","primary-fixed":"#97f0ff","tertiary-fixed-dim":"#4edea3","surface-dim":"#101419","on-tertiary-fixed-variant":"#005236","tertiary":"#5ae9ac","on-primary-fixed-variant":"#004f58","primary-fixed-dim":"#4fd8eb","background":"#101419","on-tertiary":"#003824","outline-variant":"#3c494b","on-tertiary-fixed":"#002113","secondary-fixed-dim":"#cebdff","surface-container":"#1c2025","on-tertiary-container":"#005136","on-error-container":"#ffdad6","secondary-fixed":"#e8ddff","inverse-on-surface":"#2d3136","surface-tint":"#4fd8eb","primary":"#5ce2f6","surface-bright":"#36393f"},borderRadius:{DEFAULT:"0.125rem",lg:"0.25rem",xl:"0.5rem",full:"0.75rem"},spacing:{"space-xs":"0.25rem","space-xl":"1.5rem","space-xxs":"0.125rem",gutter:"1.25rem","space-3xl":"3rem","space-2xl":"2rem","space-lg":"1rem","space-md":"0.75rem","gutter-desktop":"1.5rem","margin-desktop":"2rem",margin:"1rem","space-sm":"0.5rem"},fontFamily:{"label-md":["JetBrains Mono"],"headline-lg":["Inter"],"body-sm":["Inter"],"metric-display":["JetBrains Mono"],"headline-xl":["Inter"],"display-lg-mobile":["Inter"],"display-lg":["Inter"],"headline-md":["Inter"],"label-sm":["JetBrains Mono"],"body-md":["Inter"],"body-lg":["Inter"]},fontSize:{"label-md":["12px",{lineHeight:"16px",letterSpacing:"0.02em",fontWeight:"500"}],"headline-lg":["24px",{lineHeight:"32px",letterSpacing:"-0.015em",fontWeight:"600"}],"body-sm":["13px",{lineHeight:"18px",letterSpacing:"0em",fontWeight:"400"}],"metric-display":["28px",{lineHeight:"32px",letterSpacing:"-0.02em",fontWeight:"600"}],"headline-xl":["32px",{lineHeight:"40px",letterSpacing:"-0.02em",fontWeight:"600"}],"display-lg-mobile":["30px",{lineHeight:"38px",letterSpacing:"-0.015em",fontWeight:"600"}],"display-lg":["40px",{lineHeight:"48px",letterSpacing:"-0.02em",fontWeight:"600"}],"headline-md":["20px",{lineHeight:"28px",letterSpacing:"-0.01em",fontWeight:"500"}],"label-sm":["11px",{lineHeight:"14px",letterSpacing:"0.04em",fontWeight:"500"}],"body-md":["14px",{lineHeight:"20px",letterSpacing:"0em",fontWeight:"400"}],"body-lg":["16px",{lineHeight:"24px",letterSpacing:"-0.005em",fontWeight:"400"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-screen w-72 bg-surface-container-low shadow-[0_1px_8px_rgba(0,0,0,0.4)] z-50 flex flex-col justify-between overflow-y-auto"><div class="flex flex-col"><div class="px-space-xl pt-space-xl pb-space-lg flex items-center gap-space-md"><img alt="FitCheck Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XyvNKovdL0RiY9Y1h3D-PiSnvQPGb8oKl58EGdmywCYi7eXJGVOKh9GoRQf3ZIMOByy8wx3xWYkvNl6RofzePktTRTvYGX8nt5Ng7nMaKS8pygod7vgBfm1c0tecTYM52xe3ojthEPlA3S_DcRxEQnOUXBw71O1DeOzUGCLyo4-EtBLJEWbED-FNdGGqnn6cwvBrRKK1WUJSjh5V3D7as4e_8qDrNMBasJUlkZ8HkePbTa7IvukUwemDY"/><div class="flex flex-col"><span class="font-headline-md text-headline-md tracking-tight font-bold text-on-surface leading-none">FitCheck</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mt-space-xxs">Get fit. Check fit.</span></div></div><div class="px-space-md py-space-sm"><a class="w-full flex items-center justify-center gap-space-sm px-space-md py-space-sm bg-primary text-on-primary font-headline-md text-body-sm font-semibold rounded-lg hover:bg-primary-fixed-dim hover:text-on-primary-fixed transition-all" data-path="start-interview" href="#"><span class="material-symbols-outlined text-body-md">mic</span><span>Start Interview</span></a></div><nav class="px-space-sm space-y-space-md pb-space-xl" data-active-classes="bg-surface-container-high text-primary font-semibold"><div class="space-y-space-xxs"><div class="px-space-md pt-space-xs pb-space-xxs font-label-sm text-label-sm uppercase tracking-wider text-outline">Overview</div><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="dashboard" href="#"><span class="material-symbols-outlined text-body-lg">grid_view</span><span class="font-body-sm text-body-sm">Dashboard</span></a></div><div class="space-y-space-xxs"><div class="px-space-md pt-space-xs pb-space-xxs font-label-sm text-label-sm uppercase tracking-wider text-outline">Prepare</div><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="my-profile" href="#"><span class="material-symbols-outlined text-body-lg">person</span><span class="font-body-sm text-body-sm">My Profile</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="my-jobs" href="#"><span class="material-symbols-outlined text-body-lg">work</span><span class="font-body-sm text-body-sm">My Jobs</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="interviewers" href="#"><span class="material-symbols-outlined text-body-lg">smart_toy</span><span class="font-body-sm text-body-sm">Interviewers</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="practice-library" href="#"><span class="material-symbols-outlined text-body-lg">local_library</span><span class="font-body-sm text-body-sm">Practice Library</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="learning-plan" href="#"><span class="material-symbols-outlined text-body-lg">map</span><span class="font-body-sm text-body-sm">Learning Plan</span></a></div><div class="space-y-space-xxs"><div class="px-space-md pt-space-xs pb-space-xxs font-label-sm text-label-sm uppercase tracking-wider text-outline">Interviews</div><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="interview-history" href="#"><span class="material-symbols-outlined text-body-lg">history</span><span class="font-body-sm text-body-sm">Interview History</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="evaluations" href="#"><span class="material-symbols-outlined text-body-lg">analytics</span><span class="font-body-sm text-body-sm">Evaluations</span></a></div><div class="space-y-space-xxs"><div class="px-space-md pt-space-xs pb-space-xxs font-label-sm text-label-sm uppercase tracking-wider text-outline">Progress</div><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="my-progress" href="#"><span class="material-symbols-outlined text-body-lg">trending_up</span><span class="font-body-sm text-body-sm">My Progress</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="achievements" href="#"><span class="material-symbols-outlined text-body-lg">military_tech</span><span class="font-body-sm text-body-sm">Achievements</span></a></div><div class="space-y-space-xxs"><div class="px-space-md pt-space-xs pb-space-xxs font-label-sm text-label-sm uppercase tracking-wider text-outline">Personal</div><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="notifications" href="#"><span class="material-symbols-outlined text-body-lg">notifications</span><span class="font-body-sm text-body-sm">Notifications</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="settings" href="#"><span class="material-symbols-outlined text-body-lg">settings</span><span class="font-body-sm text-body-sm">Settings</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="help-support" href="#"><span class="material-symbols-outlined text-body-lg">help</span><span class="font-body-sm text-body-sm">Help &amp; Support</span></a></div></nav></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-low/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.3)] z-40 flex items-center justify-between px-space-xl"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs font-body-sm text-body-sm text-on-surface-variant"><span class="hover:text-on-surface transition-colors cursor-pointer">FitCheck</span><span class="material-symbols-outlined text-body-sm text-outline">chevron_right</span><span class="text-on-surface font-medium">Interview Studio</span></div><div class="h-4 w-px bg-surface-container-highest mx-space-xs"></div><div class="flex items-center gap-space-xs px-space-sm py-space-xxs rounded bg-surface-container-high text-primary font-label-sm text-label-sm"><span class="material-symbols-outlined text-label-sm text-primary">flag</span><span>Target: Staff Systems Eng @ Stripe - 84% Ready</span></div></div><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-xs px-space-sm py-space-xxs rounded bg-surface-container-high text-tertiary font-label-sm text-label-sm"><span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span><span>Audio Ready (48kHz)</span></div><div class="flex items-center gap-space-sm pl-space-sm"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAKyYEoe_BnmEHbN5PFncHzX6esxX1FK0XeEb4O8ZVy_Cu5_x1HNkZARGSgtJ11Ujp_2SsRuLWmLMeY7sm1LdgCvUgiQd9_8qj0nTDZqatYboQ_MSrDfimhotesNGTZmI20e7YHw0GM-VfAn_rjvO7K9MmzTB5ewun6U24N2p0Yf6E8w4Okwq5s0qt6TzS3AX5H0664pJf8c6DRrASzsBUlqT-0_ZIISWU5UtBE-F8dtcxhJJf2QdBFQ"/><div class="flex items-center cursor-pointer text-on-surface-variant hover:text-on-surface transition-colors"><span class="font-body-sm text-body-sm text-on-surface font-medium mr-space-xxs">Alex M.</span><span class="material-symbols-outlined text-body-sm">expand_more</span></div></div></div></header><main class="w-full pt-16 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<!-- Top Target Job Meta Banner with Ambient Backlight -->
+<div class="relative w-full px-margin-desktop py-space-xl overflow-hidden bg-surface-container-low">
+<!-- Ambient Studio Light Bloom -->
+<div class="absolute -top-32 -left-20 w-96 h-96 rounded-full bg-primary/10 blur-3xl pointer-events-none"></div>
+<div class="absolute top-0 right-1/4 w-80 h-80 rounded-full bg-secondary/10 blur-3xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col gap-space-lg max-w-[1440px] mx-auto">
+<!-- Breadcrumb Bar & Status Pill -->
+<div class="flex flex-wrap items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-xs font-label-md text-label-md text-on-surface-variant">
+<span class="hover:text-primary cursor-pointer transition-colors">FitCheck</span>
+<span class="material-symbols-outlined text-label-sm text-outline">chevron_right</span>
+<span class="hover:text-primary cursor-pointer transition-colors">My Jobs</span>
+<span class="material-symbols-outlined text-label-sm text-outline">chevron_right</span>
+<span class="text-primary font-semibold">Stripe · Staff Distributed Systems Engineer</span>
+</div>
+<!-- Live Countdown Pill -->
+<div class="flex items-center gap-space-xs px-space-md py-space-xxs rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm shadow-sm">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+<span>CALIBRATED FOR ONSITE: <strong>4 DAYS REMAINING (OCT 28)</strong></span>
+</div>
+</div>
+<!-- Main Job Title & Actions Cluster -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-xl">
+<div class="flex flex-col gap-space-xs">
+<div class="flex flex-wrap items-center gap-space-sm">
+<span class="px-space-sm py-space-xxs rounded bg-secondary/15 text-secondary font-label-sm text-label-sm uppercase tracking-wider font-semibold">Stripe Core Infra</span>
+<span class="px-space-sm py-space-xxs rounded bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">Level 6 (Staff IC)</span>
+<span class="px-space-sm py-space-xxs rounded bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm">Global Data Ledger Org</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight">Staff Distributed Systems Engineer</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-3xl">
+            Core Storage Infrastructure: Architectural consensus, multi-region Raft state machines, and low-latency LSM storage engines handling tens of billions in payment authorizations daily.
+          </p>
+</div>
+<!-- Primary Action Cluster -->
+<div class="flex flex-wrap items-center gap-space-md shrink-0">
+<button class="flex items-center gap-space-xs px-space-lg py-space-sm rounded bg-surface-container-high text-secondary hover:bg-surface-container-highest transition-all font-body-sm text-body-sm font-semibold shadow-sm">
+<span class="material-symbols-outlined text-body-md">difference</span>
+<span>Compare Resume</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-lg py-space-sm rounded bg-surface-container-high text-on-surface hover:bg-surface-container-highest transition-all font-body-sm text-body-sm font-medium shadow-sm">
+<span class="material-symbols-outlined text-body-md">tune</span>
+<span>Edit Rubric</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-xl py-space-sm rounded bg-primary text-on-primary hover:bg-primary-fixed-dim font-body-sm text-body-sm font-bold transition-all shadow-[0_0_24px_-4px_rgba(92,226,246,0.35)]">
+<span class="material-symbols-outlined text-body-md">bolt</span>
+<span>Launch Targeted Simulation</span>
+</button>
+</div>
+</div>
+<!-- Telemetry Strip & Verified Tech Stacks -->
+<div class="flex flex-wrap items-center justify-between gap-space-md pt-space-xs">
+<!-- Tech Stack Badges -->
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider mr-space-xs">Verified Stack:</span>
+<span class="px-space-sm py-space-xxs rounded bg-surface-container text-on-surface font-label-sm text-label-sm font-mono">Go 1.22</span>
+<span class="px-space-sm py-space-xxs rounded bg-surface-container text-on-surface font-label-sm text-label-sm font-mono">Rust</span>
+<span class="px-space-sm py-space-xxs rounded bg-surface-container text-on-surface font-label-sm text-label-sm font-mono">RocksDB</span>
+<span class="px-space-sm py-space-xxs rounded bg-surface-container text-on-surface font-label-sm text-label-sm font-mono">FoundationDB</span>
+<span class="px-space-sm py-space-xxs rounded bg-surface-container text-on-surface font-label-sm text-label-sm font-mono">Multi-Raft</span>
+<span class="px-space-sm py-space-xxs rounded bg-surface-container text-on-surface font-label-sm text-label-sm font-mono">AWS us-east-1 / eu-west-1</span>
+</div>
+<!-- Readout Counters -->
+<div class="flex items-center gap-space-lg font-label-sm text-label-sm text-on-surface-variant">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-body-md text-primary">analytics</span>
+<span>Calibrated Sessions: <strong class="text-on-surface font-mono">4 Completed</strong></span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-body-md text-tertiary">check_circle</span>
+<span>Rubric Coverage: <strong class="text-on-surface font-mono">92% Evaluated</strong></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Primary Dashboard Canvas -->
+<div class="w-full px-margin-desktop py-space-xl max-w-[1440px] mx-auto flex flex-col gap-space-xl">
+<!-- Top Bento Section: Overall Calibration Metric + Competency Radar Snapshot -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-stretch">
+<!-- L6 Overall Readiness Scorecard -->
+<div class="lg:col-span-4 p-space-xl rounded-lg bg-surface-container-low shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="absolute -right-8 -bottom-8 w-44 h-44 rounded-full bg-primary/5 pointer-events-none blur-2xl"></div>
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Hiring Bar Alignment</span>
+<span class="px-space-xs py-space-xxs rounded bg-tertiary/15 text-tertiary font-label-sm text-label-sm font-mono">STRONG CANDIDACY</span>
+</div>
+<div class="flex items-baseline gap-space-sm mt-space-sm">
+<span class="font-metric-display text-[44px] leading-tight text-primary font-mono font-bold">84%</span>
+<span class="font-label-md text-label-md text-on-surface-variant font-mono">L6 Calibration Index</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">
+            Elena is within 6 points of the automatic consensus threshold for Stripe Staff IC candidates. The highest potential delta is write stall mitigation.
+          </p>
+</div>
+<!-- Metric mini-progress bar -->
+<div class="mt-space-lg pt-space-md flex flex-col gap-space-xs bg-surface-container/60 p-space-md rounded">
+<div class="flex justify-between font-label-sm text-label-sm font-mono">
+<span class="text-on-surface-variant">Readiness Benchmark</span>
+<span class="text-primary font-bold">84 / 100</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container-highest overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary via-tertiary to-secondary rounded-full" style="width: 84%;"></div>
+</div>
+<div class="flex justify-between font-label-sm text-label-sm text-outline mt-space-xxs font-mono">
+<span>L5 Minimum: 70%</span>
+<span class="text-on-surface">Staff Target: 80%</span>
+<span>Principal: 95%</span>
+</div>
+</div>
+<!-- Quick Telemetry Footnote -->
+<div class="mt-space-md flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm pt-space-xs">
+<span class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-label-sm text-tertiary">verified</span>
+<span>Stripe Bar Verified</span>
+</span>
+<span class="font-mono text-outline">Updated: 2h ago</span>
+</div>
+</div>
+<!-- Historical Progress Graph & Trajectory -->
+<div class="lg:col-span-8 p-space-xl rounded-lg bg-surface-container-low shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between pb-space-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Calibration History</span>
+<h3 class="font-headline-md text-headline-md text-on-surface font-semibold">Performance Trajectory vs. Stripe L6 Standard</h3>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="px-space-sm py-space-xxs rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm font-mono">Last 4 Simulations</span>
+</div>
+</div>
+<!-- Custom SVG Calibration Trajectory Graph -->
+<div class="relative w-full h-40 flex items-center justify-center my-space-sm">
+<svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 700 160">
+<defs>
+<lineargradient id="areaGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#5ce2f6" stop-opacity="0.3"></stop>
+<stop offset="100%" stop-color="#5ce2f6" stop-opacity="0.0"></stop>
+</lineargradient>
+</defs>
+<!-- L6 Threshold line -->
+<line stroke="#3c494b" stroke-dasharray="4 4" stroke-width="1.5" x1="0" x2="700" y1="50" y2="50"></line>
+<text fill="#869395" font-family="JetBrains Mono" font-size="10" x="10" y="44">STRIPE STAFF (L6) HIRING THRESHOLD (80%)</text>
+<!-- Area fill -->
+<path d="M 50 130 L 220 98 L 440 68 L 650 45 L 650 150 L 50 150 Z" fill="url(#areaGradient)"></path>
+<!-- Trend line -->
+<path d="M 50 130 L 220 98 L 440 68 L 650 45" fill="none" stroke="#5ce2f6" stroke-linecap="round" stroke-width="3"></path>
+<!-- Nodes -->
+<!-- Sim 1 -->
+<circle cx="50" cy="130" fill="#101419" r="4.5" stroke="#5ce2f6" stroke-width="2.5"></circle>
+<!-- Sim 2 -->
+<circle cx="220" cy="98" fill="#101419" r="4.5" stroke="#5ce2f6" stroke-width="2.5"></circle>
+<!-- Sim 3 -->
+<circle cx="440" cy="68" fill="#101419" r="4.5" stroke="#5ce2f6" stroke-width="2.5"></circle>
+<!-- Sim 4 Active -->
+<circle cx="650" cy="45" fill="#35c6d9" r="6" stroke="#ffffff" stroke-width="2"></circle>
+</svg>
+</div>
+<!-- Graph Metas -->
+<div class="grid grid-cols-4 gap-space-sm pt-space-sm bg-surface-container/40 p-space-sm rounded">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline font-mono">SIM #8031 · Oct 12</span>
+<span class="font-body-md text-body-md font-mono text-on-surface font-semibold">68% <span class="text-error font-normal text-label-sm">Below L6</span></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant truncate">Initial Calibration</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline font-mono">SIM #8054 · Oct 16</span>
+<span class="font-body-md text-body-md font-mono text-on-surface font-semibold">74% <span class="text-tertiary font-normal text-label-sm">+6%</span></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant truncate">Raft Consensus Core</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline font-mono">SIM #8071 · Oct 20</span>
+<span class="font-body-md text-body-md font-mono text-on-surface font-semibold">79% <span class="text-tertiary font-normal text-label-sm">+5%</span></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant truncate">Partition Failures</span>
+</div>
+<div class="flex flex-col bg-surface-container-high/80 p-space-xs rounded">
+<span class="font-label-sm text-label-sm text-primary font-mono">SIM #8094 · Oct 23</span>
+<span class="font-body-md text-body-md font-mono text-primary font-bold">84% <span class="text-tertiary font-normal text-label-sm">+5% (PASS)</span></span>
+<span class="font-label-sm text-label-sm text-on-surface truncate">Full System Architecture</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Section: 4 Core Competency Cards Grid -->
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">L6 Evaluation Framework</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">Evaluated Competency Rubrics</h2>
+</div>
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant">
+<span>Click any competency card to inspect grading criteria below</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-lg">
+<!-- Competency Card 1: Distributed Consensus -->
+<div class="p-space-lg rounded-lg bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer flex flex-col justify-between shadow-sm relative group">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="px-space-xs py-space-xxs rounded bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm font-mono">WEIGHT: 35%</span>
+<span class="px-space-xs py-space-xxs rounded bg-tertiary/15 text-tertiary font-label-sm text-label-sm font-mono font-bold">88% STRONG</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-semibold mt-space-xs group-hover:text-primary transition-colors">Distributed Consensus &amp; Replication</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+              Multi-Raft log compaction, leader election quorums, split-brain mitigation, and WAN partitioning.
+            </p>
+</div>
+<div class="mt-space-lg pt-space-sm flex flex-col gap-space-xs bg-surface-container-lowest/50 p-space-sm rounded">
+<div class="flex items-center gap-space-xs text-tertiary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-label-sm">check_circle</span>
+<span>Exceeds L6 on Failover Semantics</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline truncate">Minor gap: Dynamic joint consensus</span>
+</div>
+</div>
+<!-- Competency Card 2: Cross-Region Consistency -->
+<div class="p-space-lg rounded-lg bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer flex flex-col justify-between shadow-sm relative group">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="px-space-xs py-space-xxs rounded bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm font-mono">WEIGHT: 25%</span>
+<span class="px-space-xs py-space-xxs rounded bg-primary/15 text-primary font-label-sm text-label-sm font-mono font-bold">82% CALIBRATED</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-semibold mt-space-xs group-hover:text-primary transition-colors">Cross-Region Consistency &amp; Clocks</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+              TrueTime vs Hybrid Logical Clocks, monotonic read-after-write, and cross-DC transaction latencies.
+            </p>
+</div>
+<div class="mt-space-lg pt-space-sm flex flex-col gap-space-xs bg-surface-container-lowest/50 p-space-sm rounded">
+<div class="flex items-center gap-space-xs text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-label-sm">verified</span>
+<span>Sound Linearizability Models</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline truncate">Needs depth: Network partition bounds</span>
+</div>
+</div>
+<!-- Competency Card 3: Storage Engines & LSM (Active / Focus) -->
+<div class="p-space-lg rounded-lg bg-surface-container-high transition-all cursor-pointer flex flex-col justify-between shadow-md relative group ring-1 ring-primary/40">
+<!-- Active Highlight Indicator -->
+<div class="absolute -top-2.5 left-space-lg px-space-xs py-0.5 rounded bg-primary text-on-primary font-label-sm text-[10px] font-bold uppercase tracking-widest shadow-sm">
+            INSPECTING DEEP-DIVE
+          </div>
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="px-space-xs py-space-xxs rounded bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm font-mono">WEIGHT: 20%</span>
+<span class="px-space-xs py-space-xxs rounded bg-error/15 text-error font-label-sm text-label-sm font-mono font-bold">78% FOCUS AREA</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary font-semibold mt-space-xs">High-Throughput Storage &amp; LSM-Trees</h3>
+<p class="font-body-sm text-body-sm text-on-surface line-clamp-2">
+              Write amplification, WAL durability, SSTable tiering vs leveling, and write stall backpressure.
+            </p>
+</div>
+<div class="mt-space-lg pt-space-sm flex flex-col gap-space-xs bg-surface-container-lowest p-space-sm rounded">
+<div class="flex items-center gap-space-xs text-error font-label-sm text-label-sm font-medium">
+<span class="material-symbols-outlined text-label-sm">priority_high</span>
+<span>Hesitated on Write Stall Backpressure</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary truncate">Drill assigned: RocksDB 25k IOPs</span>
+</div>
+</div>
+<!-- Competency Card 4: Incident Triage & Chaos -->
+<div class="p-space-lg rounded-lg bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer flex flex-col justify-between shadow-sm relative group">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="px-space-xs py-space-xxs rounded bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm font-mono">WEIGHT: 20%</span>
+<span class="px-space-xs py-space-xxs rounded bg-tertiary/15 text-tertiary font-label-sm text-label-sm font-mono font-bold">86% STRONG</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-semibold mt-space-xs group-hover:text-primary transition-colors">Production Incident Triage &amp; Chaos</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+              Cascading failure containment, adaptive circuit breaking, dead-letter drains, and blackhole recovery.
+            </p>
+</div>
+<div class="mt-space-lg pt-space-sm flex flex-col gap-space-xs bg-surface-container-lowest/50 p-space-sm rounded">
+<div class="flex items-center gap-space-xs text-tertiary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-label-sm">check_circle</span>
+<span>High Composure in Chaos Tests</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline truncate">Handled 100% simulated drop rate</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Section: Detailed Rubric Inspector (Split View: Rubric Tiers vs Resume Evidence) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- Left 8-Cols: Tier-by-Tier Rubric Evaluation Table -->
+<div class="lg:col-span-8 p-space-xl rounded-lg bg-surface-container-low shadow-sm flex flex-col gap-space-lg">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm pb-space-sm">
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="px-space-xs py-space-xxs rounded bg-primary/20 text-primary font-label-sm text-label-sm font-mono font-semibold">RUBRIC DETAIL</span>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider font-mono">Storage Substrate Bar</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface font-bold mt-space-xxs">
+              High-Throughput Storage Engines &amp; LSM-Trees
+            </h3>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Calibrated for:</span>
+<span class="px-space-sm py-space-xxs rounded bg-secondary/15 text-secondary font-label-sm text-label-sm font-mono font-bold">Stripe Level 6 Bar</span>
+</div>
+</div>
+<!-- 4 Explicit Grading Tiers with Candidate Placement -->
+<div class="flex flex-col gap-space-md">
+<!-- Tier 1: Developing (L4/L5) -->
+<div class="p-space-md rounded bg-surface-container/40 flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="px-space-xs py-space-xxs rounded bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm font-mono">LEVEL 4 - LEVEL 5</span>
+<span class="font-body-md text-body-md font-semibold text-on-surface">Developing</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline font-mono">Baseline</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Understands standard differences between B-Trees (in-place updates) and LSM-Trees (append-only). Acknowledges basic write paths but assumes infinite disk IOPS and lacks concrete mental model of memory stalls.
+            </p>
+</div>
+<!-- Tier 2: Proficient (L5) -->
+<div class="p-space-md rounded bg-surface-container/70 flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="px-space-xs py-space-xxs rounded bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm font-mono">LEVEL 5</span>
+<span class="font-body-md text-body-md font-semibold text-on-surface">Proficient (Senior SRE / Systems)</span>
+</div>
+<span class="font-label-sm text-label-sm text-tertiary font-mono flex items-center gap-space-xxs">
+<span class="material-symbols-outlined text-label-sm">check</span>
+<span>Candidate Passed</span>
+</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Deeply explains WAL (Write Ahead Log), memtable flush thresholds, Bloom filters, and Read Amplification mitigation. Explicitly articulates cache eviction policies (LRU vs 2Q) for block caches.
+            </p>
+</div>
+<!-- Tier 3: Staff Bar / Target (L6) - CANDIDATE FOCUS AREA -->
+<div class="p-space-lg rounded bg-surface-container-high ring-1 ring-primary/60 flex flex-col gap-space-sm shadow-md relative">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="px-space-xs py-space-xxs rounded bg-primary text-on-primary font-label-sm text-label-sm font-mono font-bold">TARGET: LEVEL 6</span>
+<span class="font-body-md text-body-md font-bold text-primary">Staff Engineer Standard (Stripe Bar)</span>
+</div>
+<span class="px-space-xs py-space-xxs rounded bg-error/15 text-error font-label-sm text-label-sm font-mono font-bold">
+                DRILL REQUIRED (78%)
+              </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface">
+              Rigorously analyzes Write Amplification vs Space Amplification trade-offs under skewed write workloads. Tunes Leveled vs Tiered compaction strategies. Designs resilient admission control and dynamic token buckets to prevent severe p99 spikes when memtables stall awaiting background disk compaction.
+            </p>
+<!-- Evaluator Context Notes -->
+<div class="mt-space-xs pt-space-xs flex flex-col gap-space-xxs bg-surface-container-lowest/80 p-space-sm rounded font-label-sm text-label-sm">
+<span class="text-secondary font-mono uppercase tracking-wider font-semibold">Latest Simulation Telemetry Note:</span>
+<span class="text-on-surface-variant">
+                "In Session #8094, when challenged by Marcus Vance on why a 90/10 write-heavy ingest caused p99 payment delays over 400ms, candidate proposed increasing worker threads rather than rate-limiting compaction threads or applying write-stall backpressure curves."
+              </span>
+</div>
+</div>
+<!-- Tier 4: Principal (L7) -->
+<div class="p-space-md rounded bg-surface-container/30 flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="px-space-xs py-space-xxs rounded bg-surface-container-highest text-outline font-label-sm text-label-sm font-mono">LEVEL 7</span>
+<span class="font-body-md text-body-md font-semibold text-outline">Principal Architect</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline font-mono">Aspirational</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline">
+              Redesigns persistent storage primitives; defines NVMe kernel-bypass IO-uring implementations, custom disk tiering, and hardware offload strategies across global regions.
+            </p>
+</div>
+</div>
+</div>
+<!-- Right 4-Cols: Candidate Evidence & Resume Cross-Check -->
+<div class="lg:col-span-4 flex flex-col gap-space-lg">
+<!-- Evidence Linking Card -->
+<div class="p-space-xl rounded-lg bg-surface-container-low shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-xxs">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider font-mono">Evidence Cross-Check</span>
+<span class="material-symbols-outlined text-body-md text-secondary">verified_user</span>
+</div>
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm text-primary font-mono uppercase tracking-wider">Target JD Signal</span>
+<div class="p-space-sm rounded bg-surface-container text-on-surface font-body-sm text-body-sm italic">
+              "Experience architecting high-throughput key-value engines with sub-millisecond p99 latency SLAs under high write concurrency."
+            </div>
+</div>
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm text-secondary font-mono uppercase tracking-wider">Candidate Profile Extraction</span>
+<div class="p-space-sm rounded bg-surface-container text-on-surface font-body-sm text-body-sm">
+<p class="font-semibold text-on-surface">Elena Rostova · Staff Eng at FinScale Inc</p>
+<p class="text-on-surface-variant text-body-sm mt-space-xxs">
+                Led migration from Cassandra to custom RocksDB-backed storage, handling 140,000 IOPS for balance ledgers.
+              </p>
+</div>
+</div>
+<div class="p-space-sm rounded bg-primary/10 text-on-surface flex flex-col gap-space-xxs font-label-sm text-label-sm">
+<span class="text-primary font-bold font-mono">CALIBRATION GAP:</span>
+<span>Elena has extensive practical RocksDB operational experience, but tends to respond with production tuning recipes rather than first-principles mathematical trade-offs required by Stripe hiring committees.</span>
+</div>
+</div>
+<!-- Matched Interviewer Personas for this Job -->
+<div class="p-space-xl rounded-lg bg-surface-container-low shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider font-mono">Target Interviewers</span>
+<span class="px-space-xs py-space-xxs rounded bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm font-mono">AI PERSONAS</span>
+</div>
+<div class="flex flex-col gap-space-sm">
+<!-- Persona 1: Marcus Vance -->
+<div class="flex items-center gap-space-sm p-space-sm rounded bg-surface-container/60 hover:bg-surface-container transition-all">
+<div class="relative w-10 h-10 rounded-full overflow-hidden shrink-0">
+<img class="object-cover w-full h-full" data-alt="Close up photographic studio portrait of a sharp mid-40s male software infrastructure architect with glasses, serious intellectual expression, dark studio cinematic lighting with cyan backlight." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2fFo9wS4TS8QvpAOAOmAm5ut6n54mQsVBDi4zjJf1yceOShfQrB9Hbj7kcWB6mOQc5vt6xRZh7YB5LnRxLINkzWJHOFb_IktM6YKMW6FAh3Ub58XOVZ0pVfiaSmkqJOmVruHTRuKBkCAXhMYrfBGPUtIqXhUvkaN_aFajvHVAGihhZyPtoSDwTvCHQrYWY-KGyREG7gbr5dC6OCSP9_FS_tHLQME0zBaWfQwpQIOT5es_-EJjstv3MQ"/>
+</div>
+<div class="flex flex-col min-w-0 flex-1">
+<div class="flex items-center justify-between">
+<span class="font-body-md text-body-md font-bold text-on-surface truncate">Marcus Vance</span>
+<span class="font-label-sm text-label-sm text-primary font-mono">Consensus Lead</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant truncate">Skeptical, tests failure boundaries &amp; WAL fsync</span>
+</div>
+</div>
+<!-- Persona 2: Sarah Chen -->
+<div class="flex items-center gap-space-sm p-space-sm rounded bg-surface-container/60 hover:bg-surface-container transition-all">
+<div class="relative w-10 h-10 rounded-full overflow-hidden shrink-0">
+<img class="object-cover w-full h-full" data-alt="Portrait of an experienced Asian female distributed systems director in modern executive studio setting, confident composed expression with soft lavender atmospheric lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSM3yKatuQqOBXntAlfEjLIJ9SLcZn7X84cyrImXhu3_iosaDkZh0D-BToSJ2xQ4uSfHYJtQBOzdkXPzbcJdu5fL0_9gwZ3Eax99lzQfmXkUHpAZUh5nNli_z8cKH65PTNebYqEeDum9mBZ7kn3Wo498J441HI4mi4SP1U7lyAqmcU2pGA1oZu-j8ZzYJdjr4jeEWIcv3hCazsSjjKobaFozg60bWNpf3T0En40ZbBZynIAXcoVtobJQ"/>
+</div>
+<div class="flex flex-col min-w-0 flex-1">
+<div class="flex items-center justify-between">
+<span class="font-body-md text-body-md font-bold text-on-surface truncate">Sarah Chen</span>
+<span class="font-label-sm text-label-sm text-secondary font-mono">Chaos &amp; Incidents</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant truncate">Probes cross-DC cascading deadlocks</span>
+</div>
+</div>
+</div>
+<button class="w-full flex items-center justify-center gap-space-xs py-space-xs rounded bg-surface-container text-on-surface hover:bg-surface-container-high transition-all font-label-sm text-label-sm font-medium">
+<span class="material-symbols-outlined text-body-md">group</span>
+<span>View All 5 Target Personas</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Section: Prescriptive Practice & Interview Preparation Flywheel -->
+<div class="p-space-xl rounded-lg bg-surface-container-low shadow-sm flex flex-col gap-space-lg mb-space-xl">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm">
+<div>
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wider font-mono">Closing the 6% Delta</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">Prescriptive Sparring Drills for Stripe L6</h2>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="px-space-sm py-space-xxs rounded bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">Estimated Prep Time: 45 Mins</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg">
+<!-- Drill Card 1: Primary Remediation -->
+<div class="p-space-lg rounded-lg bg-surface-container hover:bg-surface-container-high transition-all flex flex-col justify-between gap-space-md shadow-sm border-l-4 border-primary">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="px-space-xs py-space-xxs rounded bg-primary/20 text-primary font-label-sm text-label-sm font-mono font-bold">RECOMMENDED #1 FOCUS</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">15 Mins · Audio Simulation</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-semibold mt-space-xxs">RocksDB Write Stall Mitigation under 25k IOPS</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Spar with Marcus Vance on pacing write buffers, dynamically sizing L0-to-L1 compaction concurrency, and defending token-bucket admission control against angry payment microservices.
+            </p>
+</div>
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-body-md text-primary">record_voice_over</span>
+<span>Evaluator: Marcus Vance</span>
+</div>
+<button class="flex items-center gap-space-xs px-space-lg py-space-xs rounded bg-primary text-on-primary hover:bg-primary-fixed-dim transition-all font-body-sm text-body-sm font-bold shadow-sm">
+<span class="material-symbols-outlined text-body-md">play_arrow</span>
+<span>Start Sparring Drill</span>
+</button>
+</div>
+</div>
+<!-- Drill Card 2: Secondary Remediation -->
+<div class="p-space-lg rounded-lg bg-surface-container hover:bg-surface-container-high transition-all flex flex-col justify-between gap-space-md shadow-sm border-l-4 border-secondary">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="px-space-xs py-space-xxs rounded bg-secondary/20 text-secondary font-label-sm text-label-sm font-mono font-bold">SECONDARY DRILL</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">10 Mins · Rapid Fire Challenge</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-semibold mt-space-xxs">Raft Joint Consensus Reconfiguration</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Answer 4 technical trade-off probes on transitioning a 5-node cluster across 3 availability zones without dropping availability guarantees during dual-configuration phases.
+            </p>
+</div>
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-body-md text-secondary">record_voice_over</span>
+<span>Evaluator: Sarah Chen</span>
+</div>
+<button class="flex items-center gap-space-xs px-space-lg py-space-xs rounded bg-surface-container-highest text-secondary hover:bg-secondary/20 transition-all font-body-sm text-body-sm font-semibold shadow-sm">
+<span class="material-symbols-outlined text-body-md">play_arrow</span>
+<span>Start Challenge</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></main></div></body></html>

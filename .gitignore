@@ -1,0 +1,63 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+Thumbs.db
+.atom/
+.build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+migrate_working_dir/
+
+# Python & Virtual Environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+.pytest_cache/
+
+# Environment Configurations & Secrets
+.env
+.env.local
+.env.*.local
+!.env.example
+backend/.env
+
+# Local SQLite Database Temporary Journals and Backups
+*.db-journal
+*.db-wal
+*.db-shm
+*backup*.db
+
+# Credentials & Service Accounts
+*service-account*.json
+*firebase*.json
+credentials.json
+google-services.json
+GoogleService-Info.plist
+
+# IDE & Editor Metadata
+*.iml
+*.ipr
+*.iws
+.idea/
+.vscode/
+
+# Flutter / Dart / Pub
+**/doc/api/
+.dart_tool/
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+/build/
+/coverage/
+
+# Symbolication & Obfuscation
+app.*.symbols
+app.*.map.json

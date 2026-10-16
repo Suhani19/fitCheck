@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"secondary":"#cebdff","tertiary":"#5ae9ac","outline":"#869395","surface-tint":"#4fd8eb","on-secondary-fixed-variant":"#4f319c","secondary-fixed":"#e8ddff","on-tertiary-fixed-variant":"#005236","primary-fixed-dim":"#4fd8eb","surface-container-lowest":"#0a0e13","inverse-surface":"#e0e2ea","on-error":"#690005","on-background":"#e0e2ea","surface-variant":"#31353b","tertiary-container":"#36cc92","primary-container":"#35c6d9","on-tertiary-fixed":"#002113","primary":"#5ce2f6","on-secondary":"#381385","inverse-primary":"#006874","on-primary":"#00363d","on-tertiary-container":"#005136","on-surface":"#e0e2ea","surface-bright":"#36393f","surface-dim":"#101419","on-primary-fixed":"#001f24","secondary-fixed-dim":"#cebdff","on-primary-fixed-variant":"#004f58","primary-fixed":"#97f0ff","on-surface-variant":"#bbc9cb","error":"#ffb4ab","surface-container-high":"#262a30","surface-container-highest":"#31353b","outline-variant":"#3c494b","on-primary-container":"#004e57","on-secondary-fixed":"#21005e","surface-container":"#1c2025","background":"#101419","tertiary-fixed":"#6ffbbe","surface":"#101419","inverse-on-surface":"#2d3136","on-error-container":"#ffdad6","secondary-container":"#4f319c","tertiary-fixed-dim":"#4edea3","on-tertiary":"#003824","error-container":"#93000a","surface-container-low":"#181c21","on-secondary-container":"#bea8ff"},borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},spacing:{"margin-desktop":"2rem","space-3xl":"3rem","space-2xl":"2rem","space-xl":"1.5rem","gutter":"1.25rem","space-xxs":"0.125rem","margin":"1rem","space-lg":"1rem","space-xs":"0.25rem","space-md":"0.75rem","gutter-desktop":"1.5rem","space-sm":"0.5rem"},fontFamily:{"body-lg":["Inter"],"metric-display":["JetBrains Mono"],"label-md":["JetBrains Mono"],"headline-md":["Inter"],"label-sm":["JetBrains Mono"],"headline-xl":["Inter"],"body-sm":["Inter"],"display-lg-mobile":["Inter"],"body-md":["Inter"],"headline-lg":["Inter"],"display-lg":["Inter"]},fontSize:{"body-lg":["16px",{lineHeight:"24px",letterSpacing:"-0.005em",fontWeight:"400"}],"metric-display":["28px",{lineHeight:"32px",letterSpacing:"-0.02em",fontWeight:"600"}],"label-md":["12px",{lineHeight:"16px",letterSpacing:"0.02em",fontWeight:"500"}],"headline-md":["20px",{lineHeight:"28px",letterSpacing:"-0.01em",fontWeight:"500"}],"label-sm":["11px",{lineHeight:"14px",letterSpacing:"0.04em",fontWeight:"500"}],"headline-xl":["32px",{lineHeight:"40px",letterSpacing:"-0.02em",fontWeight:"600"}],"body-sm":["13px",{lineHeight:"18px",letterSpacing:"0em",fontWeight:"400"}],"display-lg-mobile":["30px",{lineHeight:"38px",letterSpacing:"-0.015em",fontWeight:"600"}],"body-md":["14px",{lineHeight:"20px",letterSpacing:"0em",fontWeight:"400"}],"headline-lg":["24px",{lineHeight:"32px",letterSpacing:"-0.015em",fontWeight:"600"}],"display-lg":["40px",{lineHeight:"48px",letterSpacing:"-0.02em",fontWeight:"600"}]}}}};</script></head><body class="bg-surface font-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 left-0 right-0 w-full z-50 bg-surface-container-lowest/80 backdrop-blur-xl border-b border-outline-variant/30 shadow-[0_1px_8px_rgba(0,0,0,0.5)]"><div class="h-16 max-w-7xl mx-auto px-margin-desktop flex items-center justify-between"><div class="flex items-center gap-space-lg"><a class="flex items-center gap-space-md group" data-path="home" href="#"><div class="w-8 h-8 rounded-lg bg-surface-container-high border border-outline-variant/40 flex items-center justify-center relative overflow-hidden group-hover:border-primary transition-colors"><div class="flex items-end gap-[2px] h-4"><span class="w-[2px] h-2 bg-primary rounded-full animate-pulse"></span><span class="w-[2px] h-4 bg-primary rounded-full"></span><span class="w-[2px] h-3 bg-secondary rounded-full"></span><span class="w-[2px] h-2 bg-primary rounded-full"></span></div></div><div class="flex flex-col"><div class="flex items-center gap-space-xs"><span class="font-headline-md text-headline-md tracking-tight text-on-surface font-semibold">FitCheck</span><span class="inline-block w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span></div><span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Get fit. Check fit.</span></div></a></div><nav class="hidden lg:flex items-center gap-space-xl" data-active-classes="text-primary font-medium"><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="platform" href="#">Platform</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="interviewer-personas" href="#">Interviewer Personas</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="voice-studio" href="#">Voice Studio</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="evaluations" href="#">Evaluations</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="pricing" href="#">Pricing</a></nav><div class="flex items-center gap-space-md"><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high px-space-md py-space-sm rounded transition-all" data-path="sign-in" href="#">Sign In</a><a class="inline-flex items-center justify-center font-body-md text-body-md font-medium text-on-primary bg-primary hover:bg-primary-fixed-dim px-space-lg py-space-sm rounded shadow-[0_0_16px_-4px_rgba(92,226,246,0.3)] transition-all active:scale-[0.98]" data-path="signup" href="#">Start Preparing</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-16 bg-surface min-h-[calc(100vh-64px)]"><div class="flex flex-col w-full">
+<!-- HERO SECTION -->
+<section class="relative w-full overflow-hidden bg-surface pt-space-2xl pb-space-3xl">
+<!-- Studio Ambient Glows -->
+<div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[360px] bg-primary/10 rounded-full blur-[140px] pointer-events-none"></div>
+<div class="absolute top-1/3 left-3/4 w-[420px] h-[300px] bg-secondary/10 rounded-full blur-[120px] pointer-events-none"></div>
+<div class="relative max-w-7xl mx-auto px-margin-desktop flex flex-col items-center text-center">
+<!-- Eyebrow Pill -->
+<div class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-full bg-surface-container-high shadow-sm mb-space-xl">
+<span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+<span class="font-label-sm text-label-sm tracking-widest uppercase text-on-surface">Overfit Labs • Introducing FitCheck 2.0 • Ultra-Low Latency Voice AI</span>
+</div>
+<!-- Main Headline -->
+<h1 class="font-display-lg text-display-lg md:text-[54px] md:leading-[60px] font-semibold text-on-surface tracking-tight max-w-4xl">
+        Your next interview shouldn't be a surprise.
+      </h1>
+<!-- Subheadline -->
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mt-space-lg mb-space-2xl">
+        Practice with AI interviewers who adapt to your answers, challenge your architectural reasoning, and pressure-test you for the role you actually want.
+      </p>
+<!-- Action Buttons -->
+<div class="flex flex-col sm:flex-row items-center gap-space-md mb-space-md">
+<a class="w-full sm:w-auto inline-flex items-center justify-center gap-space-sm font-body-md text-body-md font-semibold text-on-primary bg-primary hover:bg-primary-fixed-dim px-space-2xl py-3.5 rounded shadow-[0_0_24px_-4px_rgba(92,226,246,0.35)] transition-all active:scale-[0.98]" data-path="signup" href="#">
+<span>Start Preparing Free</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+<button class="w-full sm:w-auto inline-flex items-center justify-center gap-space-sm font-body-md text-body-md font-medium text-on-surface bg-surface-container-high hover:bg-surface-container-highest px-space-xl py-3.5 rounded shadow-sm transition-all" id="play-demo-btn" type="button">
+<span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+<span>Watch 2-Min Live Simulation</span>
+</button>
+</div>
+<!-- Micro Trust Badges -->
+<div class="flex items-center gap-space-lg text-on-surface-variant font-label-sm text-label-sm">
+<span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>No credit card required</span>
+<span class="hidden sm:inline opacity-30">•</span>
+<span class="hidden sm:flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span>Realistic voice synthesis</span>
+<span class="hidden sm:inline opacity-30">•</span>
+<span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>48kHz audio telemetry</span>
+</div>
+<!-- Hero Interactive Preview Card -->
+<div class="w-full max-w-5xl mt-space-3xl relative">
+<!-- Floating Backdrop Light -->
+<div class="absolute -inset-1 rounded-xl bg-gradient-to-r from-primary/20 via-secondary/20 to-primary/10 blur-xl opacity-70"></div>
+<div class="relative bg-surface-container-lowest rounded-xl shadow-2xl overflow-hidden text-left">
+<!-- Top Console Status Bar -->
+<div class="bg-surface-container-low px-space-lg py-space-sm flex flex-wrap items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="w-2.5 h-2.5 rounded-full bg-error animate-pulse"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface font-semibold">Live Simulation in Progress</span>
+<span class="text-on-surface-variant/40">/</span>
+<span class="font-label-sm text-label-sm text-primary">Staff Systems Engineer @ Stripe</span>
+</div>
+<div class="flex items-center gap-space-md">
+<span class="font-label-sm text-label-sm text-tertiary bg-surface-container-high px-space-sm py-0.5 rounded flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>24ms AUDIO LATENCY
+              </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container-high px-space-sm py-0.5 rounded">00:34:18 / 45:00</span>
+</div>
+</div>
+<!-- Persona Selector Tabs inside simulated UI -->
+<div class="bg-surface-container px-space-lg pt-space-xs flex gap-space-xs overflow-x-auto">
+<button class="px-space-md py-space-sm text-left bg-surface-container-lowest text-primary rounded-t font-label-md text-label-md flex items-center gap-space-xs">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+              Marcus Vance (Distributed Systems)
+            </button>
+<button class="px-space-md py-space-sm text-left text-on-surface-variant hover:text-on-surface rounded-t font-label-md text-label-md flex items-center gap-space-xs">
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
+              Sarah Chen (EM &amp; Infra Architecture)
+            </button>
+<button class="px-space-md py-space-sm text-left text-on-surface-variant hover:text-on-surface rounded-t font-label-md text-label-md flex items-center gap-space-xs">
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
+              Alex Rivera (Product &amp; Systems Scale)
+            </button>
+</div>
+<!-- Main Interactive Card Grid -->
+<div class="p-space-xl grid grid-cols-1 lg:grid-cols-12 gap-space-xl">
+<!-- Left: Speaker Profile & Waveform State -->
+<div class="lg:col-span-5 flex flex-col justify-between space-y-space-lg bg-surface-container-low p-space-lg rounded-lg">
+<div class="flex items-start gap-space-md">
+<div class="w-14 h-14 rounded-lg bg-surface-container-high flex items-center justify-center flex-shrink-0 relative overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Portrait of Marcus Vance, a sharp senior engineering leader in his late 40s wearing dark minimalist attire in an engineering studio office with cool cyan backlighting, sharp focus, professional tech executive photograph." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyMOVgs2ZHg2w9P49ujxqPRzs6AyEAh-ehkDSU90kcJHubm0dPm-p0yRBaznV8ezJ883OSAkqkS96EIveCtjkCg6BAYt4IadB5CQbCFOYKOLkvi4j4mPqWRU1NikPxOQgepdIR369nNCeYYkJZShpheFHqPES83dwNadOaVBcFkMGBoPdZBymx1EwV8UXP2XZ_ju7DqUT3b4J5GBwL-mbG08KIDSpOGgy8GeBE9TVAa95NOYHrfWhaYA"/>
+<div class="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-primary ring-2 ring-surface-container-low"></div>
+</div>
+<div>
+<div class="flex items-center gap-space-xs">
+<h3 class="font-headline-md text-headline-md font-semibold text-on-surface">Marcus Vance</h3>
+<span class="material-symbols-outlined text-primary text-[16px]">verified</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Principal Distributed Systems Architect</p>
+<p class="font-label-sm text-label-sm text-secondary mt-0.5">Style: Socratic • High Pressure • Metric-Obsessed</p>
+</div>
+</div>
+<!-- High-Density Dynamic Audio Waveform -->
+<div class="bg-surface-container-lowest p-space-md rounded space-y-space-xs">
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span class="flex items-center gap-1.5 text-primary">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                    INTERVIEWER SPEAKING
+                  </span>
+<span class="text-on-surface font-metric-display text-[12px]">-16.8 dBFS</span>
+</div>
+<!-- Dynamic Waveform visualizer bars -->
+<div class="flex items-end justify-between h-14 gap-[2px] pt-space-xs px-1">
+<span class="w-[3px] h-3 bg-outline-variant rounded-full"></span>
+<span class="w-[3px] h-6 bg-primary rounded-full"></span>
+<span class="w-[3px] h-10 bg-primary rounded-full animate-pulse"></span>
+<span class="w-[3px] h-12 bg-primary rounded-full"></span>
+<span class="w-[3px] h-8 bg-primary rounded-full"></span>
+<span class="w-[3px] h-5 bg-outline-variant rounded-full"></span>
+<span class="w-[3px] h-11 bg-primary rounded-full"></span>
+<span class="w-[3px] h-14 bg-secondary rounded-full animate-pulse"></span>
+<span class="w-[3px] h-9 bg-primary rounded-full"></span>
+<span class="w-[3px] h-7 bg-primary rounded-full"></span>
+<span class="w-[3px] h-12 bg-primary rounded-full"></span>
+<span class="w-[3px] h-4 bg-outline-variant rounded-full"></span>
+<span class="w-[3px] h-8 bg-primary rounded-full"></span>
+<span class="w-[3px] h-13 bg-secondary rounded-full"></span>
+<span class="w-[3px] h-11 bg-primary rounded-full"></span>
+<span class="w-[3px] h-6 bg-primary rounded-full"></span>
+<span class="w-[3px] h-3 bg-outline-variant rounded-full"></span>
+<span class="w-[3px] h-9 bg-primary rounded-full"></span>
+<span class="w-[3px] h-12 bg-primary rounded-full"></span>
+<span class="w-[3px] h-7 bg-primary rounded-full"></span>
+<span class="w-[3px] h-4 bg-outline-variant rounded-full"></span>
+</div>
+</div>
+<!-- Pacing Telemetry Snapshot -->
+<div class="grid grid-cols-3 gap-space-xs">
+<div class="bg-surface-container-lowest p-space-sm rounded">
+<span class="block font-label-sm text-label-sm text-on-surface-variant">BAR ALIGNMENT</span>
+<span class="font-metric-display text-[18px] text-tertiary">96.4%</span>
+</div>
+<div class="bg-surface-container-lowest p-space-sm rounded">
+<span class="block font-label-sm text-label-sm text-on-surface-variant">SPEECH RATE</span>
+<span class="font-metric-display text-[18px] text-primary">142 WPM</span>
+</div>
+<div class="bg-surface-container-lowest p-space-sm rounded">
+<span class="block font-label-sm text-label-sm text-on-surface-variant">FILLERS</span>
+<span class="font-metric-display text-[18px] text-on-surface">1.2%</span>
+</div>
+</div>
+</div>
+<!-- Right: Real-time Transcript Stream & Counter-Argument Pressure -->
+<div class="lg:col-span-7 flex flex-col justify-between space-y-space-md">
+<!-- Question Card -->
+<div class="bg-surface-container-high p-space-lg rounded-lg shadow-sm space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm px-space-sm py-0.5 rounded bg-primary/10 text-primary uppercase">Direct Challenge • 00:33:50</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Round 3: High-Availability Sharding</span>
+</div>
+<p class="font-headline-md text-headline-md font-medium text-on-surface leading-snug">
+                  “How would your design guarantee linearizability during an asymmetric cross-region partition without introducing a 300ms tail latency spike for hot EU write keys?”
+                </p>
+</div>
+<!-- Candidate Speech Capture Stream -->
+<div class="bg-surface-container-low p-space-lg rounded-lg space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-tertiary flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+                    CANDIDATE ANSWER STREAM (LIVE TRANSCRIBING)
+                  </span>
+<span class="font-label-sm text-label-sm text-secondary">Acoustic Pitch: Composed</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                  “I would split consensus into two distinct tiers: localized Raft quorums for sub-10ms mutations within local multi-AZ cells, backed by asynchronous CRDT reconciliations for cross-region reads. For hot keys specifically, we lease dynamic multi-version concurrency slots...”
+                </p>
+<!-- Live Telemetry Pill Bar -->
+<div class="flex flex-wrap items-center gap-space-xs pt-space-xs">
+<span class="px-space-sm py-1 bg-surface-container-high rounded text-on-surface font-label-sm text-label-sm">
+                    Architectural Depth: <strong class="text-primary font-semibold">Tier 1 Calibrated</strong>
+</span>
+<span class="px-space-sm py-1 bg-surface-container-high rounded text-on-surface font-label-sm text-label-sm">
+                    Hesitation Delay: <strong class="text-tertiary font-semibold">0.42s (Nominal)</strong>
+</span>
+<span class="px-space-sm py-1 bg-surface-container-high rounded text-on-surface font-label-sm text-label-sm">
+                    Tone: <strong class="text-secondary font-semibold">Decisive Executive</strong>
+</span>
+</div>
+</div>
+<!-- Real-time Rubric Insight Drawer Preview -->
+<div class="bg-surface-container-lowest p-space-md rounded flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[20px]">psychology</span>
+<span class="font-body-sm text-body-sm text-on-surface">Interviewer calculating follow-up: <em class="text-on-surface-variant">Investigating partition-split split-brain mitigation</em></span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary uppercase bg-secondary/10 px-space-sm py-0.5 rounded">Adaptive AI</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SOCIAL PROOF & CALIBRATION POOL BAR -->
+<section class="w-full bg-surface-container-lowest py-space-2xl">
+<div class="max-w-7xl mx-auto px-margin-desktop">
+<div class="flex flex-col md:flex-row items-center justify-between gap-space-xl">
+<div class="text-left max-w-sm">
+<p class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Calibrated Engineering Rubrics</p>
+<p class="font-headline-md text-headline-md text-on-surface font-medium">Trained against hiring bars from top-tier engineering teams</p>
+</div>
+<!-- Tech Logos Badges -->
+<div class="flex flex-wrap items-center gap-space-lg text-on-surface-variant opacity-80">
+<div class="flex items-center gap-2 bg-surface-container-high px-space-md py-space-sm rounded shadow-sm hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">payments</span>
+<span class="font-headline-md text-headline-md font-semibold tracking-tighter">stripe</span>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-high px-space-md py-space-sm rounded shadow-sm hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">monitoring</span>
+<span class="font-headline-md text-headline-md font-semibold tracking-tighter">DATADOG</span>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-high px-space-md py-space-sm rounded shadow-sm hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">ac_unit</span>
+<span class="font-headline-md text-headline-md font-semibold tracking-tighter">snowflake</span>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-high px-space-md py-space-sm rounded shadow-sm hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">layers</span>
+<span class="font-headline-md text-headline-md font-semibold tracking-tighter">Figma</span>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-high px-space-md py-space-sm rounded shadow-sm hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">cloud</span>
+<span class="font-headline-md text-headline-md font-semibold tracking-tighter">CLOUDFLARE</span>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-high px-space-md py-space-sm rounded shadow-sm hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">smart_toy</span>
+<span class="font-headline-md text-headline-md font-semibold tracking-tighter">OpenAI</span>
+</div>
+</div>
+</div>
+<!-- Live Counter Metrics -->
+<div class="mt-space-xl pt-space-lg grid grid-cols-2 md:grid-cols-4 gap-space-lg">
+<div>
+<span class="font-metric-display text-metric-display text-primary block">142,000+</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Simulations Calibrated</span>
+</div>
+<div>
+<span class="font-metric-display text-metric-display text-tertiary block">94.8%</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Bar-Alignment Precision</span>
+</div>
+<div>
+<span class="font-metric-display text-metric-display text-secondary block">184ms</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Voice Audio Turn-Around</span>
+</div>
+<div>
+<span class="font-metric-display text-metric-display text-on-surface block">87.3%</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">L5/L6 Offer Conversion Rate</span>
+</div>
+</div>
+</div>
+</section>
+<!-- CORE PHILOSOPHY / DIFFERENTIATION SECTION -->
+<section class="w-full bg-surface py-space-3xl relative">
+<div class="max-w-7xl mx-auto px-margin-desktop">
+<div class="flex flex-col items-center text-center max-w-3xl mx-auto mb-space-3xl">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary mb-space-xs font-semibold">Core Philosophy</span>
+<h2 class="font-display-lg text-display-lg font-semibold text-on-surface">
+          Don't simulate an interview.<br/>
+<span class="text-primary">Simulate THEIR interview.</span>
+</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-space-md">
+          A generic chatbot telling you “good job” won't prepare you for an aggressive Principal Architect picking apart your consensus protocol. FitCheck replicates the exact cognitive pressure of top hiring loops.
+        </p>
+</div>
+<!-- Contrast Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-2xl items-stretch">
+<!-- Card 1: Generic Tools -->
+<div class="bg-surface-container-low p-space-2xl rounded-xl shadow-md relative overflow-hidden flex flex-col justify-between">
+<div class="space-y-space-lg">
+<div class="inline-flex items-center gap-space-xs px-space-sm py-1 rounded bg-error-container/30 text-error font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[16px]">close</span>
+              GENERIC AI BOT PREP
+            </div>
+<h3 class="font-headline-xl text-headline-xl text-on-surface font-medium">Text Prompts &amp; Compliant Chatbots</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Every system gives you identical applause. They let you ramble without interrupts, never contest your hand-wavy claims, and grade you with canned bullet points.
+            </p>
+<ul class="space-y-space-md pt-space-xs">
+<li class="flex items-start gap-space-sm text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-error text-[18px] flex-shrink-0 mt-0.5">cancel</span>
+<span>Passive listening that never tests your composure under sharp interruptions.</span>
+</li>
+<li class="flex items-start gap-space-sm text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-error text-[18px] flex-shrink-0 mt-0.5">cancel</span>
+<span>Zero domain rubrics: grades whether sentences sound polite rather than technically sound.</span>
+</li>
+<li class="flex items-start gap-space-sm text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-error text-[18px] flex-shrink-0 mt-0.5">cancel</span>
+<span>Unrealistic latencies (2-4s pauses) that shatter authentic conversational cadence.</span>
+</li>
+</ul>
+</div>
+<div class="mt-space-2xl p-space-md bg-surface-container rounded text-on-surface-variant font-label-sm text-label-sm">
+            Outcome: False confidence followed by surprise rejections on ambiguous trade-off questions.
+          </div>
+</div>
+<!-- Card 2: FitCheck Calibration -->
+<div class="bg-surface-container-high p-space-2xl rounded-xl shadow-xl relative overflow-hidden flex flex-col justify-between">
+<div class="space-y-space-lg">
+<div class="inline-flex items-center gap-space-xs px-space-sm py-1 rounded bg-primary/20 text-primary font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+              FITCHECK PRECISION CALIBRATION
+            </div>
+<h3 class="font-headline-xl text-headline-xl text-on-surface font-semibold">Persona-Driven Adversarial Sparring</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Simulators configured to mirror the exact skepticism, company-specific architecture dogmas, and communicative standards of real staff engineers and hiring VPs.
+            </p>
+<ul class="space-y-space-md pt-space-xs">
+<li class="flex items-start gap-space-sm text-on-surface font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-primary text-[18px] flex-shrink-0 mt-0.5">verified</span>
+<span><strong>Acoustic Turn-Taking:</strong> Natural interruptions when you fail to state boundary conditions early.</span>
+</li>
+<li class="flex items-start gap-space-sm text-on-surface font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-primary text-[18px] flex-shrink-0 mt-0.5">verified</span>
+<span><strong>Verbatim Rubric Auditing:</strong> Identifies the exact sentence you lost seniority points on.</span>
+</li>
+<li class="flex items-start gap-space-sm text-on-surface font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-primary text-[18px] flex-shrink-0 mt-0.5">verified</span>
+<span><strong>Continuous Sub-200ms Telemetry:</strong> Audio streams processed at human conversation tempo.</span>
+</li>
+</ul>
+</div>
+<div class="mt-space-2xl p-space-md bg-surface-container-lowest rounded flex items-center justify-between">
+<span class="text-tertiary font-label-sm text-label-sm font-semibold">RESULT: 3.4x HIGHER L6/L7 BAR PASSAGE</span>
+<span class="material-symbols-outlined text-tertiary text-[18px]">trending_up</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- PERSONA SHOWCASE SECTION -->
+<section class="w-full bg-surface-container-lowest py-space-3xl relative">
+<div class="max-w-7xl mx-auto px-margin-desktop">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-space-2xl gap-space-lg">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-semibold">Calibrated Personas</span>
+<h2 class="font-display-lg text-display-lg font-semibold text-on-surface mt-space-xs">
+            Meet Your Simulated Interviewers
+          </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mt-space-xs">
+            Engineered to reflect specific seniority levels, communication tones, and uncompromising technical standards.
+          </p>
+</div>
+<div class="flex items-center gap-space-xs bg-surface-container px-space-md py-space-sm rounded">
+<span class="material-symbols-outlined text-secondary text-[20px]">tune</span>
+<span class="font-label-sm text-label-sm text-on-surface">18 Calibrated Archetypes Available</span>
+</div>
+</div>
+<!-- 3 Persona Cards Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-space-xl">
+<!-- Persona 1: Marcus Vance -->
+<div class="bg-surface-container rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group">
+<div class="p-space-xl space-y-space-lg">
+<div class="flex items-start justify-between">
+<div class="w-16 h-16 rounded-lg bg-surface-container-high overflow-hidden shadow-md">
+<img class="w-full h-full object-cover" data-alt="Portrait photo of Marcus Vance, senior tech architect with glasses and focused expression, dark studio background with subtle cyan lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8kN6nZ9XtiAWqawxeagJ7mYXD5FzbM2sxNCvbQ4uPRJOqPObHHT_BAh0rZpzyn-W-g_2IKdoMi8hP7rhfV-RBCJDZk12wmlYl5UQO3bmZG3fy7qXzpLsw-LbR9AqgNpfKVZIWYYsSTlaMQdLlpcf-YjKGbJSLN6fm1UsHgG8h9TBejB5hrWjpb31x-uFJT1OKwaGrEPGNdmbAbgDRux4AM24wU2323xB98CgVRdbYYiIJcAj4W_uobQ"/>
+</div>
+<span class="font-label-sm text-label-sm uppercase px-space-sm py-1 rounded bg-primary/10 text-primary font-semibold">DISTRIBUTED SYSTEMS</span>
+</div>
+<div>
+<h3 class="font-headline-lg text-headline-lg font-semibold text-on-surface">Marcus Vance</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-medium">Principal Architect • Calibrated to Meta / Stripe E7</p>
+</div>
+<div class="space-y-space-xs text-on-surface-variant font-body-sm text-body-sm">
+<p><strong class="text-on-surface">Style:</strong> Socratic, metric-driven, interrupt-heavy.</p>
+<p><strong class="text-on-surface">Core Focus:</strong> CAP theorem tradeoffs, Paxos/Raft consensus anomalies, cache stampedes, p99 tail latencies.</p>
+</div>
+<div class="p-space-md bg-surface-container-low rounded-lg space-y-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant block uppercase font-semibold">Signature Provocation:</span>
+<p class="font-body-sm text-body-sm italic text-on-surface">
+                “Your database can't absorb that write fanout during an unannounced flash sale. Where does the spillover queue sit, and what is your backpressure mechanism?”
+              </p>
+</div>
+</div>
+<!-- Bottom Voice Preview Strip -->
+<div class="p-space-lg bg-surface-container-low flex items-center justify-between">
+<button class="voice-preview-btn inline-flex items-center gap-space-xs font-label-md text-label-md text-primary hover:text-primary-fixed-dim transition-colors">
+<span class="material-symbols-outlined text-[18px]">volume_up</span>
+<span>Listen to Voice Sample</span>
+</button>
+<span class="font-metric-display text-[11px] text-on-surface-variant">US-Pacific / Male / Tenor</span>
+</div>
+</div>
+<!-- Persona 2: Sarah Chen -->
+<div class="bg-surface-container rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group">
+<div class="p-space-xl space-y-space-lg">
+<div class="flex items-start justify-between">
+<div class="w-16 h-16 rounded-lg bg-surface-container-high overflow-hidden shadow-md">
+<img class="w-full h-full object-cover" data-alt="Portrait photo of Sarah Chen, VP of Infrastructure and senior engineering manager, poised and thoughtful expression, high-contrast monochrome studio portrait with soft violet rim light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAD6aKRrYZlHtsUBq2hRxZuEe4uBMIksgNw4zw_aY_vwgW5aq86mUWT98xpcfQtjw-EIdFxB1ogFpZoG470o_sRk6tnRcB2_F2N_WdA0THvaB26bhvPe9VgqSnLEo3Q633RE7gyK6tUGK5alOFtnjj1A0gVWdeyxsLgEyiqJEdSdBXUAVfcfwCofi-7fNUxXSPw9UqTi5DmqT1QMY86SvtsZVI9kN3pGuxNqmqjrbk5bsfcV5FqvtvBpQ"/>
+</div>
+<span class="font-label-sm text-label-sm uppercase px-space-sm py-1 rounded bg-secondary/10 text-secondary font-semibold">ENG LEADERSHIP &amp; OPS</span>
+</div>
+<div>
+<h3 class="font-headline-lg text-headline-lg font-semibold text-on-surface">Sarah Chen</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-medium">VP Infrastructure • Calibrated to Google / Datadog L8</p>
+</div>
+<div class="space-y-space-xs text-on-surface-variant font-body-sm text-body-sm">
+<p><strong class="text-on-surface">Style:</strong> Rigorous, structured, behavioral-technical crossover.</p>
+<p><strong class="text-on-surface">Core Focus:</strong> Incident root-cause postmortems, cross-org friction, budget trade-offs, engineering morale under outages.</p>
+</div>
+<div class="p-space-md bg-surface-container-low rounded-lg space-y-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant block uppercase font-semibold">Signature Provocation:</span>
+<p class="font-body-sm text-body-sm italic text-on-surface">
+                “You have two Staff Engineers with diametrically opposed designs for migration, and downtime is escalating. How do you resolve this within 48 hours without burning one out?”
+              </p>
+</div>
+</div>
+<!-- Bottom Voice Preview Strip -->
+<div class="p-space-lg bg-surface-container-low flex items-center justify-between">
+<button class="voice-preview-btn inline-flex items-center gap-space-xs font-label-md text-label-md text-secondary hover:text-secondary-fixed transition-colors">
+<span class="material-symbols-outlined text-[18px]">volume_up</span>
+<span>Listen to Voice Sample</span>
+</button>
+<span class="font-metric-display text-[11px] text-on-surface-variant">US-West / Female / Alto</span>
+</div>
+</div>
+<!-- Persona 3: Alex Rivera -->
+<div class="bg-surface-container rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group">
+<div class="p-space-xl space-y-space-lg">
+<div class="flex items-start justify-between">
+<div class="w-16 h-16 rounded-lg bg-surface-container-high overflow-hidden shadow-md">
+<img class="w-full h-full object-cover" data-alt="Portrait photo of Alex Rivera, pragmatic product-minded staff engineer in early 30s, smart casual engineering workplace background, natural direct gaze." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDb3KCzeDLNycA6jZYk-SjrpbMn4hB3mGRWKvyzlIcTOP_82V-FJiywdMZ0KUNnt4Fdm8vH3-ywBJqC65LuIx0ZL0J9h0I-jWrpG71EIuLpX-TWeJMbp_FjCcTNKHzPKAACd1wpLnkTrwe31x7MQ6G0YwrOb8EukLkd5LhzYBm_fMogInmPjQaoAVoDuZly03-zFrezGFvdmcuLIE7_PqrDXzd6Q5Tetu1RFz770qCqZQM7IgnmnTSxwQ"/>
+</div>
+<span class="font-label-sm text-label-sm uppercase px-space-sm py-1 rounded bg-tertiary/10 text-tertiary font-semibold">PRODUCT &amp; ARCHITECTURE</span>
+</div>
+<div>
+<h3 class="font-headline-lg text-headline-lg font-semibold text-on-surface">Alex Rivera</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-medium">Staff Product Engineer • Calibrated to Airbnb / Figma L6</p>
+</div>
+<div class="space-y-space-xs text-on-surface-variant font-body-sm text-body-sm">
+<p><strong class="text-on-surface">Style:</strong> Pragmatic, collaborative, user-impact driven.</p>
+<p><strong class="text-on-surface">Core Focus:</strong> Real-time collaboration engines, client performance budgets, offline caching, API contracts &amp; SDK ergonomicity.</p>
+</div>
+<div class="p-space-md bg-surface-container-low rounded-lg space-y-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant block uppercase font-semibold">Signature Provocation:</span>
+<p class="font-body-sm text-body-sm italic text-on-surface">
+                “Your schema design is theoretically pure, but it doubles serialization costs on 3G cellular devices. What will you compromise to maintain 60 FPS interactions?”
+              </p>
+</div>
+</div>
+<!-- Bottom Voice Preview Strip -->
+<div class="p-space-lg bg-surface-container-low flex items-center justify-between">
+<button class="voice-preview-btn inline-flex items-center gap-space-xs font-label-md text-label-md text-tertiary hover:text-tertiary-fixed transition-colors">
+<span class="material-symbols-outlined text-[18px]">volume_up</span>
+<span>Listen to Voice Sample</span>
+</button>
+<span class="font-metric-display text-[11px] text-on-surface-variant">US-Midwest / Non-Binary / Warm</span>
+</div>
+</div>
+</div>
+<!-- Custom Persona Callout Banner -->
+<div class="mt-space-2xl bg-surface-container p-space-xl rounded-xl shadow-md flex flex-col md:flex-row items-center justify-between gap-space-lg">
+<div class="flex items-center gap-space-lg">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 text-primary">
+<span class="material-symbols-outlined text-[28px]">auto_fix_high</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md font-semibold text-on-surface">Custom Persona Engine: Upload Job Description &amp; Blog Posts</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+              Paste the engineering job description and your target company's recent engineering blog posts. FitCheck automatically synthesizes an interviewer tuned to that team's exact stack, vocabulary, and architectural biases.
+            </p>
+</div>
+</div>
+<a class="flex-shrink-0 inline-flex items-center gap-space-xs font-body-sm text-body-sm font-semibold text-primary hover:text-primary-fixed-dim bg-surface-container-high px-space-lg py-space-sm rounded" data-path="custom-personas" href="#">
+<span>Build Custom Persona</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+</div>
+</div>
+</section>
+<!-- THE LIVE VOICE INTERVIEW STUDIO EXPERIENCE (DEEP DIVE) -->
+<section class="w-full bg-surface py-space-3xl relative">
+<div class="max-w-7xl mx-auto px-margin-desktop">
+<div class="max-w-3xl mb-space-3xl">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary font-semibold">Studio Acoustic Intelligence</span>
+<h2 class="font-display-lg text-display-lg font-semibold text-on-surface mt-space-xs">
+          Built on an audio engine that feels frighteningly real.
+        </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-space-sm">
+          Unlike generic LLM wrappers that force an unnatural push-to-talk rhythm, FitCheck operates with sub-second full-duplex audio stream analysis.
+        </p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-2xl items-center">
+<!-- Left: Technical Telemetry Console Visual -->
+<div class="lg:col-span-7 bg-surface-container-lowest p-space-xl rounded-xl shadow-2xl relative overflow-hidden">
+<div class="flex items-center justify-between pb-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="w-2.5 h-2.5 rounded-full bg-primary animate-ping"></span>
+<span class="font-label-md text-label-md text-on-surface font-semibold uppercase">Acoustic Telemetry Stream // Live</span>
+</div>
+<span class="font-metric-display text-[12px] text-tertiary">SYNC_OK • 48.0 kHz 24-BIT</span>
+</div>
+<!-- Pitch & Hesitation Graph Mock (Inline SVG) -->
+<div class="bg-surface-container-low p-space-lg rounded-lg my-space-md space-y-space-md">
+<div class="flex justify-between items-center text-on-surface-variant font-label-sm text-label-sm">
+<span>VOCAL STABILITY &amp; PITCH TRACKER</span>
+<span class="text-primary font-mono font-medium">Variance: 1.1% (Optimal Steady)</span>
+</div>
+<!-- SVG Pitch Graph -->
+<div class="w-full h-24 overflow-hidden relative">
+<svg class="w-full h-full" fill="none" preserveaspectratio="none" viewbox="0 0 500 100">
+<path class="text-primary" d="M0 60 C 50 65, 80 40, 130 50 C 180 60, 210 30, 260 45 C 310 60, 360 48, 410 40 C 450 35, 480 50, 500 48" fill="none" stroke="currentColor" stroke-width="2.5"></path>
+<path d="M0 60 C 50 65, 80 40, 130 50 C 180 60, 210 30, 260 45 C 310 60, 360 48, 410 40 C 450 35, 480 50, 500 48 L 500 100 L 0 100 Z" fill="url(#cyan-glow)" opacity="0.15"></path>
+<defs>
+<lineargradient id="cyan-glow" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#5ce2f6"></stop>
+<stop offset="100%" stop-color="#5ce2f6" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+</svg>
+<!-- Timeline Marker -->
+<div class="absolute top-0 right-1/4 w-[1px] h-full bg-secondary"></div>
+<span class="absolute top-1 right-[calc(25%+4px)] font-label-sm text-[10px] text-secondary">Interruption Triggered</span>
+</div>
+<div class="grid grid-cols-3 gap-space-sm pt-space-xs">
+<div class="p-space-sm bg-surface-container rounded">
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Speech Rate</span>
+<span class="font-metric-display text-[16px] text-on-surface">138 wpm</span>
+</div>
+<div class="p-space-sm bg-surface-container rounded">
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Hesitation Latency</span>
+<span class="font-metric-display text-[16px] text-tertiary">0.31s</span>
+</div>
+<div class="p-space-sm bg-surface-container rounded">
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Vocal Fry Ratio</span>
+<span class="font-metric-display text-[16px] text-primary">0.0%</span>
+</div>
+</div>
+</div>
+<!-- Bottom Audio Event Log -->
+<div class="space-y-space-xs font-mono text-[12px] text-on-surface-variant">
+<div class="flex items-center justify-between text-on-surface py-1">
+<span class="text-primary font-semibold">[00:14:02.102] INTERVIEWER:</span>
+<span class="truncate ml-2">Detected vague sizing statement regarding database write load.</span>
+</div>
+<div class="flex items-center justify-between text-secondary py-1">
+<span class="text-secondary font-semibold">[00:14:02.410] SYSTEM:</span>
+<span class="truncate ml-2">Natural interruption generated. Dynamic interjection injected.</span>
+</div>
+</div>
+</div>
+<!-- Right: Audio Engine Features Breakdown -->
+<div class="lg:col-span-5 space-y-space-xl">
+<div class="space-y-space-xs">
+<div class="flex items-center gap-space-sm text-primary">
+<span class="material-symbols-outlined text-[24px]">speed</span>
+<h3 class="font-headline-md text-headline-md font-semibold text-on-surface">Zero-Latency Turn Taking</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant pl-8">
+              Streaming WebRTC architecture eliminates the robotic “pause-and-think” delay. The interviewer responds immediately when you finish speaking, just like a human in the room.
+            </p>
+</div>
+<div class="space-y-space-xs">
+<div class="flex items-center gap-space-sm text-secondary">
+<span class="material-symbols-outlined text-[24px]">front_hand</span>
+<h3 class="font-headline-md text-headline-md font-semibold text-on-surface">Context-Aware Interruptions</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant pl-8">
+              If your explanation starts spiraling into generic filler, FitCheck cuts in to redirect you. Practice recovering gracefully from unexpected pivots and challenge questions.
+            </p>
+</div>
+<div class="space-y-space-xs">
+<div class="flex items-center gap-space-sm text-tertiary">
+<span class="material-symbols-outlined text-[24px]">graphic_eq</span>
+<h3 class="font-headline-md text-headline-md font-semibold text-on-surface">Acoustic Pacing &amp; Composure Telemetry</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant pl-8">
+              We monitor inflection shifts, pitch tension, and speech acceleration under aggressive cross-examination so you can train steady, calm executive presence.
+            </p>
+</div>
+<div class="space-y-space-xs">
+<div class="flex items-center gap-space-sm text-on-surface">
+<span class="material-symbols-outlined text-[24px]">keyboard</span>
+<h3 class="font-headline-md text-headline-md font-semibold text-on-surface">Live Whiteboard &amp; Code Co-Pilot</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant pl-8">
+              Simultaneously sketch architecture diagrams or write concurrent algorithms. The AI watches your cursor movements and questions your variable boundaries in real time.
+            </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- EVIDENCE-BACKED EVALUATION ENGINE (NO GENERIC FEEDBACK) -->
+<section class="w-full bg-surface-container-lowest py-space-3xl relative">
+<div class="max-w-7xl mx-auto px-margin-desktop">
+<div class="text-center max-w-3xl mx-auto mb-space-3xl">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-semibold">Post-Session Deep Audit</span>
+<h2 class="font-display-lg text-display-lg font-semibold text-on-surface mt-space-xs">
+          Verbatim Rubric Auditing. No Generic Advice.
+        </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-space-sm">
+          Instead of vague feedback like “be more concise,” FitCheck matches your exact recorded words against calibrated hiring committee guidelines.
+        </p>
+</div>
+<!-- Scorecard Component Preview -->
+<div class="bg-surface-container rounded-xl shadow-2xl p-space-2xl">
+<div class="flex flex-col lg:flex-row items-start lg:items-center justify-between pb-space-xl gap-space-md">
+<div>
+<div class="flex items-center gap-space-sm">
+<span class="font-headline-lg text-headline-lg font-semibold text-on-surface">Session Evaluation Scorecard</span>
+<span class="font-label-sm text-label-sm px-space-sm py-0.5 rounded bg-tertiary/10 text-tertiary font-bold">STAFF BAR: STRONG PASS</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Role: Staff Infrastructure Engineer • Evaluated by Marcus Vance Model v2.4</p>
+</div>
+<div class="flex items-center gap-space-md">
+<button class="inline-flex items-center gap-space-xs font-body-sm text-body-sm font-medium text-on-surface bg-surface-container-high hover:bg-surface-container-highest px-space-md py-space-sm rounded">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span>Export Hiring Committee Report</span>
+</button>
+<button class="inline-flex items-center gap-space-xs font-body-sm text-body-sm font-semibold text-on-primary bg-primary hover:bg-primary-fixed-dim px-space-md py-space-sm rounded shadow-sm">
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+<span>Launch Prescriptive Drills</span>
+</button>
+</div>
+</div>
+<!-- 3 Core Competency Radar Meters -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg my-space-xl">
+<!-- Metric 1 -->
+<div class="bg-surface-container-low p-space-lg rounded-lg space-y-space-sm">
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md text-on-surface-variant font-semibold">DISTRIBUTED CONSENSUS</span>
+<span class="font-metric-display text-[20px] text-tertiary">9.2 / 10</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full rounded-full" style="width: 92%"></div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Strong formulation of two-phase commit fallbacks and partitioned state machine replication.</p>
+</div>
+<!-- Metric 2 -->
+<div class="bg-surface-container-low p-space-lg rounded-lg space-y-space-sm">
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md text-on-surface-variant font-semibold">PRODUCTION TRADE-OFF CLARITY</span>
+<span class="font-metric-display text-[20px] text-primary">8.8 / 10</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 88%"></div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Exceptional boundary justification. Immediately quantified cost vs replication overhead.</p>
+</div>
+<!-- Metric 3 -->
+<div class="bg-surface-container-low p-space-lg rounded-lg space-y-space-sm">
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md text-on-surface-variant font-semibold">INTERRUPTION RECOVERY</span>
+<span class="font-metric-display text-[20px] text-secondary">7.4 / 10</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 74%"></div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Hesitated 1.8s when Marcus questioned write amplification. Recovered after stating assumptions.</p>
+</div>
+</div>
+<!-- Verbatim Quote Analysis Slice -->
+<div class="bg-surface-container-low rounded-lg p-space-xl space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs text-on-surface font-label-md text-label-md uppercase">
+<span class="material-symbols-outlined text-primary text-[18px]">find_in_page</span>
+<span>Verbatim Audio Transcript vs. Staff Bar Finding</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary">00:22:14 In-Session</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg">
+<div class="p-space-md bg-surface-container-lowest rounded space-y-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant block uppercase font-semibold">What You Said (Transcript Audio Segment):</span>
+<p class="font-body-md text-body-md text-on-surface italic">
+                “...we could probably just toss an in-memory cache like Redis in front of the PostgreSQL instance to handle the burst traffic spikes.”
+              </p>
+</div>
+<div class="p-space-md bg-surface-container-lowest rounded space-y-space-xs">
+<span class="font-label-sm text-label-sm text-secondary block uppercase font-semibold">Calibrated Rubric Finding (Meta/Stripe E6+ Bar):</span>
+<p class="font-body-md text-body-md text-secondary">
+                “Penalized for hand-waving cache invalidation and thundering herd risk under Redis node restarts. A Staff candidate must address cache lease locks or probabilistic early expiration.”
+              </p>
+</div>
+</div>
+<!-- Prescriptive Recommendation Box -->
+<div class="p-space-md bg-surface-container rounded flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<span class="material-symbols-outlined text-tertiary text-[24px]">task_alt</span>
+<div>
+<span class="font-body-md text-body-md font-semibold text-on-surface">Prescribed Drill: “Distributed Cache Invalidation Under Load”</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">A 15-minute voice sparring session with Marcus Vance targeting this exact gap.</p>
+</div>
+</div>
+<button class="inline-flex items-center gap-space-xs font-label-md text-label-md text-on-primary bg-primary px-space-md py-space-sm rounded font-medium shadow-sm hover:bg-primary-fixed-dim">
+<span>Start 15m Drill</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- STEP-BY-STEP CANDIDATE JOURNEY -->
+<section class="w-full bg-surface py-space-3xl relative">
+<div class="max-w-7xl mx-auto px-margin-desktop">
+<div class="text-center max-w-2xl mx-auto mb-space-3xl">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary font-semibold">The Preparation Flywheel</span>
+<h2 class="font-display-lg text-display-lg font-semibold text-on-surface mt-space-xs">
+          From Target Role to Offer
+        </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-space-sm">
+          A four-step calibrated workflow designed for senior engineers and engineering leaders.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-lg">
+<!-- Step 1 -->
+<div class="bg-surface-container-low p-space-xl rounded-xl shadow-md space-y-space-md flex flex-col justify-between">
+<div class="space-y-space-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center font-metric-display text-primary text-[18px] font-bold">
+              01
+            </div>
+<h3 class="font-headline-md text-headline-md font-semibold text-on-surface">Target Spec Sync</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Paste your target job spec, company name, and level (L5/L6/L7/EM). FitCheck sets the internal rubric weighting accordingly.
+            </p>
+</div>
+<span class="font-label-sm text-label-sm text-primary uppercase font-semibold">Role Calibration</span>
+</div>
+<!-- Step 2 -->
+<div class="bg-surface-container-low p-space-xl rounded-xl shadow-md space-y-space-md flex flex-col justify-between">
+<div class="space-y-space-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center font-metric-display text-secondary text-[18px] font-bold">
+              02
+            </div>
+<h3 class="font-headline-md text-headline-md font-semibold text-on-surface">Select Persona &amp; Pressure</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Choose your interviewer archetype and set conversational pressure: <span class="text-on-surface font-medium">Lenient, Realistic, Challenging, or Stress Mode</span>.
+            </p>
+</div>
+<span class="font-label-sm text-label-sm text-secondary uppercase font-semibold">Adversarial Settings</span>
+</div>
+<!-- Step 3 -->
+<div class="bg-surface-container-low p-space-xl rounded-xl shadow-md space-y-space-md flex flex-col justify-between">
+<div class="space-y-space-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center font-metric-display text-tertiary text-[18px] font-bold">
+              03
+            </div>
+<h3 class="font-headline-md text-headline-md font-semibold text-on-surface">Run Live 45m Voice Loop</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Put on your headset and talk. Experience unscripted follow-up probes, whiteboard architecture defense, and real-time counter-arguments.
+            </p>
+</div>
+<span class="font-label-sm text-label-sm text-tertiary uppercase font-semibold">Sub-200ms Voice Sim</span>
+</div>
+<!-- Step 4 -->
+<div class="bg-surface-container-low p-space-xl rounded-xl shadow-md space-y-space-md flex flex-col justify-between">
+<div class="space-y-space-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center font-metric-display text-on-surface text-[18px] font-bold">
+              04
+            </div>
+<h3 class="font-headline-md text-headline-md font-semibold text-on-surface">Targeted Rubric Drills</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Review line-by-line quote feedback, then immediately launch 10-minute micro-drills to permanently fix detected blind spots.
+            </p>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface uppercase font-semibold">Iterative Mastery</span>
+</div>
+</div>
+</div>
+</section>
+<!-- TESTIMONIALS / CANDIDATE REVIEWS -->
+<section class="w-full bg-surface-container-lowest py-space-3xl relative">
+<div class="max-w-7xl mx-auto px-margin-desktop">
+<div class="text-center max-w-2xl mx-auto mb-space-3xl">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary font-semibold">Candidate Proof</span>
+<h2 class="font-display-lg text-display-lg font-semibold text-on-surface mt-space-xs">
+          Calibrated Under Pressure. Hired at Top Tier.
+        </h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-xl">
+<!-- Testimonial 1 -->
+<div class="bg-surface-container p-space-xl rounded-xl shadow-md flex flex-col justify-between space-y-space-lg">
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+            “Marcus Vance was more aggressive than my actual Stripe interviewers. When I got to the onsite, the Staff consensus and telemetry questions felt like a familiar replay. Got the L6 offer with top-band equity.”
+          </p>
+<div class="flex items-center gap-space-md pt-space-xs">
+<div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Portrait of David K., an engineer in tech casual clothes smiling with confidence, studio lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaalTaY0r2U1iemyzfX2jOEED875ZgezEJHAHzw8lGlTAFPo-8Ne6CrUMKWrQAMbZ6qXC5eNRG40oTBk79V0XwlYrdiYvsAgIWegJJ5lKPkuNoDTmF0tI4VSeCPITywDhFHh0Iuo_O1na_EZcdSg618AdfSRg6q7SrCzvtHMlN8G25i7TgBRvIYfd3YNMkBSzw8SVWfPuzueLxFfOZZB_vO-4QT9u0b0QegDl-PS6KuUn_tHc9HmPcJQ"/>
+</div>
+<div>
+<p class="font-headline-md text-[15px] font-semibold text-on-surface">David K.</p>
+<p class="font-label-sm text-label-sm text-primary">Staff Engineer, Stripe</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 2 -->
+<div class="bg-surface-container p-space-xl rounded-xl shadow-md flex flex-col justify-between space-y-space-lg">
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+            “Most prep makes you sound like a robotic textbook. FitCheck diagnosed that I spoke at 178 WPM when challenged, which made me sound defensive. Three sessions with Sarah Chen leveled up my executive composure completely.”
+          </p>
+<div class="flex items-center gap-space-md pt-space-xs">
+<div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Portrait of Priyah M., senior engineering leader smiling, wearing a dark blazer in a clean modern room." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBM9SUI35pbp_nHhK6DJhMPMKDt15s9Qhnao9UtczyrUz2EhOMYLzHK93sq3vjj1GJN95Y_zvOqa8hh1U93q_P9RAuBPOiC1SGDATfI1Ysvmu3ayQ2Ivi2MFc5q8o7Qwls0Gy0TQqe1OSiAN8Y1wLCYrzvNk50wE0G4wIGWgV9VdtMEtwbu2Nc3iree1Zx8DPN7zNVBjOCf2f3m7EsYCswFcAdm2N9phhmYTVwEcgkGv_mAohQHc6b8bg"/>
+</div>
+<div>
+<p class="font-headline-md text-[15px] font-semibold text-on-surface">Priya M.</p>
+<p class="font-label-sm text-label-sm text-secondary">Director of Eng, Datadog</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 3 -->
+<div class="bg-surface-container p-space-xl rounded-xl shadow-md flex flex-col justify-between space-y-space-lg">
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+            “The verbatim transcript breakdown is lethal. Seeing the exact sentence where my explanation of distributed locking became ambiguous changed my entire framework for systems rounds. 10/10.”
+          </p>
+<div class="flex items-center gap-space-md pt-space-xs">
+<div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Portrait of Liam S., software architect with spectacles and relaxed confidence, dark neutral background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuF4KIGPDg4eaqt9TmRLQ08sitR4kPPrE1Qci9ZTCw2sUin0ESVfbQm_07pcnu6SsT0zFmb1PnGAVViH1ifE_OLDHf74ZFyXaugV8k8SXSPKO7z7a0vt2j2P0yBmo0ZN3b0zK8cTz9co8Ccpj0BWB4OraAlW8A2emQCsq4cAUwIPY8J5_N4E78eaydIfNrGJDAlN5iIaJh5mDkHmfcKQbbVf6zhPg-j2rG6wzRsp12vH-mHMG7eGxM-g"/>
+</div>
+<div>
+<p class="font-headline-md text-[15px] font-semibold text-on-surface">Liam S.</p>
+<p class="font-label-sm text-label-sm text-tertiary">Principal Architect, Snowflake</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- BOTTOM HIGH-IMPACT CTA BANNER -->
+<section class="w-full bg-surface py-space-3xl relative">
+<div class="max-w-5xl mx-auto px-margin-desktop">
+<div class="relative bg-surface-container-lowest p-space-2xl md:p-space-3xl rounded-2xl shadow-[0_0_50px_-12px_rgba(92,226,246,0.2)] overflow-hidden text-center flex flex-col items-center">
+<!-- Ambient radial glow behind CTA -->
+<div class="absolute inset-0 bg-gradient-to-b from-primary/10 via-transparent to-transparent pointer-events-none"></div>
+<div class="inline-flex items-center gap-space-xs px-space-md py-1 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm mb-space-lg">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+          INSTANT ACCESS • NO DOWNLOAD REQUIRED
+        </div>
+<h2 class="font-display-lg text-display-lg md:text-[44px] md:leading-[52px] font-semibold text-on-surface tracking-tight max-w-2xl">
+          Ready to walk into your interview with unfair confidence?
+        </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mt-space-md mb-space-2xl">
+          Start your first simulated interview in under 60 seconds. Pick a persona, specify your target team, and begin sparring immediately.
+        </p>
+<div class="flex flex-col sm:flex-row items-center gap-space-md w-full justify-center">
+<a class="w-full sm:w-auto inline-flex items-center justify-center gap-space-sm font-body-md text-body-md font-semibold text-on-primary bg-primary hover:bg-primary-fixed-dim px-space-2xl py-3.5 rounded shadow-[0_0_24px_-4px_rgba(92,226,246,0.35)] transition-all active:scale-[0.98]" data-path="signup" href="#">
+<span>Start Preparing Now — Free</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+<a class="w-full sm:w-auto inline-flex items-center justify-center gap-space-sm font-body-md text-body-md font-medium text-on-surface bg-surface-container-high hover:bg-surface-container-highest px-space-xl py-3.5 rounded shadow-sm transition-all" data-path="interviewer-personas" href="#">
+<span class="material-symbols-outlined text-[18px]">group</span>
+<span>Explore All 18 Personas</span>
+</a>
+</div>
+<div class="mt-space-xl pt-space-lg flex items-center justify-center gap-space-lg text-on-surface-variant font-label-sm text-label-sm">
+<span>✓ Instant WebRTC Voice Studio</span>
+<span>✓ Zero Credit Card</span>
+<span>✓ Private &amp; Encrypted</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Voice Preview Micro-Interaction Script -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const demoBtn = document.getElementById('play-demo-btn');
+      if (demoBtn) {
+        demoBtn.addEventListener('click', () => {
+          demoBtn.classList.add('bg-primary', 'text-on-primary');
+          demoBtn.innerHTML = '<span class="material-symbols-outlined text-[20px] animate-spin">refresh</span><span>Connecting to Simulation...</span>';
+          setTimeout(() => {
+            demoBtn.innerHTML = '<span class="material-symbols-outlined text-tertiary text-[20px]" style="font-variation-settings: \'FILL\' 1;">check_circle</span><span>Simulation Active (Audio Connected)</span>';
+          }, 900);
+        });
+      }
+
+      const voiceButtons = document.querySelectorAll('.voice-preview-btn');
+      voiceButtons.forEach((btn) => {
+        btn.addEventListener('click', function() {
+          const originalText = this.innerHTML;
+          this.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-pulse">volume_up</span><span>Playing Calibrated Audio...</span>';
+          setTimeout(() => {
+            this.innerHTML = originalText;
+          }, 3000);
+        });
+      });
+    });
+  </script>
+</div></main><footer class="w-full bg-surface-container-lowest border-t border-outline-variant/30 text-on-surface-variant"><div class="max-w-7xl mx-auto px-margin-desktop pt-space-3xl pb-space-2xl"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-space-2xl pb-space-2xl border-b border-outline-variant/20"><div class="lg:col-span-2 flex flex-col gap-space-md"><div class="flex items-center gap-space-sm"><div class="w-6 h-6 rounded bg-surface-container-high border border-outline-variant/40 flex items-center justify-center"><span class="w-1.5 h-3 bg-primary rounded-full"></span></div><span class="font-headline-md text-headline-md font-semibold text-on-surface tracking-tight">FitCheck</span></div><p class="font-body-md text-body-md text-on-surface-variant max-w-sm">Simulate their interview. Not a generic simulation. Acoustic intelligence, bespoke behavioral personas, and calibrated calibration rubrics.</p><div class="flex items-center gap-space-sm pt-space-xs"><div class="inline-flex items-center gap-space-xs px-space-sm py-space-xxs rounded bg-surface-container-high border border-outline-variant/40 font-label-sm text-label-sm text-tertiary"><span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>99.8% Latency SLA</div><div class="inline-flex items-center gap-space-xs px-space-sm py-space-xxs rounded bg-surface-container-high border border-outline-variant/40 font-label-sm text-label-sm text-secondary"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>184ms Audio Return</div></div></div><div class="flex flex-col gap-space-sm"><span class="font-label-md text-label-md uppercase text-on-surface font-semibold tracking-wider">Product</span><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="voice-studio" href="#">Voice Studio</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="interviewer-personas" href="#">Interviewers</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="rubrics" href="#">Rubrics</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="evaluations" href="#">Evaluations</a></div><div class="flex flex-col gap-space-sm"><span class="font-label-md text-label-md uppercase text-on-surface font-semibold tracking-wider">Personas</span><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="persona-sarah-chen" href="#">Sarah Chen (Staff Infra)</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="persona-marcus-vance" href="#">Marcus Vance (VP Eng)</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="persona-alex-rivera" href="#">Alex Rivera (Head of Prod)</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="custom-personas" href="#">Custom Personas</a></div><div class="flex flex-col gap-space-sm"><span class="font-label-md text-label-md uppercase text-on-surface font-semibold tracking-wider">Resources</span><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="system-design-guide" href="#">System Design Guide</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="behavioral-framework" href="#">Behavioral Framework</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="tech-interview-playbook" href="#">Tech Interview Playbook</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="telemetry-docs" href="#">Telemetry Docs</a></div><div class="flex flex-col gap-space-sm"><span class="font-label-md text-label-md uppercase text-on-surface font-semibold tracking-wider">Company</span><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="about" href="#">About</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="privacy" href="#">Privacy</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="terms" href="#">Terms</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="security" href="#">Security</a></div></div><div class="pt-space-xl flex flex-col sm:flex-row items-center justify-between gap-space-md"><p class="font-body-sm text-body-sm text-on-surface-variant">© 2025 FitCheck by Overfit. All rights reserved.</p><div class="flex items-center gap-space-md"><span class="font-label-sm text-label-sm px-space-sm py-space-xxs rounded bg-surface-container-high border border-outline-variant/30 text-on-surface-variant">v2.4-Acoustic-Engine</span><span class="font-label-sm text-label-sm px-space-sm py-space-xxs rounded bg-surface-container-high border border-outline-variant/30 text-on-surface-variant">Encrypted End-to-End</span></div></div></div></footer></body></html>

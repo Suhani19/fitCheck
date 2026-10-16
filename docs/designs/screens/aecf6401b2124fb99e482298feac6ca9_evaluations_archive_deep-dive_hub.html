@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"primary-container":"#35c6d9","surface-container-lowest":"#0a0e13","on-secondary-fixed-variant":"#4f319c","on-primary-fixed":"#001f24","surface-variant":"#31353b","secondary-container":"#4f319c","on-surface-variant":"#bbc9cb","surface-container-highest":"#31353b","tertiary-container":"#36cc92","on-surface":"#e0e2ea","on-primary":"#00363d","on-primary-container":"#004e57","on-secondary-fixed":"#21005e","surface":"#101419","error":"#ffb4ab","secondary":"#cebdff","inverse-primary":"#006874","on-secondary":"#381385","on-error":"#690005","error-container":"#93000a","surface-container-high":"#262a30","outline":"#869395","on-background":"#e0e2ea","surface-container-low":"#181c21","tertiary-fixed":"#6ffbbe","on-secondary-container":"#bea8ff","inverse-surface":"#e0e2ea","primary-fixed":"#97f0ff","tertiary-fixed-dim":"#4edea3","surface-dim":"#101419","on-tertiary-fixed-variant":"#005236","tertiary":"#5ae9ac","on-primary-fixed-variant":"#004f58","primary-fixed-dim":"#4fd8eb","background":"#101419","on-tertiary":"#003824","outline-variant":"#3c494b","on-tertiary-fixed":"#002113","secondary-fixed-dim":"#cebdff","surface-container":"#1c2025","on-tertiary-container":"#005136","on-error-container":"#ffdad6","secondary-fixed":"#e8ddff","inverse-on-surface":"#2d3136","surface-tint":"#4fd8eb","primary":"#5ce2f6","surface-bright":"#36393f"},borderRadius:{DEFAULT:"0.125rem",lg:"0.25rem",xl:"0.5rem",full:"0.75rem"},spacing:{"space-xs":"0.25rem","space-xl":"1.5rem","space-xxs":"0.125rem",gutter:"1.25rem","space-3xl":"3rem","space-2xl":"2rem","space-lg":"1rem","space-md":"0.75rem","gutter-desktop":"1.5rem","margin-desktop":"2rem",margin:"1rem","space-sm":"0.5rem"},fontFamily:{"label-md":["JetBrains Mono"],"headline-lg":["Inter"],"body-sm":["Inter"],"metric-display":["JetBrains Mono"],"headline-xl":["Inter"],"display-lg-mobile":["Inter"],"display-lg":["Inter"],"headline-md":["Inter"],"label-sm":["JetBrains Mono"],"body-md":["Inter"],"body-lg":["Inter"]},fontSize:{"label-md":["12px",{lineHeight:"16px",letterSpacing:"0.02em",fontWeight:"500"}],"headline-lg":["24px",{lineHeight:"32px",letterSpacing:"-0.015em",fontWeight:"600"}],"body-sm":["13px",{lineHeight:"18px",letterSpacing:"0em",fontWeight:"400"}],"metric-display":["28px",{lineHeight:"32px",letterSpacing:"-0.02em",fontWeight:"600"}],"headline-xl":["32px",{lineHeight:"40px",letterSpacing:"-0.02em",fontWeight:"600"}],"display-lg-mobile":["30px",{lineHeight:"38px",letterSpacing:"-0.015em",fontWeight:"600"}],"display-lg":["40px",{lineHeight:"48px",letterSpacing:"-0.02em",fontWeight:"600"}],"headline-md":["20px",{lineHeight:"28px",letterSpacing:"-0.01em",fontWeight:"500"}],"label-sm":["11px",{lineHeight:"14px",letterSpacing:"0.04em",fontWeight:"500"}],"body-md":["14px",{lineHeight:"20px",letterSpacing:"0em",fontWeight:"400"}],"body-lg":["16px",{lineHeight:"24px",letterSpacing:"-0.005em",fontWeight:"400"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-screen w-72 bg-surface-container-low shadow-[0_1px_8px_rgba(0,0,0,0.4)] z-50 flex flex-col justify-between overflow-y-auto"><div class="flex flex-col"><div class="px-space-xl pt-space-xl pb-space-lg flex items-center gap-space-md"><img alt="FitCheck Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XyvNKovdL0RiY9Y1h3D-PiSnvQPGb8oKl58EGdmywCYi7eXJGVOKh9GoRQf3ZIMOByy8wx3xWYkvNl6RofzePktTRTvYGX8nt5Ng7nMaKS8pygod7vgBfm1c0tecTYM52xe3ojthEPlA3S_DcRxEQnOUXBw71O1DeOzUGCLyo4-EtBLJEWbED-FNdGGqnn6cwvBrRKK1WUJSjh5V3D7as4e_8qDrNMBasJUlkZ8HkePbTa7IvukUwemDY"/><div class="flex flex-col"><span class="font-headline-md text-headline-md tracking-tight font-bold text-on-surface leading-none">FitCheck</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mt-space-xxs">Get fit. Check fit.</span></div></div><div class="px-space-md py-space-sm"><a class="w-full flex items-center justify-center gap-space-sm px-space-md py-space-sm bg-primary text-on-primary font-headline-md text-body-sm font-semibold rounded-lg hover:bg-primary-fixed-dim hover:text-on-primary-fixed transition-all" data-path="start-interview" href="#"><span class="material-symbols-outlined text-body-md">mic</span><span>Start Interview</span></a></div><nav class="px-space-sm space-y-space-md pb-space-xl" data-active-classes="bg-surface-container-high text-primary font-semibold"><div class="space-y-space-xxs"><div class="px-space-md pt-space-xs pb-space-xxs font-label-sm text-label-sm uppercase tracking-wider text-outline">Overview</div><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="candidate-command-center" href="#"><span class="material-symbols-outlined text-body-lg">grid_view</span><span class="font-body-sm text-body-sm">Dashboard</span></a></div><div class="space-y-space-xxs"><div class="px-space-md pt-space-xs pb-space-xxs font-label-sm text-label-sm uppercase tracking-wider text-outline">Prepare</div><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="my-profile" href="#"><span class="material-symbols-outlined text-body-lg">person</span><span class="font-body-sm text-body-sm">My Profile</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="my-jobs" href="#"><span class="material-symbols-outlined text-body-lg">work</span><span class="font-body-sm text-body-sm">My Jobs</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="interviewers" href="#"><span class="material-symbols-outlined text-body-lg">smart_toy</span><span class="font-body-sm text-body-sm">Interviewers</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="practice-library" href="#"><span class="material-symbols-outlined text-body-lg">local_library</span><span class="font-body-sm text-body-sm">Practice Library</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="learning-plan" href="#"><span class="material-symbols-outlined text-body-lg">map</span><span class="font-body-sm text-body-sm">Learning Plan</span></a></div><div class="space-y-space-xxs"><div class="px-space-md pt-space-xs pb-space-xxs font-label-sm text-label-sm uppercase tracking-wider text-outline">Interviews</div><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="interview-history" href="#"><span class="material-symbols-outlined text-body-lg">history</span><span class="font-body-sm text-body-sm">Interview History</span></a><a class="flex items-center justify-between px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="evaluations-archive-deep-dive-hub" href="#"><div class="flex items-center gap-space-md"><span class="material-symbols-outlined text-body-lg">analytics</span><span class="font-body-sm text-body-sm">Evaluations</span></div><span class="px-space-xs py-space-xxs rounded bg-surface-container-high text-primary font-label-sm text-label-sm">New</span></a></div><div class="space-y-space-xxs"><div class="px-space-md pt-space-xs pb-space-xxs font-label-sm text-label-sm uppercase tracking-wider text-outline">Progress</div><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="my-progress" href="#"><span class="material-symbols-outlined text-body-lg">trending_up</span><span class="font-body-sm text-body-sm">My Progress</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="achievements" href="#"><span class="material-symbols-outlined text-body-lg">military_tech</span><span class="font-body-sm text-body-sm">Achievements</span></a></div><div class="space-y-space-xxs"><div class="px-space-md pt-space-xs pb-space-xxs font-label-sm text-label-sm uppercase tracking-wider text-outline">Personal</div><a class="flex items-center justify-between px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="notifications-activity-feed" href="#"><div class="flex items-center gap-space-md"><span class="material-symbols-outlined text-body-lg">notifications</span><span class="font-body-sm text-body-sm">Notifications</span></div><span class="px-space-xs py-space-xxs rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">3</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="settings" href="#"><span class="material-symbols-outlined text-body-lg">settings</span><span class="font-body-sm text-body-sm">Settings</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="help-faq-socratic-playbook-guide" href="#"><span class="material-symbols-outlined text-body-lg">help</span><span class="font-body-sm text-body-sm">Help &amp; Support</span></a></div></nav></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-low/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.3)] z-40 flex items-center justify-between px-space-xl"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs font-body-sm text-body-sm text-on-surface-variant"><span class="hover:text-on-surface transition-colors cursor-pointer">FitCheck</span><span class="material-symbols-outlined text-body-sm text-outline">chevron_right</span><span class="text-on-surface font-medium">Interview Studio</span></div><div class="h-4 w-px bg-surface-container-highest mx-space-xs"></div><div class="flex items-center gap-space-xs px-space-sm py-space-xxs rounded bg-surface-container-high text-primary font-label-sm text-label-sm"><span class="material-symbols-outlined text-label-sm text-primary">flag</span><span>Target: Staff Systems Eng @ Stripe - 84% Ready</span></div></div><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-xs px-space-sm py-space-xxs rounded bg-surface-container-high text-tertiary font-label-sm text-label-sm"><span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span><span>Audio Ready (48kHz)</span></div><div class="flex items-center gap-space-sm pl-space-sm"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAKyYEoe_BnmEHbN5PFncHzX6esxX1FK0XeEb4O8ZVy_Cu5_x1HNkZARGSgtJ11Ujp_2SsRuLWmLMeY7sm1LdgCvUgiQd9_8qj0nTDZqatYboQ_MSrDfimhotesNGTZmI20e7YHw0GM-VfAn_rjvO7K9MmzTB5ewun6U24N2p0Yf6E8w4Okwq5s0qt6TzS3AX5H0664pJf8c6DRrASzsBUlqT-0_ZIISWU5UtBE-F8dtcxhJJf2QdBFQ"/><div class="flex items-center cursor-pointer text-on-surface-variant hover:text-on-surface transition-colors"><span class="font-body-sm text-body-sm text-on-surface font-medium mr-space-xxs">Alex M.</span><span class="material-symbols-outlined text-body-sm">expand_more</span></div></div></div></header><main class="w-full pt-16 bg-surface min-h-screen"><div class="flex flex-col w-full text-on-surface">
+<div class="px-margin-desktop py-space-xl max-w-[1720px] mx-auto w-full space-y-space-xl">
+<!-- Header & Breadcrumbs -->
+<div class="flex flex-col xl:flex-row xl:items-end justify-between gap-space-lg">
+<div class="space-y-space-xs">
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-outline uppercase tracking-wider">
+<span>FitCheck</span>
+<span class="material-symbols-outlined text-label-sm text-outline-variant">chevron_right</span>
+<span>Interviews</span>
+<span class="material-symbols-outlined text-label-sm text-outline-variant">chevron_right</span>
+<span class="text-primary font-semibold">Evaluations Archive</span>
+</div>
+<div class="flex items-center gap-space-md flex-wrap pt-space-xxs">
+<h1 class="font-headline-xl text-headline-xl tracking-tight text-on-surface font-semibold">Evaluations Archive &amp; Deep-Dive Hub</h1>
+<div class="flex items-center gap-space-xs px-space-sm py-space-xxs rounded-lg bg-surface-container-high text-primary font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
+<span>AUDIT V3.2 LIVE</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-4xl">
+          Forensic analysis, longitudinal score comparisons, and aggregate rubric telemetry across all simulated technical interview rounds.
+        </p>
+</div>
+<!-- Header Secondary Actions -->
+<div class="flex items-center gap-space-sm flex-wrap">
+<button class="flex items-center gap-space-xs px-space-md py-space-sm bg-surface-container hover:bg-surface-container-high text-on-surface text-body-sm font-medium rounded transition-all shadow-sm">
+<span class="material-symbols-outlined text-body-md text-secondary">file_download</span>
+<span>Telemetry CSV Schema</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-space-sm bg-surface-container hover:bg-surface-container-high text-on-surface text-body-sm font-medium rounded transition-all shadow-sm">
+<span class="material-symbols-outlined text-body-md text-primary">picture_as_pdf</span>
+<span>Export Batch Dossier (PDF)</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-space-sm bg-primary text-on-primary font-headline-md text-body-sm font-semibold rounded hover:bg-primary-fixed-dim hover:text-on-primary-fixed transition-all shadow-md">
+<span class="material-symbols-outlined text-body-md">hub</span>
+<span>Synthesize Cohort Trends</span>
+</button>
+</div>
+</div>
+<!-- Filter Console Bar -->
+<div class="p-space-lg bg-surface-container-low rounded-xl shadow-md space-y-space-md">
+<div class="flex items-center justify-between flex-wrap gap-space-md">
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-outline uppercase tracking-wider">
+<span class="material-symbols-outlined text-body-md text-primary">tune</span>
+<span>Longitudinal Telemetry Filters</span>
+</div>
+<div class="flex items-center gap-space-md font-label-sm text-label-sm text-on-surface-variant">
+<span>Active Query: <span class="text-primary font-semibold">14 Sessions indexed</span></span>
+<button class="text-outline hover:text-on-surface transition-colors underline underline-offset-4">Reset Query</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-space-sm">
+<!-- Target Track Filter -->
+<div class="space-y-space-xxs">
+<label class="font-label-sm text-label-sm text-outline uppercase">Target Track</label>
+<div class="relative">
+<select class="w-full h-10 px-space-md pr-space-xl bg-surface-container text-body-sm text-on-surface rounded appearance-none focus:outline-none focus:bg-surface-container-high transition-all cursor-pointer">
+<option selected="">All Tracks (14)</option>
+<option>Stripe Staff Systems (10)</option>
+<option>Meta E6 Distributed Systems (2)</option>
+<option>Datadog L7 Principal (2)</option>
+</select>
+<span class="material-symbols-outlined pointer-events-none absolute right-3 top-2.5 text-body-md text-outline">unfold_more</span>
+</div>
+</div>
+<!-- Persona Filter -->
+<div class="space-y-space-xxs">
+<label class="font-label-sm text-label-sm text-outline uppercase">Interviewer Persona</label>
+<div class="relative">
+<select class="w-full h-10 px-space-md pr-space-xl bg-surface-container text-body-sm text-on-surface rounded appearance-none focus:outline-none focus:bg-surface-container-high transition-all cursor-pointer">
+<option selected="">All Interviewers</option>
+<option>Sarah Chen (Pragmatic Tech Lead)</option>
+<option>Marcus Vance (Hostile VP)</option>
+<option>Alex Rivera (Rigorous Architect)</option>
+</select>
+<span class="material-symbols-outlined pointer-events-none absolute right-3 top-2.5 text-body-md text-outline">unfold_more</span>
+</div>
+</div>
+<!-- Outcome Filter -->
+<div class="space-y-space-xxs">
+<label class="font-label-sm text-label-sm text-outline uppercase">Outcome Bar</label>
+<div class="relative">
+<select class="w-full h-10 px-space-md pr-space-xl bg-surface-container text-body-sm text-on-surface rounded appearance-none focus:outline-none focus:bg-surface-container-high transition-all cursor-pointer">
+<option selected="">All Outcomes</option>
+<option>Exceeded Bar (90+)</option>
+<option>Passed Bar (80-89)</option>
+<option>Needs Remediation (&lt;80)</option>
+</select>
+<span class="material-symbols-outlined pointer-events-none absolute right-3 top-2.5 text-body-md text-outline">unfold_more</span>
+</div>
+</div>
+<!-- Date Range Filter -->
+<div class="space-y-space-xxs">
+<label class="font-label-sm text-label-sm text-outline uppercase">Evaluation Window</label>
+<div class="relative flex items-center">
+<input class="w-full h-10 px-space-md pr-space-xl bg-surface-container text-body-sm text-on-surface rounded focus:outline-none focus:bg-surface-container-high transition-all font-body-sm" type="text" value="Last 30 Days (Oct 1 - Oct 31)"/>
+<span class="material-symbols-outlined pointer-events-none absolute right-3 text-body-md text-outline">calendar_today</span>
+</div>
+</div>
+<!-- Topic Keyword Search -->
+<div class="space-y-space-xxs">
+<label class="font-label-sm text-label-sm text-outline uppercase">System Keyword / Invariant</label>
+<div class="relative flex items-center">
+<input class="w-full h-10 pl-9 pr-space-md bg-surface-container text-body-sm text-on-surface placeholder:text-outline rounded focus:outline-none focus:bg-surface-container-high transition-all font-body-sm" placeholder='e.g. "Raft", "RocksDB", "Zero-Copy"' type="text"/>
+<span class="material-symbols-outlined pointer-events-none absolute left-2.5 text-body-md text-primary">search</span>
+</div>
+</div>
+</div>
+<!-- Quick Tag Filter Pills -->
+<div class="flex items-center gap-space-xs flex-wrap pt-space-xs font-label-sm text-label-sm">
+<span class="text-outline uppercase mr-space-xs">Quick Focus:</span>
+<button class="px-space-sm py-0.5 rounded bg-surface-container-high text-primary hover:bg-primary hover:text-on-primary transition-all">Consensus Quorum</button>
+<button class="px-space-sm py-0.5 rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant transition-all">Write Stalls</button>
+<button class="px-space-sm py-0.5 rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant transition-all">Hostile Interrupts</button>
+<button class="px-space-sm py-0.5 rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant transition-all">DPDK Buffer Pools</button>
+<button class="px-space-sm py-0.5 rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant transition-all">Back-of-Envelope</button>
+</div>
+</div>
+<!-- Aggregate Benchmark Telemetry & Passing Bar Summary (4 Top Cards) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Card 1 -->
+<div class="p-space-lg bg-surface-container-low rounded-xl shadow-md flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute -right-6 -bottom-6 w-24 h-24 bg-primary/5 rounded-full blur-xl pointer-events-none group-hover:bg-primary/10 transition-all"></div>
+<div class="space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Total Completed Evaluations</span>
+<span class="material-symbols-outlined text-body-lg text-primary">analytics</span>
+</div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-metric-display text-metric-display text-on-surface font-semibold tracking-tight">14</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Mocks Audited</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md flex flex-col gap-space-xxs">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-on-surface-variant">Spoken Duration</span>
+<span class="text-primary font-medium">16.8 Spoken Hours</span>
+</div>
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-on-surface-variant">Socratic AI Coverage</span>
+<span class="text-tertiary font-medium">100% Invariant Checked</span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="p-space-lg bg-surface-container-low rounded-xl shadow-md flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute -right-6 -bottom-6 w-24 h-24 bg-tertiary/5 rounded-full blur-xl pointer-events-none group-hover:bg-tertiary/10 transition-all"></div>
+<div class="space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Mean Composite Score</span>
+<span class="material-symbols-outlined text-body-lg text-tertiary">speed</span>
+</div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-metric-display text-metric-display text-on-surface font-semibold tracking-tight">88.6</span>
+<span class="font-label-sm text-label-sm text-outline">/ 100</span>
+<span class="ml-space-xs px-space-xs py-space-xxs rounded bg-tertiary/15 text-tertiary font-label-sm text-label-sm font-semibold">+17.0 pts</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md flex flex-col gap-space-xxs">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-on-surface-variant">Stripe L6 Passing Bar</span>
+<span class="text-on-surface font-medium">80.0 Composite</span>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full rounded-full" style="width: 88.6%;"></div>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="p-space-lg bg-surface-container-low rounded-xl shadow-md flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute -right-6 -bottom-6 w-24 h-24 bg-secondary/5 rounded-full blur-xl pointer-events-none group-hover:bg-secondary/10 transition-all"></div>
+<div class="space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Passing Bar Met Rate</span>
+<span class="material-symbols-outlined text-body-lg text-secondary">verified_user</span>
+</div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-metric-display text-metric-display text-on-surface font-semibold tracking-tight">78.6%</span>
+<span class="font-label-sm text-label-sm text-secondary font-medium">11 of 14 Cleared</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md flex flex-col gap-space-xxs">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-on-surface-variant">Trajectory Delta</span>
+<span class="text-secondary font-medium">Consistently &gt;85 in last 5</span>
+</div>
+<div class="flex items-center gap-1 h-1.5 pt-1">
+<span class="flex-1 h-1 rounded-sm bg-tertiary"></span>
+<span class="flex-1 h-1 rounded-sm bg-tertiary"></span>
+<span class="flex-1 h-1 rounded-sm bg-tertiary"></span>
+<span class="flex-1 h-1 rounded-sm bg-tertiary"></span>
+<span class="flex-1 h-1 rounded-sm bg-error/70"></span>
+<span class="flex-1 h-1 rounded-sm bg-tertiary"></span>
+<span class="flex-1 h-1 rounded-sm bg-tertiary"></span>
+<span class="flex-1 h-1 rounded-sm bg-tertiary"></span>
+<span class="flex-1 h-1 rounded-sm bg-error/70"></span>
+<span class="flex-1 h-1 rounded-sm bg-tertiary"></span>
+<span class="flex-1 h-1 rounded-sm bg-tertiary"></span>
+<span class="flex-1 h-1 rounded-sm bg-tertiary"></span>
+<span class="flex-1 h-1 rounded-sm bg-tertiary"></span>
+<span class="flex-1 h-1 rounded-sm bg-primary"></span>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="p-space-lg bg-surface-container-low rounded-xl shadow-md flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute -right-6 -bottom-6 w-24 h-24 bg-error/5 rounded-full blur-xl pointer-events-none group-hover:bg-error/10 transition-all"></div>
+<div class="space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Active Vulnerabilities</span>
+<span class="material-symbols-outlined text-body-lg text-error">warning</span>
+</div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-metric-display text-metric-display text-on-surface font-semibold tracking-tight">2</span>
+<span class="font-label-sm text-label-sm text-error font-medium">High Priority</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md flex flex-col gap-space-xxs font-label-sm text-label-sm">
+<div class="truncate text-on-surface-variant flex items-center gap-space-xxs">
+<span class="w-1.5 h-1.5 rounded-full bg-error shrink-0"></span>
+<span class="truncate">LSM write stall saturation math</span>
+</div>
+<div class="truncate text-on-surface-variant flex items-center gap-space-xxs">
+<span class="w-1.5 h-1.5 rounded-full bg-error shrink-0"></span>
+<span class="truncate">JVM pause off-heap trade-offs</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Cross-Track Competency Benchmark Matrix & Radar Telemetry -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-stretch">
+<!-- Competency Matrix (7 cols) -->
+<div class="lg:col-span-7 bg-surface-container-low p-space-xl rounded-xl shadow-md flex flex-col justify-between space-y-space-lg">
+<div class="flex items-center justify-between">
+<div class="space-y-space-xxs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-body-lg">radar</span>
+<h2 class="font-headline-md text-headline-md font-semibold text-on-surface">Cross-Track Competency Benchmark Matrix</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Calibrated against 1,240+ verified Stripe L6 and Meta E6 historical panels.</p>
+</div>
+<div class="hidden sm:flex items-center gap-space-sm font-label-sm text-label-sm">
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="w-2.5 h-2.5 rounded-sm bg-primary"></span>
+<span>Candidate Current</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="w-2.5 h-0.5 bg-outline"></span>
+<span>Bar (80-85%)</span>
+</div>
+</div>
+</div>
+<div class="space-y-space-md">
+<!-- Competency 1 -->
+<div class="space-y-space-xs">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-on-surface font-medium">Distributed Systems &amp; Consensus Invariants (Raft/Paxos)</span>
+<div class="flex items-center gap-space-sm">
+<span class="text-outline">Bar: 80%</span>
+<span class="text-primary font-bold">91.4%</span>
+<span class="px-space-xs py-space-xxs rounded bg-tertiary/15 text-tertiary font-medium">Clear</span>
+</div>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full relative overflow-hidden">
+<div class="absolute left-[80%] top-0 bottom-0 w-0.5 bg-outline-variant z-10"></div>
+<div class="bg-primary h-full rounded-full transition-all duration-500" style="width: 91.4%;"></div>
+</div>
+</div>
+<!-- Competency 2 -->
+<div class="space-y-space-xs">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-on-surface font-medium">Storage Engines &amp; Compaction Debt (LSM vs B-Tree)</span>
+<div class="flex items-center gap-space-sm">
+<span class="text-outline">Bar: 80%</span>
+<span class="text-primary font-bold">86.8%</span>
+<span class="px-space-xs py-space-xxs rounded bg-tertiary/15 text-tertiary font-medium">Clear</span>
+</div>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full relative overflow-hidden">
+<div class="absolute left-[80%] top-0 bottom-0 w-0.5 bg-outline-variant z-10"></div>
+<div class="bg-primary h-full rounded-full transition-all duration-500" style="width: 86.8%;"></div>
+</div>
+</div>
+<!-- Competency 3 -->
+<div class="space-y-space-xs">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-on-surface font-medium">Tail Latency &amp; Failure Horizon Triage (P99 / P99.9)</span>
+<div class="flex items-center gap-space-sm">
+<span class="text-outline">Bar: 80%</span>
+<span class="text-on-surface font-bold">84.5%</span>
+<span class="px-space-xs py-space-xxs rounded bg-surface-container-high text-on-surface-variant font-medium">Borderline</span>
+</div>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full relative overflow-hidden">
+<div class="absolute left-[80%] top-0 bottom-0 w-0.5 bg-outline-variant z-10"></div>
+<div class="bg-primary-fixed-dim h-full rounded-full transition-all duration-500" style="width: 84.5%;"></div>
+</div>
+</div>
+<!-- Competency 4 -->
+<div class="space-y-space-xs">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-on-surface font-medium">Socratic Pushback &amp; Hostile Challenge Defense</span>
+<div class="flex items-center gap-space-sm">
+<span class="text-outline">Bar: 85%</span>
+<span class="text-primary font-bold">88.2%</span>
+<span class="px-space-xs py-space-xxs rounded bg-tertiary/15 text-tertiary font-medium">Clear</span>
+</div>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full relative overflow-hidden">
+<div class="absolute left-[85%] top-0 bottom-0 w-0.5 bg-outline-variant z-10"></div>
+<div class="bg-primary h-full rounded-full transition-all duration-500" style="width: 88.2%;"></div>
+</div>
+</div>
+<!-- Competency 5 -->
+<div class="space-y-space-xs">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-on-surface font-medium">Quantitative Back-of-Envelope Precision &amp; Bandwidth Sizing</span>
+<div class="flex items-center gap-space-sm">
+<span class="text-outline">Bar: 85%</span>
+<span class="text-secondary font-bold">93.8%</span>
+<span class="px-space-xs py-space-xxs rounded bg-secondary-container text-on-secondary-container font-medium">Top 2% P99</span>
+</div>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full relative overflow-hidden">
+<div class="absolute left-[85%] top-0 bottom-0 w-0.5 bg-outline-variant z-10"></div>
+<div class="bg-secondary h-full rounded-full transition-all duration-500" style="width: 93.8%;"></div>
+</div>
+</div>
+<!-- Competency 6 -->
+<div class="space-y-space-xs">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-on-surface font-medium">Acoustic Cadence &amp; Vocal Composure Under Pressure</span>
+<div class="flex items-center gap-space-sm">
+<span class="text-outline">Bar: 85%</span>
+<span class="text-tertiary font-bold">94.0%</span>
+<span class="px-space-xs py-space-xxs rounded bg-tertiary/15 text-tertiary font-medium">Grounded</span>
+</div>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full relative overflow-hidden">
+<div class="absolute left-[85%] top-0 bottom-0 w-0.5 bg-outline-variant z-10"></div>
+<div class="bg-tertiary h-full rounded-full transition-all duration-500" style="width: 94.0%;"></div>
+</div>
+</div>
+</div>
+<div class="pt-space-xs flex items-center justify-between font-label-sm text-label-sm text-outline-variant border-t border-surface-container-high/60">
+<span class="text-outline">Evaluator Agreement Index: <strong class="text-on-surface">97.2% Fleiss Kappa</strong></span>
+<a class="text-primary hover:text-primary-fixed-dim transition-colors flex items-center gap-1" href="#">
+<span>Explore Longitudinal Delta Curves</span>
+<span class="material-symbols-outlined text-label-sm">trending_up</span>
+</a>
+</div>
+</div>
+<!-- Radar Telemetry & Persona Breakdown (5 cols) -->
+<div class="lg:col-span-5 bg-surface-container-low p-space-xl rounded-xl shadow-md flex flex-col justify-between space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="space-y-space-xxs">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Acoustic &amp; Stress Telemetry</span>
+<h3 class="font-headline-md text-headline-md font-semibold text-on-surface">Socratic Pressure Tolerance</h3>
+</div>
+<span class="px-space-xs py-space-xxs rounded bg-primary/10 text-primary font-label-sm text-label-sm font-semibold">Live Norm</span>
+</div>
+<!-- Radar & SVG Telemetry Representation -->
+<div class="flex items-center justify-center py-space-sm relative">
+<svg class="w-64 h-64 text-outline-variant" viewbox="0 0 200 200">
+<!-- Polygon concentric grid -->
+<polygon fill="none" opacity="0.3" points="100,20 176,57 176,143 100,180 24,143 24,57" stroke="currentColor" stroke-dasharray="2 2" stroke-width="0.5"></polygon>
+<polygon fill="none" opacity="0.4" points="100,40 157,68 157,132 100,160 43,132 43,68" stroke="currentColor" stroke-dasharray="2 2" stroke-width="0.5"></polygon>
+<polygon fill="none" opacity="0.5" points="100,60 138,78 138,122 100,140 62,122 62,78" stroke="currentColor" stroke-dasharray="2 2" stroke-width="0.5"></polygon>
+<!-- Baseline Bar (Grey) -->
+<polygon fill="#31353b" fill-opacity="0.25" points="100,36 160,65 160,135 100,164 40,135 40,65" stroke="#869395" stroke-dasharray="3 3" stroke-width="1"></polygon>
+<!-- Candidate Shape (Cyan / Lavender Bloom) -->
+<polygon fill="url(#radarGradient)" fill-opacity="0.4" points="100,24 168,60 162,130 100,172 32,138 30,59" stroke="#5ce2f6" stroke-width="2"></polygon>
+<!-- Nodes -->
+<circle cx="100" cy="24" fill="#5ce2f6" r="3"></circle>
+<circle cx="168" cy="60" fill="#5ce2f6" r="3"></circle>
+<circle cx="162" cy="130" fill="#5ce2f6" r="3"></circle>
+<circle cx="100" cy="172" fill="#5ce2f6" r="3"></circle>
+<circle cx="32" cy="138" fill="#5ce2f6" r="3"></circle>
+<circle cx="30" cy="59" fill="#5ce2f6" r="3"></circle>
+<defs>
+<lineargradient id="radarGradient" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#5ce2f6"></stop>
+<stop offset="100%" stop-color="#cebdff"></stop>
+</lineargradient>
+</defs>
+</svg>
+<!-- Absolute labels around polygon -->
+<span class="absolute top-1 text-center font-label-sm text-[10px] text-primary">Invariants (91%)</span>
+<span class="absolute right-0 top-1/4 text-center font-label-sm text-[10px] text-on-surface">Storage (87%)</span>
+<span class="absolute right-1 bottom-1/4 text-center font-label-sm text-[10px] text-on-surface">Tail Latency (84%)</span>
+<span class="absolute bottom-1 text-center font-label-sm text-[10px] text-tertiary">Composure (94%)</span>
+<span class="absolute left-1 bottom-1/4 text-center font-label-sm text-[10px] text-secondary">Math P99 (94%)</span>
+<span class="absolute left-0 top-1/4 text-center font-label-sm text-[10px] text-primary">Hostile Defense (88%)</span>
+</div>
+<!-- Telemetry Summary Pill Matrix -->
+<div class="grid grid-cols-2 gap-space-sm pt-space-xs">
+<div class="p-space-sm bg-surface-container rounded-lg space-y-space-xxs">
+<span class="font-label-sm text-label-sm text-outline uppercase">Median Cadence</span>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-metric-display text-metric-display text-primary font-semibold">143</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">WPM (Steady)</span>
+</div>
+<p class="font-body-sm text-[11px] text-on-surface-variant">Target studio band: 135–150 WPM</p>
+</div>
+<div class="p-space-sm bg-surface-container rounded-lg space-y-space-xxs">
+<span class="font-label-sm text-label-sm text-outline uppercase">Mean Filler Ratio</span>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-metric-display text-metric-display text-tertiary font-semibold">1.2%</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">of tokens</span>
+</div>
+<p class="font-body-sm text-[11px] text-on-surface-variant">Top quartile baseline (&lt; 2.0%)</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Detailed Ledger & Historical Scorecards (Card List & Table) -->
+<div class="space-y-space-md">
+<div class="flex items-center justify-between flex-wrap gap-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-body-lg">folder_managed</span>
+<h2 class="font-headline-md text-headline-md font-semibold text-on-surface">Historical Mock Scorecards</h2>
+<span class="px-space-xs py-space-xxs rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">14 Records</span>
+</div>
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm">
+<button class="px-space-sm py-space-xxs rounded bg-surface-container-high text-primary font-semibold">Detailed Cards</button>
+<button class="px-space-sm py-space-xxs rounded bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors">Compact Table</button>
+</div>
+</div>
+<div class="space-y-space-md">
+<!-- Entry 1: Latest Mock 14 -->
+<div class="bg-surface-container-low rounded-xl shadow-md p-space-lg space-y-space-md transition-all hover:bg-surface-container/90">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="space-y-space-xs">
+<div class="flex items-center gap-space-sm flex-wrap">
+<span class="font-label-md text-label-md font-bold text-primary">MOCK #14</span>
+<span class="text-outline">/</span>
+<span class="font-headline-md text-headline-md font-semibold text-on-surface">Stripe Staff Systems Eng</span>
+<span class="px-space-xs py-space-xxs rounded bg-primary/15 text-primary font-label-sm text-label-sm font-semibold">EXCEEDED BAR · HIRE</span>
+<span class="font-label-sm text-label-sm text-tertiary flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                  Verified Invariant Pass
+                </span>
+</div>
+<div class="flex items-center gap-space-md text-body-sm text-on-surface-variant flex-wrap">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-body-md text-outline">account_circle</span>
+<span class="text-on-surface font-medium">Sarah Chen</span>
+<span class="text-outline text-label-sm">(Pragmatic Tech Lead)</span>
+</div>
+<span>·</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-body-md text-outline">event</span>
+<span>Oct 28, 2024</span>
+</div>
+<span>·</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-body-md text-outline">schedule</span>
+<span>45 mins</span>
+</div>
+</div>
+</div>
+<!-- Score Pill -->
+<div class="flex items-center gap-space-lg">
+<div class="text-right">
+<div class="font-label-sm text-label-sm text-outline uppercase">Composite Score</div>
+<div class="flex items-baseline gap-1 justify-end">
+<span class="font-metric-display text-metric-display text-primary font-semibold">91.4</span>
+<span class="font-label-sm text-label-sm text-outline">/100</span>
+</div>
+</div>
+<div class="h-10 w-px bg-surface-container-highest"></div>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-md py-space-sm bg-primary text-on-primary font-semibold text-body-sm rounded hover:bg-primary-fixed-dim transition-all flex items-center gap-1">
+<span>View Full Scorecard</span>
+<span class="material-symbols-outlined text-body-md">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Technical Breakdown Strip -->
+<div class="p-space-md bg-surface-container rounded-lg grid grid-cols-1 md:grid-cols-12 gap-space-md items-center">
+<div class="md:col-span-5 space-y-space-xxs">
+<span class="font-label-sm text-label-sm text-outline uppercase">Primary Core Focus</span>
+<p class="font-body-sm text-body-sm text-on-surface font-medium">Raft Monotonic Lease Invariants &amp; Network Partition Quorums</p>
+<p class="font-body-sm text-[12px] text-on-surface-variant">Validated split-brain proof with deterministic clock skew bounds (&lt; 200ms).</p>
+</div>
+<div class="md:col-span-4 space-y-space-xxs">
+<span class="font-label-sm text-label-sm text-outline uppercase">Audio &amp; Composure Telemetry</span>
+<div class="flex items-center gap-space-xs flex-wrap font-label-sm text-label-sm">
+<span class="px-space-xs py-space-xxs rounded bg-surface-container-high text-primary">142 WPM steady</span>
+<span class="px-space-xs py-space-xxs rounded bg-surface-container-high text-tertiary">1.1% Fillers</span>
+<span class="px-space-xs py-space-xxs rounded bg-surface-container-high text-on-surface">1.4s Interruption Recovery</span>
+</div>
+</div>
+<div class="md:col-span-3 flex items-center justify-end gap-space-xs">
+<button class="px-space-sm py-space-xs bg-surface-container-high hover:bg-surface-variant text-on-surface text-body-sm rounded flex items-center gap-1 transition-all">
+<span class="material-symbols-outlined text-body-md text-primary">play_circle</span>
+<span>Audio Debrief (45m)</span>
+</button>
+<button class="p-space-xs bg-surface-container-high hover:bg-surface-variant text-on-surface-variant hover:text-on-surface rounded transition-all" title="Inspect Whiteboard Artifacts">
+<span class="material-symbols-outlined text-body-md">draw</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Entry 2: Mock 13 -->
+<div class="bg-surface-container-low rounded-xl shadow-md p-space-lg space-y-space-md transition-all hover:bg-surface-container/90">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="space-y-space-xs">
+<div class="flex items-center gap-space-sm flex-wrap">
+<span class="font-label-md text-label-md font-bold text-outline">MOCK #13</span>
+<span class="text-outline">/</span>
+<span class="font-headline-md text-headline-md font-semibold text-on-surface">Stripe Staff Systems Eng</span>
+<span class="px-space-xs py-space-xxs rounded bg-tertiary/15 text-tertiary font-label-sm text-label-sm font-semibold">PASSED BAR</span>
+</div>
+<div class="flex items-center gap-space-md text-body-sm text-on-surface-variant flex-wrap">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-body-md text-outline">account_circle</span>
+<span class="text-on-surface font-medium">Marcus Vance</span>
+<span class="text-error text-label-sm font-medium">(Hostile Socratic)</span>
+</div>
+<span>·</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-body-md text-outline">event</span>
+<span>Oct 24, 2024</span>
+</div>
+<span>·</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-body-md text-outline">schedule</span>
+<span>42 mins</span>
+</div>
+</div>
+</div>
+<!-- Score Pill -->
+<div class="flex items-center gap-space-lg">
+<div class="text-right">
+<div class="font-label-sm text-label-sm text-outline uppercase">Composite Score</div>
+<div class="flex items-baseline gap-1 justify-end">
+<span class="font-metric-display text-metric-display text-tertiary font-semibold">88.2</span>
+<span class="font-label-sm text-label-sm text-outline">/100</span>
+</div>
+</div>
+<div class="h-10 w-px bg-surface-container-highest"></div>
+<button class="px-space-md py-space-sm bg-surface-container hover:bg-surface-container-high text-on-surface font-semibold text-body-sm rounded transition-all flex items-center gap-1">
+<span>View Full Scorecard</span>
+<span class="material-symbols-outlined text-body-md">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Technical Breakdown Strip -->
+<div class="p-space-md bg-surface-container rounded-lg grid grid-cols-1 md:grid-cols-12 gap-space-md items-center">
+<div class="md:col-span-5 space-y-space-xxs">
+<span class="font-label-sm text-label-sm text-outline uppercase">Primary Core Focus</span>
+<p class="font-body-sm text-body-sm text-on-surface font-medium">RocksDB Write Stall Recovery &amp; Memtable Compaction Cascades</p>
+<p class="font-body-sm text-[12px] text-on-surface-variant">Navigated aggressive pushback regarding write amplification factor tradeoffs.</p>
+</div>
+<div class="md:col-span-4 space-y-space-xxs">
+<span class="font-label-sm text-label-sm text-outline uppercase">Audio &amp; Composure Telemetry</span>
+<div class="flex items-center gap-space-xs flex-wrap font-label-sm text-label-sm">
+<span class="px-space-xs py-space-xxs rounded bg-surface-container-high text-on-surface">146 WPM</span>
+<span class="px-space-xs py-space-xxs rounded bg-surface-container-high text-on-surface">1.4% Fillers</span>
+<span class="px-space-xs py-space-xxs rounded bg-error/15 text-error font-semibold">88% Hostility Defense</span>
+</div>
+</div>
+<div class="md:col-span-3 flex items-center justify-end gap-space-xs">
+<button class="px-space-sm py-space-xs bg-surface-container-high hover:bg-surface-variant text-on-surface text-body-sm rounded flex items-center gap-1 transition-all">
+<span class="material-symbols-outlined text-body-md text-primary">play_circle</span>
+<span>Audio Debrief (42m)</span>
+</button>
+<button class="p-space-xs bg-surface-container-high hover:bg-surface-variant text-on-surface-variant hover:text-on-surface rounded transition-all">
+<span class="material-symbols-outlined text-body-md">draw</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Entry 3: Mock 12 -->
+<div class="bg-surface-container-low rounded-xl shadow-md p-space-lg space-y-space-md transition-all hover:bg-surface-container/90">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="space-y-space-xs">
+<div class="flex items-center gap-space-sm flex-wrap">
+<span class="font-label-md text-label-md font-bold text-outline">MOCK #12</span>
+<span class="text-outline">/</span>
+<span class="font-headline-md text-headline-md font-semibold text-on-surface">Meta E6 Infrastructure</span>
+<span class="px-space-xs py-space-xxs rounded bg-tertiary/15 text-tertiary font-label-sm text-label-sm font-semibold">PASSED BAR</span>
+</div>
+<div class="flex items-center gap-space-md text-body-sm text-on-surface-variant flex-wrap">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-body-md text-outline">account_circle</span>
+<span class="text-on-surface font-medium">Alex Rivera</span>
+<span class="text-outline text-label-sm">(Rigorous Systems Architect)</span>
+</div>
+<span>·</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-body-md text-outline">event</span>
+<span>Oct 20, 2024</span>
+</div>
+<span>·</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-body-md text-outline">schedule</span>
+<span>50 mins</span>
+</div>
+</div>
+</div>
+<!-- Score Pill -->
+<div class="flex items-center gap-space-lg">
+<div class="text-right">
+<div class="font-label-sm text-label-sm text-outline uppercase">Composite Score</div>
+<div class="flex items-baseline gap-1 justify-end">
+<span class="font-metric-display text-metric-display text-tertiary font-semibold">85.0</span>
+<span class="font-label-sm text-label-sm text-outline">/100</span>
+</div>
+</div>
+<div class="h-10 w-px bg-surface-container-highest"></div>
+<button class="px-space-md py-space-sm bg-surface-container hover:bg-surface-container-high text-on-surface font-semibold text-body-sm rounded transition-all flex items-center gap-1">
+<span>View Full Scorecard</span>
+<span class="material-symbols-outlined text-body-md">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Technical Breakdown Strip -->
+<div class="p-space-md bg-surface-container rounded-lg grid grid-cols-1 md:grid-cols-12 gap-space-md items-center">
+<div class="md:col-span-5 space-y-space-xxs">
+<span class="font-label-sm text-label-sm text-outline uppercase">Primary Core Focus</span>
+<p class="font-body-sm text-body-sm text-on-surface font-medium">Multi-Region Sharding &amp; Hybrid Logical Clocks (HLC)</p>
+<p class="font-body-sm text-[12px] text-on-surface-variant">Strong causality tracking design; minor hesitation on NTP jitter tolerances.</p>
+</div>
+<div class="md:col-span-4 space-y-space-xxs">
+<span class="font-label-sm text-label-sm text-outline uppercase">Audio &amp; Composure Telemetry</span>
+<div class="flex items-center gap-space-xs flex-wrap font-label-sm text-label-sm">
+<span class="px-space-xs py-space-xxs rounded bg-surface-container-high text-on-surface">138 WPM</span>
+<span class="px-space-xs py-space-xxs rounded bg-surface-container-high text-tertiary">0.9% Fillers</span>
+<span class="px-space-xs py-space-xxs rounded bg-surface-container-high text-on-surface">82% Architecture Depth</span>
+</div>
+</div>
+<div class="md:col-span-3 flex items-center justify-end gap-space-xs">
+<button class="px-space-sm py-space-xs bg-surface-container-high hover:bg-surface-variant text-on-surface text-body-sm rounded flex items-center gap-1 transition-all">
+<span class="material-symbols-outlined text-body-md text-primary">play_circle</span>
+<span>Audio Debrief (50m)</span>
+</button>
+<button class="p-space-xs bg-surface-container-high hover:bg-surface-variant text-on-surface-variant hover:text-on-surface rounded transition-all">
+<span class="material-symbols-outlined text-body-md">draw</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Entry 4: Mock 11 -->
+<div class="bg-surface-container-low rounded-xl shadow-md p-space-lg space-y-space-md transition-all hover:bg-surface-container/90">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="space-y-space-xs">
+<div class="flex items-center gap-space-sm flex-wrap">
+<span class="font-label-md text-label-md font-bold text-outline">MOCK #11</span>
+<span class="text-outline">/</span>
+<span class="font-headline-md text-headline-md font-semibold text-on-surface">Stripe Staff Systems Eng</span>
+<span class="px-space-xs py-space-xxs rounded bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm font-semibold">BORDERLINE PASS</span>
+</div>
+<div class="flex items-center gap-space-md text-body-sm text-on-surface-variant flex-wrap">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-body-md text-outline">account_circle</span>
+<span class="text-on-surface font-medium">Marcus Vance</span>
+<span class="text-outline text-label-sm">(Hostile VP)</span>
+</div>
+<span>·</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-body-md text-outline">event</span>
+<span>Oct 17, 2024</span>
+</div>
+<span>·</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-body-md text-outline">schedule</span>
+<span>38 mins</span>
+</div>
+</div>
+</div>
+<!-- Score Pill -->
+<div class="flex items-center gap-space-lg">
+<div class="text-right">
+<div class="font-label-sm text-label-sm text-outline uppercase">Composite Score</div>
+<div class="flex items-baseline gap-1 justify-end">
+<span class="font-metric-display text-metric-display text-on-surface font-semibold">81.0</span>
+<span class="font-label-sm text-label-sm text-outline">/100</span>
+</div>
+</div>
+<div class="h-10 w-px bg-surface-container-highest"></div>
+<button class="px-space-md py-space-sm bg-surface-container hover:bg-surface-container-high text-on-surface font-semibold text-body-sm rounded transition-all flex items-center gap-1">
+<span>View Full Scorecard</span>
+<span class="material-symbols-outlined text-body-md">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Technical Breakdown Strip -->
+<div class="p-space-md bg-surface-container rounded-lg grid grid-cols-1 md:grid-cols-12 gap-space-md items-center">
+<div class="md:col-span-5 space-y-space-xxs">
+<span class="font-label-sm text-label-sm text-outline uppercase">Primary Core Focus</span>
+<p class="font-body-sm text-body-sm text-on-surface font-medium">Incident Triage &amp; Cascading Failures in Envoy Proxy Clusters</p>
+<div class="flex items-center gap-1 text-[12px] text-error">
+<span class="material-symbols-outlined text-label-sm">priority_high</span>
+<span>Flag: 3.8s silence pause latency when challenged on token bucket burst limits.</span>
+</div>
+</div>
+<div class="md:col-span-4 space-y-space-xxs">
+<span class="font-label-sm text-label-sm text-outline uppercase">Audio &amp; Composure Telemetry</span>
+<div class="flex items-center gap-space-xs flex-wrap font-label-sm text-label-sm">
+<span class="px-space-xs py-space-xxs rounded bg-surface-container-high text-on-surface">151 WPM (Elevated)</span>
+<span class="px-space-xs py-space-xxs rounded bg-surface-container-high text-on-surface">2.4% Fillers</span>
+<span class="px-space-xs py-space-xxs rounded bg-error/15 text-error">Stress Spike detected</span>
+</div>
+</div>
+<div class="md:col-span-3 flex items-center justify-end gap-space-xs">
+<button class="px-space-sm py-space-xs bg-surface-container-high hover:bg-surface-variant text-on-surface text-body-sm rounded flex items-center gap-1 transition-all">
+<span class="material-symbols-outlined text-body-md text-primary">play_circle</span>
+<span>Audio Debrief (38m)</span>
+</button>
+<button class="p-space-xs bg-surface-container-high hover:bg-surface-variant text-on-surface-variant hover:text-on-surface rounded transition-all">
+<span class="material-symbols-outlined text-body-md">draw</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Entry 5: Mock 10 -->
+<div class="bg-surface-container-low rounded-xl shadow-md p-space-lg space-y-space-md transition-all hover:bg-surface-container/90">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="space-y-space-xs">
+<div class="flex items-center gap-space-sm flex-wrap">
+<span class="font-label-md text-label-md font-bold text-outline">MOCK #10</span>
+<span class="text-outline">/</span>
+<span class="font-headline-md text-headline-md font-semibold text-on-surface">Datadog L7 Principal</span>
+<span class="px-space-xs py-space-xxs rounded bg-error/15 text-error font-label-sm text-label-sm font-semibold">NEEDS REMEDIATION</span>
+</div>
+<div class="flex items-center gap-space-md text-body-sm text-on-surface-variant flex-wrap">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-body-md text-outline">account_circle</span>
+<span class="text-on-surface font-medium">Sarah Chen</span>
+<span class="text-outline text-label-sm">(Pragmatic Tech Lead)</span>
+</div>
+<span>·</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-body-md text-outline">event</span>
+<span>Oct 12, 2024</span>
+</div>
+<span>·</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-body-md text-outline">schedule</span>
+<span>48 mins</span>
+</div>
+</div>
+</div>
+<!-- Score Pill -->
+<div class="flex items-center gap-space-lg">
+<div class="text-right">
+<div class="font-label-sm text-label-sm text-outline uppercase">Composite Score</div>
+<div class="flex items-baseline gap-1 justify-end">
+<span class="font-metric-display text-metric-display text-error font-semibold">78.5</span>
+<span class="font-label-sm text-label-sm text-outline">/100</span>
+</div>
+</div>
+<div class="h-10 w-px bg-surface-container-highest"></div>
+<button class="px-space-md py-space-sm bg-surface-container hover:bg-surface-container-high text-on-surface font-semibold text-body-sm rounded transition-all flex items-center gap-1">
+<span>View Full Scorecard</span>
+<span class="material-symbols-outlined text-body-md">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Technical Breakdown Strip -->
+<div class="p-space-md bg-surface-container rounded-lg grid grid-cols-1 md:grid-cols-12 gap-space-md items-center">
+<div class="md:col-span-5 space-y-space-xxs">
+<span class="font-label-sm text-label-sm text-outline uppercase">Primary Core Focus</span>
+<p class="font-body-sm text-body-sm text-on-surface font-medium">Zero-Copy Network Buffering &amp; DPDK Kernel Bypass</p>
+<div class="flex items-center gap-1 text-[12px] text-tertiary">
+<span class="material-symbols-outlined text-label-sm">check_circle</span>
+<span>Resolved: Successfully re-drilled via Sparring Loop #04 (Oct 15).</span>
+</div>
+</div>
+<div class="md:col-span-4 space-y-space-xxs">
+<span class="font-label-sm text-label-sm text-outline uppercase">Audio &amp; Composure Telemetry</span>
+<div class="flex items-center gap-space-xs flex-wrap font-label-sm text-label-sm">
+<span class="px-space-xs py-space-xxs rounded bg-surface-container-high text-on-surface">144 WPM</span>
+<span class="px-space-xs py-space-xxs rounded bg-surface-container-high text-on-surface">1.8% Fillers</span>
+<span class="px-space-xs py-space-xxs rounded bg-secondary-container text-on-secondary-container">Remediation Completed</span>
+</div>
+</div>
+<div class="md:col-span-3 flex items-center justify-end gap-space-xs">
+<button class="px-space-sm py-space-xs bg-surface-container-high hover:bg-surface-variant text-on-surface text-body-sm rounded flex items-center gap-1 transition-all">
+<span class="material-symbols-outlined text-body-md text-primary">play_circle</span>
+<span>Audio Debrief (48m)</span>
+</button>
+<button class="p-space-xs bg-surface-container-high hover:bg-surface-variant text-on-surface-variant hover:text-on-surface rounded transition-all">
+<span class="material-symbols-outlined text-body-md">draw</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination footer -->
+<div class="flex items-center justify-between p-space-md bg-surface-container-low rounded-xl text-body-sm text-on-surface-variant">
+<span class="font-label-sm text-label-sm">Showing 1-5 of 14 sessions</span>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-sm py-space-xxs rounded bg-surface-container text-outline hover:text-on-surface disabled:opacity-40" disabled="">Previous</button>
+<button class="px-space-sm py-space-xxs rounded bg-primary text-on-primary font-semibold">1</button>
+<button class="px-space-sm py-space-xxs rounded bg-surface-container text-on-surface-variant hover:text-on-surface">2</button>
+<button class="px-space-sm py-space-xxs rounded bg-surface-container text-on-surface-variant hover:text-on-surface">3</button>
+<button class="px-space-sm py-space-xxs rounded bg-surface-container text-outline hover:text-on-surface">Next</button>
+</div>
+</div>
+</div>
+<!-- Recurring Failure Modes & AI Diagnostic Insights Panel -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-stretch">
+<!-- AI Root Cause Diagnostic (7 cols) -->
+<div class="lg:col-span-7 bg-surface-container-low p-space-xl rounded-xl shadow-md space-y-space-md flex flex-col justify-between">
+<div class="space-y-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-body-lg">troubleshoot</span>
+<h3 class="font-headline-md text-headline-md font-semibold text-on-surface">Longitudinal Failure Mode Analysis</h3>
+</div>
+<span class="font-label-sm text-label-sm text-secondary bg-secondary-container px-space-xs py-space-xxs rounded">AI Synthesizer</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Systematic patterns identified across 14 mock interviews with Socratic cross-examination.</p>
+</div>
+<div class="space-y-space-sm">
+<!-- Vulnerability Item 1 -->
+<div class="p-space-md bg-surface-container rounded-lg space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-body-md text-body-md font-semibold text-on-surface flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+                LSM Tree Write Stall Edge Dynamics
+              </span>
+<span class="font-label-sm text-label-sm text-error bg-error/15 px-space-xs py-space-xxs rounded">3 occurrences</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              When pressed on Level 0 compaction backlog pacing under sustained 250k write bursts, you consistently gravitate to client-side throttling rather than exploring hybrid dynamic leveling or write-buffer stalling mechanics.
+            </p>
+<div class="pt-space-xxs flex items-center justify-between text-label-sm font-label-sm">
+<span class="text-outline">Affected Mocks: #08, #11, #13</span>
+<a class="text-primary hover:text-primary-fixed-dim transition-colors font-semibold" href="#">Review flagged transcripts →</a>
+</div>
+</div>
+<!-- Vulnerability Item 2 -->
+<div class="p-space-md bg-surface-container rounded-lg space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-body-md text-body-md font-semibold text-on-surface flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+                Hesitation Pause on Hostile Premise Invalidation
+              </span>
+<span class="font-label-sm text-label-sm text-secondary bg-secondary-container px-space-xs py-space-xxs rounded">2 occurrences</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Interviewer Marcus Vance intentionally introduced mathematically false assumptions about CAP theorem consistency tradeoffs. Silence exceeded 3.5s before explicitly refuting the false invariant.
+            </p>
+<div class="pt-space-xxs flex items-center justify-between text-label-sm font-label-sm">
+<span class="text-outline">Affected Mocks: #09, #11</span>
+<a class="text-primary hover:text-primary-fixed-dim transition-colors font-semibold" href="#">Review defense audio clips →</a>
+</div>
+</div>
+</div>
+<div class="p-space-md bg-surface-container-high rounded-lg flex items-center justify-between flex-wrap gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-body-lg">psychology</span>
+<span class="font-body-sm text-body-sm text-on-surface">Auto-generate a 15-minute targeted sparring drill focusing on these 2 vectors?</span>
+</div>
+<button class="px-space-md py-space-xs bg-primary text-on-primary font-semibold text-body-sm rounded hover:bg-primary-fixed-dim transition-all">
+            Launch Sparring Loop
+          </button>
+</div>
+</div>
+<!-- Executive Dossier & Recruiter Badges (5 cols) -->
+<div class="lg:col-span-5 bg-surface-container-low p-space-xl rounded-xl shadow-md space-y-space-md flex flex-col justify-between">
+<div class="space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Candidate Credential Dossier</span>
+<span class="material-symbols-outlined text-body-md text-tertiary">workspace_premium</span>
+</div>
+<h3 class="font-headline-md text-headline-md font-semibold text-on-surface">Verified Competency Badges</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Cryptographically signed FitCheck performance audit readiness.</p>
+</div>
+<!-- Badges Grid -->
+<div class="space-y-space-sm">
+<div class="p-space-md bg-surface-container rounded-lg flex items-center gap-space-md">
+<div class="w-12 h-12 rounded bg-primary/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-headline-md">verified</span>
+</div>
+<div class="space-y-space-xxs min-w-0">
+<div class="flex items-center justify-between">
+<span class="font-headline-md text-body-md font-semibold text-on-surface truncate">Stripe Staff Systems Readiness</span>
+<span class="font-label-sm text-label-sm text-tertiary font-bold">88.6/100</span>
+</div>
+<p class="font-body-sm text-[12px] text-on-surface-variant">Validated across 10 mocks with high-hostility lead evaluators.</p>
+</div>
+</div>
+<div class="p-space-md bg-surface-container rounded-lg flex items-center gap-space-md">
+<div class="w-12 h-12 rounded bg-secondary/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary text-headline-md">calculate</span>
+</div>
+<div class="space-y-space-xxs min-w-0">
+<div class="flex items-center justify-between">
+<span class="font-headline-md text-body-md font-semibold text-on-surface truncate">P99 Math &amp; Back-of-Envelope Master</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold">93.8/100</span>
+</div>
+<p class="font-body-sm text-[12px] text-on-surface-variant">Top 2% percentile in real-time storage tier throughput calculation.</p>
+</div>
+</div>
+<div class="p-space-md bg-surface-container rounded-lg flex items-center gap-space-md">
+<div class="w-12 h-12 rounded bg-tertiary/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-tertiary text-headline-md">mic_external_on</span>
+</div>
+<div class="space-y-space-xxs min-w-0">
+<div class="flex items-center justify-between">
+<span class="font-headline-md text-body-md font-semibold text-on-surface truncate">Studio Composure &amp; Grounding</span>
+<span class="font-label-sm text-label-sm text-tertiary font-bold">94.0/100</span>
+</div>
+<p class="font-body-sm text-[12px] text-on-surface-variant">Maintained &lt; 1.2% filler word frequency under adversarial interruptions.</p>
+</div>
+</div>
+</div>
+<div class="pt-space-xs flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline">Public Dossier ID: <strong class="text-on-surface">FC-ALEX-8891</strong></span>
+<button class="flex items-center gap-1 font-label-sm text-label-sm text-primary hover:text-primary-fixed-dim transition-colors">
+<span class="material-symbols-outlined text-body-md">share</span>
+<span>Share Recruiter Link</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div></main></div></body></html>

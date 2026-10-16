@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-primary-fixed-variant":"#004f58","background":"#101419","surface":"#101419","primary-fixed":"#97f0ff","surface-container-low":"#181c21","on-error":"#690005","on-secondary-fixed-variant":"#4f319c","error-container":"#93000a","surface-container-highest":"#31353b","tertiary":"#5ae9ac","on-primary-fixed":"#001f24","outline-variant":"#3c494b","inverse-on-surface":"#2d3136","on-primary":"#00363d","inverse-primary":"#006874","primary-fixed-dim":"#4fd8eb","on-tertiary":"#003824","on-background":"#e0e2ea","on-secondary-container":"#bea8ff","on-primary-container":"#004e57","surface-tint":"#4fd8eb","tertiary-fixed":"#6ffbbe","secondary-container":"#4f319c","on-surface":"#e0e2ea","secondary-fixed":"#e8ddff","error":"#ffb4ab","tertiary-fixed-dim":"#4edea3","on-tertiary-container":"#005136","surface-container-lowest":"#0a0e13","on-secondary":"#381385","outline":"#869395","on-tertiary-fixed":"#002113","tertiary-container":"#36cc92","inverse-surface":"#e0e2ea","secondary":"#cebdff","primary-container":"#35c6d9","on-tertiary-fixed-variant":"#005236","on-surface-variant":"#bbc9cb","surface-container-high":"#262a30","surface-variant":"#31353b","surface-dim":"#101419","primary":"#5ce2f6","surface-bright":"#36393f","secondary-fixed-dim":"#cebdff","on-secondary-fixed":"#21005e","on-error-container":"#ffdad6","surface-container":"#1c2025"},borderRadius:{DEFAULT:"0.125rem",lg:"0.25rem",xl:"0.5rem",full:"0.75rem"},spacing:{"space-xs":"0.25rem","space-sm":"0.5rem","space-md":"0.75rem","space-lg":"1rem","gutter":"1.25rem","gutter-desktop":"1.5rem","space-2xl":"2rem","space-xl":"1.5rem","space-xxs":"0.125rem","space-3xl":"3rem","margin":"1rem","margin-desktop":"2rem"},fontFamily:{"headline-lg":["Inter"],"label-md":["JetBrains Mono"],"body-sm":["Inter"],"body-md":["Inter"],"body-lg":["Inter"],"metric-display":["JetBrains Mono"],"display-lg":["Inter"],"headline-xl":["Inter"],"display-lg-mobile":["Inter"],"headline-md":["Inter"],"label-sm":["JetBrains Mono"]},fontSize:{"headline-lg":["24px",{lineHeight:"32px",letterSpacing:"-0.015em",fontWeight:"600"}],"label-md":["12px",{lineHeight:"16px",letterSpacing:"0.02em",fontWeight:"500"}],"body-sm":["13px",{lineHeight:"18px",letterSpacing:"0em",fontWeight:"400"}],"body-md":["14px",{lineHeight:"20px",letterSpacing:"0em",fontWeight:"400"}],"body-lg":["16px",{lineHeight:"24px",letterSpacing:"-0.005em",fontWeight:"400"}],"metric-display":["28px",{lineHeight:"32px",letterSpacing:"-0.02em",fontWeight:"600"}],"display-lg":["40px",{lineHeight:"48px",letterSpacing:"-0.02em",fontWeight:"600"}],"headline-xl":["32px",{lineHeight:"40px",letterSpacing:"-0.02em",fontWeight:"600"}],"display-lg-mobile":["30px",{lineHeight:"38px",letterSpacing:"-0.015em",fontWeight:"600"}],"headline-md":["20px",{lineHeight:"28px",letterSpacing:"-0.01em",fontWeight:"500"}],"label-sm":["11px",{lineHeight:"14px",letterSpacing:"0.04em",fontWeight:"500"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-screen w-72 bg-surface-container-low shadow-[0_1px_8px_rgba(0,0,0,0.4)] z-50 flex flex-col justify-between overflow-y-auto"><div class="flex flex-col"><div class="px-space-xl pt-space-xl pb-space-lg flex items-center gap-space-md"><img alt="FitCheck Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XyvNKovdL0RiY9Y1h3D-PiSnvQPGb8oKl58EGdmywCYi7eXJGVOKh9GoRQf3ZIMOByy8wx3xWYkvNl6RofzePktTRTvYGX8nt5Ng7nMaKS8pygod7vgBfm1c0tecTYM52xe3ojthEPlA3S_DcRxEQnOUXBw71O1DeOzUGCLyo4-EtBLJEWbED-FNdGGqnn6cwvBrRKK1WUJSjh5V3D7as4e_8qDrNMBasJUlkZ8HkePbTa7IvukUwemDY"/><div class="flex flex-col"><span class="font-headline-md text-headline-md tracking-tight font-bold text-on-surface leading-none">FitCheck</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mt-space-xxs">Get fit. Check fit.</span></div></div><div class="px-space-md py-space-sm"><a class="w-full flex items-center justify-center gap-space-sm px-space-md py-space-sm bg-primary text-on-primary font-headline-md text-body-sm font-semibold rounded-lg hover:bg-primary-fixed-dim hover:text-on-primary-fixed transition-all" data-path="start-interview" href="#"><span class="material-symbols-outlined text-body-md">mic</span><span>Start Interview</span></a></div><nav class="px-space-sm space-y-space-md pb-space-xl" data-active-classes="bg-surface-container-high text-primary font-semibold"><div class="space-y-space-xxs"><div class="px-space-md pt-space-xs pb-space-xxs font-label-sm text-label-sm uppercase tracking-wider text-outline">Overview</div><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="dashboard" href="#"><span class="font-body-sm text-body-sm">Dashboard</span></a></div><div class="space-y-space-xxs"><div class="px-space-md pt-space-xs pb-space-xxs font-label-sm text-label-sm uppercase tracking-wider text-outline">Prepare</div><a aria-current="page" class="flex items-center gap-space-md px-space-md py-space-xs rounded transition-all bg-surface-container-high text-primary font-semibold" data-path="my-profile" href="#"><span class="font-body-sm text-body-sm">My Profile</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="my-jobs" href="#"><span class="font-body-sm text-body-sm">My Jobs</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="interviewers" href="#"><span class="font-body-sm text-body-sm">Interviewers</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="practice-library" href="#"><span class="font-body-sm text-body-sm">Practice Library</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="learning-plan" href="#"><span class="font-body-sm text-body-sm">Learning Plan</span></a></div><div class="space-y-space-xxs"><div class="px-space-md pt-space-xs pb-space-xxs font-label-sm text-label-sm uppercase tracking-wider text-outline">Interviews</div><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="interview-history" href="#"><span class="font-body-sm text-body-sm">Interview History</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="evaluations" href="#"><span class="font-body-sm text-body-sm">Evaluations</span></a></div><div class="space-y-space-xxs"><div class="px-space-md pt-space-xs pb-space-xxs font-label-sm text-label-sm uppercase tracking-wider text-outline">Progress</div><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="my-progress" href="#"><span class="font-body-sm text-body-sm">My Progress</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="achievements" href="#"><span class="font-body-sm text-body-sm">Achievements</span></a></div><div class="space-y-space-xxs"><div class="px-space-md pt-space-xs pb-space-xxs font-label-sm text-label-sm uppercase tracking-wider text-outline">Personal</div><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="notifications" href="#"><span class="font-body-sm text-body-sm">Notifications</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="settings" href="#"><span class="font-body-sm text-body-sm">Settings</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="help-support" href="#"><span class="font-body-sm text-body-sm">Help &amp; Support</span></a></div></nav></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-low/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.3)] z-40 flex items-center justify-between px-space-xl"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs font-body-sm text-body-sm text-on-surface-variant"><span class="hover:text-on-surface transition-colors cursor-pointer">FitCheck</span><span class="material-symbols-outlined text-body-sm text-outline">chevron_right</span><span class="hover:text-on-surface transition-colors cursor-pointer">Prepare</span><span class="material-symbols-outlined text-body-sm text-outline">chevron_right</span><span class="text-on-surface font-medium">My Profile</span></div><div class="h-4 w-px bg-surface-container-highest mx-space-xs"></div><div class="flex items-center gap-space-xs px-space-sm py-space-xxs rounded bg-surface-container-high text-primary font-label-sm text-label-sm"><span class="material-symbols-outlined text-label-sm text-primary">flag</span><span>Target: Staff Systems Eng @ Stripe - 84% Ready</span></div></div><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-xs px-space-sm py-space-xxs rounded bg-surface-container-high text-tertiary font-label-sm text-label-sm"><span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span><span>Audio Ready (48kHz)</span></div><div class="flex items-center gap-space-sm pl-space-sm"><img alt="Alex M." class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAKyYEoe_BnmEHbN5PFncHzX6esxX1FK0XeEb4O8ZVy_Cu5_x1HNkZARGSgtJ11Ujp_2SsRuLWmLMeY7sm1LdgCvUgiQd9_8qj0nTDZqatYboQ_MSrDfimhotesNGTZmI20e7YHw0GM-VfAn_rjvO7K9MmzTB5ewun6U24N2p0Yf6E8w4Okwq5s0qt6TzS3AX5H0664pJf8c6DRrASzsBUlqT-0_ZIISWU5UtBE-F8dtcxhJJf2QdBFQ"/><div class="flex items-center cursor-pointer text-on-surface-variant hover:text-on-surface transition-colors"><span class="font-body-sm text-body-sm text-on-surface font-medium mr-space-xxs">Alex M.</span><span class="material-symbols-outlined text-body-sm">expand_more</span></div></div></div></header><main class="w-full pt-16 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<div class="px-space-2xl py-space-xl max-w-[1600px] mx-auto w-full space-y-space-xl">
+<!-- Top Telemetry Banner & Candidate Identity Card -->
+<div class="relative overflow-hidden bg-surface-container-low rounded-xl p-space-xl shadow-xl">
+<!-- Ambient Studio Cyan Bloom -->
+<div class="absolute -top-24 -right-24 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute -bottom-20 -left-20 w-80 h-80 bg-secondary/10 rounded-full blur-2xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col xl:flex-row xl:items-center justify-between gap-space-xl">
+<!-- Identity Section -->
+<div class="flex items-start gap-space-lg">
+<div class="relative">
+<img class="w-24 h-24 rounded-xl object-cover ring-2 ring-primary/40 shadow-lg" data-alt="Editorial close-up headshot of Elena Rostova, a 30-something female staff systems engineer with sharp intelligent gaze, studio lighting in deep obsidian and electric cyan edge accents, crisp dark background with subtle terminal code reflections" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQ0jM24PXyKueIQr9ug3UDZ1TVbNU7WNBgWglLLLTL1kjTQorMxoAvLGU2lHYR0d74bQPsZY3MmcxksPKH1dcNdIw3J3B8B7UQ4bh1HY58hJ71Cc6Af74kWvxKC3W0dTwqx4rRIC446eYX7AG8rMvAm7Qw2RqKuRra-Wm1NKo7J1J5AdKb8oHHth0S1TbAe4cvLiRsmonngDPJmrrhrSp33387Jf8-1C_IXtK17TpUCwlj-_xP1A8jQA"/>
+<div class="absolute -bottom-2 -right-2 px-space-xs py-space-xxs bg-surface-container-highest rounded text-tertiary flex items-center gap-space-xxs shadow">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+<span class="font-label-sm text-label-sm">READY</span>
+</div>
+</div>
+<div class="space-y-space-xs">
+<div class="flex flex-wrap items-center gap-space-sm">
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">Elena Rostova</h1>
+<span class="px-space-sm py-space-xxs bg-primary/15 text-primary rounded font-label-sm text-label-sm font-semibold tracking-wide uppercase">Staff Engineer L6</span>
+<span class="px-space-sm py-space-xxs bg-surface-container-high text-on-surface-variant rounded font-label-sm text-label-sm flex items-center gap-space-xxs">
+<span class="material-symbols-outlined text-label-sm text-tertiary">verified</span>
+                14 Simulated Loops
+              </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant font-medium">
+              Staff Infrastructure &amp; Distributed Systems Engineer <span class="text-outline">·</span> Core Storage &amp; Replication
+            </p>
+<div class="flex flex-wrap items-center gap-space-md pt-space-xxs text-on-surface-variant font-body-sm text-body-sm">
+<div class="flex items-center gap-space-xs text-primary font-medium">
+<span class="material-symbols-outlined text-body-sm text-primary">target</span>
+<span>Target: Stripe Staff Systems (L6 Bar)</span>
+</div>
+<span class="text-surface-container-highest">/</span>
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-body-sm text-outline">location_on</span>
+<span>San Francisco, CA (Hybrid / Remote)</span>
+</div>
+<span class="text-surface-container-highest">/</span>
+<div class="flex items-center gap-space-xs text-tertiary">
+<span class="material-symbols-outlined text-body-sm">schedule</span>
+<span>Active 2h ago</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Matrix -->
+<div class="flex flex-wrap xl:flex-col sm:flex-row items-stretch xl:items-end gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<button class="flex items-center gap-space-xs px-space-md py-space-sm bg-primary text-on-primary font-headline-md text-body-sm font-semibold rounded hover:bg-primary-fixed-dim transition-all active:scale-[0.98] shadow-sm">
+<span class="material-symbols-outlined text-body-md">upload_file</span>
+<span>Upload New Spec / CV</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-space-sm bg-surface-container-high text-secondary font-headline-md text-body-sm font-semibold rounded hover:bg-surface-container-highest transition-all">
+<span class="material-symbols-outlined text-body-md">sync</span>
+<span>Re-sync Sources</span>
+</button>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="flex items-center gap-space-xs px-space-md py-space-sm bg-surface-container text-on-surface-variant hover:text-on-surface font-body-sm text-body-sm rounded hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-body-sm">picture_as_pdf</span>
+<span>Export Dossier (PDF)</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-sm py-space-sm bg-surface-container text-on-surface-variant hover:text-on-surface rounded hover:bg-surface-container-high transition-all" title="Edit Profile Details">
+<span class="material-symbols-outlined text-body-md">tune</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Quick Telemetry Precision Strip -->
+<div class="mt-space-xl pt-space-lg grid grid-cols-2 md:grid-cols-4 gap-space-md bg-surface-container-lowest/70 p-space-md rounded-lg">
+<div class="flex flex-col px-space-sm py-space-xxs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Target Fit Alignment</span>
+<div class="flex items-baseline gap-space-xs mt-space-xxs">
+<span class="font-metric-display text-metric-display text-primary font-bold">84%</span>
+<span class="font-label-sm text-label-sm text-tertiary flex items-center">
+<span class="material-symbols-outlined text-label-sm">trending_up</span>+16% L45D
+            </span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-space-xxs">Over Stripe L6 80% threshold</span>
+</div>
+<div class="flex flex-col px-space-sm py-space-xxs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Parsed Artifacts</span>
+<div class="flex items-baseline gap-space-xs mt-space-xxs">
+<span class="font-metric-display text-metric-display text-on-surface font-bold">3 Docs</span>
+<span class="font-label-sm text-label-sm text-secondary font-mono">/ 4 Repos</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-space-xxs">98% AI ingestion fidelity</span>
+</div>
+<div class="flex flex-col px-space-sm py-space-xxs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Speech Composure Index</span>
+<div class="flex items-baseline gap-space-xs mt-space-xxs">
+<span class="font-metric-display text-metric-display text-tertiary font-bold">Top 5%</span>
+<span class="font-label-sm text-label-sm text-outline font-mono">1.2% fillers</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-space-xxs">142 WPM steady cadence</span>
+</div>
+<div class="flex flex-col px-space-sm py-space-xxs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Sparring Telemetry</span>
+<div class="flex items-baseline gap-space-xs mt-space-xxs">
+<span class="font-metric-display text-metric-display text-on-surface font-bold">9.4 hrs</span>
+<span class="font-label-sm text-label-sm text-primary font-mono">14 loops</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-space-xxs">4 Staff System mocks passed</span>
+</div>
+</div>
+</div>
+<!-- Main Workspace Grid: 2-Column Responsive Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-start">
+<!-- LEFT COLUMN: Candidate Bio, Ingested Sources, Target Preferences (4 cols) -->
+<div class="lg:col-span-4 space-y-space-lg">
+<!-- Career Summary & Executive Narrative -->
+<div class="bg-surface-container-low rounded-xl p-space-lg space-y-space-md shadow-md">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-semibold">Candidate Narrative</span>
+<span class="material-symbols-outlined text-body-md text-primary">psychology</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+            Staff Systems Engineer with 9+ years architecting globally distributed, low-latency transaction ledgers and LSM storage engines. Proven track record leading multi-region fault tolerance migrations and consensus protocol tuning under 150k+ QPS.
+          </p>
+<div class="pt-space-xs space-y-space-xs text-body-sm font-body-sm text-on-surface-variant">
+<div class="flex items-center justify-between py-space-xxs">
+<span class="text-outline">Primary Dialect:</span>
+<span class="text-on-surface font-mono font-medium">Rust, Go, C++20</span>
+</div>
+<div class="flex items-center justify-between py-space-xxs">
+<span class="text-outline">Core Domain:</span>
+<span class="text-on-surface font-medium">Distributed Storage &amp; Consensus</span>
+</div>
+<div class="flex items-center justify-between py-space-xxs">
+<span class="text-outline">Target Onsite:</span>
+<span class="text-primary font-medium">Nov 15, 2024 (3 weeks)</span>
+</div>
+</div>
+<!-- Public Profiles & Links -->
+<div class="pt-space-sm flex flex-col gap-space-xs">
+<a class="flex items-center justify-between px-space-sm py-space-xs bg-surface-container rounded hover:bg-surface-container-high transition-colors text-body-sm font-body-sm text-on-surface" href="#">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-body-sm text-primary">code</span>
+<span class="font-mono">github.com/erostova</span>
+</div>
+<span class="material-symbols-outlined text-body-sm text-outline">north_east</span>
+</a>
+<a class="flex items-center justify-between px-space-sm py-space-xs bg-surface-container rounded hover:bg-surface-container-high transition-colors text-body-sm font-body-sm text-on-surface" href="#">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-body-sm text-secondary">share</span>
+<span class="font-mono">linkedin.com/in/elena-rostova</span>
+</div>
+<span class="material-symbols-outlined text-body-sm text-outline">north_east</span>
+</a>
+<a class="flex items-center justify-between px-space-sm py-space-xs bg-surface-container rounded hover:bg-surface-container-high transition-colors text-body-sm font-body-sm text-on-surface" href="#">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-body-sm text-tertiary">article</span>
+<span class="font-mono">lsm-internals.dev</span>
+</div>
+<span class="material-symbols-outlined text-body-sm text-outline">north_east</span>
+</a>
+</div>
+</div>
+<!-- Ingestion Hub & Verified Sources -->
+<div class="bg-surface-container-low rounded-xl p-space-lg space-y-space-md shadow-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-semibold">Source Hub &amp; Verification</span>
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+</div>
+<button class="font-label-sm text-label-sm text-primary hover:underline">Re-index</button>
+</div>
+<!-- Document 1: Resume -->
+<div class="p-space-sm bg-surface-container rounded-lg space-y-space-xs">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-space-xs min-w-0">
+<span class="material-symbols-outlined text-primary text-body-md">description</span>
+<span class="font-label-md text-label-md text-on-surface font-mono truncate">Elena_Rostova_Staff_2024.pdf</span>
+</div>
+<span class="px-space-xs py-space-xxs bg-tertiary/15 text-tertiary rounded font-label-sm text-label-sm font-mono shrink-0">98% AI Match</span>
+</div>
+<div class="flex items-center justify-between font-label-sm text-label-sm text-outline pt-space-xxs">
+<span>Parsed Oct 14, 2024</span>
+<div class="flex items-center gap-space-xs">
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Preview</a>
+<span>·</span>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Parsed JSON</a>
+</div>
+</div>
+</div>
+<!-- Repositories Sync -->
+<div class="space-y-space-xs">
+<div class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Synced Repositories</div>
+<div class="p-space-sm bg-surface-container rounded-lg flex items-center justify-between">
+<div class="space-y-space-xxs min-w-0">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-md text-label-md text-on-surface font-mono truncate">erostova/raft-consensus-rs</span>
+<span class="px-space-xs py-space-xxs bg-surface-container-high text-primary rounded font-label-sm text-label-sm">Rust</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Full Raft consensus crate with monotonic log compaction</p>
+</div>
+<div class="flex items-center gap-space-xxs text-secondary pl-space-xs shrink-0 font-label-sm text-label-sm font-mono">
+<span class="material-symbols-outlined text-body-sm">star</span>
+<span>1.4k</span>
+</div>
+</div>
+<div class="p-space-sm bg-surface-container rounded-lg flex items-center justify-between">
+<div class="space-y-space-xxs min-w-0">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-md text-label-md text-on-surface font-mono truncate">erostova/wal-storage-engine</span>
+<span class="px-space-xs py-space-xxs bg-surface-container-high text-tertiary rounded font-label-sm text-label-sm">Go</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Persistent LSM storage engine with bloom filtering</p>
+</div>
+<div class="flex items-center gap-space-xxs text-secondary pl-space-xs shrink-0 font-label-sm text-label-sm font-mono">
+<span class="material-symbols-outlined text-body-sm">star</span>
+<span>890</span>
+</div>
+</div>
+</div>
+<!-- Ingested Architecture Articles -->
+<div class="space-y-space-xs">
+<div class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Ingested Tech Articles</div>
+<div class="p-space-sm bg-surface-container rounded-lg flex flex-col gap-space-xxs">
+<span class="font-body-sm text-body-sm text-on-surface font-medium hover:text-primary cursor-pointer truncate">Deep dive into RocksDB write stall remediation</span>
+<span class="font-label-sm text-label-sm text-outline font-mono">Ingested Oct 16 · Cited in Sim #8055</span>
+</div>
+<div class="p-space-sm bg-surface-container rounded-lg flex flex-col gap-space-xxs">
+<span class="font-body-sm text-body-sm text-on-surface font-medium hover:text-primary cursor-pointer truncate">Zero-downtime ledger migration across 3 AWS regions</span>
+<span class="font-label-sm text-label-sm text-outline font-mono">Ingested Oct 18 · Cited in Sim #8094</span>
+</div>
+</div>
+</div>
+<!-- Target Roles & Compensation Band -->
+<div class="bg-surface-container-low rounded-xl p-space-lg space-y-space-md shadow-md">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-semibold">Target Preferences</span>
+<span class="material-symbols-outlined text-body-md text-primary">tune</span>
+</div>
+<div class="p-space-md bg-surface-container rounded-lg space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-primary font-bold">PRIMARY TARGET</span>
+<span class="px-space-xs py-space-xxs bg-primary/20 text-primary rounded font-label-sm text-label-sm">L6 Staff Bar</span>
+</div>
+<div class="font-body-lg text-body-lg text-on-surface font-medium">Stripe</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Staff Systems Engineer · Core Ledger &amp; Ingestion</div>
+<div class="pt-space-xs flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-outline">Comp Target:</span>
+<span class="text-on-surface font-mono font-medium">$420k - $490k TC</span>
+</div>
+</div>
+<div class="space-y-space-xs pt-space-xxs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Secondary Watchlist</span>
+<div class="flex items-center justify-between p-space-sm bg-surface-container rounded text-body-sm font-body-sm">
+<div class="flex flex-col">
+<span class="text-on-surface font-medium">Datadog</span>
+<span class="text-outline text-label-sm font-label-sm">Principal Infra (L7)</span>
+</div>
+<span class="font-mono text-label-sm text-tertiary font-medium">81% Match</span>
+</div>
+<div class="flex items-center justify-between p-space-sm bg-surface-container rounded text-body-sm font-body-sm">
+<div class="flex flex-col">
+<span class="text-on-surface font-medium">Figma</span>
+<span class="text-outline text-label-sm font-label-sm">Staff Infrastructure (L6)</span>
+</div>
+<span class="font-mono text-label-sm text-tertiary font-medium">79% Match</span>
+</div>
+</div>
+</div>
+</div>
+<!-- CENTER & RIGHT: Skill Footprint, AI Verification & Evidence Timeline (8 cols) -->
+<div class="lg:col-span-8 space-y-space-lg">
+<!-- AI-Verified Skill Matrix Calibration Header -->
+<div class="bg-surface-container-low rounded-xl p-space-xl space-y-space-lg shadow-xl">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+<div class="space-y-space-xxs">
+<div class="flex items-center gap-space-xs text-primary font-label-sm text-label-sm uppercase tracking-wider font-semibold">
+<span class="material-symbols-outlined text-body-md text-primary">network_intelligence</span>
+<span>Calibrated Competency Matrix</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-semibold tracking-tight">AI-Verified Skill Footprint</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-2xl">
+                Self-reported claims cross-referenced against 14 simulated voice interview rounds, real-time whiteboarding transcripts, and GitHub codebase telemetry.
+              </p>
+</div>
+<div class="flex items-center gap-space-xs self-start md:self-auto bg-surface-container px-space-sm py-space-xs rounded-lg">
+<span class="material-symbols-outlined text-body-sm text-tertiary">check_circle</span>
+<span class="font-label-sm text-label-sm text-on-surface font-mono">100% Artifact Corroborated</span>
+</div>
+</div>
+<!-- Dynamic Radar / Bar Gap Analysis Section -->
+<div class="p-space-lg bg-surface-container-lowest/80 rounded-xl space-y-space-md">
+<div class="flex flex-wrap items-center justify-between gap-space-sm">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-semibold">Benchmark Delta</span>
+<h3 class="font-body-lg text-body-lg text-on-surface font-medium">Elena Rostova vs. Stripe L6 Staff Bar</h3>
+</div>
+<div class="flex items-center gap-space-md text-label-sm font-label-sm font-mono">
+<div class="flex items-center gap-space-xs">
+<span class="w-3 h-3 rounded-sm bg-primary"></span>
+<span class="text-on-surface">Elena's Telemetry (84%)</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="w-3 h-3 rounded-sm bg-surface-container-highest"></span>
+<span class="text-outline">Target Hiring Bar (80%)</span>
+</div>
+</div>
+</div>
+<!-- SVG Multi-Axis Visual Telemetry Comparison Bar Chart -->
+<div class="space-y-space-sm pt-space-xs">
+<div class="space-y-space-xxs">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="text-on-surface font-medium">Distributed Consensus (Raft / Paxos)</span>
+<span class="font-mono text-primary font-bold">92% <span class="text-outline font-normal">/ 80% Bar (+12%)</span></span>
+</div>
+<div class="relative w-full h-3 bg-surface-container rounded overflow-hidden">
+<div class="absolute top-0 bottom-0 left-[80%] w-0.5 bg-outline z-10" title="Stripe L6 Target Bar"></div>
+<div class="h-full bg-primary rounded" style="width: 92%"></div>
+</div>
+</div>
+<div class="space-y-space-xxs">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="text-on-surface font-medium">Storage Engines &amp; LSM Trees (RocksDB / LevelDB)</span>
+<span class="font-mono text-primary font-bold">88% <span class="text-outline font-normal">/ 80% Bar (+8%)</span></span>
+</div>
+<div class="relative w-full h-3 bg-surface-container rounded overflow-hidden">
+<div class="absolute top-0 bottom-0 left-[80%] w-0.5 bg-outline z-10"></div>
+<div class="h-full bg-primary rounded" style="width: 88%"></div>
+</div>
+</div>
+<div class="space-y-space-xxs">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="text-on-surface font-medium">Cross-Region Latency &amp; Consistency (HLC / Spanner)</span>
+<span class="font-mono text-primary font-bold">85% <span class="text-outline font-normal">/ 80% Bar (+5%)</span></span>
+</div>
+<div class="relative w-full h-3 bg-surface-container rounded overflow-hidden">
+<div class="absolute top-0 bottom-0 left-[80%] w-0.5 bg-outline z-10"></div>
+<div class="h-full bg-primary rounded" style="width: 85%"></div>
+</div>
+</div>
+<div class="space-y-space-xxs">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="text-on-surface font-medium">Incident Triage, Chaos &amp; High-QPS Resilience</span>
+<span class="font-mono text-primary font-bold">82% <span class="text-outline font-normal">/ 75% Bar (+7%)</span></span>
+</div>
+<div class="relative w-full h-3 bg-surface-container rounded overflow-hidden">
+<div class="absolute top-0 bottom-0 left-[75%] w-0.5 bg-outline z-10"></div>
+<div class="h-full bg-primary rounded" style="width: 82%"></div>
+</div>
+</div>
+<div class="space-y-space-xxs">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="text-on-surface font-medium">Technical Leadership, RFCs &amp; Architectural Empathy</span>
+<span class="font-mono text-primary font-bold">80% <span class="text-outline font-normal">/ 80% Bar (Par)</span></span>
+</div>
+<div class="relative w-full h-3 bg-surface-container rounded overflow-hidden">
+<div class="absolute top-0 bottom-0 left-[80%] w-0.5 bg-outline z-10"></div>
+<div class="h-full bg-primary rounded" style="width: 80%"></div>
+</div>
+</div>
+</div>
+<!-- Targeted Growth Opportunities Strip -->
+<div class="mt-space-md pt-space-md bg-surface-container/60 p-space-md rounded-lg space-y-space-xs">
+<div class="flex items-center gap-space-xs text-secondary font-label-sm text-label-sm uppercase font-semibold">
+<span class="material-symbols-outlined text-label-sm">offline_bolt</span>
+<span>Targeted Growth Drills to Lock L6 Strong-Hire</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-sm pt-space-xxs">
+<div class="p-space-sm bg-surface-container rounded flex items-center justify-between">
+<div class="space-y-space-xxs min-w-0">
+<span class="font-body-sm text-body-sm text-on-surface font-medium truncate block">JVM GC Pause Mitigation in Storage</span>
+<span class="font-label-sm text-label-sm text-outline">Tail latency focus · 15m Drill</span>
+</div>
+<button class="px-space-sm py-space-xxs bg-primary/20 text-primary hover:bg-primary hover:text-on-primary rounded text-label-sm font-label-sm transition-colors shrink-0">
+                    Spar
+                  </button>
+</div>
+<div class="p-space-sm bg-surface-container rounded flex items-center justify-between">
+<div class="space-y-space-xxs min-w-0">
+<span class="font-body-sm text-body-sm text-on-surface font-medium truncate block">Zero-Copy DPDK Networking Constraints</span>
+<span class="font-label-sm text-label-sm text-outline">High throughput focus · 20m Drill</span>
+</div>
+<button class="px-space-sm py-space-xxs bg-primary/20 text-primary hover:bg-primary hover:text-on-primary rounded text-label-sm font-label-sm transition-colors shrink-0">
+                    Spar
+                  </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Deep-Dive Competency Breakdown Cards -->
+<div class="space-y-space-md">
+<!-- Skill 1 -->
+<div class="p-space-md bg-surface-container rounded-lg space-y-space-sm hover:bg-surface-container-high transition-colors">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded bg-primary/10 flex items-center justify-center text-primary font-label-md text-label-md font-bold">
+                    01
+                  </div>
+<div>
+<h4 class="font-body-lg text-body-lg text-on-surface font-semibold">Distributed Consensus &amp; Replication (Raft/Paxos)</h4>
+<span class="font-label-sm text-label-sm text-tertiary">Verified L6/L7 Mastery · Calibrated in SIM #8094</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="px-space-xs py-space-xxs bg-tertiary/15 text-tertiary rounded font-label-sm text-label-sm font-mono flex items-center gap-space-xxs">
+<span class="material-symbols-outlined text-label-sm">verified</span>
+                    AI Verified: Strong Pass
+                  </span>
+<span class="px-space-xs py-space-xxs bg-surface-container-highest text-secondary rounded font-label-sm text-label-sm font-mono">
+                    1.4k★ Raft Crate
+                  </span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Demonstrated flawless explanation of quorum slice calculation, split-brain fence tokens, dynamic configuration transitions, and log compaction with snapshots.
+              </p>
+<div class="flex flex-wrap items-center gap-space-xs pt-space-xxs font-label-sm text-label-sm text-outline">
+<span class="px-space-xs py-space-xxs bg-surface-container-highest rounded text-on-surface-variant font-mono">Quorum Sizing</span>
+<span class="px-space-xs py-space-xxs bg-surface-container-highest rounded text-on-surface-variant font-mono">Monotonic Sequence Ordering</span>
+<span class="px-space-xs py-space-xxs bg-surface-container-highest rounded text-on-surface-variant font-mono">Leader Election Split-Brain Defense</span>
+</div>
+</div>
+<!-- Skill 2 -->
+<div class="p-space-md bg-surface-container rounded-lg space-y-space-sm hover:bg-surface-container-high transition-colors">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded bg-primary/10 flex items-center justify-center text-primary font-label-md text-label-md font-bold">
+                    02
+                  </div>
+<div>
+<h4 class="font-body-lg text-body-lg text-on-surface font-semibold">Storage Engines &amp; LSM Trees (RocksDB / LevelDB)</h4>
+<span class="font-label-sm text-label-sm text-tertiary">Verified L6 Mastery · Drill #8055 Verified</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="px-space-xs py-space-xxs bg-tertiary/15 text-tertiary rounded font-label-sm text-label-sm font-mono flex items-center gap-space-xxs">
+<span class="material-symbols-outlined text-label-sm">verified</span>
+                    AI Verified
+                  </span>
+<span class="px-space-xs py-space-xxs bg-surface-container-highest text-primary rounded font-label-sm text-label-sm font-mono">
+                    Blog: RocksDB Stalls
+                  </span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Mastery of write amplification trade-offs, tiered compaction vs. leveled compaction, memtable flushing lock contention, and Bloom filter memory budget formulas.
+              </p>
+<div class="flex flex-wrap items-center gap-space-xs pt-space-xxs font-label-sm text-label-sm text-outline">
+<span class="px-space-xs py-space-xxs bg-surface-container-highest rounded text-on-surface-variant font-mono">SSTable Compaction</span>
+<span class="px-space-xs py-space-xxs bg-surface-container-highest rounded text-on-surface-variant font-mono">Write Amplification Mitigation</span>
+<span class="px-space-xs py-space-xxs bg-surface-container-highest rounded text-on-surface-variant font-mono">Bloom Filter Allocation</span>
+</div>
+</div>
+<!-- Skill 3 -->
+<div class="p-space-md bg-surface-container rounded-lg space-y-space-sm hover:bg-surface-container-high transition-colors">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded bg-primary/10 flex items-center justify-center text-primary font-label-md text-label-md font-bold">
+                    03
+                  </div>
+<div>
+<h4 class="font-body-lg text-body-lg text-on-surface font-semibold">Cross-Region Latency &amp; Consistency (HLC / Spanner)</h4>
+<span class="font-label-sm text-label-sm text-primary">85% Telemetry Calibration · Calibrated in SIM #8102</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="px-space-xs py-space-xxs bg-tertiary/15 text-tertiary rounded font-label-sm text-label-sm font-mono flex items-center gap-space-xxs">
+<span class="material-symbols-outlined text-label-sm">verified</span>
+                    AI Corroborated
+                  </span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Expertise in hybrid logical clocks, bounded staleness read replicas, leaseholder routing protocols, and multi-datacenter anti-entropy synchronization loops.
+              </p>
+<div class="flex flex-wrap items-center gap-space-xs pt-space-xxs font-label-sm text-label-sm text-outline">
+<span class="px-space-xs py-space-xxs bg-surface-container-highest rounded text-on-surface-variant font-mono">HLC Clock Skew</span>
+<span class="px-space-xs py-space-xxs bg-surface-container-highest rounded text-on-surface-variant font-mono">Lease-based Local Reads</span>
+<span class="px-space-xs py-space-xxs bg-surface-container-highest rounded text-on-surface-variant font-mono">Anti-Entropy Protocols</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Career History & Interview Evidence Ledger (Timeline) -->
+<div class="bg-surface-container-low rounded-xl p-space-xl space-y-space-lg shadow-xl">
+<div class="flex items-center justify-between">
+<div class="space-y-space-xxs">
+<div class="flex items-center gap-space-xs text-primary font-label-sm text-label-sm uppercase tracking-wider font-semibold">
+<span class="material-symbols-outlined text-body-md text-primary">history_edu</span>
+<span>Ingested Experience Ledger</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-semibold">Work History &amp; Telemetry Evidence</h3>
+</div>
+<span class="font-label-sm text-label-sm text-outline font-mono">3 Roles Parsed</span>
+</div>
+<!-- Timeline Items -->
+<div class="relative pl-space-xl space-y-space-xl">
+<!-- Continuous vertical line -->
+<div class="absolute left-2.5 top-2 bottom-2 w-0.5 bg-surface-container-highest"></div>
+<!-- Role 1 -->
+<div class="relative group">
+<div class="absolute -left-[1.625rem] top-1.5 w-4 h-4 rounded-full bg-primary ring-4 ring-surface-container-low"></div>
+<div class="bg-surface-container p-space-lg rounded-xl space-y-space-sm">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs">
+<div>
+<h4 class="font-headline-md text-body-lg text-on-surface font-bold">Staff Infrastructure Engineer</h4>
+<span class="font-body-md text-body-md text-primary font-medium">FinScale Inc.</span>
+</div>
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-outline font-mono">
+<span>2021 – Present</span>
+<span>·</span>
+<span class="text-tertiary">3 yrs 4 mos</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                  Principal architect for multi-region transactional event bus handling 120,000 QPS with sub-15ms p99 latency across 3 AWS availability regions. Redesigned failover protocol eliminating split-brain risks under network partitions.
+                </p>
+<!-- AI Verification Tag -->
+<div class="p-space-sm bg-surface-container-low rounded-lg flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-tertiary font-mono">
+<span class="material-symbols-outlined text-body-sm">check_circle</span>
+<span>100% Corroborated in SIM #8094 &amp; SIM #8102</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline font-mono">System Design Mock Pass: 94/100</span>
+</div>
+</div>
+</div>
+<!-- Role 2 -->
+<div class="relative group">
+<div class="absolute -left-[1.625rem] top-1.5 w-4 h-4 rounded-full bg-surface-container-highest ring-4 ring-surface-container-low"></div>
+<div class="bg-surface-container p-space-lg rounded-xl space-y-space-sm">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs">
+<div>
+<h4 class="font-headline-md text-body-lg text-on-surface font-bold">Senior Systems Engineer</h4>
+<span class="font-body-md text-body-md text-on-surface-variant font-medium">CloudLedger</span>
+</div>
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-outline font-mono">
+<span>2018 – 2021</span>
+<span>·</span>
+<span>3 yrs</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                  Built high-throughput distributed write-ahead log (WAL) and Raft-backed state machine. Reduced write amplification on RocksDB storage nodes by 42% through customized SSTable tiered compaction tuning.
+                </p>
+<!-- AI Verification Tag -->
+<div class="p-space-sm bg-surface-container-low rounded-lg flex items-center justify-between font-label-sm text-label-sm">
+<div class="flex items-center gap-space-xs text-secondary font-mono">
+<span class="material-symbols-outlined text-body-sm">code</span>
+<span>Corroborated by `wal-storage-engine` GitHub Codebase</span>
+</div>
+<span class="text-outline font-mono">Verified Artifact</span>
+</div>
+</div>
+</div>
+<!-- Role 3 -->
+<div class="relative group">
+<div class="absolute -left-[1.625rem] top-1.5 w-4 h-4 rounded-full bg-surface-container-highest ring-4 ring-surface-container-low"></div>
+<div class="bg-surface-container p-space-lg rounded-xl space-y-space-sm">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs">
+<div>
+<h4 class="font-headline-md text-body-lg text-on-surface font-bold">Distributed Systems Engineer</h4>
+<span class="font-body-md text-body-md text-on-surface-variant font-medium">DataStream IO</span>
+</div>
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-outline font-mono">
+<span>2015 – 2018</span>
+<span>·</span>
+<span>3 yrs</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                  Engineered distributed data ingestion pipelines streaming 4TB/day into Apache Kafka and Cassandra clusters with strict at-least-once semantic delivery guarantees.
+                </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></main></div></body></html>

@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-primary-fixed-variant":"#004f58","background":"#101419","surface":"#101419","primary-fixed":"#97f0ff","surface-container-low":"#181c21","on-error":"#690005","on-secondary-fixed-variant":"#4f319c","error-container":"#93000a","surface-container-highest":"#31353b","tertiary":"#5ae9ac","on-primary-fixed":"#001f24","outline-variant":"#3c494b","inverse-on-surface":"#2d3136","on-primary":"#00363d","inverse-primary":"#006874","primary-fixed-dim":"#4fd8eb","on-tertiary":"#003824","on-background":"#e0e2ea","on-secondary-container":"#bea8ff","on-primary-container":"#004e57","surface-tint":"#4fd8eb","tertiary-fixed":"#6ffbbe","secondary-container":"#4f319c","on-surface":"#e0e2ea","secondary-fixed":"#e8ddff","error":"#ffb4ab","tertiary-fixed-dim":"#4edea3","on-tertiary-container":"#005136","surface-container-lowest":"#0a0e13","on-secondary":"#381385","outline":"#869395","on-tertiary-fixed":"#002113","tertiary-container":"#36cc92","inverse-surface":"#e0e2ea","secondary":"#cebdff","primary-container":"#35c6d9","on-tertiary-fixed-variant":"#005236","on-surface-variant":"#bbc9cb","surface-container-high":"#262a30","surface-variant":"#31353b","surface-dim":"#101419","primary":"#5ce2f6","surface-bright":"#36393f","secondary-fixed-dim":"#cebdff","on-secondary-fixed":"#21005e","on-error-container":"#ffdad6","surface-container":"#1c2025"},borderRadius:{DEFAULT:"0.125rem",lg:"0.25rem",xl:"0.5rem",full:"0.75rem"},spacing:{"space-xs":"0.25rem","space-sm":"0.5rem","space-md":"0.75rem","space-lg":"1rem","gutter":"1.25rem","gutter-desktop":"1.5rem","space-2xl":"2rem","space-xl":"1.5rem","space-xxs":"0.125rem","space-3xl":"3rem","margin":"1rem","margin-desktop":"2rem"},fontFamily:{"headline-lg":["Inter"],"label-md":["JetBrains Mono"],"body-sm":["Inter"],"body-md":["Inter"],"body-lg":["Inter"],"metric-display":["JetBrains Mono"],"display-lg":["Inter"],"headline-xl":["Inter"],"display-lg-mobile":["Inter"],"headline-md":["Inter"],"label-sm":["JetBrains Mono"]},fontSize:{"headline-lg":["24px",{lineHeight:"32px",letterSpacing:"-0.015em",fontWeight:"600"}],"label-md":["12px",{lineHeight:"16px",letterSpacing:"0.02em",fontWeight:"500"}],"body-sm":["13px",{lineHeight:"18px",letterSpacing:"0em",fontWeight:"400"}],"body-md":["14px",{lineHeight:"20px",letterSpacing:"0em",fontWeight:"400"}],"body-lg":["16px",{lineHeight:"24px",letterSpacing:"-0.005em",fontWeight:"400"}],"metric-display":["28px",{lineHeight:"32px",letterSpacing:"-0.02em",fontWeight:"600"}],"display-lg":["40px",{lineHeight:"48px",letterSpacing:"-0.02em",fontWeight:"600"}],"headline-xl":["32px",{lineHeight:"40px",letterSpacing:"-0.02em",fontWeight:"600"}],"display-lg-mobile":["30px",{lineHeight:"38px",letterSpacing:"-0.015em",fontWeight:"600"}],"headline-md":["20px",{lineHeight:"28px",letterSpacing:"-0.01em",fontWeight:"500"}],"label-sm":["11px",{lineHeight:"14px",letterSpacing:"0.04em",fontWeight:"500"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-screen w-72 bg-surface-container-low shadow-[0_1px_8px_rgba(0,0,0,0.4)] z-50 flex flex-col justify-between overflow-y-auto"><div class="flex flex-col"><div class="px-space-xl pt-space-xl pb-space-lg flex items-center gap-space-md"><img alt="FitCheck Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XyvNKovdL0RiY9Y1h3D-PiSnvQPGb8oKl58EGdmywCYi7eXJGVOKh9GoRQf3ZIMOByy8wx3xWYkvNl6RofzePktTRTvYGX8nt5Ng7nMaKS8pygod7vgBfm1c0tecTYM52xe3ojthEPlA3S_DcRxEQnOUXBw71O1DeOzUGCLyo4-EtBLJEWbED-FNdGGqnn6cwvBrRKK1WUJSjh5V3D7as4e_8qDrNMBasJUlkZ8HkePbTa7IvukUwemDY"/><div class="flex flex-col"><span class="font-headline-md text-headline-md tracking-tight font-bold text-on-surface leading-none">FitCheck</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mt-space-xxs">Get fit. Check fit.</span></div></div><div class="px-space-md py-space-sm"><a class="w-full flex items-center justify-center gap-space-sm px-space-md py-space-sm bg-primary text-on-primary font-headline-md text-body-sm font-semibold rounded-lg hover:bg-primary-fixed-dim hover:text-on-primary-fixed transition-all" data-path="start-interview" href="#"><span class="material-symbols-outlined text-body-md">mic</span><span>Start Interview</span></a></div><nav class="px-space-sm space-y-space-md pb-space-xl" data-active-classes="bg-surface-container-high text-primary font-semibold"><div class="space-y-space-xxs"><div class="px-space-md pt-space-xs pb-space-xxs font-label-sm text-label-sm uppercase tracking-wider text-outline">Overview</div><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="dashboard" href="#"><span class="font-body-sm text-body-sm">Dashboard</span></a></div><div class="space-y-space-xxs"><div class="px-space-md pt-space-xs pb-space-xxs font-label-sm text-label-sm uppercase tracking-wider text-outline">Prepare</div><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="my-profile" href="#"><span class="font-body-sm text-body-sm">My Profile</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="my-jobs" href="#"><span class="font-body-sm text-body-sm">My Jobs</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="interviewers" href="#"><span class="font-body-sm text-body-sm">Interviewers</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="practice-library" href="#"><span class="font-body-sm text-body-sm">Practice Library</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="learning-plan" href="#"><span class="font-body-sm text-body-sm">Learning Plan</span></a></div><div class="space-y-space-xxs"><div class="px-space-md pt-space-xs pb-space-xxs font-label-sm text-label-sm uppercase tracking-wider text-outline">Interviews</div><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="interview-history" href="#"><span class="font-body-sm text-body-sm">Interview History</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="evaluations" href="#"><span class="font-body-sm text-body-sm">Evaluations</span></a></div><div class="space-y-space-xxs"><div class="px-space-md pt-space-xs pb-space-xxs font-label-sm text-label-sm uppercase tracking-wider text-outline">Progress</div><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="my-progress" href="#"><span class="font-body-sm text-body-sm">My Progress</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="achievements" href="#"><span class="font-body-sm text-body-sm">Achievements</span></a></div><div class="space-y-space-xxs"><div class="px-space-md pt-space-xs pb-space-xxs font-label-sm text-label-sm uppercase tracking-wider text-outline">Personal</div><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="notifications" href="#"><span class="font-body-sm text-body-sm">Notifications</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="settings" href="#"><span class="font-body-sm text-body-sm">Settings</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="help-support" href="#"><span class="font-body-sm text-body-sm">Help &amp; Support</span></a></div></nav></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-low/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.3)] z-40 flex items-center justify-between px-space-xl"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs font-body-sm text-body-sm text-on-surface-variant"><span class="hover:text-on-surface transition-colors cursor-pointer">FitCheck</span><span class="material-symbols-outlined text-body-sm text-outline">chevron_right</span><span class="hover:text-on-surface transition-colors cursor-pointer">Personal</span><span class="material-symbols-outlined text-body-sm text-outline">chevron_right</span><span class="text-on-surface font-medium">Settings</span></div><div class="h-4 w-px bg-surface-container-highest mx-space-xs"></div><div class="flex items-center gap-space-xs px-space-sm py-space-xxs rounded bg-surface-container-high text-primary font-label-sm text-label-sm"><span class="material-symbols-outlined text-label-sm text-primary">flag</span><span>Target: Staff Systems Eng @ Stripe - 84% Ready</span></div></div><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-xs px-space-sm py-space-xxs rounded bg-surface-container-high text-tertiary font-label-sm text-label-sm"><span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span><span>Audio Ready (48kHz)</span></div><div class="flex items-center gap-space-sm pl-space-sm"><img alt="Alex M." class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAKyYEoe_BnmEHbN5PFncHzX6esxX1FK0XeEb4O8ZVy_Cu5_x1HNkZARGSgtJ11Ujp_2SsRuLWmLMeY7sm1LdgCvUgiQd9_8qj0nTDZqatYboQ_MSrDfimhotesNGTZmI20e7YHw0GM-VfAn_rjvO7K9MmzTB5ewun6U24N2p0Yf6E8w4Okwq5s0qt6TzS3AX5H0664pJf8c6DRrASzsBUlqT-0_ZIISWU5UtBE-F8dtcxhJJf2QdBFQ"/><div class="flex items-center cursor-pointer text-on-surface-variant hover:text-on-surface transition-colors"><span class="font-body-sm text-body-sm text-on-surface font-medium mr-space-xxs">Alex M.</span><span class="material-symbols-outlined text-body-sm">expand_more</span></div></div></div></header><main class="w-full pt-16 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<div class="px-space-2xl py-space-xl max-w-[1720px] mx-auto w-full space-y-space-xl">
+<!-- Top Action / Context Header -->
+<div class="flex flex-col xl:flex-row xl:items-end justify-between gap-space-lg">
+<div class="space-y-space-xs">
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant">
+<span class="text-tertiary">TRACK 04</span>
+<span>/</span>
+<span class="uppercase tracking-wider">Telemetry Engine</span>
+<span>/</span>
+<span class="text-primary font-medium">Session Batch #01-14</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface font-semibold tracking-tight">
+          Skill Analytics &amp; Progress Telemetry
+        </h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-4xl leading-relaxed">
+          Longitudinal evaluation telemetry, competency velocity curves, acoustic speech composure tracking, and verified milestone achievements across 14 simulated mock interviews for <span class="text-on-surface font-medium">Elena Rostova</span>.
+        </p>
+</div>
+<!-- Action Controls & Cohort Target Switchers -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<div class="flex items-center bg-surface-container-low px-space-md py-space-xs rounded-lg shadow-sm gap-space-sm">
+<span class="material-symbols-outlined text-body-sm text-outline">calendar_month</span>
+<span class="font-label-sm text-label-sm text-on-surface font-medium">Last 14 Sessions (All Mocks)</span>
+<span class="material-symbols-outlined text-body-sm text-on-surface-variant cursor-pointer">expand_more</span>
+</div>
+<div class="flex items-center bg-surface-container-low px-space-md py-space-xs rounded-lg shadow-sm gap-space-sm">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-primary font-medium">Benchmark: Stripe Staff L6</span>
+<span class="material-symbols-outlined text-body-sm text-on-surface-variant cursor-pointer">expand_more</span>
+</div>
+<button class="flex items-center gap-space-xs px-space-md py-space-xs bg-surface-container-high hover:bg-surface-container-highest text-on-surface rounded-lg transition-all font-body-sm text-body-sm shadow-sm" onclick="alert('Exporting session metrics as JSON/CSV bundle...')">
+<span class="material-symbols-outlined text-body-sm text-secondary">data_object</span>
+<span>Export Telemetry</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-space-xs bg-primary hover:bg-primary-fixed-dim text-on-primary font-semibold rounded-lg transition-all font-body-sm text-body-sm shadow-sm">
+<span class="material-symbols-outlined text-body-sm" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span>Synthesize Debrief</span>
+</button>
+</div>
+</div>
+<!-- Core Telemetry Stats Grid (4 Cards) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Metric 1: Readiness Index -->
+<div class="bg-surface-container-low p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden group hover:bg-surface-container transition-all">
+<div class="flex items-start justify-between">
+<div class="space-y-space-xxs">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Pass Readiness Index</span>
+<div class="flex items-baseline gap-space-sm">
+<span class="font-metric-display text-metric-display text-on-surface font-bold tracking-tight">84.2%</span>
+<span class="font-label-sm text-label-sm text-tertiary font-semibold flex items-center">
+<span class="material-symbols-outlined text-label-sm">trending_up</span>+12.4%
+              </span>
+</div>
+</div>
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-body-md" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<!-- Micro Sparkline SVG -->
+<div class="py-space-md">
+<svg class="w-full h-8 overflow-visible" fill="none" viewbox="0 0 160 32">
+<path class="text-primary" d="M0 26 L22 24 L45 20 L68 22 L92 14 L115 10 L138 8 L160 4" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+<path class="text-primary/10" d="M0 26 L22 24 L45 20 L68 22 L92 14 L115 10 L138 8 L160 4 V32 H0 Z" fill="currentColor"></path>
+<circle class="fill-primary" cx="160" cy="4" r="3"></circle>
+</svg>
+</div>
+<div class="flex items-center justify-between pt-space-xs bg-surface-container-low/50">
+<span class="font-label-sm text-label-sm text-tertiary bg-tertiary/10 px-space-xs py-space-xxs rounded">Target Met (&gt;80% Stripe L6 Bar)</span>
+<span class="font-label-sm text-label-sm text-outline">30d Velocity</span>
+</div>
+</div>
+<!-- Metric 2: Longitudinal Eval Score -->
+<div class="bg-surface-container-low p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden group hover:bg-surface-container transition-all">
+<div class="flex items-start justify-between">
+<div class="space-y-space-xxs">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Evaluation Score (Last 5)</span>
+<div class="flex items-baseline gap-space-sm">
+<span class="font-metric-display text-metric-display text-on-surface font-bold tracking-tight">88.6</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">/ 100</span>
+</div>
+</div>
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-body-md">analytics</span>
+</div>
+</div>
+<!-- Trajectory Nodes -->
+<div class="py-space-md flex items-center justify-between">
+<div class="text-center">
+<div class="font-label-sm text-label-sm text-outline font-mono">#10</div>
+<div class="font-label-md text-label-md text-on-surface-variant">74</div>
+</div>
+<div class="w-3 h-0.5 bg-surface-container-highest"></div>
+<div class="text-center">
+<div class="font-label-sm text-label-sm text-outline font-mono">#11</div>
+<div class="font-label-md text-label-md text-on-surface-variant">81</div>
+</div>
+<div class="w-3 h-0.5 bg-surface-container-highest"></div>
+<div class="text-center">
+<div class="font-label-sm text-label-sm text-outline font-mono">#12</div>
+<div class="font-label-md text-label-md text-on-surface-variant">85</div>
+</div>
+<div class="w-3 h-0.5 bg-surface-container-highest"></div>
+<div class="text-center">
+<div class="font-label-sm text-label-sm text-outline font-mono">#13</div>
+<div class="font-label-md text-label-md text-on-surface-variant">88</div>
+</div>
+<div class="w-3 h-0.5 bg-primary/40"></div>
+<div class="text-center bg-primary/10 px-space-xs py-space-xxs rounded">
+<div class="font-label-sm text-label-sm text-primary font-mono">#14</div>
+<div class="font-label-md text-label-md text-primary font-bold">91</div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Rolling 5-Mock Avg</span>
+<span class="font-label-sm text-label-sm text-tertiary font-mono">+17 pts delta</span>
+</div>
+</div>
+<!-- Metric 3: Speech Composure & Cadence -->
+<div class="bg-surface-container-low p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden group hover:bg-surface-container transition-all">
+<div class="flex items-start justify-between">
+<div class="space-y-space-xxs">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Acoustic Cadence &amp; Flow</span>
+<div class="flex items-baseline gap-space-sm">
+<span class="font-metric-display text-metric-display text-on-surface font-bold tracking-tight">142</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">WPM</span>
+</div>
+</div>
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-body-md">graphic_eq</span>
+</div>
+</div>
+<div class="py-space-md space-y-space-xs">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="text-on-surface-variant">Filler Density</span>
+<span class="text-tertiary font-bold font-mono">1.1% (Ideal &lt;2%)</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-highest rounded-full overflow-hidden flex">
+<div class="bg-tertiary h-full rounded-full" style="width: 18%;"></div>
+</div>
+<div class="font-label-sm text-label-sm text-outline flex justify-between">
+<span>Baseline: 3.4%</span>
+<span class="text-tertiary">-68% suppression</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-xs">
+<span class="font-label-sm text-label-sm text-primary">Sweet Zone (135–155)</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">0.0% Clipping</span>
+</div>
+</div>
+<!-- Metric 4: Sparring Output -->
+<div class="bg-surface-container-low p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden group hover:bg-surface-container transition-all">
+<div class="flex items-start justify-between">
+<div class="space-y-space-xxs">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Sparring Engine Output</span>
+<div class="flex items-baseline gap-space-sm">
+<span class="font-metric-display text-metric-display text-on-surface font-bold tracking-tight">16.8</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">Spoken Hrs</span>
+</div>
+</div>
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-body-md">mic_external_on</span>
+</div>
+</div>
+<div class="py-space-md flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-tertiary text-headline-md" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface font-bold">7-Day Streak</span>
+<span class="font-label-sm text-label-sm text-outline">Active Cadence</span>
+</div>
+</div>
+<div class="text-right">
+<div class="font-label-md text-label-md text-on-surface font-bold font-mono">14 Loops</div>
+<div class="font-label-sm text-label-sm text-outline font-mono">28 Rapid Drills</div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-xs">
+<span class="font-label-sm text-label-sm text-secondary bg-secondary-container/20 px-space-xs py-space-xxs rounded">Rank: Top 3% P99</span>
+<span class="font-label-sm text-label-sm text-outline">Target: Nov 15</span>
+</div>
+</div>
+</div>
+<!-- Segmented Navigation Bar -->
+<div class="flex items-center justify-between bg-surface-container-lowest p-space-xs rounded-xl shadow-sm overflow-x-auto">
+<div class="flex items-center gap-space-xs min-w-max">
+<button class="flex items-center gap-space-xs px-space-md py-space-sm bg-surface-container-high text-primary rounded-lg font-label-sm text-label-sm font-semibold transition-all shadow-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span>Competency Growth &amp; Telemetry</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-space-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg font-label-sm text-label-sm transition-all">
+<span class="material-symbols-outlined text-label-sm">emoji_events</span>
+<span>Verified Milestones (18/24)</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-space-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg font-label-sm text-label-sm transition-all">
+<span class="material-symbols-outlined text-label-sm">graphic_eq</span>
+<span>Acoustic &amp; Composure Breakdown</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-space-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg font-label-sm text-label-sm transition-all">
+<span class="material-symbols-outlined text-label-sm">insights</span>
+<span>Session-over-Session Velocity</span>
+</button>
+</div>
+<div class="hidden xl:flex items-center gap-space-md px-space-md font-label-sm text-label-sm text-outline">
+<span class="flex items-center gap-space-xs"><span class="w-2.5 h-2.5 rounded-sm bg-primary"></span> Current (Mock #14)</span>
+<span class="flex items-center gap-space-xs"><span class="w-2.5 h-2.5 rounded-sm bg-secondary"></span> Stripe L6 Bar</span>
+<span class="flex items-center gap-space-xs"><span class="w-2.5 h-2.5 rounded-sm bg-surface-container-highest"></span> Baseline (Mock #1)</span>
+</div>
+</div>
+<!-- Main Workspace Layout: 2/3 Content + 1/3 Telemetry Drawer -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-start">
+<!-- Left / Center Main Stage (8 cols) -->
+<div class="lg:col-span-8 space-y-space-xl">
+<!-- SECTION A: Competency Radar & Longitudinal Progression Matrix -->
+<div class="bg-surface-container-low p-space-xl rounded-xl shadow-sm space-y-space-lg">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div>
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-primary uppercase tracking-wider font-semibold">
+<span class="material-symbols-outlined text-label-sm">tune</span>
+<span>Domain Competency Calibration</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-semibold tracking-tight">
+                Staff Systems Core Architecture Matrix
+              </h2>
+</div>
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm bg-surface-container-high px-space-sm py-space-xxs rounded text-tertiary">
+<span class="material-symbols-outlined text-label-sm">check_circle</span>
+<span>All 6 Dimensions Above Passing Standard</span>
+</div>
+</div>
+<!-- Progress Bars List -->
+<div class="space-y-space-lg pt-space-xs">
+<!-- Dimension 1 -->
+<div class="bg-surface-container p-space-md rounded-lg space-y-space-sm">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-xs">
+<div>
+<div class="font-body-md text-body-md text-on-surface font-semibold flex items-center gap-space-xs">
+<span>1. Distributed Systems &amp; Consensus</span>
+<span class="font-label-sm text-label-sm text-tertiary bg-tertiary/10 px-space-xs py-space-xxs rounded">+12% Clear</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Raft invariants, Paxos lease renewals, Byzantine fault models, dynamic membership changes</span>
+</div>
+<div class="flex items-center gap-space-md font-label-sm text-label-sm">
+<span class="text-outline">Base: <strong class="text-on-surface-variant">71%</strong></span>
+<span class="text-secondary">Bar: <strong class="text-secondary">80%</strong></span>
+<span class="text-primary font-bold">Elena: 92%</span>
+</div>
+</div>
+<div class="relative w-full h-3 bg-surface-container-highest rounded-full overflow-hidden">
+<!-- Baseline Marker -->
+<div class="absolute left-0 top-0 bottom-0 bg-surface-variant rounded-full" style="width: 71%;"></div>
+<!-- Current Progress -->
+<div class="absolute left-0 top-0 bottom-0 bg-gradient-to-r from-primary-container to-primary rounded-full" style="width: 92%;"></div>
+<!-- Target Bar Pin -->
+<div class="absolute top-0 bottom-0 w-0.5 bg-secondary z-10" style="left: 80%;"></div>
+</div>
+<div class="flex justify-between items-center text-label-sm font-label-sm text-outline">
+<span class="flex items-center gap-space-xxs">
+<span class="material-symbols-outlined text-label-sm text-tertiary">thumb_up</span>
+                  Verified in Mock #14 with Sarah Chen (Deterministic leader failovers)
+                </span>
+<a class="text-primary hover:underline" href="#">Inspect 18m Audio Clip →</a>
+</div>
+</div>
+<!-- Dimension 2 -->
+<div class="bg-surface-container p-space-md rounded-lg space-y-space-sm">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-xs">
+<div>
+<div class="font-body-md text-body-md text-on-surface font-semibold flex items-center gap-space-xs">
+<span>2. Storage Engines &amp; Compaction</span>
+<span class="font-label-sm text-label-sm text-tertiary bg-tertiary/10 px-space-xs py-space-xxs rounded">+8% Clear</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">LSM trees, RocksDB block cache, tiered vs leveled compaction amplification, bloom filter tuning</span>
+</div>
+<div class="flex items-center gap-space-md font-label-sm text-label-sm">
+<span class="text-outline">Base: <strong class="text-on-surface-variant">64%</strong></span>
+<span class="text-secondary">Bar: <strong class="text-secondary">80%</strong></span>
+<span class="text-primary font-bold">Elena: 88%</span>
+</div>
+</div>
+<div class="relative w-full h-3 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 bg-surface-variant rounded-full" style="width: 64%;"></div>
+<div class="absolute left-0 top-0 bottom-0 bg-gradient-to-r from-primary-container to-primary rounded-full" style="width: 88%;"></div>
+<div class="absolute top-0 bottom-0 w-0.5 bg-secondary z-10" style="left: 80%;"></div>
+</div>
+<div class="flex justify-between items-center text-label-sm font-label-sm text-outline">
+<span>Recent Sprint: 2 dedicated sparring sessions on Write Amplification Factor (WAF)</span>
+<span class="text-tertiary font-mono">+24% over 4 weeks</span>
+</div>
+</div>
+<!-- Dimension 3 -->
+<div class="bg-surface-container p-space-md rounded-lg space-y-space-sm">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-xs">
+<div>
+<div class="font-body-md text-body-md text-on-surface font-semibold flex items-center gap-space-xs">
+<span>3. Cross-Region Latency &amp; Tail P999</span>
+<span class="font-label-sm text-label-sm text-tertiary bg-tertiary/10 px-space-xs py-space-xxs rounded">+5% Clear</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Hybrid Logical Clocks (HLC), Envoy sidecar topologies, kernel bypass DPDK, WAN egress routing</span>
+</div>
+<div class="flex items-center gap-space-md font-label-sm text-label-sm">
+<span class="text-outline">Base: <strong class="text-on-surface-variant">62%</strong></span>
+<span class="text-secondary">Bar: <strong class="text-secondary">80%</strong></span>
+<span class="text-primary font-bold">Elena: 85%</span>
+</div>
+</div>
+<div class="relative w-full h-3 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 bg-surface-variant rounded-full" style="width: 62%;"></div>
+<div class="absolute left-0 top-0 bottom-0 bg-gradient-to-r from-primary-container to-primary rounded-full" style="width: 85%;"></div>
+<div class="absolute top-0 bottom-0 w-0.5 bg-secondary z-10" style="left: 80%;"></div>
+</div>
+<div class="flex justify-between items-center text-label-sm font-label-sm text-outline">
+<span>Passes Stripe global ledger latency expectation (Sub-15ms p95 multi-datacenter)</span>
+<a class="text-primary hover:underline" href="#">Review Diagram Whiteboard →</a>
+</div>
+</div>
+<!-- Dimension 4 -->
+<div class="bg-surface-container p-space-md rounded-lg space-y-space-sm">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-xs">
+<div>
+<div class="font-body-md text-body-md text-on-surface font-semibold flex items-center gap-space-xs">
+<span>4. Incident Triage, Chaos &amp; Degradation</span>
+<span class="font-label-sm text-label-sm text-tertiary bg-tertiary/10 px-space-xs py-space-xxs rounded">+7% Clear</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Load shedding token buckets, circuit breakers, graceful degradation under cascading partition</span>
+</div>
+<div class="flex items-center gap-space-md font-label-sm text-label-sm">
+<span class="text-outline">Base: <strong class="text-on-surface-variant">58%</strong></span>
+<span class="text-secondary">Bar: <strong class="text-secondary">75%</strong></span>
+<span class="text-primary font-bold">Elena: 82%</span>
+</div>
+</div>
+<div class="relative w-full h-3 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 bg-surface-variant rounded-full" style="width: 58%;"></div>
+<div class="absolute left-0 top-0 bottom-0 bg-gradient-to-r from-primary-container to-primary rounded-full" style="width: 82%;"></div>
+<div class="absolute top-0 bottom-0 w-0.5 bg-secondary z-10" style="left: 75%;"></div>
+</div>
+<div class="flex justify-between items-center text-label-sm font-label-sm text-outline">
+<span>Recovered in 1.4s post spontaneous database node drops injected by AI Proctor</span>
+<span class="text-tertiary font-mono">Resilience Tier II</span>
+</div>
+</div>
+<!-- Dimension 5 -->
+<div class="bg-surface-container p-space-md rounded-lg space-y-space-sm">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-xs">
+<div>
+<div class="font-body-md text-body-md text-on-surface font-semibold flex items-center gap-space-xs">
+<span>5. Executive Defense &amp; Pushback Rigor</span>
+<span class="font-label-sm text-label-sm text-tertiary bg-tertiary/10 px-space-xs py-space-xxs rounded">+4% Clear</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Handling aggressive Socratic challenges, trade-off articulation, anchoring on first principles</span>
+</div>
+<div class="flex items-center gap-space-md font-label-sm text-label-sm">
+<span class="text-outline">Base: <strong class="text-on-surface-variant">65%</strong></span>
+<span class="text-secondary">Bar: <strong class="text-secondary">85%</strong></span>
+<span class="text-primary font-bold">Elena: 89%</span>
+</div>
+</div>
+<div class="relative w-full h-3 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 bg-surface-variant rounded-full" style="width: 65%;"></div>
+<div class="absolute left-0 top-0 bottom-0 bg-gradient-to-r from-primary-container to-primary rounded-full" style="width: 89%;"></div>
+<div class="absolute top-0 bottom-0 w-0.5 bg-secondary z-10" style="left: 85%;"></div>
+</div>
+<div class="flex justify-between items-center text-label-sm font-label-sm text-outline">
+<span class="text-on-surface-variant">Tested against Hostile Marcus Vance Evaluator persona (88% hostility setting)</span>
+<span class="text-tertiary font-mono">Zero concessions</span>
+</div>
+</div>
+<!-- Dimension 6 -->
+<div class="bg-surface-container p-space-md rounded-lg space-y-space-sm">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-xs">
+<div>
+<div class="font-body-md text-body-md text-on-surface font-semibold flex items-center gap-space-xs">
+<span>6. Quantitative Back-of-Envelope Math</span>
+<span class="font-label-sm text-label-sm text-tertiary bg-tertiary/10 px-space-xs py-space-xxs rounded">+9% Clear</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">QPS to SSD IOPS conversion, RAM cache dimensioning, network bisection bandwidth math</span>
+</div>
+<div class="flex items-center gap-space-md font-label-sm text-label-sm">
+<span class="text-outline">Base: <strong class="text-on-surface-variant">78%</strong></span>
+<span class="text-secondary">Bar: <strong class="text-secondary">85%</strong></span>
+<span class="text-primary font-bold">Elena: 94%</span>
+</div>
+</div>
+<div class="relative w-full h-3 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 bg-surface-variant rounded-full" style="width: 78%;"></div>
+<div class="absolute left-0 top-0 bottom-0 bg-gradient-to-r from-primary-container to-primary rounded-full" style="width: 94%;"></div>
+<div class="absolute top-0 bottom-0 w-0.5 bg-secondary z-10" style="left: 85%;"></div>
+</div>
+<div class="flex justify-between items-center text-label-sm font-label-sm text-outline">
+<span>0 arithmetic errors logged across 12 distinct scale estimation scenarios</span>
+<span class="text-primary font-mono font-bold">Top Competency</span>
+</div>
+</div>
+</div>
+</div>
+<!-- SECTION B: Longitudinal Score Evolution Graph -->
+<div class="bg-surface-container-low p-space-xl rounded-xl shadow-sm space-y-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div>
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-secondary uppercase tracking-wider font-semibold">
+<span class="material-symbols-outlined text-label-sm">show_chart</span>
+<span>Session Trajectory &amp; Cohort Modeling</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-semibold tracking-tight">
+                Mock 01 → Mock 14 Growth Telemetry
+              </h2>
+</div>
+<div class="flex items-center gap-space-md font-label-sm text-label-sm">
+<span class="flex items-center gap-space-xs text-primary"><span class="w-2.5 h-0.5 bg-primary"></span> Architecture</span>
+<span class="flex items-center gap-space-xs text-secondary"><span class="w-2.5 h-0.5 bg-secondary"></span> Socratic Pushback</span>
+<span class="flex items-center gap-space-xs text-tertiary"><span class="w-2.5 h-0.5 bg-tertiary"></span> Acoustic Cadence</span>
+</div>
+</div>
+<!-- Large High-Fi SVG Chart -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl relative overflow-hidden">
+<div class="h-64 w-full relative">
+<svg class="w-full h-full" fill="none" preserveaspectratio="none" viewbox="0 0 800 240">
+<!-- Grid hairlines -->
+<line class="text-surface-container-highest" stroke="currentColor" stroke-dasharray="3 3" x1="0" x2="800" y1="40" y2="40"></line>
+<line class="text-surface-container-highest" stroke="currentColor" stroke-dasharray="3 3" x1="0" x2="800" y1="90" y2="90"></line>
+<line class="text-surface-container-highest" stroke="currentColor" stroke-dasharray="3 3" x1="0" x2="800" y1="140" y2="140"></line>
+<line class="text-surface-container-highest" stroke="currentColor" stroke-dasharray="3 3" x1="0" x2="800" y1="190" y2="190"></line>
+<!-- Threshold bar at 80% (y = 80) -->
+<line class="text-secondary/50" stroke="currentColor" stroke-width="1.5" x1="0" x2="800" y1="80" y2="80"></line>
+<text class="text-secondary font-label-sm text-label-sm text-right" fill="currentColor" text-anchor="end" x="790" y="74">Stripe Staff Bar (80%)</text>
+<!-- Curve 1: Architecture (Primary Cyan) -->
+<path class="text-primary" d="M40 180 C 140 160, 220 150, 320 110 C 440 80, 560 90, 660 48 L 760 30" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="3"></path>
+<!-- Curve 2: Pushback (Secondary Lavender) -->
+<path class="text-secondary" d="M40 195 C 160 185, 260 170, 360 150 C 460 110, 580 95, 680 62 L 760 45" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5"></path>
+<!-- Curve 3: Acoustic Cadence (Tertiary Emerald) -->
+<path class="text-tertiary" d="M40 140 C 180 130, 300 110, 420 85 C 540 70, 640 50, 760 38" fill="none" stroke="currentColor" stroke-dasharray="4 2" stroke-linecap="round" stroke-width="2"></path>
+<!-- Data point pins -->
+<!-- Mock 6 Hostile Marcus Pin -->
+<circle class="fill-error" cx="340" cy="130" r="4"></circle>
+<!-- Mock 10 RocksDB Sprint -->
+<circle class="fill-primary" cx="560" cy="85" r="4"></circle>
+<!-- Mock 14 Current Peak -->
+<circle class="fill-tertiary shadow-lg" cx="760" cy="30" r="5"></circle>
+</svg>
+<!-- Chart Annotations -->
+<div class="absolute left-[38%] top-[42%] -translate-x-1/2 bg-surface-container-high/90 backdrop-blur border border-error/20 px-space-xs py-space-xxs rounded shadow-sm">
+<span class="font-label-sm text-label-sm text-error font-medium flex items-center gap-space-xxs">
+<span class="material-symbols-outlined text-label-sm">bolt</span>
+                  Mock #6: Marcus Vance (Hostile)
+                </span>
+</div>
+<div class="absolute left-[68%] top-[25%] -translate-x-1/2 bg-surface-container-high/90 backdrop-blur px-space-xs py-space-xxs rounded shadow-sm">
+<span class="font-label-sm text-label-sm text-primary font-medium flex items-center gap-space-xxs">
+<span class="material-symbols-outlined text-label-sm">memory</span>
+                  Mock #10: RocksDB Sprint
+                </span>
+</div>
+<div class="absolute right-4 top-2 bg-tertiary-container/20 border border-tertiary/30 px-space-sm py-space-xxs rounded shadow-sm">
+<span class="font-label-sm text-label-sm text-tertiary font-bold flex items-center gap-space-xxs">
+<span class="material-symbols-outlined text-label-sm">military_tech</span>
+                  Mock #14: Peak 91.4
+                </span>
+</div>
+</div>
+<!-- X Axis Timeline -->
+<div class="flex justify-between items-center pt-space-md text-outline font-label-sm text-label-sm border-t border-surface-container-highest">
+<span>Mock #01 (Baseline)</span>
+<span>Mock #04</span>
+<span>Mock #07</span>
+<span>Mock #10</span>
+<span>Mock #12</span>
+<span class="text-on-surface font-semibold font-mono">Mock #14 (Latest)</span>
+</div>
+</div>
+</div>
+<!-- SECTION C: Acoustic & Speech Composure Telemetry Hub -->
+<div class="bg-surface-container-low p-space-xl rounded-xl shadow-sm space-y-space-lg">
+<div>
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-tertiary uppercase tracking-wider font-semibold">
+<span class="material-symbols-outlined text-label-sm">equalizer</span>
+<span>Acoustic Biometrics &amp; Composure Hub</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-semibold tracking-tight">
+              Duplex Voice &amp; Stress Telemetry
+            </h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- Pacing distribution card -->
+<div class="bg-surface-container p-space-md rounded-lg space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-body-md text-body-md text-on-surface font-semibold">WPM Pacing Distribution</span>
+<span class="font-label-sm text-label-sm text-tertiary bg-tertiary/10 px-space-xs py-space-xxs rounded">Target: 135–155 WPM</span>
+</div>
+<p class="font-label-sm text-label-sm text-outline">
+                Speech cadence distribution during high-pressure whiteboard architecture phase.
+              </p>
+<!-- Equalizer Style Visualizer -->
+<div class="h-20 flex items-end gap-1 pt-space-xs">
+<div class="w-full bg-surface-container-highest rounded-t h-[15%]" title="&lt;110 WPM"></div>
+<div class="w-full bg-surface-container-highest rounded-t h-[25%]" title="120 WPM"></div>
+<div class="w-full bg-surface-variant rounded-t h-[45%]" title="130 WPM"></div>
+<div class="w-full bg-primary/70 rounded-t h-[85%]" title="138 WPM"></div>
+<div class="w-full bg-primary rounded-t h-[100%]" title="142 WPM (Sweet Spot)"></div>
+<div class="w-full bg-primary/80 rounded-t h-[75%]" title="150 WPM"></div>
+<div class="w-full bg-surface-variant rounded-t h-[30%]" title="160 WPM"></div>
+<div class="w-full bg-surface-container-highest rounded-t h-[10%]" title="&gt;170 WPM (Panic Rush)"></div>
+</div>
+<div class="flex justify-between font-label-sm text-label-sm text-outline">
+<span>110 WPM (Hesitation)</span>
+<span class="text-primary font-bold">142 Median</span>
+<span>175 WPM (Rushing)</span>
+</div>
+</div>
+<!-- Interruption recovery card -->
+<div class="bg-surface-container p-space-md rounded-lg space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-body-md text-body-md text-on-surface font-semibold">Interruption Recovery Latency</span>
+<span class="font-label-sm text-label-sm text-tertiary bg-tertiary/10 px-space-xs py-space-xxs rounded">1.4s (Down from 3.8s)</span>
+</div>
+<p class="font-label-sm text-label-sm text-outline">
+                Time required to regain coherent vocal pitch after aggressive evaluator interruption.
+              </p>
+<!-- Step visualization -->
+<div class="space-y-space-xs pt-space-xs">
+<div class="space-y-space-xxs">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="text-outline">Mock #02 (Baseline)</span>
+<span class="text-error font-mono">3.8s pause (Disconcerted)</span>
+</div>
+<div class="w-full h-2 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-error rounded-full" style="width: 76%;"></div>
+</div>
+</div>
+<div class="space-y-space-xxs">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="text-outline">Mock #08 (Midway)</span>
+<span class="text-on-secondary-fixed font-mono">2.2s pause (Recalibrating)</span>
+</div>
+<div class="w-full h-2 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 44%;"></div>
+</div>
+</div>
+<div class="space-y-space-xxs">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="text-on-surface font-medium">Mock #14 (Current)</span>
+<span class="text-tertiary font-bold font-mono">1.4s (Poised &amp; Grounded)</span>
+</div>
+<div class="w-full h-2 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-tertiary rounded-full" style="width: 28%;"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Filler Word Density -->
+<div class="bg-surface-container p-space-md rounded-lg space-y-space-sm md:col-span-2">
+<div class="flex items-center justify-between">
+<div>
+<span class="font-body-md text-body-md text-on-surface font-semibold">Filler Word Suppression Map (45m Session #14)</span>
+<div class="font-label-sm text-label-sm text-outline">Total logged occurrences: 7 instances across ~6,400 words</div>
+</div>
+<div class="font-label-sm text-label-sm bg-tertiary/10 text-tertiary px-space-sm py-space-xxs rounded font-mono">
+                  Density: 0.109 per 100 words
+                </div>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-space-sm pt-space-xs">
+<div class="bg-surface-container-low p-space-sm rounded-lg flex flex-col justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase">"Um / Uh"</span>
+<div class="flex items-baseline justify-between mt-space-xs">
+<span class="font-metric-display text-metric-display text-on-surface font-bold">4</span>
+<span class="font-label-sm text-label-sm text-tertiary">-72% vs #1</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg flex flex-col justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase">"Like"</span>
+<div class="flex items-baseline justify-between mt-space-xs">
+<span class="font-metric-display text-metric-display text-on-surface font-bold">2</span>
+<span class="font-label-sm text-label-sm text-tertiary">-85% vs #1</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg flex flex-col justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase">"Basically"</span>
+<div class="flex items-baseline justify-between mt-space-xs">
+<span class="font-metric-display text-metric-display text-on-surface font-bold">1</span>
+<span class="font-label-sm text-label-sm text-tertiary">-60% vs #1</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg flex flex-col justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase">Decibel Steady</span>
+<div class="flex items-baseline justify-between mt-space-xs">
+<span class="font-metric-display text-metric-display text-tertiary font-bold">99.4%</span>
+<span class="font-label-sm text-label-sm text-outline font-mono">0 clip</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Achievements & Velocity Radar (4 cols) -->
+<div class="lg:col-span-4 space-y-space-xl">
+<!-- AI Executive Velocity Debrief Card -->
+<div class="bg-gradient-to-br from-surface-container-high via-surface-container to-surface-container-low p-space-xl rounded-xl shadow-lg space-y-space-md border-l-4 border-primary">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wider font-semibold flex items-center gap-space-xxs">
+<span class="material-symbols-outlined text-label-sm" style="font-variation-settings: 'FILL' 1;">psychology</span>
+              FitCheck AI Velocity Debrief
+            </span>
+<span class="font-label-sm text-label-sm text-outline font-mono">v4.8 Synth</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold tracking-tight">
+            Elena is 84.2% primed for Stripe L6
+          </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            "Elena’s trajectory demonstrates strong Staff-level architectural composure. Her greatest improvement vector is in Socratic pushback recovery (<span class="text-tertiary font-semibold">+26% gain</span> since Mock #2). Recommend locking in one final targeted full-loop focusing on storage write amplification and tiered compaction trade-offs prior to the Nov 15 onsite."
+          </p>
+<div class="pt-space-xs space-y-space-xs">
+<div class="flex items-center justify-between font-label-sm text-label-sm text-outline">
+<span>Simulation Target</span>
+<span class="text-on-surface font-medium">Stripe Staff Systems Eng</span>
+</div>
+<div class="flex items-center justify-between font-label-sm text-label-sm text-outline">
+<span>Confidence Interval</span>
+<span class="text-tertiary font-bold font-mono">92.4% (p &lt; 0.01)</span>
+</div>
+</div>
+<button class="w-full flex items-center justify-center gap-space-sm px-space-md py-space-sm bg-primary text-on-primary font-body-sm text-body-sm font-semibold rounded-lg hover:bg-primary-fixed-dim transition-all shadow-md">
+<span>Schedule Final Simulation Loop</span>
+<span class="material-symbols-outlined text-body-md">arrow_forward</span>
+</button>
+</div>
+<!-- Verified Milestones & Badges Panel -->
+<div class="bg-surface-container-low p-space-xl rounded-xl shadow-sm space-y-space-lg">
+<div class="flex items-center justify-between">
+<div>
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-secondary uppercase tracking-wider font-semibold">
+<span class="material-symbols-outlined text-label-sm">verified_user</span>
+<span>Proof-of-Competency</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-semibold tracking-tight">
+                Verified Badges (18/24)
+              </h2>
+</div>
+<span class="font-label-sm text-label-sm bg-secondary/10 text-secondary px-space-xs py-space-xxs rounded font-mono">Tier III Gold</span>
+</div>
+<div class="space-y-space-md">
+<!-- Badge 1 (Gold) -->
+<div class="bg-surface-container p-space-md rounded-lg flex items-start gap-space-md group hover:bg-surface-container-high transition-all">
+<div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-headline-md" style="font-variation-settings: 'FILL' 1;">shield</span>
+</div>
+<div class="space-y-space-xxs min-w-0">
+<div class="flex items-center justify-between gap-space-xs">
+<span class="font-body-md text-body-md text-on-surface font-bold truncate">Architectural Ironclad</span>
+<span class="font-label-sm text-label-sm text-primary font-mono shrink-0">GOLD</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-snug">
+                  Defended monotonic consensus invariants against Sarah Chen without conceding valid quorum rules.
+                </p>
+<span class="font-label-sm text-label-sm text-outline block pt-space-xxs">Unlocked in Mock #14 · 100% Invariant Accuracy</span>
+</div>
+</div>
+<!-- Badge 2 (Gold) -->
+<div class="bg-surface-container p-space-md rounded-lg flex items-start gap-space-md group hover:bg-surface-container-high transition-all">
+<div class="w-10 h-10 rounded-lg bg-error/10 flex items-center justify-center text-error shrink-0">
+<span class="material-symbols-outlined text-headline-md" style="font-variation-settings: 'FILL' 1;">gavel</span>
+</div>
+<div class="space-y-space-xxs min-w-0">
+<div class="flex items-center justify-between gap-space-xs">
+<span class="font-body-md text-body-md text-on-surface font-bold truncate">Hostile Takeover Survivor</span>
+<span class="font-label-sm text-label-sm text-error font-mono shrink-0">GOLD</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-snug">
+                  Completed a 45m grilling session with Marcus Vance at 88% pushback hostility scoring &gt;85%.
+                </p>
+<span class="font-label-sm text-label-sm text-outline block pt-space-xxs">Unlocked in Mock #11 · Composure score 91</span>
+</div>
+</div>
+<!-- Badge 3 (Silver) -->
+<div class="bg-surface-container p-space-md rounded-lg flex items-start gap-space-md group hover:bg-surface-container-high transition-all">
+<div class="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center text-secondary shrink-0">
+<span class="material-symbols-outlined text-headline-md" style="font-variation-settings: 'FILL' 1;">calculate</span>
+</div>
+<div class="space-y-space-xxs min-w-0">
+<div class="flex items-center justify-between gap-space-xs">
+<span class="font-body-md text-body-md text-on-surface font-bold truncate">Math Invariant Purist</span>
+<span class="font-label-sm text-label-sm text-secondary font-mono shrink-0">SILVER</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-snug">
+                  Executed 5 consecutive scale calculations (QPS, IOPS, memtables) with zero arithmetic error.
+                </p>
+<span class="font-label-sm text-label-sm text-outline block pt-space-xxs">Unlocked in Mock #09 · 0 Math Mistakes</span>
+</div>
+</div>
+<!-- Badge 4 (Silver) -->
+<div class="bg-surface-container p-space-md rounded-lg flex items-start gap-space-md group hover:bg-surface-container-high transition-all">
+<div class="w-10 h-10 rounded-lg bg-tertiary/10 flex items-center justify-center text-tertiary shrink-0">
+<span class="material-symbols-outlined text-headline-md" style="font-variation-settings: 'FILL' 1;">record_voice_over</span>
+</div>
+<div class="space-y-space-xxs min-w-0">
+<div class="flex items-center justify-between gap-space-xs">
+<span class="font-body-md text-body-md text-on-surface font-bold truncate">Zero-Stall Speaker</span>
+<span class="font-label-sm text-label-sm text-tertiary font-mono shrink-0">SILVER</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-snug">
+                  Maintained uninterrupted structural reasoning for 45 minutes with &lt;1.5% speech fillers.
+                </p>
+<span class="font-label-sm text-label-sm text-outline block pt-space-xxs">Unlocked in Mock #13 · 1.1% Fillers</span>
+</div>
+</div>
+<!-- Badge 5 (In-Progress) -->
+<div class="bg-surface-container/60 p-space-md rounded-lg flex items-start gap-space-md opacity-90">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center text-outline shrink-0">
+<span class="material-symbols-outlined text-headline-md">hub</span>
+</div>
+<div class="space-y-space-xxs min-w-0 w-full">
+<div class="flex items-center justify-between gap-space-xs">
+<span class="font-body-md text-body-md text-on-surface font-semibold truncate">Chaos Commander</span>
+<span class="font-label-sm text-label-sm text-outline font-mono">3 / 4</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-snug">
+                  Recover gracefully from spontaneous simulated datacenter network partitions midway through whiteboard defense.
+                </p>
+<div class="w-full h-1.5 bg-surface-container-highest rounded-full overflow-hidden mt-space-xs">
+<div class="bg-primary h-full rounded-full" style="width: 75%;"></div>
+</div>
+</div>
+</div>
+<!-- Badge 6 (Queued) -->
+<div class="bg-surface-container/40 p-space-md rounded-lg flex items-start gap-space-md opacity-60">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center text-outline shrink-0">
+<span class="material-symbols-outlined text-headline-md">lock</span>
+</div>
+<div class="space-y-space-xxs min-w-0">
+<div class="flex items-center justify-between gap-space-xs">
+<span class="font-body-md text-body-md text-on-surface font-medium truncate">Shenandoah / ZGC Master</span>
+<span class="font-label-sm text-label-sm text-outline font-mono">LOCKED</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-snug">
+                  Mitigate JVM GC pause spikes under 200,000 QPS in targeted sparring lab.
+                </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Candidate Profile Snapshot Card -->
+<div class="bg-surface-container-low p-space-lg rounded-xl shadow-sm space-y-space-sm">
+<div class="flex items-center gap-space-md">
+<img alt="Elena Rostova" class="w-12 h-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAKyYEoe_BnmEHbN5PFncHzX6esxX1FK0XeEb4O8ZVy_Cu5_x1HNkZARGSgtJ11Ujp_2SsRuLWmLMeY7sm1LdgCvUgiQd9_8qj0nTDZqatYboQ_MSrDfimhotesNGTZmI20e7YHw0GM-VfAn_rjvO7K9MmzTB5ewun6U24N2p0Yf6E8w4Okwq5s0qt6TzS3AX5H0664pJf8c6DRrASzsBUlqT-0_ZIISWU5UtBE-F8dtcxhJJf2QdBFQ"/>
+<div>
+<div class="font-headline-md text-headline-md text-on-surface font-semibold">Elena Rostova</div>
+<div class="font-label-sm text-label-sm text-outline">Targeting: Staff Systems Engineer (L6)</div>
+</div>
+</div>
+<div class="pt-space-xs flex justify-between font-label-sm text-label-sm border-t border-surface-container-highest">
+<span class="text-on-surface-variant">Primary Sparring Partner:</span>
+<span class="text-primary font-medium">Sarah Chen (AI Staff Lead)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></main></div></body></html>

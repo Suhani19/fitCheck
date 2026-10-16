@@ -1,0 +1,14 @@
+fastapi
+python-dotenv
+uvicorn
+google-genai
+agora-agents
+agora-token-builder
+pytest>=8.0.0
+pytest-asyncio>=0.23.0
+python-multipart>=0.0.9
+sqlalchemy>=2.0.0
+alembic>=1.13.0
+psycopg[binary]>=3.1.0
+firebase-admin>=6.5.0
+pypdf>=5.0.0

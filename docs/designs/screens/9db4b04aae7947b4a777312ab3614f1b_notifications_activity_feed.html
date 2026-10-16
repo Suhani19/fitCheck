@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"primary-container":"#35c6d9","surface-container-lowest":"#0a0e13","on-secondary-fixed-variant":"#4f319c","on-primary-fixed":"#001f24","surface-variant":"#31353b","secondary-container":"#4f319c","on-surface-variant":"#bbc9cb","surface-container-highest":"#31353b","tertiary-container":"#36cc92","on-surface":"#e0e2ea","on-primary":"#00363d","on-primary-container":"#004e57","on-secondary-fixed":"#21005e","surface":"#101419","error":"#ffb4ab","secondary":"#cebdff","inverse-primary":"#006874","on-secondary":"#381385","on-error":"#690005","error-container":"#93000a","surface-container-high":"#262a30","outline":"#869395","on-background":"#e0e2ea","surface-container-low":"#181c21","tertiary-fixed":"#6ffbbe","on-secondary-container":"#bea8ff","inverse-surface":"#e0e2ea","primary-fixed":"#97f0ff","tertiary-fixed-dim":"#4edea3","surface-dim":"#101419","on-tertiary-fixed-variant":"#005236","tertiary":"#5ae9ac","on-primary-fixed-variant":"#004f58","primary-fixed-dim":"#4fd8eb","background":"#101419","on-tertiary":"#003824","outline-variant":"#3c494b","on-tertiary-fixed":"#002113","secondary-fixed-dim":"#cebdff","surface-container":"#1c2025","on-tertiary-container":"#005136","on-error-container":"#ffdad6","secondary-fixed":"#e8ddff","inverse-on-surface":"#2d3136","surface-tint":"#4fd8eb","primary":"#5ce2f6","surface-bright":"#36393f"},borderRadius:{DEFAULT:"0.125rem",lg:"0.25rem",xl:"0.5rem",full:"0.75rem"},spacing:{"space-xs":"0.25rem","space-xl":"1.5rem","space-xxs":"0.125rem",gutter:"1.25rem","space-3xl":"3rem","space-2xl":"2rem","space-lg":"1rem","space-md":"0.75rem","gutter-desktop":"1.5rem","margin-desktop":"2rem",margin:"1rem","space-sm":"0.5rem"},fontFamily:{"label-md":["JetBrains Mono"],"headline-lg":["Inter"],"body-sm":["Inter"],"metric-display":["JetBrains Mono"],"headline-xl":["Inter"],"display-lg-mobile":["Inter"],"display-lg":["Inter"],"headline-md":["Inter"],"label-sm":["JetBrains Mono"],"body-md":["Inter"],"body-lg":["Inter"]},fontSize:{"label-md":["12px",{lineHeight:"16px",letterSpacing:"0.02em",fontWeight:"500"}],"headline-lg":["24px",{lineHeight:"32px",letterSpacing:"-0.015em",fontWeight:"600"}],"body-sm":["13px",{lineHeight:"18px",letterSpacing:"0em",fontWeight:"400"}],"metric-display":["28px",{lineHeight:"32px",letterSpacing:"-0.02em",fontWeight:"600"}],"headline-xl":["32px",{lineHeight:"40px",letterSpacing:"-0.02em",fontWeight:"600"}],"display-lg-mobile":["30px",{lineHeight:"38px",letterSpacing:"-0.015em",fontWeight:"600"}],"display-lg":["40px",{lineHeight:"48px",letterSpacing:"-0.02em",fontWeight:"600"}],"headline-md":["20px",{lineHeight:"28px",letterSpacing:"-0.01em",fontWeight:"500"}],"label-sm":["11px",{lineHeight:"14px",letterSpacing:"0.04em",fontWeight:"500"}],"body-md":["14px",{lineHeight:"20px",letterSpacing:"0em",fontWeight:"400"}],"body-lg":["16px",{lineHeight:"24px",letterSpacing:"-0.005em",fontWeight:"400"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-screen w-72 bg-surface-container-low shadow-[0_1px_8px_rgba(0,0,0,0.4)] z-50 flex flex-col justify-between overflow-y-auto"><div class="flex flex-col"><div class="px-space-xl pt-space-xl pb-space-lg flex items-center gap-space-md"><img alt="FitCheck Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XyvNKovdL0RiY9Y1h3D-PiSnvQPGb8oKl58EGdmywCYi7eXJGVOKh9GoRQf3ZIMOByy8wx3xWYkvNl6RofzePktTRTvYGX8nt5Ng7nMaKS8pygod7vgBfm1c0tecTYM52xe3ojthEPlA3S_DcRxEQnOUXBw71O1DeOzUGCLyo4-EtBLJEWbED-FNdGGqnn6cwvBrRKK1WUJSjh5V3D7as4e_8qDrNMBasJUlkZ8HkePbTa7IvukUwemDY"/><div class="flex flex-col"><span class="font-headline-md text-headline-md tracking-tight font-bold text-on-surface leading-none">FitCheck</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mt-space-xxs">Get fit. Check fit.</span></div></div><div class="px-space-md py-space-sm"><a class="w-full flex items-center justify-center gap-space-sm px-space-md py-space-sm bg-primary text-on-primary font-headline-md text-body-sm font-semibold rounded-lg hover:bg-primary-fixed-dim hover:text-on-primary-fixed transition-all" data-path="start-interview" href="#"><span class="material-symbols-outlined text-body-md">mic</span><span>Start Interview</span></a></div><nav class="px-space-sm space-y-space-md pb-space-xl" data-active-classes="bg-surface-container-high text-primary font-semibold"><div class="space-y-space-xxs"><div class="px-space-md pt-space-xs pb-space-xxs font-label-sm text-label-sm uppercase tracking-wider text-outline">Overview</div><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="candidate-command-center" href="#"><span class="material-symbols-outlined text-body-lg">grid_view</span><span class="font-body-sm text-body-sm">Dashboard</span></a></div><div class="space-y-space-xxs"><div class="px-space-md pt-space-xs pb-space-xxs font-label-sm text-label-sm uppercase tracking-wider text-outline">Prepare</div><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="my-profile" href="#"><span class="material-symbols-outlined text-body-lg">person</span><span class="font-body-sm text-body-sm">My Profile</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="my-jobs" href="#"><span class="material-symbols-outlined text-body-lg">work</span><span class="font-body-sm text-body-sm">My Jobs</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="interviewers" href="#"><span class="material-symbols-outlined text-body-lg">smart_toy</span><span class="font-body-sm text-body-sm">Interviewers</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="practice-library" href="#"><span class="material-symbols-outlined text-body-lg">local_library</span><span class="font-body-sm text-body-sm">Practice Library</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="learning-plan" href="#"><span class="material-symbols-outlined text-body-lg">map</span><span class="font-body-sm text-body-sm">Learning Plan</span></a></div><div class="space-y-space-xxs"><div class="px-space-md pt-space-xs pb-space-xxs font-label-sm text-label-sm uppercase tracking-wider text-outline">Interviews</div><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="interview-history" href="#"><span class="material-symbols-outlined text-body-lg">history</span><span class="font-body-sm text-body-sm">Interview History</span></a><a class="flex items-center justify-between px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="evaluations-archive-deep-dive-hub" href="#"><div class="flex items-center gap-space-md"><span class="material-symbols-outlined text-body-lg">analytics</span><span class="font-body-sm text-body-sm">Evaluations</span></div><span class="px-space-xs py-space-xxs rounded bg-surface-container-high text-primary font-label-sm text-label-sm">New</span></a></div><div class="space-y-space-xxs"><div class="px-space-md pt-space-xs pb-space-xxs font-label-sm text-label-sm uppercase tracking-wider text-outline">Progress</div><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="my-progress" href="#"><span class="material-symbols-outlined text-body-lg">trending_up</span><span class="font-body-sm text-body-sm">My Progress</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="achievements" href="#"><span class="material-symbols-outlined text-body-lg">military_tech</span><span class="font-body-sm text-body-sm">Achievements</span></a></div><div class="space-y-space-xxs"><div class="px-space-md pt-space-xs pb-space-xxs font-label-sm text-label-sm uppercase tracking-wider text-outline">Personal</div><a class="flex items-center justify-between px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="notifications-activity-feed" href="#"><div class="flex items-center gap-space-md"><span class="material-symbols-outlined text-body-lg">notifications</span><span class="font-body-sm text-body-sm">Notifications</span></div><span class="px-space-xs py-space-xxs rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">3</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="settings" href="#"><span class="material-symbols-outlined text-body-lg">settings</span><span class="font-body-sm text-body-sm">Settings</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="help-faq-socratic-playbook-guide" href="#"><span class="material-symbols-outlined text-body-lg">help</span><span class="font-body-sm text-body-sm">Help &amp; Support</span></a></div></nav></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-low/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.3)] z-40 flex items-center justify-between px-space-xl"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs font-body-sm text-body-sm text-on-surface-variant"><span class="hover:text-on-surface transition-colors cursor-pointer">FitCheck</span><span class="material-symbols-outlined text-body-sm text-outline">chevron_right</span><span class="text-on-surface font-medium">Interview Studio</span></div><div class="h-4 w-px bg-surface-container-highest mx-space-xs"></div><div class="flex items-center gap-space-xs px-space-sm py-space-xxs rounded bg-surface-container-high text-primary font-label-sm text-label-sm"><span class="material-symbols-outlined text-label-sm text-primary">flag</span><span>Target: Staff Systems Eng @ Stripe - 84% Ready</span></div></div><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-xs px-space-sm py-space-xxs rounded bg-surface-container-high text-tertiary font-label-sm text-label-sm"><span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span><span>Audio Ready (48kHz)</span></div><div class="flex items-center gap-space-sm pl-space-sm"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAKyYEoe_BnmEHbN5PFncHzX6esxX1FK0XeEb4O8ZVy_Cu5_x1HNkZARGSgtJ11Ujp_2SsRuLWmLMeY7sm1LdgCvUgiQd9_8qj0nTDZqatYboQ_MSrDfimhotesNGTZmI20e7YHw0GM-VfAn_rjvO7K9MmzTB5ewun6U24N2p0Yf6E8w4Okwq5s0qt6TzS3AX5H0664pJf8c6DRrASzsBUlqT-0_ZIISWU5UtBE-F8dtcxhJJf2QdBFQ"/><div class="flex items-center cursor-pointer text-on-surface-variant hover:text-on-surface transition-colors"><span class="font-body-sm text-body-sm text-on-surface font-medium mr-space-xxs">Alex M.</span><span class="material-symbols-outlined text-body-sm">expand_more</span></div></div></div></header><main class="w-full pt-16 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<!-- Content Container -->
+<div class="px-gutter-desktop py-space-xl space-y-space-xl max-w-[1600px] mx-auto w-full">
+<!-- Screen Header & Context Bar -->
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-outline uppercase tracking-wider">
+<span class="hover:text-on-surface transition-colors cursor-pointer">FitCheck</span>
+<span class="material-symbols-outlined text-[13px] text-outline-variant">chevron_right</span>
+<span>Personal</span>
+<span class="material-symbols-outlined text-[13px] text-outline-variant">chevron_right</span>
+<span class="text-primary font-semibold">Notifications</span>
+</div>
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-lg">
+<div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface font-semibold tracking-tight">Notifications &amp; Activity Feed</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xxs max-w-3xl">
+            Real-time AI diagnostic alerts, sparring schedule reminders, telemetry recaps, and synchronized repository events calibrated to your interview timeline.
+          </p>
+</div>
+<!-- Global Feed Controls -->
+<div class="flex flex-wrap items-center gap-space-sm shrink-0">
+<button class="flex items-center gap-space-xs px-space-md py-space-xs bg-surface-container-high hover:bg-surface-container-highest text-on-surface text-body-sm font-medium rounded transition-all shadow-sm" id="btn-mark-all-read">
+<span class="material-symbols-outlined text-body-md text-primary">done_all</span>
+<span>Mark All as Read</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-space-xs bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-on-surface text-body-sm rounded transition-all shadow-sm">
+<span class="material-symbols-outlined text-body-md">tune</span>
+<span>Webhooks &amp; Feeds</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-space-xs bg-surface-container-low hover:bg-surface-container text-outline hover:text-on-surface text-body-sm rounded transition-all" id="btn-clear-read">
+<span class="material-symbols-outlined text-body-md">clear_all</span>
+<span>Clear Read</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Category Filter Tabs & Status Bar -->
+<div class="flex flex-wrap items-center justify-between gap-space-md bg-surface-container-low px-space-md py-space-xs rounded-xl shadow-sm">
+<div class="flex items-center gap-space-xs overflow-x-auto py-space-xxs">
+<!-- Tab: All -->
+<button class="flex items-center gap-space-xs px-space-md py-space-xs rounded bg-surface-container-high text-primary font-medium text-body-sm shadow-sm transition-all">
+<span>All Notifications</span>
+<span class="px-space-xs py-space-xxs bg-primary text-on-primary font-label-sm text-label-sm rounded-full leading-none">18</span>
+</button>
+<!-- Tab: AI Diagnostics -->
+<button class="flex items-center gap-space-xs px-space-md py-space-xs rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface text-body-sm transition-all group">
+<span class="flex h-2 w-2 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-error opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-error"></span>
+</span>
+<span>AI Diagnostics</span>
+<span class="px-space-xs py-space-xxs bg-error-container text-on-error-container font-label-sm text-label-sm rounded-full leading-none font-semibold">4</span>
+</button>
+<!-- Tab: Sparring & Calendar -->
+<button class="flex items-center gap-space-xs px-space-md py-space-xs rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface text-body-sm transition-all">
+<span>Sparring &amp; Calendar</span>
+<span class="px-space-xs py-space-xxs bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm rounded-full leading-none">5</span>
+</button>
+<!-- Tab: Code & Repositories -->
+<button class="flex items-center gap-space-xs px-space-md py-space-xs rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface text-body-sm transition-all">
+<span>Code &amp; Repositories</span>
+<span class="px-space-xs py-space-xxs bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm rounded-full leading-none">6</span>
+</button>
+<!-- Tab: Milestones -->
+<button class="flex items-center gap-space-xs px-space-md py-space-xs rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface text-body-sm transition-all">
+<span>Milestones &amp; Badges</span>
+<span class="px-space-xs py-space-xxs bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm rounded-full leading-none">3</span>
+</button>
+</div>
+<!-- Realtime Socket Pill -->
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant px-space-sm py-space-xxs bg-surface-container rounded shrink-0">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+<span class="font-mono">Sync Feed: ACTIVE (28ms)</span>
+</div>
+</div>
+<!-- High-Impact Telemetry & Diagnostic Alert Deck -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- Alert 1: Urgent AI Diagnostic -->
+<div class="lg:col-span-7 bg-surface-container-low rounded-xl p-space-lg relative overflow-hidden shadow-md flex flex-col justify-between group" id="alert-card-1">
+<!-- Visual Glow Backdrop -->
+<div class="absolute -right-16 -top-16 w-48 h-48 bg-error-container/20 rounded-full blur-3xl pointer-events-none"></div>
+<div>
+<div class="flex items-center justify-between gap-space-md mb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="px-space-sm py-space-xxs bg-error-container text-on-error-container font-label-sm text-label-sm rounded font-semibold uppercase tracking-wider flex items-center gap-space-xxs">
+<span class="material-symbols-outlined text-[13px]">warning</span>
+                AI Diagnostic Alert · Critical Telemetry
+              </span>
+<span class="font-label-sm text-label-sm text-outline font-mono">Mock #11 · Marcus Vance (Staff SRE)</span>
+</div>
+<button class="text-outline hover:text-on-surface transition-colors" onclick="document.getElementById('alert-card-1').style.display='none'">
+<span class="material-symbols-outlined text-body-md">close</span>
+</button>
+</div>
+<h3 class="font-headline-md text-headline-md font-semibold text-on-surface tracking-tight mb-space-xs">
+            Tail Latency &amp; GC Pause Allocation Vulnerability Flagged
+          </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-md">
+            The telemetry engine detected a <strong class="text-on-surface font-semibold font-mono">3.8s recovery latency</strong> and ambiguous heuristic explanations when probed on <code class="font-mono text-primary bg-surface px-space-xxs py-0.5 rounded text-label-sm">-XX:+UseZGC</code> versus Shenandoah generational compaction thresholds. Delivery pacing slipped to <span class="font-mono text-error font-medium">168 WPM</span> (rushing threshold).
+          </p>
+<!-- Telemetry Audio Mini-Waveform Visualization -->
+<div class="bg-surface-container rounded-lg p-space-sm mb-space-md flex flex-col gap-space-xs">
+<div class="flex items-center justify-between font-label-sm text-label-sm text-outline">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-label-sm text-primary">graphic_eq</span>
+<span>Interruption Recovery Profile (Marker 18:24)</span>
+</div>
+<span class="font-mono text-primary">Stability Index: 64/100 · Jitter: 420ms</span>
+</div>
+<!-- Dynamic Waveform Graphic -->
+<div class="h-8 w-full flex items-end gap-1 px-space-xs pt-space-xs">
+<div class="w-1 bg-surface-variant rounded-full h-3"></div>
+<div class="w-1 bg-surface-variant rounded-full h-4"></div>
+<div class="w-1 bg-primary/70 rounded-full h-5"></div>
+<div class="w-1 bg-primary rounded-full h-7"></div>
+<div class="w-1 bg-secondary rounded-full h-6"></div>
+<div class="w-1 bg-primary rounded-full h-5"></div>
+<div class="w-1 bg-error rounded-full h-8 animate-pulse"></div>
+<div class="w-1 bg-error rounded-full h-7"></div>
+<div class="w-1 bg-error-container rounded-full h-3"></div>
+<div class="w-1 bg-surface-variant rounded-full h-2"></div>
+<div class="w-1 bg-surface-variant rounded-full h-2"></div>
+<div class="w-1 bg-surface-variant rounded-full h-3"></div>
+<div class="w-1 bg-primary/60 rounded-full h-4"></div>
+<div class="w-1 bg-primary rounded-full h-6"></div>
+<div class="w-1 bg-primary rounded-full h-7"></div>
+<div class="w-1 bg-primary/80 rounded-full h-5"></div>
+<div class="w-1 bg-surface-variant rounded-full h-3"></div>
+<div class="w-1 bg-surface-variant rounded-full h-2"></div>
+<div class="w-1 bg-primary rounded-full h-6"></div>
+<div class="w-1 bg-secondary rounded-full h-7"></div>
+<div class="w-1 bg-primary rounded-full h-5"></div>
+<div class="w-1 bg-surface-variant rounded-full h-3"></div>
+<div class="w-1 bg-surface-variant rounded-full h-4"></div>
+<div class="w-1 bg-primary rounded-full h-6"></div>
+<div class="w-1 bg-primary rounded-full h-8"></div>
+<div class="w-1 bg-secondary rounded-full h-5"></div>
+<div class="w-1 bg-surface-variant rounded-full h-3"></div>
+<div class="w-1 bg-surface-variant rounded-full h-2"></div>
+</div>
+</div>
+</div>
+<div class="flex flex-wrap items-center justify-between gap-space-sm pt-space-xs">
+<div class="flex flex-wrap items-center gap-space-xs">
+<button class="flex items-center gap-space-xs px-space-md py-space-xs bg-primary text-on-primary font-semibold text-body-sm rounded hover:bg-primary-fixed-dim transition-all shadow-sm">
+<span class="material-symbols-outlined text-body-md">play_arrow</span>
+<span>Launch 15m Prescriptive Sparring Drill</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-space-xs bg-surface-container-high hover:bg-surface-container-highest text-on-surface text-body-sm rounded transition-all">
+<span class="material-symbols-outlined text-body-md text-primary">headphones</span>
+<span>Inspect Audio (18:24)</span>
+</button>
+</div>
+<span class="font-label-sm text-label-sm text-outline font-mono">Auto-generated via Socratic Core v4.2</span>
+</div>
+</div>
+<!-- Alert 2: DSP Audio Calibration Notification -->
+<div class="lg:col-span-5 bg-surface-container-low rounded-xl p-space-lg relative overflow-hidden shadow-md flex flex-col justify-between" id="alert-card-2">
+<div class="absolute -right-16 -top-16 w-44 h-44 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+<div>
+<div class="flex items-center justify-between gap-space-md mb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="px-space-sm py-space-xxs bg-surface-container-high text-primary font-label-sm text-label-sm rounded font-semibold uppercase tracking-wider flex items-center gap-space-xxs">
+<span class="material-symbols-outlined text-[13px] text-tertiary">tune</span>
+                Acoustic Studio Telemetry
+              </span>
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+</div>
+<button class="text-outline hover:text-on-surface transition-colors" onclick="document.getElementById('alert-card-2').style.display='none'">
+<span class="material-symbols-outlined text-body-md">close</span>
+</button>
+</div>
+<h3 class="font-headline-md text-headline-md font-semibold text-on-surface tracking-tight mb-space-xs">
+            WebRTC Jitter Buffer Stabilized
+          </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-md">
+            DSP hardware layer detected packet variance (<span class="font-mono text-on-surface font-semibold">1.4ms</span> peak). Automatically engaged Direct PCM low-latency buffer (18ms). Mic input floor calibrated at <span class="font-mono text-tertiary font-semibold">-18 dBFS</span> for pristine vocal clarity.
+          </p>
+<!-- DSP Metrics Dual Pill -->
+<div class="grid grid-cols-2 gap-space-sm mb-space-md">
+<div class="bg-surface-container p-space-sm rounded">
+<div class="font-label-sm text-label-sm text-outline uppercase">Latency Delta</div>
+<div class="font-metric-display text-headline-md text-primary font-mono font-semibold">18.2 ms</div>
+<div class="font-label-sm text-label-sm text-tertiary">Zero dropped frames</div>
+</div>
+<div class="bg-surface-container p-space-sm rounded">
+<div class="font-label-sm text-label-sm text-outline uppercase">Input Clarity</div>
+<div class="font-metric-display text-headline-md text-tertiary font-mono font-semibold">99.8%</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Noise floor suppressed</div>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between gap-space-sm pt-space-xs">
+<button class="flex items-center gap-space-xs px-space-md py-space-xs bg-surface-container-high hover:bg-surface-container-highest text-primary text-body-sm font-medium rounded transition-all">
+<span class="material-symbols-outlined text-body-md">mic_external_on</span>
+<span>Run Quick Hardware Mic Check</span>
+</button>
+<span class="font-label-sm text-label-sm text-outline font-mono">Core Audio 48kHz</span>
+</div>
+</div>
+</div>
+<!-- Main Dynamic Feed Grid (2-Column Studio Architecture: Feed Stream + Quick Settings Deck) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-start">
+<!-- Left Main Stream (8 cols) -->
+<div class="lg:col-span-8 space-y-space-xl">
+<!-- ================= GROUP 1: TODAY ================= -->
+<div class="space-y-space-md">
+<div class="flex items-center justify-between pb-space-xxs">
+<div class="flex items-center gap-space-sm">
+<span class="px-space-sm py-space-xxs bg-primary/10 text-primary font-label-sm text-label-sm rounded uppercase tracking-widest font-semibold">Today</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-medium">October 29, 2024</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">2 unread notifications</span>
+</div>
+<!-- Feed Item 1: GitHub Architecture Ingestion -->
+<div class="bg-surface-container-low rounded-xl p-space-lg shadow-sm hover:bg-surface-container transition-all group relative">
+<div class="flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-headline-md">terminal</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex flex-wrap items-center justify-between gap-space-sm mb-space-xxs">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-md text-body-lg font-semibold text-on-surface tracking-tight">4 New Architecture PRs Indexed from @erostova/raft-consensus-rs</span>
+<span class="w-2 h-2 rounded-full bg-primary shrink-0" title="Unread"></span>
+</div>
+<span class="font-label-sm text-label-sm text-outline font-mono">24 mins ago</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-sm">
+                  Commit <code class="font-mono text-primary bg-surface px-space-xs py-0.5 rounded text-label-sm">9f4e2b8</code> (<em class="text-on-surface font-normal not-italic">"Implement monotonic lease renewal with exponential jitter"</em>) and 3 consensus RFC architecture documents parsed. Ingested <strong class="text-on-surface font-semibold">1,480 code chunks</strong> directly into the Sarah Chen AI persona for tailored Socratic interrogation.
+                </p>
+<!-- Monospaced Metadata Pill Box -->
+<div class="flex flex-wrap items-center gap-space-sm p-space-xs px-space-sm bg-surface-container rounded font-label-sm text-label-sm text-on-surface-variant font-mono mb-space-md">
+<span class="text-tertiary">Repo: erostova/raft-consensus-rs</span>
+<span>•</span>
+<span>12 files modified (+624 / -82)</span>
+<span>•</span>
+<span class="text-primary font-medium">Context Ingestion: 100% Verified</span>
+</div>
+<!-- Action Button Row -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<button class="flex items-center gap-space-xs px-space-md py-space-xs bg-primary text-on-primary font-semibold text-body-sm rounded hover:bg-primary-fixed-dim transition-all shadow-sm">
+<span class="material-symbols-outlined text-body-sm">bolt</span>
+<span>Generate Custom Sparring Round</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-space-xs bg-surface-container-high hover:bg-surface-container-highest text-on-surface text-body-sm rounded transition-all">
+<span class="material-symbols-outlined text-body-sm">dataset</span>
+<span>View Ingested Chunks</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-sm py-space-xs text-outline hover:text-on-surface text-body-sm rounded transition-all">
+<span class="material-symbols-outlined text-body-md">bookmark_border</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Feed Item 2: Sparring Simulation Schedule -->
+<div class="bg-surface-container-low rounded-xl p-space-lg shadow-sm hover:bg-surface-container transition-all group relative">
+<div class="flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center shrink-0 text-secondary">
+<span class="material-symbols-outlined text-headline-md">event_available</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex flex-wrap items-center justify-between gap-space-sm mb-space-xxs">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-md text-body-lg font-semibold text-on-surface tracking-tight">Full-Loop Simulation Confirmed: Stripe Staff L6 Systems Lead</span>
+<span class="w-2 h-2 rounded-full bg-secondary shrink-0" title="Unread"></span>
+</div>
+<span class="font-label-sm text-label-sm text-outline font-mono">1 hour ago</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-sm">
+                  Scheduled with <strong class="text-on-surface font-semibold">Sarah Chen</strong> (Pragmatic Systems Lead AI) for tomorrow, <strong class="text-on-surface font-semibold">Oct 30 at 10:30 AM PST</strong> (45m duration). Topic syllabus locked: <em class="text-on-surface not-italic">Global Distributed Consensus, Spanner TrueTime, Monotonic Read Guarantees</em>.
+                </p>
+<div class="flex flex-wrap items-center gap-space-sm p-space-xs px-space-sm bg-surface-container rounded font-label-sm text-label-sm text-on-surface-variant font-mono mb-space-md">
+<span class="text-secondary font-medium">Difficulty: Senior Staff (L6)</span>
+<span>•</span>
+<span>Pushback Hostility: 75%</span>
+<span>•</span>
+<span>Target Rubric: Production Reliability &amp; Sharding</span>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm">
+<button class="flex items-center gap-space-xs px-space-md py-space-xs bg-surface-container-high hover:bg-surface-container-highest text-primary font-medium text-body-sm rounded transition-all">
+<span class="material-symbols-outlined text-body-sm text-tertiary">mic_double</span>
+<span>Pre-Flight Audio Check</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-space-xs bg-surface-container-high hover:bg-surface-container-highest text-on-surface text-body-sm rounded transition-all">
+<span class="material-symbols-outlined text-body-sm">menu_book</span>
+<span>Review Topic Dossier</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-space-xs bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface text-body-sm rounded transition-all">
+<span class="material-symbols-outlined text-body-sm">schedule</span>
+<span>Reschedule</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ================= GROUP 2: YESTERDAY ================= -->
+<div class="space-y-space-md">
+<div class="flex items-center justify-between pb-space-xxs">
+<div class="flex items-center gap-space-sm">
+<span class="px-space-sm py-space-xxs bg-surface-container text-on-surface-variant font-label-sm text-label-sm rounded uppercase tracking-widest font-semibold">Yesterday</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-medium">October 28, 2024</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">All cleared</span>
+</div>
+<!-- Feed Item 3: Milestone & Badge Unlocked -->
+<div class="bg-surface-container-low rounded-xl p-space-lg shadow-sm hover:bg-surface-container transition-all group">
+<div class="flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center shrink-0 text-tertiary">
+<span class="material-symbols-outlined text-headline-md">military_tech</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex flex-wrap items-center justify-between gap-space-sm mb-space-xxs">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-md text-body-lg font-semibold text-on-surface tracking-tight">Milestone Unlocked: Architectural Ironclad (Gold · Tier III)</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline font-mono">Yesterday · 4:15 PM</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-sm">
+                  Successfully defended monotonic consensus invariants against Marcus Vance at <strong class="text-tertiary font-semibold font-mono">88% pushback hostility</strong> without conceding quorum rules or arithmetic bounds in Mock Session #14. Zero unhandled edge cases recorded.
+                </p>
+<!-- Badge Graphic Card Showcase -->
+<div class="flex items-center gap-space-md p-space-sm bg-surface-container rounded-lg mb-space-md max-w-md">
+<div class="w-12 h-12 rounded-full bg-gradient-to-br from-tertiary/30 via-primary/20 to-secondary/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-headline-lg text-tertiary">shield</span>
+</div>
+<div>
+<div class="font-headline-md text-body-sm font-semibold text-on-surface">Architectural Ironclad · Tier III</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Top 4% of Candidates · System Invariants Benchmark</div>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm">
+<button class="flex items-center gap-space-xs px-space-md py-space-xs bg-surface-container-high hover:bg-surface-container-highest text-primary font-medium text-body-sm rounded transition-all">
+<span class="material-symbols-outlined text-body-sm">badge</span>
+<span>View Credential on Public Profile</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-space-xs bg-surface-container-high hover:bg-surface-container-highest text-on-surface text-body-sm rounded transition-all">
+<span class="material-symbols-outlined text-body-sm">share</span>
+<span>Share to LinkedIn</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Feed Item 4: ATS Inbound Webhook -->
+<div class="bg-surface-container-low rounded-xl p-space-lg shadow-sm hover:bg-surface-container transition-all group">
+<div class="flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-headline-md">sync_alt</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex flex-wrap items-center justify-between gap-space-sm mb-space-xxs">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-md text-body-lg font-semibold text-on-surface tracking-tight">Inbound ATS Maildrop: Stripe Panel Composition &amp; Rubric Refreshed</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline font-mono">Yesterday · 11:30 AM</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-sm">
+                  Recruiter Jessica T. updated onsite panel details via inbound forwarder <code class="font-mono text-outline bg-surface px-space-xs py-0.5 rounded text-label-sm">sync+elena.l6@inbound.fitcheck.ai</code>. Added 1 additional bar-raiser round on <strong class="text-on-surface font-semibold">Distributed Storage Engines &amp; LSM-Tree Compaction</strong>.
+                </p>
+<div class="flex flex-wrap items-center gap-space-sm">
+<button class="flex items-center gap-space-xs px-space-md py-space-xs bg-surface-container-high hover:bg-surface-container-highest text-primary font-medium text-body-sm rounded transition-all">
+<span class="material-symbols-outlined text-body-sm">rule</span>
+<span>Inspect Updated Rubric</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-space-xs bg-surface-container-high hover:bg-surface-container-highest text-on-surface text-body-sm rounded transition-all">
+<span class="material-symbols-outlined text-body-sm">add_task</span>
+<span>Add Storage Compaction Drills</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ================= GROUP 3: EARLIER THIS WEEK ================= -->
+<div class="space-y-space-md">
+<div class="flex items-center justify-between pb-space-xxs">
+<div class="flex items-center gap-space-sm">
+<span class="px-space-sm py-space-xxs bg-surface-container text-on-surface-variant font-label-sm text-label-sm rounded uppercase tracking-widest font-semibold">Earlier This Week</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-medium">October 22 - 27, 2024</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Archived telemetry</span>
+</div>
+<!-- Feed Item 5: Weekly Synthesis Report -->
+<div class="bg-surface-container-low rounded-xl p-space-lg shadow-sm hover:bg-surface-container transition-all group">
+<div class="flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center shrink-0 text-tertiary">
+<span class="material-symbols-outlined text-headline-md">insights</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex flex-wrap items-center justify-between gap-space-sm mb-space-xxs">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-md text-body-lg font-semibold text-on-surface tracking-tight">Weekly Telemetry Report: Pass Probability Increased to 84.2%</span>
+<span class="px-space-xs py-space-xxs bg-tertiary-container/30 text-tertiary font-label-sm text-label-sm rounded font-mono font-semibold">+5.8%</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline font-mono">Oct 26 · 9:00 AM</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-sm">
+                  Over the last 7 days, you completed <strong class="text-on-surface font-semibold font-mono">5 sparring drills</strong> and <strong class="text-on-surface font-semibold font-mono">2 full mock loops</strong>. Filler word suppression reached 99.4% decibel steadiness. Average rubric evaluation climbed to 88.6/100.
+                </p>
+<!-- Mini Progress Sparkline Container -->
+<div class="bg-surface-container p-space-sm rounded-lg flex items-center justify-between gap-space-md mb-space-md">
+<div class="flex items-center gap-space-lg">
+<div>
+<div class="font-label-sm text-label-sm text-outline">Target Readiness</div>
+<div class="font-headline-md text-headline-md font-mono text-tertiary font-semibold">84.2%</div>
+</div>
+<div class="h-8 w-px bg-surface-variant"></div>
+<div>
+<div class="font-label-sm text-label-sm text-outline">Vocal Steadiness</div>
+<div class="font-headline-md text-headline-md font-mono text-primary font-semibold">99.4%</div>
+</div>
+<div class="h-8 w-px bg-surface-variant hidden sm:block"></div>
+<div class="hidden sm:block">
+<div class="font-label-sm text-label-sm text-outline">Drills Completed</div>
+<div class="font-headline-md text-headline-md font-mono text-on-surface font-semibold">7 Sessions</div>
+</div>
+</div>
+<!-- Inline SVG Sparkline -->
+<div class="w-36 h-8 shrink-0">
+<svg class="w-full h-full overflow-visible" viewbox="0 0 100 24">
+<defs>
+<lineargradient id="sparkline-grad" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#5ae9ac" stop-opacity="0.4"></stop>
+<stop offset="100%" stop-color="#5ae9ac" stop-opacity="0.0"></stop>
+</lineargradient>
+</defs>
+<polygon fill="url(#sparkline-grad)" points="0,20 15,18 32,16 50,14 68,9 85,7 100,2 100,24 0,24"></polygon>
+<polyline fill="none" points="0,20 15,18 32,16 50,14 68,9 85,7 100,2" stroke="#5ae9ac" stroke-width="2"></polyline>
+<circle cx="100" cy="2" fill="#5ae9ac" r="3"></circle>
+</svg>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm">
+<button class="flex items-center gap-space-xs px-space-md py-space-xs bg-surface-container-high hover:bg-surface-container-highest text-primary font-medium text-body-sm rounded transition-all">
+<span class="material-symbols-outlined text-body-sm">picture_as_pdf</span>
+<span>Download PDF Debrief</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-space-xs bg-surface-container-high hover:bg-surface-container-highest text-on-surface text-body-sm rounded transition-all">
+<span class="material-symbols-outlined text-body-sm">ssid_chart</span>
+<span>View Trajectory Chart</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Feed Item 6: Resolved Diagnostic Improvement -->
+<div class="bg-surface-container-low rounded-xl p-space-lg shadow-sm hover:bg-surface-container transition-all group">
+<div class="flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-headline-md">psychology</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex flex-wrap items-center justify-between gap-space-sm mb-space-xxs">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-md text-body-lg font-semibold text-on-surface tracking-tight">Diagnostic Improvement: Quantitative Back-of-Envelope Math Cleared</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline font-mono">Oct 25 · 2:10 PM</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-sm">
+                  Arithmetic calculation error rate dropped from 14.2% down to <strong class="text-tertiary font-semibold font-mono">0.0%</strong> across 12 consecutive scale estimation probes in Mock #13. Top 2% cohort benchmark achieved for dynamic storage cluster sizing.
+                </p>
+<div class="flex items-center gap-space-sm">
+<button class="flex items-center gap-space-xs px-space-md py-space-xs bg-surface-container-high hover:bg-surface-container-highest text-on-surface text-body-sm rounded transition-all">
+<span class="material-symbols-outlined text-body-sm">fact_check</span>
+<span>Review Calculation Transcript</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Telemetry & Automation Drawer (4 cols) -->
+<div class="lg:col-span-4 space-y-space-lg sticky top-20">
+<!-- Automation & Channel Integration Card -->
+<div class="bg-surface-container-low rounded-xl p-space-lg shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-md text-body-lg font-semibold text-on-surface tracking-tight">Live Dispatch Channels</h2>
+<span class="material-symbols-outlined text-outline text-body-lg cursor-pointer hover:text-on-surface transition-colors">settings</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Precision triggers routed through low-latency relays and synced directly to candidate devices.
+          </p>
+<div class="space-y-space-xs">
+<!-- Channel Item 1 -->
+<div class="flex items-center justify-between p-space-sm bg-surface-container rounded hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-body-lg">notifications_active</span>
+<div>
+<div class="font-body-sm text-body-sm font-semibold text-on-surface">Browser Push Notifications</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Critical diagnostic triggers only</div>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-tertiary font-mono">ENABLED</span>
+</div>
+<!-- Channel Item 2 -->
+<div class="flex items-center justify-between p-space-sm bg-surface-container rounded hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-body-lg">webhook</span>
+<div>
+<div class="font-body-sm text-body-sm font-semibold text-on-surface">ATS Maildrop Ingestion</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Greenhouse / Lever forwarding</div>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-tertiary font-mono">ACTIVE</span>
+</div>
+<!-- Channel Item 3 -->
+<div class="flex items-center justify-between p-space-sm bg-surface-container rounded hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-tertiary text-body-lg">forum</span>
+<div>
+<div class="font-body-sm text-body-sm font-semibold text-on-surface">Slack Persona Bot Relay</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">#prep-elena-stripe channel</div>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-tertiary font-mono">CONNECTED</span>
+</div>
+<!-- Channel Item 4 -->
+<div class="flex items-center justify-between p-space-sm bg-surface-container rounded hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-outline text-body-lg">mail</span>
+<div>
+<div class="font-body-sm text-body-sm font-semibold text-on-surface">Daily 8:00 AM Synthesis</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Curated sparring action items</div>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-mono">SCHEDULED</span>
+</div>
+</div>
+<button class="w-full py-space-xs px-space-sm bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-body-sm text-body-sm font-medium rounded transition-all text-center">
+            Configure Webhook Payload Schemas
+          </button>
+</div>
+<!-- Telemetry Diagnostic Health Digest Card -->
+<div class="bg-surface-container-low rounded-xl p-space-lg shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-md text-body-lg font-semibold text-on-surface tracking-tight">Audio &amp; Speech Calibration</h2>
+<span class="px-space-xs py-space-xxs bg-tertiary-container/20 text-tertiary font-label-sm text-label-sm rounded font-mono">OK</span>
+</div>
+<!-- Circular Metric Indicator & Breakdown -->
+<div class="flex items-center gap-space-lg">
+<div class="relative w-16 h-16 shrink-0">
+<svg class="w-16 h-16 -rotate-90" viewbox="0 0 36 36">
+<!-- Background Circle -->
+<path class="text-surface-variant" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3"></path>
+<!-- Progress Circle (94%) -->
+<path class="text-primary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="94, 100" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center font-metric-display text-body-sm font-bold text-on-surface font-mono">
+                94%
+              </div>
+</div>
+<div>
+<div class="font-body-sm text-body-sm font-semibold text-on-surface">Audio Studio Confidence</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">DSP filter suppressing harmonic echo and background ambient noise.</div>
+</div>
+</div>
+<div class="space-y-space-xs pt-space-xs">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-outline">Average Vocal Pace</span>
+<span class="font-mono text-on-surface">144 WPM (Ideal: 135-150)</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-1.5 overflow-hidden">
+<div class="bg-tertiary h-1.5 rounded-full" style="width: 78%"></div>
+</div>
+<div class="flex items-center justify-between font-label-sm text-label-sm pt-space-xxs">
+<span class="text-outline">Microphone Input Headroom</span>
+<span class="font-mono text-on-surface">-18.4 dBFS (Calibrated)</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-1.5 overflow-hidden">
+<div class="bg-primary h-1.5 rounded-full" style="width: 86%"></div>
+</div>
+</div>
+</div>
+<!-- Upcoming Sparring Quick Card -->
+<div class="bg-gradient-to-br from-surface-container-low to-surface-container rounded-xl p-space-lg shadow-sm space-y-space-sm relative overflow-hidden">
+<div class="absolute -right-8 -bottom-8 w-28 h-28 bg-primary/10 rounded-full blur-2xl pointer-events-none"></div>
+<div class="font-label-sm text-label-sm text-primary uppercase font-mono font-semibold tracking-wider">Next Sparring Simulation</div>
+<div class="font-headline-md text-headline-md font-semibold text-on-surface">Global Distributed Spanner</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Tomorrow @ 10:30 AM PST · Sarah Chen (Stripe L6 Systems Lead AI)</div>
+<div class="pt-space-xs">
+<a class="inline-flex items-center gap-space-xs px-space-md py-space-xs bg-primary text-on-primary font-semibold text-body-sm rounded hover:bg-primary-fixed-dim transition-all shadow-sm" data-path="start-interview" href="#">
+<span class="material-symbols-outlined text-body-sm">arrow_forward</span>
+<span>Launch Interview Studio</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Simple client-side micro-interactions for notifications UI
+  document.getElementById('btn-mark-all-read')?.addEventListener('click', function() {
+    const unreadDots = document.querySelectorAll('[title="Unread"]');
+    unreadDots.forEach(dot => dot.style.display = 'none');
+    this.innerHTML = '<span class="material-symbols-outlined text-body-md text-tertiary">check</span><span>All Caught Up</span>';
+    this.classList.add('text-tertiary');
+  });
+
+  document.getElementById('btn-clear-read')?.addEventListener('click', function() {
+    const clearedMsg = document.createElement('div');
+    clearedMsg.className = 'p-space-sm bg-surface-container text-center rounded text-on-surface-variant font-label-sm text-label-sm animate-pulse';
+    clearedMsg.innerText = 'Read notifications archived for this session.';
+    this.parentElement.appendChild(clearedMsg);
+    setTimeout(() => clearedMsg.remove(), 2500);
+  });
+</script></main></div></body></html>

@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-primary-fixed-variant":"#004f58","background":"#101419","surface":"#101419","primary-fixed":"#97f0ff","surface-container-low":"#181c21","on-error":"#690005","on-secondary-fixed-variant":"#4f319c","error-container":"#93000a","surface-container-highest":"#31353b","tertiary":"#5ae9ac","on-primary-fixed":"#001f24","outline-variant":"#3c494b","inverse-on-surface":"#2d3136","on-primary":"#00363d","inverse-primary":"#006874","primary-fixed-dim":"#4fd8eb","on-tertiary":"#003824","on-background":"#e0e2ea","on-secondary-container":"#bea8ff","on-primary-container":"#004e57","surface-tint":"#4fd8eb","tertiary-fixed":"#6ffbbe","secondary-container":"#4f319c","on-surface":"#e0e2ea","secondary-fixed":"#e8ddff","error":"#ffb4ab","tertiary-fixed-dim":"#4edea3","on-tertiary-container":"#005136","surface-container-lowest":"#0a0e13","on-secondary":"#381385","outline":"#869395","on-tertiary-fixed":"#002113","tertiary-container":"#36cc92","inverse-surface":"#e0e2ea","secondary":"#cebdff","primary-container":"#35c6d9","on-tertiary-fixed-variant":"#005236","on-surface-variant":"#bbc9cb","surface-container-high":"#262a30","surface-variant":"#31353b","surface-dim":"#101419","primary":"#5ce2f6","surface-bright":"#36393f","secondary-fixed-dim":"#cebdff","on-secondary-fixed":"#21005e","on-error-container":"#ffdad6","surface-container":"#1c2025"},borderRadius:{DEFAULT:"0.125rem",lg:"0.25rem",xl:"0.5rem",full:"0.75rem"},spacing:{"space-xs":"0.25rem","space-sm":"0.5rem","space-md":"0.75rem","space-lg":"1rem","gutter":"1.25rem","gutter-desktop":"1.5rem","space-2xl":"2rem","space-xl":"1.5rem","space-xxs":"0.125rem","space-3xl":"3rem","margin":"1rem","margin-desktop":"2rem"},fontFamily:{"headline-lg":["Inter"],"label-md":["JetBrains Mono"],"body-sm":["Inter"],"body-md":["Inter"],"body-lg":["Inter"],"metric-display":["JetBrains Mono"],"display-lg":["Inter"],"headline-xl":["Inter"],"display-lg-mobile":["Inter"],"headline-md":["Inter"],"label-sm":["JetBrains Mono"]},fontSize:{"headline-lg":["24px",{lineHeight:"32px",letterSpacing:"-0.015em",fontWeight:"600"}],"label-md":["12px",{lineHeight:"16px",letterSpacing:"0.02em",fontWeight:"500"}],"body-sm":["13px",{lineHeight:"18px",letterSpacing:"0em",fontWeight:"400"}],"body-md":["14px",{lineHeight:"20px",letterSpacing:"0em",fontWeight:"400"}],"body-lg":["16px",{lineHeight:"24px",letterSpacing:"-0.005em",fontWeight:"400"}],"metric-display":["28px",{lineHeight:"32px",letterSpacing:"-0.02em",fontWeight:"600"}],"display-lg":["40px",{lineHeight:"48px",letterSpacing:"-0.02em",fontWeight:"600"}],"headline-xl":["32px",{lineHeight:"40px",letterSpacing:"-0.02em",fontWeight:"600"}],"display-lg-mobile":["30px",{lineHeight:"38px",letterSpacing:"-0.015em",fontWeight:"600"}],"headline-md":["20px",{lineHeight:"28px",letterSpacing:"-0.01em",fontWeight:"500"}],"label-sm":["11px",{lineHeight:"14px",letterSpacing:"0.04em",fontWeight:"500"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-screen w-72 bg-surface-container-low shadow-[0_1px_8px_rgba(0,0,0,0.4)] z-50 flex flex-col justify-between overflow-y-auto"><div class="flex flex-col"><div class="px-space-xl pt-space-xl pb-space-lg flex items-center gap-space-md"><img alt="FitCheck Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XyvNKovdL0RiY9Y1h3D-PiSnvQPGb8oKl58EGdmywCYi7eXJGVOKh9GoRQf3ZIMOByy8wx3xWYkvNl6RofzePktTRTvYGX8nt5Ng7nMaKS8pygod7vgBfm1c0tecTYM52xe3ojthEPlA3S_DcRxEQnOUXBw71O1DeOzUGCLyo4-EtBLJEWbED-FNdGGqnn6cwvBrRKK1WUJSjh5V3D7as4e_8qDrNMBasJUlkZ8HkePbTa7IvukUwemDY"/><div class="flex flex-col"><span class="font-headline-md text-headline-md tracking-tight font-bold text-on-surface leading-none">FitCheck</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mt-space-xxs">Get fit. Check fit.</span></div></div><div class="px-space-md py-space-sm"><a class="w-full flex items-center justify-center gap-space-sm px-space-md py-space-sm bg-primary text-on-primary font-headline-md text-body-sm font-semibold rounded-lg hover:bg-primary-fixed-dim hover:text-on-primary-fixed transition-all" data-path="start-interview" href="#"><span class="material-symbols-outlined text-body-md">mic</span><span>Start Interview</span></a></div><nav class="px-space-sm space-y-space-md pb-space-xl" data-active-classes="bg-surface-container-high text-primary font-semibold"><div class="space-y-space-xxs"><div class="px-space-md pt-space-xs pb-space-xxs font-label-sm text-label-sm uppercase tracking-wider text-outline">Overview</div><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="dashboard" href="#"><span class="font-body-sm text-body-sm">Dashboard</span></a></div><div class="space-y-space-xxs"><div class="px-space-md pt-space-xs pb-space-xxs font-label-sm text-label-sm uppercase tracking-wider text-outline">Prepare</div><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="my-profile" href="#"><span class="font-body-sm text-body-sm">My Profile</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="my-jobs" href="#"><span class="font-body-sm text-body-sm">My Jobs</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="interviewers" href="#"><span class="font-body-sm text-body-sm">Interviewers</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="practice-library" href="#"><span class="font-body-sm text-body-sm">Practice Library</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="learning-plan" href="#"><span class="font-body-sm text-body-sm">Learning Plan</span></a></div><div class="space-y-space-xxs"><div class="px-space-md pt-space-xs pb-space-xxs font-label-sm text-label-sm uppercase tracking-wider text-outline">Interviews</div><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="interview-history" href="#"><span class="font-body-sm text-body-sm">Interview History</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="evaluations" href="#"><span class="font-body-sm text-body-sm">Evaluations</span></a></div><div class="space-y-space-xxs"><div class="px-space-md pt-space-xs pb-space-xxs font-label-sm text-label-sm uppercase tracking-wider text-outline">Progress</div><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="my-progress" href="#"><span class="font-body-sm text-body-sm">My Progress</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="achievements" href="#"><span class="font-body-sm text-body-sm">Achievements</span></a></div><div class="space-y-space-xxs"><div class="px-space-md pt-space-xs pb-space-xxs font-label-sm text-label-sm uppercase tracking-wider text-outline">Personal</div><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="notifications" href="#"><span class="font-body-sm text-body-sm">Notifications</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="settings" href="#"><span class="font-body-sm text-body-sm">Settings</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="help-support" href="#"><span class="font-body-sm text-body-sm">Help &amp; Support</span></a></div></nav></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-low/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.3)] z-40 flex items-center justify-between px-space-xl"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs font-body-sm text-body-sm text-on-surface-variant"><span class="hover:text-on-surface transition-colors cursor-pointer">FitCheck</span><span class="material-symbols-outlined text-body-sm text-outline">chevron_right</span><span class="hover:text-on-surface transition-colors cursor-pointer">Prepare</span><span class="material-symbols-outlined text-body-sm text-outline">chevron_right</span><span class="text-on-surface font-medium">My Profile</span></div><div class="h-4 w-px bg-surface-container-highest mx-space-xs"></div><div class="flex items-center gap-space-xs px-space-sm py-space-xxs rounded bg-surface-container-high text-primary font-label-sm text-label-sm"><span class="material-symbols-outlined text-label-sm text-primary">flag</span><span>Target: Staff Systems Eng @ Stripe - 84% Ready</span></div></div><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-xs px-space-sm py-space-xxs rounded bg-surface-container-high text-tertiary font-label-sm text-label-sm"><span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span><span>Audio Ready (48kHz)</span></div><div class="flex items-center gap-space-sm pl-space-sm"><img alt="Alex M." class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAKyYEoe_BnmEHbN5PFncHzX6esxX1FK0XeEb4O8ZVy_Cu5_x1HNkZARGSgtJ11Ujp_2SsRuLWmLMeY7sm1LdgCvUgiQd9_8qj0nTDZqatYboQ_MSrDfimhotesNGTZmI20e7YHw0GM-VfAn_rjvO7K9MmzTB5ewun6U24N2p0Yf6E8w4Okwq5s0qt6TzS3AX5H0664pJf8c6DRrASzsBUlqT-0_ZIISWU5UtBE-F8dtcxhJJf2QdBFQ"/><div class="flex items-center cursor-pointer text-on-surface-variant hover:text-on-surface transition-colors"><span class="font-body-sm text-body-sm text-on-surface font-medium mr-space-xxs">Alex M.</span><span class="material-symbols-outlined text-body-sm">expand_more</span></div></div></div></header><main class="w-full pt-16 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<!-- Interactive Top Action / Notification Ribbon -->
+<div class="px-space-2xl pt-space-lg pb-space-sm flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+<span>STUDIO TELEMETRY ACTIVE</span>
+</span>
+<span class="text-outline text-label-sm font-label-sm">|</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">L6 Calibration Suite v4.8 · High-Intensity Interrogation Engine</span>
+</div>
+<div class="flex items-center gap-space-md">
+<span class="font-label-sm text-label-sm text-tertiary flex items-center gap-1">
+<span class="material-symbols-outlined text-label-sm">check_circle</span>
+<span>DSP Noise Gate: Active (Low Latency)</span>
+</span>
+<div class="h-3 w-px bg-surface-container-highest"></div>
+<button class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1 cursor-pointer">
+<span class="material-symbols-outlined text-label-sm">tune</span>
+<span>Interrogator Tuner</span>
+</button>
+</div>
+</div>
+<!-- Main Workstation Canvas -->
+<div class="px-space-2xl pb-space-3xl space-y-space-xl">
+<!-- Title & Executive Sparring Telemetry Header -->
+<div class="bg-surface-container-low rounded-xl p-space-xl shadow-xl relative overflow-hidden">
+<!-- Background Ambient Glow -->
+<div class="absolute -top-24 -right-24 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute -bottom-24 left-1/3 w-80 h-80 bg-secondary/5 rounded-full blur-3xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-space-xl">
+<div class="space-y-space-xs max-w-3xl">
+<div class="flex items-center gap-space-sm">
+<span class="font-label-sm text-label-sm px-space-xs py-0.5 rounded bg-surface-container-highest text-primary font-mono tracking-wider uppercase">DRILL LAB</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">TARGET: STRIPE L6 STAFF SYSTEMS</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface font-semibold tracking-tight">
+            Practice Library &amp; Rapid Sparring Drills
+          </h1>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Bite-sized, high-pressure 10–20 minute Socratic interrogations designed to stress-test architectural intuition, failure recovery reflexes, and trade-off defense before multi-hour executive loops.
+          </p>
+</div>
+<!-- Action Callouts -->
+<div class="flex flex-wrap lg:flex-nowrap items-center gap-space-md shrink-0">
+<button class="group flex items-center gap-space-sm px-space-lg py-space-sm rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-body-sm text-body-sm transition-all duration-200 shadow-sm cursor-pointer">
+<span class="material-symbols-outlined text-primary group-hover:rotate-45 transition-transform duration-300">smart_toy</span>
+<span class="font-medium">Custom Drill Synthesizer</span>
+</button>
+<button class="flex items-center gap-space-sm px-space-xl py-space-sm rounded bg-primary text-on-primary font-body-sm text-body-sm font-semibold hover:bg-primary-fixed-dim transition-all duration-150 shadow-md hover:shadow-primary/20 cursor-pointer">
+<span class="material-symbols-outlined text-on-primary">bolt</span>
+<span>Quick Random Spar (15m)</span>
+</button>
+</div>
+</div>
+<!-- Telemetry Strip -->
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-space-md pt-space-xl mt-space-xl bg-surface-container/60 p-space-md rounded-lg">
+<div class="flex flex-col px-space-sm">
+<span class="font-label-sm text-label-sm text-outline font-mono uppercase tracking-wider">Calibrated Drills</span>
+<div class="flex items-baseline gap-space-xs mt-space-xxs">
+<span class="font-metric-display text-metric-display text-on-surface font-mono">42</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">Available</span>
+</div>
+<span class="font-label-sm text-label-sm text-tertiary flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-label-sm">verified</span>
+            Stripe L6 Matrix Mapped
+          </span>
+</div>
+<div class="flex flex-col px-space-sm">
+<span class="font-label-sm text-label-sm text-outline font-mono uppercase tracking-wider">Completion Cadence</span>
+<div class="flex items-baseline gap-space-xs mt-space-xxs">
+<span class="font-metric-display text-metric-display text-on-surface font-mono">11</span>
+<span class="font-label-sm text-label-sm text-outline font-mono">/ 42</span>
+<span class="font-label-sm text-label-sm text-primary font-mono ml-auto">26%</span>
+</div>
+<!-- Progress Bar -->
+<div class="w-full h-1 bg-surface-container-highest rounded-full overflow-hidden mt-2">
+<div class="h-full bg-primary" style="width: 26%;"></div>
+</div>
+</div>
+<div class="flex flex-col px-space-sm">
+<span class="font-label-sm text-label-sm text-outline font-mono uppercase tracking-wider">Avg Interrogation Score</span>
+<div class="flex items-baseline gap-space-xs mt-space-xxs">
+<span class="font-metric-display text-metric-display text-tertiary font-mono">87.4%</span>
+<span class="font-label-sm text-label-sm px-1.5 py-0.2 rounded bg-tertiary/10 text-tertiary font-mono">L6 Pass: 85%</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline mt-1 font-mono">Trajectory: +4.2% (last 7 days)</span>
+</div>
+<div class="flex flex-col px-space-sm">
+<span class="font-label-sm text-label-sm text-error font-mono uppercase tracking-wider flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+            High Priority Remediation Gap
+          </span>
+<div class="mt-space-xxs font-body-sm text-body-sm font-medium text-on-surface truncate">
+            Tail Latency &amp; GC Pause Triage
+          </div>
+<span class="font-label-sm text-label-sm text-error font-mono mt-1">Pushback Vulnerability Detected</span>
+</div>
+</div>
+</div>
+<!-- Targeted Remediation Callout: Elena's Urgent Sparring Vector -->
+<div class="space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-2 h-2 bg-error rounded-full animate-ping"></div>
+<h2 class="font-headline-md text-headline-md font-semibold text-on-surface tracking-tight">
+            High-ROI Remediation Drills for Elena
+          </h2>
+<span class="font-label-sm text-label-sm px-space-sm py-0.5 rounded bg-error-container/30 text-error font-mono font-medium">
+            2 Urgent Gaps from Stripe Systems Mock #3
+          </span>
+</div>
+<a class="font-label-md text-label-md text-primary hover:text-primary-fixed-dim transition-colors flex items-center gap-1" href="#">
+<span>Inspect Full Gap Topology</span>
+<span class="material-symbols-outlined text-label-md">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-space-lg">
+<!-- Urgent Drill 1 -->
+<div class="bg-surface-container-low rounded-xl p-space-lg shadow-lg relative flex flex-col justify-between overflow-hidden group hover:bg-surface-container transition-all duration-200">
+<div class="absolute top-0 left-0 w-1.5 h-full bg-error"></div>
+<div class="space-y-space-md pl-space-xs">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="px-space-sm py-0.5 rounded bg-error/15 text-error font-label-sm text-label-sm font-mono font-medium uppercase tracking-wider">CRITICAL REMEDIATION</span>
+<span class="px-space-sm py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm font-mono">15m FLASH DRILL</span>
+<span class="px-space-sm py-0.5 rounded bg-primary/10 text-primary font-label-sm text-label-sm font-mono">L6 STAFF</span>
+</div>
+<div class="flex items-center gap-1 px-space-xs py-0.5 rounded bg-surface-container-highest text-on-surface font-label-sm text-label-sm font-mono shrink-0">
+<span class="material-symbols-outlined text-label-sm text-error">gavel</span>
+<span>88% Pushback Hostility</span>
+</div>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md font-semibold text-on-surface group-hover:text-primary transition-colors">
+                JVM &amp; Go GC Pause Mitigation in Ultra-Low Latency RPC Pipelines
+              </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-relaxed">
+                Interrogator simulates sudden P99.9 spikes exceeding 120ms at 200,000 QPS. You must articulate memory arena allocation, generational pause limits, off-heap caching, and thread pool pinning without hand-wavy generalizations.
+              </p>
+</div>
+<div class="flex items-center justify-between p-space-sm rounded bg-surface-container-lowest">
+<div class="flex items-center gap-space-sm">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="Close up realistic portrait of Marcus Vance, a stern senior principal infrastructure systems architect with short salt and pepper hair, rimless glasses, wearing a dark technical turtleneck in a moody sound treated recording studio with cyan ambient lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuChdkbX_0_hdfJA6KPurI2OBD2oMEwuGDXXg8Vji5NFRoviWxcpEZZfqfXPQz4D-pUAbMh83dQIK8r7LHS03r3gekMnH5tfWs35acq0r7p_zbkwDJ2nv3H9yM1Rk8PkQN_-ZcpUy1FS9lEtsZ4PwfJZ8pJOmtpsFp_9xny-PPDsy1jLSYhBXpwp21fqEKiL0JeM5n0PwyyqJnNdybtoyajC5puHKiCPtKKvPiBrMUOwf46sCZyMqBx4Xw"/>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface font-medium">Marcus Vance</span>
+<span class="font-label-sm text-label-sm text-outline font-mono">Calibrated Interrogator · Socratic Hostile</span>
+</div>
+</div>
+<div class="text-right font-mono">
+<span class="font-label-sm text-label-sm text-outline block">Elena's Last Score</span>
+<span class="font-label-sm text-label-sm text-error font-bold">72.1% (Needs 85%+)</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex items-center gap-space-xs text-outline font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-label-sm">rule</span>
+<span>Rubric Focus: P99 Profiling, OS Page Cache, Zero-Copy</span>
+</div>
+<button class="flex items-center gap-space-xs px-space-lg py-space-xs rounded bg-primary text-on-primary font-body-sm text-body-sm font-semibold hover:bg-primary-fixed-dim transition-colors shadow-sm cursor-pointer">
+<span class="material-symbols-outlined text-body-sm">mic</span>
+<span>Launch Sparring (15m)</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Urgent Drill 2 -->
+<div class="bg-surface-container-low rounded-xl p-space-lg shadow-lg relative flex flex-col justify-between overflow-hidden group hover:bg-surface-container transition-all duration-200">
+<div class="absolute top-0 left-0 w-1.5 h-full bg-secondary"></div>
+<div class="space-y-space-md pl-space-xs">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="px-space-sm py-0.5 rounded bg-secondary/15 text-secondary font-label-sm text-label-sm font-mono font-medium uppercase tracking-wider">CORE ARCHITECTURE</span>
+<span class="px-space-sm py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm font-mono">20m DEEP PROBE</span>
+<span class="px-space-sm py-0.5 rounded bg-primary/10 text-primary font-label-sm text-label-sm font-mono">L6 STAFF</span>
+</div>
+<div class="flex items-center gap-1 px-space-xs py-0.5 rounded bg-surface-container-highest text-on-surface font-label-sm text-label-sm font-mono shrink-0">
+<span class="material-symbols-outlined text-label-sm text-secondary">psychology</span>
+<span>91% Pushback Hostility</span>
+</div>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md font-semibold text-on-surface group-hover:text-primary transition-colors">
+                Raft Split-Brain Partition Recovery &amp; Monotonic Lease Reads
+              </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-relaxed">
+                Direct stress-testing on handling stale leader reads during an asymmetric network partition. Interrogator will challenge your election timeout math, leader leases, and write quorum invariants under continuous network flap.
+              </p>
+</div>
+<div class="flex items-center justify-between p-space-sm rounded bg-surface-container-lowest">
+<div class="flex items-center gap-space-sm">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="Realistic headshot portrait of Dr. Sarah Chen, sharp distributed database expert engineer with black hair pulled back, wearing a slate grey minimalist jacket in an engineered studio workstation environment with dark acoustic panels." src="https://lh3.googleusercontent.com/aida-public/AB6AXuABZstrJ1IH9ypfKKss96CmfeqJtjMw4ykddJCswJzVJg0VxxVCbE9XxWe0jY1mxz3VEH04b9xrw_FoOLvB-ZjJC_RtgWpSAXN8JAZMaqTNMfmuCaNfGZzXN_o1dzsczCz0noT449DPT4BCwdQy60xc7DqWrlipKYARaA-R_2eyMRpVuMmX4BR6Qjxt-RFh6DuyBpykJ2kFmYqePK2ew8Nc4gSOW-ioRyMwkwBwSbeD82NI68g0JGgg_g"/>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface font-medium">Sarah Chen, PhD</span>
+<span class="font-label-sm text-label-sm text-outline font-mono">Calibrated Interrogator · Invariant Sceptic</span>
+</div>
+</div>
+<div class="text-right font-mono">
+<span class="font-label-sm text-label-sm text-outline block">Status</span>
+<span class="font-label-sm text-label-sm text-on-surface font-medium">Unattempted (Priority Gap)</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex items-center gap-space-xs text-outline font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-label-sm">rule</span>
+<span>Rubric Focus: Linearizability, Split-Brain Guarantees</span>
+</div>
+<button class="flex items-center gap-space-xs px-space-lg py-space-xs rounded bg-surface-container-high hover:bg-surface-container-highest text-primary font-body-sm text-body-sm font-medium transition-colors shadow-sm cursor-pointer">
+<span class="material-symbols-outlined text-body-sm">mic</span>
+<span>Launch Sparring (20m)</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Filter & Discipline Matrix Toolbar -->
+<div class="bg-surface-container-low rounded-xl p-space-lg shadow-md space-y-space-md">
+<!-- Top Row: Search & Status Indicators -->
+<div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-space-md">
+<!-- Search Input -->
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-space-md top-1/2 -translate-y-1/2 text-outline text-body-md pointer-events-none">search</span>
+<input class="w-full h-10 pl-10 pr-space-md bg-surface-container-lowest text-on-surface placeholder:text-outline rounded font-body-sm text-body-sm outline-none focus:bg-surface-container transition-colors" placeholder="Search drills by topic, primitive, failure mode (e.g. Raft, LSM, B-Tree, Split-Brain, DPDK, GC)..." type="text"/>
+<span class="absolute right-space-md top-1/2 -translate-y-1/2 font-label-sm text-label-sm font-mono text-outline hidden sm:block">⌘K</span>
+</div>
+<!-- Fast View Toggles -->
+<div class="flex items-center gap-space-xs shrink-0 self-end md:self-auto">
+<span class="font-label-sm text-label-sm text-outline mr-1 font-mono uppercase">Sorting:</span>
+<button class="px-space-sm py-1.5 rounded bg-surface-container-high text-primary font-label-sm text-label-sm font-medium cursor-pointer">Relevance (L6 Gap)</button>
+<button class="px-space-sm py-1.5 rounded hover:bg-surface-container text-on-surface-variant font-label-sm text-label-sm cursor-pointer">Hostility Desc</button>
+<button class="px-space-sm py-1.5 rounded hover:bg-surface-container text-on-surface-variant font-label-sm text-label-sm cursor-pointer">Shortest First</button>
+</div>
+</div>
+<!-- Category Filter Tabs -->
+<div class="flex items-center gap-space-xs overflow-x-auto pb-space-xs scrollbar-none">
+<button class="px-space-md py-space-xs rounded bg-primary text-on-primary font-body-sm text-body-sm font-semibold shrink-0 cursor-pointer flex items-center gap-space-xs">
+<span>All Drills</span>
+<span class="px-1.5 py-0.2 rounded-full bg-on-primary/20 text-on-primary font-mono text-label-sm">42</span>
+</button>
+<button class="px-space-md py-space-xs rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-on-surface font-body-sm text-body-sm shrink-0 transition-colors cursor-pointer flex items-center gap-space-xs">
+<span>Consensus &amp; Replication</span>
+<span class="px-1.5 py-0.2 rounded-full bg-surface-container-lowest text-outline font-mono text-label-sm">8</span>
+</button>
+<button class="px-space-md py-space-xs rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-on-surface font-body-sm text-body-sm shrink-0 transition-colors cursor-pointer flex items-center gap-space-xs">
+<span>Storage Engines &amp; LSM</span>
+<span class="px-1.5 py-0.2 rounded-full bg-surface-container-lowest text-outline font-mono text-label-sm">9</span>
+</button>
+<button class="px-space-md py-space-xs rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-on-surface font-body-sm text-body-sm shrink-0 transition-colors cursor-pointer flex items-center gap-space-xs">
+<span>High-Throughput &amp; P99</span>
+<span class="px-1.5 py-0.2 rounded-full bg-surface-container-lowest text-outline font-mono text-label-sm">7</span>
+</button>
+<button class="px-space-md py-space-xs rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-on-surface font-body-sm text-body-sm shrink-0 transition-colors cursor-pointer flex items-center gap-space-xs">
+<span>Incident Triage &amp; Chaos</span>
+<span class="px-1.5 py-0.2 rounded-full bg-surface-container-lowest text-outline font-mono text-label-sm">6</span>
+</button>
+<button class="px-space-md py-space-xs rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-on-surface font-body-sm text-body-sm shrink-0 transition-colors cursor-pointer flex items-center gap-space-xs">
+<span>Executive Conflict</span>
+<span class="px-1.5 py-0.2 rounded-full bg-surface-container-lowest text-outline font-mono text-label-sm">7</span>
+</button>
+<button class="px-space-md py-space-xs rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-on-surface font-body-sm text-body-sm shrink-0 transition-colors cursor-pointer flex items-center gap-space-xs">
+<span>Security &amp; Zero-Trust</span>
+<span class="px-1.5 py-0.2 rounded-full bg-surface-container-lowest text-outline font-mono text-label-sm">5</span>
+</button>
+</div>
+<!-- Secondary Detailed Filter Chips Grid -->
+<div class="flex flex-wrap items-center justify-between gap-space-md pt-space-xs bg-surface-container-lowest/50 p-space-sm rounded">
+<div class="flex flex-wrap items-center gap-space-md">
+<!-- Difficulty Filter -->
+<div class="flex items-center gap-1.5">
+<span class="font-label-sm text-label-sm text-outline font-mono uppercase">Level:</span>
+<div class="flex items-center gap-1">
+<button class="px-2 py-0.5 rounded text-label-sm font-label-sm font-mono text-on-surface-variant hover:text-on-surface cursor-pointer">L5</button>
+<button class="px-2 py-0.5 rounded bg-primary/15 text-primary text-label-sm font-label-sm font-mono font-semibold cursor-pointer">L6 Staff</button>
+<button class="px-2 py-0.5 rounded text-label-sm font-label-sm font-mono text-on-surface-variant hover:text-on-surface cursor-pointer">L7 Principal</button>
+</div>
+</div>
+<div class="h-3 w-px bg-surface-container-highest"></div>
+<!-- Duration Filter -->
+<div class="flex items-center gap-1.5">
+<span class="font-label-sm text-label-sm text-outline font-mono uppercase">Duration:</span>
+<div class="flex items-center gap-1">
+<button class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface text-label-sm font-label-sm font-mono cursor-pointer">All</button>
+<button class="px-2 py-0.5 rounded hover:bg-surface-container text-on-surface-variant text-label-sm font-label-sm font-mono cursor-pointer">10m Flash</button>
+<button class="px-2 py-0.5 rounded hover:bg-surface-container text-on-surface-variant text-label-sm font-label-sm font-mono cursor-pointer">15m Standard</button>
+<button class="px-2 py-0.5 rounded hover:bg-surface-container text-on-surface-variant text-label-sm font-label-sm font-mono cursor-pointer">20m Probe</button>
+</div>
+</div>
+<div class="h-3 w-px bg-surface-container-highest"></div>
+<!-- Mastery Filter -->
+<div class="flex items-center gap-1.5">
+<span class="font-label-sm text-label-sm text-outline font-mono uppercase">Status:</span>
+<div class="flex items-center gap-1">
+<button class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface text-label-sm font-label-sm font-mono cursor-pointer">All</button>
+<button class="px-2 py-0.5 rounded hover:bg-surface-container text-on-surface-variant text-label-sm font-label-sm font-mono cursor-pointer">Unattempted</button>
+<button class="px-2 py-0.5 rounded hover:bg-surface-container text-tertiary text-label-sm font-label-sm font-mono cursor-pointer">Mastered (≥85%)</button>
+<button class="px-2 py-0.5 rounded hover:bg-surface-container text-error text-label-sm font-label-sm font-mono cursor-pointer">Remediation</button>
+</div>
+</div>
+</div>
+<!-- Matched Persona Filter -->
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-outline font-mono uppercase">Interviewer:</span>
+<select class="bg-surface-container-high text-on-surface font-label-sm text-label-sm rounded px-2 py-1 outline-none font-mono cursor-pointer">
+<option>All Personas (3)</option>
+<option>Marcus Vance (Hostile Systems Lead)</option>
+<option>Sarah Chen (Formal Invariant Sceptic)</option>
+<option>Alex Rivera (Pragmatic Chaos SRE)</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Main Practice Drills Grid: 6 Distinct Calibrated Scenarios -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg">
+<!-- Drill 1: Distributed Monotonic Sequences -->
+<div class="bg-surface-container-low rounded-xl p-space-lg flex flex-col justify-between shadow-lg relative group hover:bg-surface-container transition-all duration-200">
+<div class="space-y-space-md">
+<!-- Card Header Badges -->
+<div class="flex items-start justify-between gap-space-xs">
+<span class="px-space-xs py-0.5 rounded bg-surface-container-highest text-primary font-mono font-semibold font-label-sm text-label-sm">
+              L6 STAFF
+            </span>
+<div class="flex items-center gap-1 px-space-xs py-0.5 rounded bg-tertiary/10 text-tertiary font-label-sm text-label-sm font-mono">
+<span class="material-symbols-outlined text-label-sm">verified</span>
+<span>Mastered (91%)</span>
+</div>
+</div>
+<div>
+<div class="flex items-center gap-space-xs text-outline font-label-sm text-label-sm font-mono mb-1">
+<span class="text-on-surface-variant font-medium">DISTRIBUTED SYSTEMS</span>
+<span>·</span>
+<span>15 MIN</span>
+</div>
+<h3 class="font-headline-md text-headline-md font-semibold text-on-surface group-hover:text-primary transition-colors leading-snug">
+              Multi-Region Monotonic Sequence Generation without Single Bottlenecks
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-relaxed">
+              Socratic grilling on Twitter Snowflake vs Raft log sequence numbers vs Cockroach Hybrid Logical Clocks (HLC) during high multi-cloud cross-traffic.
+            </p>
+</div>
+<!-- Prompt Audio Preview Waveform Mock -->
+<div class="p-space-xs rounded bg-surface-container-lowest flex items-center justify-between gap-space-sm">
+<button class="w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors cursor-pointer shrink-0">
+<span class="material-symbols-outlined text-body-sm">play_arrow</span>
+</button>
+<div class="flex-1 flex items-center gap-0.5 h-4">
+<div class="w-1 h-2 bg-primary rounded-full"></div>
+<div class="w-1 h-3 bg-primary rounded-full"></div>
+<div class="w-1 h-4 bg-primary rounded-full"></div>
+<div class="w-1 h-2 bg-primary/40 rounded-full"></div>
+<div class="w-1 h-3 bg-primary rounded-full"></div>
+<div class="w-1 h-1 bg-primary/40 rounded-full"></div>
+<div class="w-1 h-4 bg-secondary rounded-full"></div>
+<div class="w-1 h-3 bg-secondary rounded-full"></div>
+<div class="w-1 h-2 bg-primary/30 rounded-full"></div>
+<div class="w-1 h-3 bg-primary/50 rounded-full"></div>
+<div class="w-1 h-1 bg-primary/20 rounded-full"></div>
+<div class="w-1 h-2 bg-primary/30 rounded-full"></div>
+</div>
+<span class="font-label-sm text-label-sm text-outline font-mono">0:24 Sample</span>
+</div>
+<!-- Interrogator & Pushback Intensity -->
+<div class="space-y-space-xs pt-space-xs">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-outline font-mono">Cognitive Pushback Pressure</span>
+<span class="text-error font-mono font-medium">92% Hostile</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary via-secondary to-error" style="width: 92%;"></div>
+</div>
+</div>
+</div>
+<div class="pt-space-lg mt-space-md space-y-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<img class="w-6 h-6 rounded-full object-cover" data-alt="Headshot of Dr. Sarah Chen, sharp systems interrogator with calm expression and dark hair in sleek dark tech studio." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAau-HaqzzpArGrTtQbVM1D7DpZ7ueEDl9ujoIW1lkqQUbQLHsovmAhpa1kQkg4NhEFD-UcuL_06UJOOcMdpsAbs7rRGwdr6Z_enU31tImwYirzv6XOkQS330K1z1Wk1GmWAmIXYOT7R20uYBvCLuFB0s9yqPrFuYtO70f98sztcq9yqE5uzPOt4cTSzNhcH-pi6HvB1P7dAdoRQtVA2fLBjhr4i15p3EuTP5mZTyRDq9cqYJzzZ5POuw"/>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">Sarah Chen, PhD</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline font-mono">Last Run: 2d ago</span>
+</div>
+<div class="grid grid-cols-2 gap-space-xs">
+<button class="w-full py-space-xs px-space-xs rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm font-medium transition-colors text-center cursor-pointer">
+              View Rubric
+            </button>
+<button class="w-full py-space-xs px-space-xs rounded bg-primary text-on-primary font-label-sm text-label-sm font-semibold hover:bg-primary-fixed-dim transition-colors text-center cursor-pointer flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-label-sm">mic</span>
+<span>Spar Again</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Drill 2: RocksDB Write Stall & Compaction Debt -->
+<div class="bg-surface-container-low rounded-xl p-space-lg flex flex-col justify-between shadow-lg relative group hover:bg-surface-container transition-all duration-200">
+<div class="space-y-space-md">
+<!-- Card Header Badges -->
+<div class="flex items-start justify-between gap-space-xs">
+<span class="px-space-xs py-0.5 rounded bg-surface-container-highest text-primary font-mono font-semibold font-label-sm text-label-sm">
+              L6 STAFF
+            </span>
+<div class="flex items-center gap-1 px-space-xs py-0.5 rounded bg-error/10 text-error font-label-sm text-label-sm font-mono">
+<span class="material-symbols-outlined text-label-sm">warning</span>
+<span>Needs Remediation (74%)</span>
+</div>
+</div>
+<div>
+<div class="flex items-center gap-space-xs text-outline font-label-sm text-label-sm font-mono mb-1">
+<span class="text-on-surface-variant font-medium">STORAGE ENGINES</span>
+<span>·</span>
+<span>15 MIN</span>
+</div>
+<h3 class="font-headline-md text-headline-md font-semibold text-on-surface group-hover:text-primary transition-colors leading-snug">
+              RocksDB Write Stall &amp; Compaction Debt Under 50,000 IOPS
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-relaxed">
+              Tuning memtable flush thresholds, L0-to-L1 compaction concurrency, write-rate limiting tokens, and preventing catastrophic write halts in high-volume ingestion nodes.
+            </p>
+</div>
+<!-- Prompt Audio Preview Waveform Mock -->
+<div class="p-space-xs rounded bg-surface-container-lowest flex items-center justify-between gap-space-sm">
+<button class="w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors cursor-pointer shrink-0">
+<span class="material-symbols-outlined text-body-sm">play_arrow</span>
+</button>
+<div class="flex-1 flex items-center gap-0.5 h-4">
+<div class="w-1 h-1 bg-primary/30 rounded-full"></div>
+<div class="w-1 h-2 bg-primary/40 rounded-full"></div>
+<div class="w-1 h-4 bg-primary rounded-full"></div>
+<div class="w-1 h-3 bg-primary rounded-full"></div>
+<div class="w-1 h-4 bg-error rounded-full"></div>
+<div class="w-1 h-3 bg-error rounded-full"></div>
+<div class="w-1 h-2 bg-primary/60 rounded-full"></div>
+<div class="w-1 h-1 bg-primary/30 rounded-full"></div>
+</div>
+<span class="font-label-sm text-label-sm text-outline font-mono">0:18 Sample</span>
+</div>
+<!-- Pushback Meter -->
+<div class="space-y-space-xs pt-space-xs">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-outline font-mono">Cognitive Pushback Pressure</span>
+<span class="text-error font-mono font-medium">88% Hostile</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary via-secondary to-error" style="width: 88%;"></div>
+</div>
+</div>
+</div>
+<div class="pt-space-lg mt-space-md space-y-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<img class="w-6 h-6 rounded-full object-cover" data-alt="Portrait of Marcus Vance, senior systems interviewer with stern focused gaze, salt and pepper hair in audio studio setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9DjznbAlE7CEhdV3BeZwVpcBnWkDthqK0HlbnFzyl4IYE1DcIseBBk8AnxLJDE9ZqtY2QjzPwa0idfV7IwHZ7k8Ukr3-aAP66f94-Ov2RPlfV8c_JvJoWCzZ6E_kK-GGw17I6CPz78IZYN1MTfhXB8FSunT604gSE7t2bF3E5jcunHmyrgVaTpNoVezUZqiXr3C5qqUmVKCWSwu5K1ayPrpsMSk_TL7KpF-UrSXx_pOLjbBqQgDozfA"/>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">Marcus Vance</span>
+</div>
+<span class="font-label-sm text-label-sm text-error font-mono">Failed on: L0 File Spill</span>
+</div>
+<div class="grid grid-cols-2 gap-space-xs">
+<button class="w-full py-space-xs px-space-xs rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm font-medium transition-colors text-center cursor-pointer">
+              Review Transcript
+            </button>
+<button class="w-full py-space-xs px-space-xs rounded bg-primary text-on-primary font-label-sm text-label-sm font-semibold hover:bg-primary-fixed-dim transition-colors text-center cursor-pointer flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-label-sm">mic</span>
+<span>Retake Drill</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Drill 3: Zero-Copy Network Buffering & DPDK -->
+<div class="bg-surface-container-low rounded-xl p-space-lg flex flex-col justify-between shadow-lg relative group hover:bg-surface-container transition-all duration-200">
+<div class="space-y-space-md">
+<!-- Card Header Badges -->
+<div class="flex items-start justify-between gap-space-xs">
+<span class="px-space-xs py-0.5 rounded bg-secondary/15 text-secondary font-mono font-semibold font-label-sm text-label-sm">
+              L7 PRINCIPAL
+            </span>
+<div class="flex items-center gap-1 px-space-xs py-0.5 rounded bg-surface-container-highest text-outline font-label-sm text-label-sm font-mono">
+<span>Unattempted</span>
+</div>
+</div>
+<div>
+<div class="flex items-center gap-space-xs text-outline font-label-sm text-label-sm font-mono mb-1">
+<span class="text-on-surface-variant font-medium">NETWORKING &amp; KERNEL</span>
+<span>·</span>
+<span>20 MIN</span>
+</div>
+<h3 class="font-headline-md text-headline-md font-semibold text-on-surface group-hover:text-primary transition-colors leading-snug">
+              Zero-Copy Network Buffering &amp; DPDK Kernel Bypass in Edge Proxies
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-relaxed">
+              Evaluating ring buffer sizing, cache line false sharing, NUMA memory locality, and kernel context switch elimination during multi-terabit edge routing.
+            </p>
+</div>
+<!-- Prompt Audio Preview Waveform Mock -->
+<div class="p-space-xs rounded bg-surface-container-lowest flex items-center justify-between gap-space-sm">
+<button class="w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors cursor-pointer shrink-0">
+<span class="material-symbols-outlined text-body-sm">play_arrow</span>
+</button>
+<div class="flex-1 flex items-center gap-0.5 h-4">
+<div class="w-1 h-3 bg-secondary rounded-full"></div>
+<div class="w-1 h-4 bg-secondary rounded-full"></div>
+<div class="w-1 h-4 bg-secondary rounded-full"></div>
+<div class="w-1 h-2 bg-secondary/50 rounded-full"></div>
+<div class="w-1 h-1 bg-secondary/20 rounded-full"></div>
+<div class="w-1 h-3 bg-secondary rounded-full"></div>
+</div>
+<span class="font-label-sm text-label-sm text-outline font-mono">0:31 Sample</span>
+</div>
+<!-- Pushback Meter -->
+<div class="space-y-space-xs pt-space-xs">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-outline font-mono">Cognitive Pushback Pressure</span>
+<span class="text-error font-mono font-medium">95% Hostile</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary via-secondary to-error" style="width: 95%;"></div>
+</div>
+</div>
+</div>
+<div class="pt-space-lg mt-space-md space-y-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<img class="w-6 h-6 rounded-full object-cover" data-alt="Close up realistic portrait of Alex Rivera, pragmatic site reliability engineering architect with slight beard and glasses in high-tech studio environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKqLxfP_SPXWJgw1JrVtQkaDVzJsVOND04z8SsIBwFbbtxyQ5ltj9GtfO7VU6wbkMGnZ5zOOn9vE_saXHgazJrDD28bAvGjP7j3xqiW6AvmUsyouYwbdUAxl2-x1tbwCaAOS07dgkqf53A-W0WPrdxQoRp2qwUTk01FvRpBM9vn3oDilJfNO63EU5wUDMll5qiKBcJ2KzHNX6cc1tJOpjlwLlsFGegYZHF-i4ZZo9YO52JVQg0ybnN-g"/>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">Alex Rivera</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline font-mono">Rubric: eBPF vs DPDK</span>
+</div>
+<div class="grid grid-cols-2 gap-space-xs">
+<button class="w-full py-space-xs px-space-xs rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm font-medium transition-colors text-center cursor-pointer">
+              Inspect Rubric
+            </button>
+<button class="w-full py-space-xs px-space-xs rounded bg-primary text-on-primary font-label-sm text-label-sm font-semibold hover:bg-primary-fixed-dim transition-colors text-center cursor-pointer flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-label-sm">mic</span>
+<span>Start Sparring</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Drill 4: Defending Architectural Compromise to VP -->
+<div class="bg-surface-container-low rounded-xl p-space-lg flex flex-col justify-between shadow-lg relative group hover:bg-surface-container transition-all duration-200">
+<div class="space-y-space-md">
+<!-- Card Header Badges -->
+<div class="flex items-start justify-between gap-space-xs">
+<span class="px-space-xs py-0.5 rounded bg-surface-container-highest text-primary font-mono font-semibold font-label-sm text-label-sm">
+              L6 STAFF
+            </span>
+<div class="flex items-center gap-1 px-space-xs py-0.5 rounded bg-tertiary/10 text-tertiary font-label-sm text-label-sm font-mono">
+<span class="material-symbols-outlined text-label-sm">verified</span>
+<span>Mastered (88%)</span>
+</div>
+</div>
+<div>
+<div class="flex items-center gap-space-xs text-outline font-label-sm text-label-sm font-mono mb-1">
+<span class="text-on-surface-variant font-medium">BEHAVIORAL &amp; INFLUENCE</span>
+<span>·</span>
+<span>15 MIN</span>
+</div>
+<h3 class="font-headline-md text-headline-md font-semibold text-on-surface group-hover:text-primary transition-colors leading-snug">
+              Defending an Asymmetric Architectural Compromise to an Opposed VP
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-relaxed">
+              Handling relentless skepticism when presenting a 9-month critical technical debt paydown over an aggressive Q3 commercial product feature commitment.
+            </p>
+</div>
+<!-- Prompt Audio Preview Waveform Mock -->
+<div class="p-space-xs rounded bg-surface-container-lowest flex items-center justify-between gap-space-sm">
+<button class="w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors cursor-pointer shrink-0">
+<span class="material-symbols-outlined text-body-sm">play_arrow</span>
+</button>
+<div class="flex-1 flex items-center gap-0.5 h-4">
+<div class="w-1 h-2 bg-primary rounded-full"></div>
+<div class="w-1 h-3 bg-primary rounded-full"></div>
+<div class="w-1 h-1 bg-primary/40 rounded-full"></div>
+<div class="w-1 h-4 bg-primary rounded-full"></div>
+<div class="w-1 h-3 bg-secondary rounded-full"></div>
+<div class="w-1 h-2 bg-primary/30 rounded-full"></div>
+</div>
+<span class="font-label-sm text-label-sm text-outline font-mono">0:20 Sample</span>
+</div>
+<!-- Pushback Meter -->
+<div class="space-y-space-xs pt-space-xs">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-outline font-mono">Cognitive Pushback Pressure</span>
+<span class="text-tertiary font-mono font-medium">78% Measured</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary to-secondary" style="width: 78%;"></div>
+</div>
+</div>
+</div>
+<div class="pt-space-lg mt-space-md space-y-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<img class="w-6 h-6 rounded-full object-cover" data-alt="Executive female interviewer portrait, confident leadership presence, dark hair, in professional soundproofed conference studio." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6OCmV81LMC0S3JfX5lZj8GEKApG_Qa5KRccBoa4QZX0visrZ_-LUl0egiUiZb_10-wRJE04UavfpJ409bnI-RzAhrbcRvdsPnykesWXrmm-gj5h7_jdi6tDJebpF27jlSSBzkhc_IbQ757YerTKjcPOXc4hwU4bv2U13dn7sOS3D-4HBzY9vXfYdwVNypvkhRwtvRE0rXaTJ6y6wEsdGy8YsNgSazPLca0lmZ1AZ0TD4h15w7xyjsDA"/>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">Evelyn Reed (VP Eng Persona)</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline font-mono">Last Run: 4d ago</span>
+</div>
+<div class="grid grid-cols-2 gap-space-xs">
+<button class="w-full py-space-xs px-space-xs rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm font-medium transition-colors text-center cursor-pointer">
+              View Rubric
+            </button>
+<button class="w-full py-space-xs px-space-xs rounded bg-primary text-on-primary font-label-sm text-label-sm font-semibold hover:bg-primary-fixed-dim transition-colors text-center cursor-pointer flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-label-sm">mic</span>
+<span>Spar Again</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Drill 5: Distributed Deadlock Detection -->
+<div class="bg-surface-container-low rounded-xl p-space-lg flex flex-col justify-between shadow-lg relative group hover:bg-surface-container transition-all duration-200">
+<div class="space-y-space-md">
+<!-- Card Header Badges -->
+<div class="flex items-start justify-between gap-space-xs">
+<span class="px-space-xs py-0.5 rounded bg-surface-container-highest text-primary font-mono font-semibold font-label-sm text-label-sm">
+              L6 STAFF
+            </span>
+<div class="flex items-center gap-1 px-space-xs py-0.5 rounded bg-surface-container-highest text-outline font-label-sm text-label-sm font-mono">
+<span>Unattempted</span>
+</div>
+</div>
+<div>
+<div class="flex items-center gap-space-xs text-outline font-label-sm text-label-sm font-mono mb-1">
+<span class="text-on-surface-variant font-medium">DISTRIBUTED DATABASES</span>
+<span>·</span>
+<span>20 MIN</span>
+</div>
+<h3 class="font-headline-md text-headline-md font-semibold text-on-surface group-hover:text-primary transition-colors leading-snug">
+              Cross-Datacenter Distributed Deadlock Detection &amp; Abort Policies
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-relaxed">
+              Evaluating global wait-for graph cycle detection, edge-chasing algorithms, priority-based wound-wait schemes, and phantom deadlock mitigation across WAN links.
+            </p>
+</div>
+<!-- Prompt Audio Preview Waveform Mock -->
+<div class="p-space-xs rounded bg-surface-container-lowest flex items-center justify-between gap-space-sm">
+<button class="w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors cursor-pointer shrink-0">
+<span class="material-symbols-outlined text-body-sm">play_arrow</span>
+</button>
+<div class="flex-1 flex items-center gap-0.5 h-4">
+<div class="w-1 h-1 bg-primary/20 rounded-full"></div>
+<div class="w-1 h-3 bg-primary rounded-full"></div>
+<div class="w-1 h-4 bg-primary rounded-full"></div>
+<div class="w-1 h-2 bg-primary/50 rounded-full"></div>
+<div class="w-1 h-3 bg-secondary rounded-full"></div>
+</div>
+<span class="font-label-sm text-label-sm text-outline font-mono">0:28 Sample</span>
+</div>
+<!-- Pushback Meter -->
+<div class="space-y-space-xs pt-space-xs">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-outline font-mono">Cognitive Pushback Pressure</span>
+<span class="text-error font-mono font-medium">90% Hostile</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary via-secondary to-error" style="width: 90%;"></div>
+</div>
+</div>
+</div>
+<div class="pt-space-lg mt-space-md space-y-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<img class="w-6 h-6 rounded-full object-cover" data-alt="Portrait of Dr. Sarah Chen, distributed systems researcher and interviewer with focused professional studio lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfSNIWFbvHJ1mPwxBjodBVJCdgrm5cU8f3q5HBBo4OytXUihgiXxXdG-a_fy6e0hN9uhVu51faRr2_e5VsfARJYF4nfg54Cr1sFohE7oBqUdUvOOaeaHXSOVHR9A5yRDHWREW-tX_nhntnKOKFkXTJ5ufNsHAPJEOGYW15GNiGICyCKT9VCi_Fo7vhO2hv9i0ANKC3qXOKEpABKHQP74aXrZMZBT5eV6O2wG33p373a7sGuE8HUdw8rQ"/>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">Sarah Chen, PhD</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline font-mono">Rubric: Wound-Wait Guarantees</span>
+</div>
+<div class="grid grid-cols-2 gap-space-xs">
+<button class="w-full py-space-xs px-space-xs rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm font-medium transition-colors text-center cursor-pointer">
+              Inspect Rubric
+            </button>
+<button class="w-full py-space-xs px-space-xs rounded bg-primary text-on-primary font-label-sm text-label-sm font-semibold hover:bg-primary-fixed-dim transition-colors text-center cursor-pointer flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-label-sm">mic</span>
+<span>Start Sparring</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Drill 6: Handling 10x Flash-Sale Spike on Stripe Checkout -->
+<div class="bg-surface-container-low rounded-xl p-space-lg flex flex-col justify-between shadow-lg relative group hover:bg-surface-container transition-all duration-200">
+<div class="space-y-space-md">
+<!-- Card Header Badges -->
+<div class="flex items-start justify-between gap-space-xs">
+<div class="flex items-center gap-1">
+<span class="px-space-xs py-0.5 rounded bg-surface-container-highest text-primary font-mono font-semibold font-label-sm text-label-sm">
+                L6 STAFF
+              </span>
+<span class="px-space-xs py-0.5 rounded bg-primary/10 text-primary font-mono font-semibold font-label-sm text-label-sm">
+                10M FLASH
+              </span>
+</div>
+<div class="flex items-center gap-1 px-space-xs py-0.5 rounded bg-tertiary/10 text-tertiary font-label-sm text-label-sm font-mono">
+<span class="material-symbols-outlined text-label-sm">verified</span>
+<span>Mastered (94%)</span>
+</div>
+</div>
+<div>
+<div class="flex items-center gap-space-xs text-outline font-label-sm text-label-sm font-mono mb-1">
+<span class="text-on-surface-variant font-medium">INCIDENT &amp; CHAOS</span>
+<span>·</span>
+<span>10 MIN FLASH</span>
+</div>
+<h3 class="font-headline-md text-headline-md font-semibold text-on-surface group-hover:text-primary transition-colors leading-snug">
+              Handling Unannounced 10x Flash-Sale Spike on Stripe Checkout Ledger
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-relaxed">
+              Real-time rapid incident triage: token-bucket load shedding, degraded mode fallbacks, backpressure queues, and post-surge ledger reconciliation.
+            </p>
+</div>
+<!-- Prompt Audio Preview Waveform Mock -->
+<div class="p-space-xs rounded bg-surface-container-lowest flex items-center justify-between gap-space-sm">
+<button class="w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors cursor-pointer shrink-0">
+<span class="material-symbols-outlined text-body-sm">play_arrow</span>
+</button>
+<div class="flex-1 flex items-center gap-0.5 h-4">
+<div class="w-1 h-3 bg-primary rounded-full"></div>
+<div class="w-1 h-4 bg-primary rounded-full"></div>
+<div class="w-1 h-2 bg-primary/40 rounded-full"></div>
+<div class="w-1 h-4 bg-tertiary rounded-full"></div>
+<div class="w-1 h-3 bg-tertiary rounded-full"></div>
+</div>
+<span class="font-label-sm text-label-sm text-outline font-mono">0:15 Sample</span>
+</div>
+<!-- Pushback Meter -->
+<div class="space-y-space-xs pt-space-xs">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-outline font-mono">Cognitive Pushback Pressure</span>
+<span class="text-error font-mono font-medium">85% Hostile</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary via-secondary to-error" style="width: 85%;"></div>
+</div>
+</div>
+</div>
+<div class="pt-space-lg mt-space-md space-y-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<img class="w-6 h-6 rounded-full object-cover" data-alt="Alex Rivera headshot portrait in dark technical room with dual monitors, audio visualizer telemetry on screen." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaYyuuHrvtczEjYw0yYMxZpk2dqKjxSP6Je1FHPwV00rfsV07nd7oJGsM6sxjUM4UHv3rKj9tTL4_TEICi4ejxbpetF9Q6HhUIHd7JIrYDjtBRC0fhg5dPo6a0fGjw_Oh1b5niPPswd-NgiQ4b9rssDpD0JDQFP7xJYDgYm7FQ0ziMBCxgECxyknWAcBDaDCpF2GEHTtz8tGDX_7pPo9AKhXyoiVLLRWF7GzNwgirokyFB0fdIrWEFyQ"/>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">Alex Rivera</span>
+</div>
+<span class="font-label-sm text-label-sm text-tertiary font-mono">Personal Best: 94%</span>
+</div>
+<div class="grid grid-cols-2 gap-space-xs">
+<button class="w-full py-space-xs px-space-xs rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm font-medium transition-colors text-center cursor-pointer">
+              View Rubric
+            </button>
+<button class="w-full py-space-xs px-space-xs rounded bg-primary text-on-primary font-label-sm text-label-sm font-semibold hover:bg-primary-fixed-dim transition-colors text-center cursor-pointer flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-label-sm">mic</span>
+<span>Spar Again</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Diagnostic Breakdown & Socratic Rubric Matrix Section -->
+<div class="bg-surface-container-low rounded-xl p-space-xl shadow-lg space-y-space-lg">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-md">
+<div>
+<span class="font-label-sm text-label-sm text-primary font-mono uppercase tracking-wider">STRIPE L6 EVALUATION TAXONOMY</span>
+<h3 class="font-headline-lg text-headline-lg font-semibold text-on-surface tracking-tight">
+            Interrogation Dimensions &amp; Defense Rigor Breakdown
+          </h3>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="font-label-sm text-label-sm text-outline font-mono">Calibrated against 240+ verified L6 Staff interviews</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-space-md">
+<!-- Rubric Card 1 -->
+<div class="bg-surface-container p-space-md rounded-lg space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface font-mono font-medium">1. Architectural Invariants</span>
+<span class="text-tertiary font-mono font-bold text-label-sm">92% Average</span>
+</div>
+<div class="w-full h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-tertiary" style="width: 92%;"></div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant pt-1 leading-snug">
+            Immediate identification of consistency boundaries, quorum sizes, and failure zones without prompting.
+          </p>
+</div>
+<!-- Rubric Card 2 -->
+<div class="bg-surface-container p-space-md rounded-lg space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface font-mono font-medium">2. Quantitative Trade-offs</span>
+<span class="text-tertiary font-mono font-bold text-label-sm">86% Average</span>
+</div>
+<div class="w-full h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-tertiary" style="width: 86%;"></div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant pt-1 leading-snug">
+            Ability to compute memory bandwidth, IOPS saturations, and network RTT overheads under live pushback.
+          </p>
+</div>
+<!-- Rubric Card 3 -->
+<div class="bg-surface-container p-space-md rounded-lg space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface font-mono font-medium">3. Failure Horizon Defense</span>
+<span class="text-error font-mono font-bold text-label-sm">73% Attention Needed</span>
+</div>
+<div class="w-full h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-error" style="width: 73%;"></div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant pt-1 leading-snug">
+            Candidate pauses or waffles when interrogator introduces compound secondary partition faults.
+          </p>
+</div>
+<!-- Rubric Card 4 -->
+<div class="bg-surface-container p-space-md rounded-lg space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface font-mono font-medium">4. Composure &amp; Decisiveness</span>
+<span class="text-tertiary font-mono font-bold text-label-sm">94% Robust</span>
+</div>
+<div class="w-full h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-tertiary" style="width: 94%;"></div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant pt-1 leading-snug">
+            Maintains 135–150 WPM pacing, eliminates defensive filler, redirects invalid assumptions with precision.
+          </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Sticky Studio Sparring Launch Bar -->
+<div class="sticky bottom-0 left-0 right-0 z-30 bg-surface-container-low/95 backdrop-blur-md px-space-2xl py-space-md shadow-2xl">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-space-md">
+<!-- Current Ready State -->
+<div class="flex items-center gap-space-md">
+<div class="relative flex items-center justify-center w-10 h-10 rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-headline-md">mic</span>
+<span class="absolute -top-0.5 -right-0.5 w-3 h-3 rounded-full bg-tertiary border-2 border-surface-container-low"></span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm px-1.5 py-0.2 rounded bg-error/20 text-error font-mono font-semibold uppercase">NEXT QUEUED DRILL</span>
+<span class="font-body-sm text-body-sm font-semibold text-on-surface">JVM &amp; Go GC Pause Mitigation (15m Flash)</span>
+</div>
+<div class="flex items-center gap-space-md font-label-sm text-label-sm text-on-surface-variant font-mono mt-0.5">
+<span>Interrogator: Marcus Vance</span>
+<span>·</span>
+<span>48kHz HD Audio Engine</span>
+<span>·</span>
+<span class="text-tertiary">DSP Calibrated</span>
+</div>
+</div>
+</div>
+<!-- Action Controller -->
+<div class="flex items-center gap-space-md shrink-0 w-full md:w-auto justify-end">
+<button class="px-space-md py-space-xs rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-on-surface font-body-sm text-body-sm transition-colors cursor-pointer">
+          Change Drill
+        </button>
+<button class="flex items-center gap-space-sm px-space-xl py-space-sm rounded bg-primary text-on-primary font-body-sm text-body-sm font-semibold hover:bg-primary-fixed-dim transition-all shadow-lg hover:shadow-primary/25 cursor-pointer">
+<span class="material-symbols-outlined text-on-primary">play_circle</span>
+<span>Start Interrogation Now</span>
+<span class="font-mono text-label-sm px-1 rounded bg-on-primary/20">ENTER</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Inline Interactive Script for Active Navigation & Micro-Interactions -->
+<script>
+  // Ensure sidebar "Practice Library" is marked as active in the application shell
+  document.addEventListener("DOMContentLoaded", () => {
+    const navLinks = document.querySelectorAll('aside nav a');
+    navLinks.forEach(link => {
+      if (link.getAttribute('data-path') === 'practice-library') {
+        link.classList.remove('text-on-surface-variant');
+        link.classList.add('bg-surface-container-high', 'text-primary', 'font-semibold');
+      } else {
+        link.classList.remove('bg-surface-container-high', 'text-primary', 'font-semibold');
+        link.classList.add('text-on-surface-variant');
+      }
+    });
+
+    // Update Header Breadcrumb Title
+    const breadcrumbCurrent = document.querySelector('header .text-on-surface.font-medium');
+    if (breadcrumbCurrent) {
+      breadcrumbCurrent.textContent = 'Practice Library & Sparring';
+    }
+  });
+</script></main></div></body></html>
