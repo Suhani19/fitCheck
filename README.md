@@ -389,4 +389,4 @@ backend\.venv\Scripts\pytest backend\tests -v
 
 This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
 
-Copyright © 2026 **Shubham Singh Ranswal**. All rights reserved.
+Copyright © 2026 **overfit**. All rights reserved.
