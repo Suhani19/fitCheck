@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import '../../../core/theme/fitcheck_theme.dart';
+import '../../../core/widgets/fitcheck_logo.dart';
 
 class PublicLandingPage extends StatefulWidget {
   final VoidCallback onStartPreparing;
@@ -122,63 +123,11 @@ class _PublicLandingPageState extends State<PublicLandingPage>
               );
             },
             borderRadius: BorderRadius.circular(6),
-            child: Row(
-              children: [
-                Container(
-                  width: 32,
-                  height: 32,
-                  decoration: BoxDecoration(
-                    color: FitCheckTheme.surfaceContainerHigh,
-                    borderRadius: BorderRadius.circular(6),
-                    border: Border.all(color: FitCheckTheme.outlineVariant),
-                  ),
-                  child: Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Container(width: 2, height: 8, color: FitCheckTheme.primary),
-                        const SizedBox(width: 2),
-                        Container(width: 2, height: 16, color: FitCheckTheme.primary),
-                        const SizedBox(width: 2),
-                        Container(width: 2, height: 12, color: FitCheckTheme.secondary),
-                        const SizedBox(width: 2),
-                        Container(width: 2, height: 8, color: FitCheckTheme.primary),
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 10),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Text(
-                          'FitCheck',
-                          style: FitCheckTheme.headlineMedium(color: FitCheckTheme.onSurface)
-                              .copyWith(fontSize: 18, fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(width: 6),
-                        Container(
-                          width: 6,
-                          height: 6,
-                          decoration: const BoxDecoration(
-                            color: FitCheckTheme.primary,
-                            shape: BoxShape.circle,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Text(
-                      'GET FIT. CHECK FIT.',
-                      style: FitCheckTheme.labelSmall(color: FitCheckTheme.onSurfaceVariant)
-                          .copyWith(fontSize: 9, letterSpacing: 1.2),
-                    ),
-                  ],
-                ),
-              ],
+            child: const FitCheckLogo(
+              size: 32,
+              showWordmark: true,
+              showTagline: true,
+              wordmarkSize: 18,
             ),
           ),
 
@@ -1584,14 +1533,25 @@ class _PublicLandingPageState extends State<PublicLandingPage>
 
   Widget _buildFooter(bool isDesktop) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 28),
       decoration: const BoxDecoration(
         border: Border(top: BorderSide(color: FitCheckTheme.outlineVariant, width: 0.8)),
       ),
       child: Center(
-        child: Text(
-          '© 2026 Overfit Labs • FitCheck AI Interview Simulation Platform',
-          style: FitCheckTheme.labelSmall(color: FitCheckTheme.outline),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const FitCheckLogo(
+              size: 24,
+              showWordmark: true,
+              wordmarkSize: 14,
+            ),
+            const SizedBox(height: 10),
+            Text(
+              '© 2026 Overfit Labs • FitCheck AI Interview Simulation Platform',
+              style: FitCheckTheme.labelSmall(color: FitCheckTheme.outline),
+            ),
+          ],
         ),
       ),
     );

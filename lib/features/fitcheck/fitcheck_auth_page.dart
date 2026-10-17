@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../core/auth/auth_service.dart';
 import '../../core/theme/fitcheck_theme.dart';
+import '../../core/widgets/fitcheck_logo.dart';
 
 class FitCheckAuthPage extends StatefulWidget {
   final AuthService authService;
@@ -119,18 +120,9 @@ class _FitCheckAuthPageState extends State<FitCheckAuthPage> {
                   ],
 
                   // Logo & Brand Header
-                  Center(
-                    child: Container(
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: FitCheckTheme.primary.withValues(alpha: 0.12),
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Icon(
-                        Icons.mic_none_rounded,
-                        color: FitCheckTheme.primary,
-                        size: 40,
-                      ),
+                  const Center(
+                    child: FitCheckLogo(
+                      size: 64,
                     ),
                   ),
                   const SizedBox(height: 16),

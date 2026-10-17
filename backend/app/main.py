@@ -81,14 +81,39 @@ app = FastAPI(
     version="1.0.0",
 )
 
-# CORS configuration for web clients (e.g. Flutter Web on localhost and custom dev ports)
-app.add_middleware(
-    CORSMiddleware,
-    allow_origin_regex=r"^https?://(localhost|127\.0\.0\.1)(:\d+)?$",
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+# CORS configuration for web clients.
+# Supports ALLOWED_ORIGINS env var (comma-separated list), with default support
+# for local development (localhost, 127.0.0.1) and Firebase Hosting domains (*.web.app, *.firebaseapp.com).
+_raw_allowed_origins = os.getenv("ALLOWED_ORIGINS", "").strip()
+if _raw_allowed_origins:
+    _origins = [o.strip() for o in _raw_allowed_origins.split(",") if o.strip()]
+    if "*" in _origins:
+        app.add_middleware(
+            CORSMiddleware,
+            allow_origins=["*"],
+            allow_credentials=False,
+            allow_methods=["*"],
+            allow_headers=["*"],
+        )
+    else:
+        app.add_middleware(
+            CORSMiddleware,
+            allow_origins=_origins,
+            allow_credentials=True,
+            allow_methods=["*"],
+            allow_headers=["*"],
+        )
+else:
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origin_regex=(
+            r"^https?://(localhost|127\.0\.0\.1)(:\d+)?$|"
+            r"^https://[a-zA-Z0-9-]+(\.web\.app|\.firebaseapp\.com)$"
+        ),
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
 
 from app.api.v1_router import router as fitcheck_v1_router
 app.include_router(fitcheck_v1_router)
@@ -130,6 +155,8 @@ class RuntimeSessionResponse(BaseModel):
 
 
 @app.get("/health")
+@app.get("/api/health")
+@app.get("/api/v1/health")
 async def health():
     return {
         "status": "ok",

@@ -49,12 +49,22 @@ class RuntimeSession {
 class RuntimeApi {
   String get baseUrl => AppConfig.backendUrl;
 
+  Uri _resolveUri(String path) {
+    final base = baseUrl.trim();
+    if (base.isEmpty) {
+      return Uri.parse(path);
+    }
+    final normalizedBase = base.endsWith('/') ? base.substring(0, base.length - 1) : base;
+    final normalizedPath = path.startsWith('/') ? path : '/$path';
+    return Uri.parse('$normalizedBase$normalizedPath');
+  }
+
   Future<RuntimeSession> createSession({
     required String interviewerId,
     String userId = 'default_user',
   }) async {
     final response = await http.post(
-      Uri.parse('$baseUrl/runtime/session'),
+      _resolveUri('/runtime/session'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({
         'interviewer_id': interviewerId,
@@ -77,7 +87,7 @@ class RuntimeApi {
     List<Map<String, String>> transcript = const [],
   }) async {
     final response = await http.post(
-      Uri.parse('$baseUrl/runtime/session/$sessionId/end'),
+      _resolveUri('/runtime/session/$sessionId/end'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({
         'transcript': transcript,

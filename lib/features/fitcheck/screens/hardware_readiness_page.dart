@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:record/record.dart';
 import '../../../core/services/hardware_audio_service.dart';
 import '../../../core/theme/fitcheck_theme.dart';
+import '../../../core/widgets/fitcheck_logo.dart';
 import '../fitcheck_api_service.dart';
 
 class HardwareReadinessPage extends StatefulWidget {
@@ -423,6 +424,8 @@ class _HardwareReadinessPageState extends State<HardwareReadinessPage>
                   onPressed: widget.onBackToDashboard,
                   tooltip: 'Back to Command Center',
                 ),
+                const SizedBox(width: 8),
+                const FitCheckLogo(size: 16),
                 const SizedBox(width: 8),
                 Text('FitCheck', style: FitCheckTheme.bodySmall(color: FitCheckTheme.outline)),
                 const SizedBox(width: 6),

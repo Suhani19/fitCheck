@@ -19,7 +19,10 @@ class AppConfig {
   /// Resolves the backend base URL dynamically based on environment and platform.
   static String get backendUrl {
     if (_fitcheckBackendUrl.isNotEmpty) {
-      return _fitcheckBackendUrl;
+      final trimmed = _fitcheckBackendUrl.trim();
+      return trimmed.endsWith('/')
+          ? trimmed.substring(0, trimmed.length - 1)
+          : trimmed;
     }
 
     if (!kIsWeb && defaultTargetPlatform == TargetPlatform.android) {
@@ -30,9 +33,17 @@ class AppConfig {
     if (kIsWeb) {
       final host = Uri.base.host;
       if (host.isNotEmpty) {
-        final scheme = Uri.base.scheme.startsWith('https') ? 'https' : 'http';
-        return '$scheme://$host:8000';
+        // When running locally in browser dev mode, connect to local FastAPI on port 8000
+        if (host == 'localhost' || host == '127.0.0.1') {
+          final scheme = Uri.base.scheme.startsWith('https') ? 'https' : 'http';
+          return '$scheme://$host:8000';
+        }
+        // When deployed to Firebase Hosting or a production domain, use same-origin
+        // relative URLs ("") to leverage Firebase Hosting rewrites (/api/** -> Cloud Run)
+        // without cross-origin CORS overhead.
+        return '';
       }
+      return '';
     }
 
     return 'http://localhost:8000';

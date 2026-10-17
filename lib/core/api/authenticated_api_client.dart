@@ -22,6 +22,19 @@ class AuthenticatedApiClient {
 
   String get baseUrl => _baseUrlOverride ?? AppConfig.backendUrl;
 
+  /// Resolves the request URI safely supporting:
+  /// - Empty base URL for same-origin relative paths (e.g. deployed Firebase Hosting rewrites).
+  /// - Full URLs with or without trailing slash.
+  Uri _resolveUri(String path) {
+    final base = baseUrl.trim();
+    if (base.isEmpty) {
+      return Uri.parse(path);
+    }
+    final normalizedBase = base.endsWith('/') ? base.substring(0, base.length - 1) : base;
+    final normalizedPath = path.startsWith('/') ? path : '/$path';
+    return Uri.parse('$normalizedBase$normalizedPath');
+  }
+
   /// Retrieves authorization headers with the current or refreshed ID token.
   Future<Map<String, String>> _buildHeaders({
     Map<String, String>? extraHeaders,
@@ -47,7 +60,7 @@ class AuthenticatedApiClient {
   /// Sends an authenticated GET request.
   Future<http.Response> get(String path, {Map<String, String>? headers}) async {
     return _sendWithRetry((tokenHeaders) => _httpClient.get(
-          Uri.parse('$baseUrl$path'),
+          _resolveUri(path),
           headers: tokenHeaders,
         ), extraHeaders: headers);
   }
@@ -61,7 +74,7 @@ class AuthenticatedApiClient {
   }) async {
     final payload = rawBody ?? (body != null ? jsonEncode(body) : null);
     return _sendWithRetry((tokenHeaders) => _httpClient.post(
-          Uri.parse('$baseUrl$path'),
+          _resolveUri(path),
           headers: tokenHeaders,
           body: payload,
         ), extraHeaders: headers);
@@ -74,7 +87,7 @@ class AuthenticatedApiClient {
     Map<String, String>? headers,
   }) async {
     return _sendWithRetry((tokenHeaders) => _httpClient.put(
-          Uri.parse('$baseUrl$path'),
+          _resolveUri(path),
           headers: tokenHeaders,
           body: body != null ? jsonEncode(body) : null,
         ), extraHeaders: headers);
@@ -83,7 +96,7 @@ class AuthenticatedApiClient {
   /// Sends an authenticated DELETE request.
   Future<http.Response> delete(String path, {Map<String, String>? headers}) async {
     return _sendWithRetry((tokenHeaders) => _httpClient.delete(
-          Uri.parse('$baseUrl$path'),
+          _resolveUri(path),
           headers: tokenHeaders,
         ), extraHeaders: headers);
   }
@@ -98,7 +111,7 @@ class AuthenticatedApiClient {
     Map<String, String>? headers,
   }) async {
     return _sendWithRetry((tokenHeaders) async {
-      final uri = Uri.parse('$baseUrl$path');
+      final uri = _resolveUri(path);
       final request = http.MultipartRequest('POST', uri);
       final reqHeaders = Map<String, String>.from(tokenHeaders);
       reqHeaders.remove('Content-Type');

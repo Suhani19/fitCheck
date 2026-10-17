@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../core/auth/auth_service.dart';
 import '../../../core/theme/fitcheck_theme.dart';
+import '../../../core/widgets/fitcheck_logo.dart';
 import '../fitcheck_api_service.dart';
 import '../services/interviewer_recommendation_service.dart';
 import '../widgets/candidate_sidebar.dart';
@@ -485,6 +486,8 @@ class _InterviewerLibraryPageState extends State<InterviewerLibraryPage> {
                   ),
                   const SizedBox(width: 8),
                 ],
+                const FitCheckLogo(size: 16),
+                const SizedBox(width: 8),
                 Text('FitCheck', style: FitCheckTheme.bodySmall(color: FitCheckTheme.outline)),
                 const SizedBox(width: 6),
                 const Icon(Icons.chevron_right, size: 14, color: FitCheckTheme.outline),

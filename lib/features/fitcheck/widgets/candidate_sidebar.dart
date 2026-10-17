@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../core/auth/auth_service.dart';
 import '../../../core/theme/fitcheck_theme.dart';
+import '../../../core/widgets/fitcheck_logo.dart';
 import '../fitcheck_api_service.dart';
 import '../screens/fitcheck_shell.dart';
 
@@ -37,42 +38,13 @@ class CandidateSidebar extends StatelessWidget {
         children: [
           // Logo header
           Padding(
-            padding: const EdgeInsets.all(20),
-            child: Row(
-              children: [
-                Container(
-                  width: 28,
-                  height: 28,
-                  decoration: BoxDecoration(
-                    color: FitCheckTheme.surfaceContainerHigh,
-                    borderRadius: BorderRadius.circular(4),
-                    border: Border.all(color: FitCheckTheme.outlineVariant),
-                  ),
-                  child: const Center(
-                    child: Icon(Icons.mic, color: FitCheckTheme.primary, size: 16),
-                  ),
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'FitCheck',
-                        style: FitCheckTheme.headlineMedium().copyWith(fontSize: 16),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      Text(
-                        'GET FIT. CHECK FIT.',
-                        style: FitCheckTheme.labelSmall().copyWith(fontSize: 9),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+            child: FitCheckLogo(
+              size: 32,
+              showWordmark: true,
+              showTagline: true,
+              wordmarkSize: 16,
+              onTap: () => onNavigate(FitCheckRoute.commandCenter),
             ),
           ),
 

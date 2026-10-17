@@ -38,6 +38,7 @@ backend/.env
 # Credentials & Service Accounts
 *service-account*.json
 *firebase*.json
+!firebase.json
 credentials.json
 google-services.json
 GoogleService-Info.plist

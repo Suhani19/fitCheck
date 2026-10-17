@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../core/auth/auth_service.dart';
 import '../../../core/theme/fitcheck_theme.dart';
+import '../../../core/widgets/fitcheck_logo.dart';
 import '../fitcheck_api_service.dart';
 import '../widgets/candidate_sidebar.dart';
 import 'fitcheck_shell.dart';
@@ -219,6 +220,8 @@ class _PracticeLibraryPageState extends State<PracticeLibraryPage> {
                 ),
                 const SizedBox(width: 8),
               ],
+              const FitCheckLogo(size: 16),
+              const SizedBox(width: 8),
               Text('PRACTICE LIBRARY', style: FitCheckTheme.labelSmall(color: FitCheckTheme.outline)),
               const SizedBox(width: 8),
               const Icon(Icons.chevron_right, size: 14, color: FitCheckTheme.outline),

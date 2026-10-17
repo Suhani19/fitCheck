@@ -61,7 +61,7 @@ dev_dependencies:
 flutter_launcher_icons:
   web:
     generate: true
-    image_path: "assets/images/icon.png"
+    image_path: "assets/images/fitcheck_logo_light.png"
     background_color: "#09090B"
     theme_color: "#5CE2F6"
 

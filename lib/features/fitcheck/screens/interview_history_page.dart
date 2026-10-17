@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import '../../../core/auth/auth_service.dart';
 import '../../../core/theme/fitcheck_theme.dart';
+import '../../../core/widgets/fitcheck_logo.dart';
 import '../fitcheck_api_service.dart';
 import '../widgets/candidate_sidebar.dart';
 import 'fitcheck_shell.dart';
@@ -242,30 +243,55 @@ class _InterviewHistoryPageState extends State<InterviewHistoryPage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            children: [
-              if (!isDesktop) ...[
-                IconButton(
-                  icon: const Icon(Icons.arrow_back, color: FitCheckTheme.onSurface, size: 20),
-                  onPressed: () => widget.onNavigate(FitCheckRoute.commandCenter),
-                  tooltip: 'Back to Dashboard',
-                ),
+          Expanded(
+            child: Row(
+              children: [
+                if (!isDesktop) ...[
+                  IconButton(
+                    icon: const Icon(Icons.arrow_back, color: FitCheckTheme.onSurface, size: 20),
+                    onPressed: () => widget.onNavigate(FitCheckRoute.commandCenter),
+                    tooltip: 'Back to Dashboard',
+                  ),
+                  const SizedBox(width: 8),
+                ],
+                const FitCheckLogo(size: 16),
                 const SizedBox(width: 8),
+                Text('FitCheck', style: FitCheckTheme.bodySmall(color: FitCheckTheme.outline)),
+                const SizedBox(width: 6),
+                const Icon(Icons.chevron_right, size: 14, color: FitCheckTheme.outline),
+                const SizedBox(width: 6),
+                Flexible(
+                  child: Text(
+                    'Interview History & Calibration Delta',
+                    style: FitCheckTheme.bodySmall(color: FitCheckTheme.onSurface),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
               ],
-              Text('FitCheck', style: FitCheckTheme.bodySmall(color: FitCheckTheme.outline)),
-              const SizedBox(width: 6),
-              const Icon(Icons.chevron_right, size: 14, color: FitCheckTheme.outline),
-              const SizedBox(width: 6),
-              Text('Interview History & Calibration Delta', style: FitCheckTheme.bodySmall(color: FitCheckTheme.onSurface)),
-            ],
+            ),
           ),
+          const SizedBox(width: 8),
           Row(
+            mainAxisSize: MainAxisSize.min,
             children: [
               IconButton(
                 key: const Key('refresh_history_button'),
                 icon: const Icon(Icons.refresh, size: 18, color: FitCheckTheme.outline),
                 tooltip: 'Refresh Sessions',
                 onPressed: _isLoading ? null : _loadHistoryData,
+              ),
+              const SizedBox(width: 8),
+              OutlinedButton.icon(
+                key: const Key('history_compare_sessions_button'),
+                onPressed: _showSessionComparisonDialog,
+                icon: const Icon(Icons.compare_arrows, size: 14),
+                label: const Text('Compare'),
+                style: OutlinedButton.styleFrom(
+                  foregroundColor: FitCheckTheme.secondary,
+                  side: const BorderSide(color: FitCheckTheme.outlineVariant),
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+                ),
               ),
               const SizedBox(width: 8),
               ElevatedButton.icon(
@@ -694,6 +720,293 @@ class _InterviewHistoryPageState extends State<InterviewHistoryPage> {
           ),
         ),
       ),
+    );
+  }
+
+  void _showSessionComparisonDialog() {
+    showDialog(
+      context: context,
+      builder: (ctx) {
+        final screenWidth = MediaQuery.of(ctx).size.width;
+        final isLarge = screenWidth >= 768;
+
+        return Dialog(
+          backgroundColor: FitCheckTheme.surfaceContainerLow,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+            side: const BorderSide(color: FitCheckTheme.outlineVariant),
+          ),
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 960, maxHeight: 780),
+            child: Padding(
+              padding: const EdgeInsets.all(24.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Dialog Header
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                            decoration: BoxDecoration(
+                              color: FitCheckTheme.secondary.withValues(alpha: 0.15),
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            child: const Text('CALIBRATION DELTA', style: TextStyle(color: FitCheckTheme.secondary, fontSize: 11, fontWeight: FontWeight.bold)),
+                          ),
+                          const SizedBox(width: 8),
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                            decoration: BoxDecoration(
+                              color: FitCheckTheme.surfaceContainerHigh,
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            child: const Text('L6 HIRING BAR THRESHOLD: 80%', style: TextStyle(color: FitCheckTheme.outline, fontSize: 11)),
+                          ),
+                        ],
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.close, color: FitCheckTheme.outline, size: 20),
+                        onPressed: () => Navigator.of(ctx).pop(),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    'Session Comparison & Trajectory Delta',
+                    style: FitCheckTheme.headlineMedium(color: FitCheckTheme.onSurface),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    'Audit acoustic pacing, verbal decisiveness, and competency growth between baseline and latest practice runs.',
+                    style: FitCheckTheme.bodySmall(color: FitCheckTheme.onSurfaceVariant),
+                  ),
+                  const SizedBox(height: 16),
+                  const Divider(color: FitCheckTheme.outlineVariant, height: 1),
+                  const SizedBox(height: 16),
+
+                  // Scrollable Body
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Side-by-side session comparison cards
+                          if (isLarge)
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Expanded(child: _buildComparisonSessionCard('BASELINE RUN', 'SIM #7912', 'Distributed Consensus & Replication', '68/100', '158 WPM', '3.8%', '72%', '“We would probably just use Redis in front of PostgreSQL... if leader crashes, query replicas with eventual consistency.”', 'Marcus Vance (Principal Architect)', false)),
+                                const SizedBox(width: 16),
+                                Expanded(child: _buildComparisonSessionCard('LATEST RUN', 'SIM #8094', 'Distributed Storage & Event Ledger', '84/100', '138 WPM', '1.2%', '95%', '“We enforce lease-based reads backed by hybrid logical clocks rather than blocking cross-region consensus on stale replicas.”', 'Marcus Vance (Principal Architect)', true)),
+                              ],
+                            )
+                          else ...[
+                            _buildComparisonSessionCard('BASELINE RUN', 'SIM #7912', 'Distributed Consensus & Replication', '68/100', '158 WPM', '3.8%', '72%', '“We would probably just use Redis in front of PostgreSQL... if leader crashes, query replicas with eventual consistency.”', 'Marcus Vance (Principal Architect)', false),
+                            const SizedBox(height: 12),
+                            _buildComparisonSessionCard('LATEST RUN', 'SIM #8094', 'Distributed Storage & Event Ledger', '84/100', '138 WPM', '1.2%', '95%', '“We enforce lease-based reads backed by hybrid logical clocks rather than blocking cross-region consensus on stale replicas.”', 'Marcus Vance (Principal Architect)', true),
+                          ],
+
+                          const SizedBox(height: 24),
+                          // Competency Delta Bars
+                          Text('COMPETENCY DELTA COMPARISON', style: FitCheckTheme.labelSmall(color: FitCheckTheme.outline).copyWith(letterSpacing: 1.2)),
+                          const SizedBox(height: 12),
+                          _buildDeltaProgressBar('Distributed Consensus & Raft Invariants', 0.64, 0.88, '+24%'),
+                          const SizedBox(height: 12),
+                          _buildDeltaProgressBar('Cross-Region Latency & Hybrid Logical Clocks', 0.58, 0.82, '+24%'),
+                          const SizedBox(height: 12),
+                          _buildDeltaProgressBar('Storage Engines & LSM-Tree Compaction', 0.60, 0.78, '+18%'),
+                          const SizedBox(height: 12),
+                          _buildDeltaProgressBar('System Observability & Failure Mode Analysis', 0.66, 0.86, '+20%'),
+                          const SizedBox(height: 12),
+                          _buildDeltaProgressBar('Communication Clarity & Socratic Pushback Depth', 0.70, 0.92, '+22%'),
+                        ],
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(height: 16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        onPressed: () => Navigator.of(ctx).pop(),
+                        child: const Text('Close Comparison', style: TextStyle(color: FitCheckTheme.outline)),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildComparisonSessionCard(
+    String badge,
+    String simId,
+    String title,
+    String score,
+    String wpm,
+    String fillerRatio,
+    String decisiveness,
+    String quote,
+    String interviewer,
+    bool isLatest,
+  ) {
+    final borderColor = isLatest ? FitCheckTheme.tertiary.withValues(alpha: 0.5) : FitCheckTheme.outlineVariant;
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: FitCheckTheme.surfaceContainerLowest,
+        borderRadius: BorderRadius.circular(6),
+        border: Border.all(color: borderColor),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                decoration: BoxDecoration(
+                  color: isLatest ? FitCheckTheme.tertiary.withValues(alpha: 0.15) : FitCheckTheme.surfaceContainerHigh,
+                  borderRadius: BorderRadius.circular(3),
+                ),
+                child: Text(badge, style: TextStyle(color: isLatest ? FitCheckTheme.tertiary : FitCheckTheme.outline, fontSize: 10, fontWeight: FontWeight.bold)),
+              ),
+              Text(simId, style: const TextStyle(color: FitCheckTheme.outline, fontSize: 11, fontFamily: 'monospace')),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Text(title, style: const TextStyle(color: FitCheckTheme.textPrimary, fontWeight: FontWeight.w600, fontSize: 14)),
+          const SizedBox(height: 4),
+          Row(
+            children: [
+              Text(score, style: TextStyle(color: isLatest ? FitCheckTheme.tertiary : FitCheckTheme.primary, fontWeight: FontWeight.bold, fontSize: 18)),
+              if (isLatest) ...[
+                const SizedBox(width: 8),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                  decoration: BoxDecoration(
+                    color: FitCheckTheme.tertiary.withValues(alpha: 0.2),
+                    borderRadius: BorderRadius.circular(3),
+                  ),
+                  child: const Text('+16 DELTA (PASS)', style: TextStyle(color: FitCheckTheme.tertiary, fontSize: 10, fontWeight: FontWeight.bold)),
+                ),
+              ],
+            ],
+          ),
+          const SizedBox(height: 12),
+          // Micro metrics
+          Row(
+            children: [
+              Expanded(child: _miniMetric('PACING', wpm, isLatest ? FitCheckTheme.tertiary : FitCheckTheme.textPrimary)),
+              Expanded(child: _miniMetric('FILLER RATIO', fillerRatio, isLatest ? FitCheckTheme.tertiary : FitCheckTheme.error)),
+              Expanded(child: _miniMetric('DECISIVENESS', decisiveness, isLatest ? FitCheckTheme.primary : FitCheckTheme.warning)),
+            ],
+          ),
+          const SizedBox(height: 12),
+          Container(
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: FitCheckTheme.surfaceContainerLow,
+              borderRadius: BorderRadius.circular(4),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Row(
+                  children: [
+                    Icon(Icons.record_voice_over, size: 12, color: FitCheckTheme.outline),
+                    SizedBox(width: 4),
+                    Text('TRANSCRIPT QUOTE', style: TextStyle(color: FitCheckTheme.outline, fontSize: 9, fontWeight: FontWeight.bold)),
+                  ],
+                ),
+                const SizedBox(height: 4),
+                Text(quote, style: const TextStyle(color: FitCheckTheme.textSecondary, fontStyle: FontStyle.italic, fontSize: 12)),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _miniMetric(String label, String value, Color color) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(label, style: const TextStyle(color: FitCheckTheme.outline, fontSize: 9)),
+        const SizedBox(height: 2),
+        Text(value, style: TextStyle(color: color, fontWeight: FontWeight.bold, fontSize: 12)),
+      ],
+    );
+  }
+
+  Widget _buildDeltaProgressBar(String skill, double baseline, double latest, String delta) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: Text(skill, style: const TextStyle(color: FitCheckTheme.textPrimary, fontSize: 12, fontWeight: FontWeight.w500)),
+            ),
+            Row(
+              children: [
+                Text('${(baseline * 100).toInt()}%', style: const TextStyle(color: FitCheckTheme.outline, fontSize: 11)),
+                const Text(' → ', style: TextStyle(color: FitCheckTheme.outline, fontSize: 11)),
+                Text('${(latest * 100).toInt()}%', style: const TextStyle(color: FitCheckTheme.tertiary, fontSize: 11, fontWeight: FontWeight.bold)),
+                const SizedBox(width: 4),
+                Text('($delta)', style: const TextStyle(color: FitCheckTheme.tertiary, fontSize: 11)),
+              ],
+            ),
+          ],
+        ),
+        const SizedBox(height: 6),
+        Stack(
+          children: [
+            Container(
+              height: 8,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: FitCheckTheme.surfaceContainerHigh,
+                borderRadius: BorderRadius.circular(4),
+              ),
+            ),
+            // Baseline fill
+            FractionallySizedBox(
+              widthFactor: baseline,
+              child: Container(
+                height: 8,
+                decoration: BoxDecoration(
+                  color: FitCheckTheme.outline.withValues(alpha: 0.4),
+                  borderRadius: BorderRadius.circular(4),
+                ),
+              ),
+            ),
+            // Latest fill
+            FractionallySizedBox(
+              widthFactor: latest,
+              child: Container(
+                height: 8,
+                decoration: BoxDecoration(
+                  color: FitCheckTheme.tertiary,
+                  borderRadius: BorderRadius.circular(4),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
