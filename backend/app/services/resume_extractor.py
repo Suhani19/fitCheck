@@ -20,7 +20,7 @@ from app.domain.schemas import (
 logger = logging.getLogger(__name__)
 
 MAX_RESUME_FILE_SIZE = 5 * 1024 * 1024  # 5 MB
-ALLOWED_EXTENSIONS = {".pdf", ".txt", ".text", ".md"}
+ALLOWED_EXTENSIONS = {".pdf", ".docx", ".txt", ".text", ".md"}
 
 
 class ResumeExtractorService:
@@ -40,7 +40,7 @@ class ResumeExtractorService:
         content_type: str | None = None,
         max_size: int = MAX_RESUME_FILE_SIZE,
     ) -> str:
-        """Safely extracts clean plain text from an uploaded resume file (PDF or text)."""
+        """Safely extracts clean plain text from an uploaded resume file (PDF, DOCX, or text)."""
         if len(content) > max_size:
             raise ValueError(f"File size exceeds the {max_size // (1024 * 1024)}MB limit.")
 
@@ -52,6 +52,8 @@ class ResumeExtractorService:
 
         if ext == ".pdf" or (content_type and "pdf" in content_type.lower()):
             text = self._extract_text_from_pdf(content)
+        elif ext == ".docx" or (content_type and "word" in content_type.lower()):
+            text = self._extract_text_from_docx(content)
         else:
             text = self._extract_text_from_raw_bytes(content)
 
@@ -94,6 +96,24 @@ class ResumeExtractorService:
         if not combined:
             raise ValueError("Could not extract any readable text from this PDF file.")
         return combined
+
+    def _extract_text_from_docx(self, content: bytes) -> str:
+        import xml.etree.ElementTree as ET
+        import zipfile
+        try:
+            with zipfile.ZipFile(io.BytesIO(content)) as z:
+                xml_content = z.read("word/document.xml")
+                tree = ET.fromstring(xml_content)
+                namespace = {"w": "http://schemas.openxmlformats.org/wordprocessingml/2006/main"}
+                texts = [node.text for node in tree.findall(".//w:t", namespace) if node.text]
+                combined = " ".join(texts).strip()
+                if not combined:
+                    raise ValueError("Could not extract any readable text from this Word document.")
+                return combined
+        except ValueError:
+            raise
+        except Exception as e:
+            raise ValueError(f"Invalid or corrupted Word document (.docx): {str(e)}")
 
     def _extract_text_from_raw_bytes(self, content: bytes) -> str:
         for encoding in ("utf-8", "utf-8-sig", "latin-1"):

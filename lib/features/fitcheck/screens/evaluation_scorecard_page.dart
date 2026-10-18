@@ -793,7 +793,7 @@ class EvaluationScorecardPage extends StatelessWidget {
               ElevatedButton.icon(
                 onPressed: onBackToDashboard,
                 icon: const Icon(Icons.dashboard, size: 16),
-                label: const Text('Return to Flightdeck'),
+                label: const Text('Return to Command Center'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: FitCheckTheme.primary,
                   foregroundColor: FitCheckTheme.onPrimary,

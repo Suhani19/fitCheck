@@ -123,11 +123,13 @@ app.include_router(fitcheck_v1_router)
 def on_startup():
     from app.db.database import SessionLocal
     from app.db.seed_presets import seed_interviewer_presets
+    from app.db.seed_demo_candidate import seed_demo_candidate
     from app.db.legacy_migrator import migrate_legacy_sqlite_data
 
     db = SessionLocal()
     try:
         seed_interviewer_presets(db)
+        seed_demo_candidate(db)
         migrate_legacy_sqlite_data(db)
     except Exception as exc:
         logger.warning("Startup initialization note: %s", exc)

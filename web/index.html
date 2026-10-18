@@ -26,8 +26,10 @@
   <meta name="apple-mobile-web-app-title" content="FitCheck">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+  <!-- Favicons supporting light & dark browser chrome -->
+  <link rel="icon" type="image/png" href="favicon-dark.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/png" href="favicon-light.png" media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="image/png" href="favicon.png">
 
   <title>FitCheck — AI Real-Time Interview Simulation & Screening</title>
   <link rel="manifest" href="manifest.json">
@@ -35,6 +37,13 @@
   <!-- Agora Web SDK & Iris Core for Real-time Voice/Audio on Flutter Web -->
   <script src="https://download.agora.io/sdk/release/iris-web-rtc_n450_w4220_0.8.6.js"></script>
   <script src="https://download.agora.io/sdk/release/AgoraRTC_N.js"></script>
+
+  <!-- Web Speech API Normalization for browser speech recognition -->
+  <script>
+    if (!window.SpeechRecognition && window.webkitSpeechRecognition) {
+      window.SpeechRecognition = window.webkitSpeechRecognition;
+    }
+  </script>
 </head>
 <body>
   <!--

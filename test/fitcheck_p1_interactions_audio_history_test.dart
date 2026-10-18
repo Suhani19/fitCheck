@@ -72,6 +72,9 @@ class MockAuthService implements AuthService {
   Future<FitCheckUser> signUpWithEmailAndPassword({required String email, required String password, String? displayName}) async => currentUser!;
 
   @override
+  Future<FitCheckUser> signInAsDemo() async => currentUser!;
+
+  @override
   Future<void> signOut() async {}
 }
 

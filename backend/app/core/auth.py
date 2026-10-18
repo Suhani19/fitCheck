@@ -90,6 +90,11 @@ def get_current_user(
 
     token = auth_header.credentials
 
+    # Check for secure backend-issued cryptographic demo session token
+    if token.startswith("fitcheck_demo."):
+        from app.core.demo_token import verify_demo_token
+        return verify_demo_token(token, db)
+
     init_firebase()
 
     try:

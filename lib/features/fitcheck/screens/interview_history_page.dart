@@ -724,6 +724,203 @@ class _InterviewHistoryPageState extends State<InterviewHistoryPage> {
   }
 
   void _showSessionComparisonDialog() {
+    final candidateId = widget.candidate?.id;
+    final candidateSessions = candidateId != null
+        ? _sessions.where((s) => s.candidateId == candidateId).toList()
+        : _sessions;
+    final candidateSessionIds = candidateSessions.map((s) => s.id).toSet();
+
+    // Evaluations for this candidate with overallScore > 0
+    final validEvals = _evaluations.where((e) {
+      if (candidateSessionIds.isNotEmpty && !candidateSessionIds.contains(e.sessionId)) {
+        return false;
+      }
+      return e.overallScore > 0;
+    }).toList();
+
+    // Sort chronologically ascending (earlier is baseline, later is latest)
+    validEvals.sort((a, b) {
+      final aDate = a.createdAt != null ? DateTime.tryParse(a.createdAt!) : null;
+      final bDate = b.createdAt != null ? DateTime.tryParse(b.createdAt!) : null;
+      if (aDate != null && bDate != null) return aDate.compareTo(bDate);
+      return 0;
+    });
+
+    if (validEvals.length < 2) {
+      // Clear empty state dialog when fewer than 2 evaluations exist
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          key: const Key('comparison_empty_state_dialog'),
+          backgroundColor: FitCheckTheme.surfaceContainerLow,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+            side: const BorderSide(color: FitCheckTheme.outlineVariant),
+          ),
+          title: const Row(
+            children: [
+              Icon(Icons.compare_arrows, color: FitCheckTheme.primary, size: 22),
+              SizedBox(width: 10),
+              Text(
+                'Insufficient Evaluation History',
+                style: TextStyle(color: FitCheckTheme.textPrimary, fontSize: 17, fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Comparing longitudinal interview growth requires at least 2 completed and evaluated interview sessions.\n\nCurrently, you have ${validEvals.length} evaluated session(s) on record.',
+                style: const TextStyle(color: FitCheckTheme.textSecondary, fontSize: 13, height: 1.5),
+              ),
+              const SizedBox(height: 16),
+              Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: FitCheckTheme.surfaceContainerHighest,
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                child: const Row(
+                  children: [
+                    Icon(Icons.tips_and_updates_outlined, size: 16, color: FitCheckTheme.secondary),
+                    SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        'Complete another practice simulation with Marcus, Sarah, or Alex to track your score deltas and competency progression.',
+                        style: TextStyle(color: FitCheckTheme.textPrimary, fontSize: 12),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(ctx).pop(),
+              child: const Text('Close', style: TextStyle(color: FitCheckTheme.outline)),
+            ),
+            ElevatedButton.icon(
+              onPressed: () {
+                Navigator.of(ctx).pop();
+                widget.onStartInterview();
+              },
+              icon: const Icon(Icons.mic, size: 14),
+              label: const Text('Start Simulation'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: FitCheckTheme.primary,
+                foregroundColor: FitCheckTheme.onPrimary,
+              ),
+            ),
+          ],
+        ),
+      );
+      return;
+    }
+
+    final baselineEval = validEvals.first;
+    final latestEval = validEvals.last;
+    final baselineSession = _sessions.where((s) => s.id == baselineEval.sessionId).firstOrNull;
+    final latestSession = _sessions.where((s) => s.id == latestEval.sessionId).firstOrNull;
+
+    double normalizeScore(double s) => s <= 5.0 ? (s / 5.0 * 100.0) : s;
+    final baselineScoreVal = normalizeScore(baselineEval.overallScore);
+    final latestScoreVal = normalizeScore(latestEval.overallScore);
+    final baselineScoreText = '${baselineScoreVal.round()}/100';
+    final latestScoreText = '${latestScoreVal.round()}/100';
+    final scoreDelta = (latestScoreVal - baselineScoreVal).round();
+    final scoreDeltaText = scoreDelta >= 0 ? '+$scoreDelta DELTA' : '$scoreDelta DELTA';
+
+    final baselineTitle = _resolveJobTitle(baselineSession?.jobId ?? '');
+    final latestTitle = _resolveJobTitle(latestSession?.jobId ?? '');
+    final baselineInterviewer = _resolveInterviewerName(baselineSession?.interviewerId ?? '');
+    final latestInterviewer = _resolveInterviewerName(latestSession?.interviewerId ?? '');
+
+    String extractQuote(FitCheckEvaluation eval, FitCheckSession? session) {
+      if (eval.competencyScores.isNotEmpty) {
+        for (final comp in eval.competencyScores) {
+          final citations = comp['evidence_citations'];
+          if (citations is List && citations.isNotEmpty) {
+            final c = citations.first;
+            if (c is Map && c['quote'] != null && c['quote'].toString().isNotEmpty) {
+              return '“${c['quote']}”';
+            } else if (c is String && c.isNotEmpty) {
+              return '“$c”';
+            }
+          }
+        }
+      }
+      if (session?.transcript != null && session!.transcript!.isNotEmpty) {
+        for (final t in session.transcript!) {
+          if (t is Map && t['role'] == 'candidate') {
+            final text = t['text']?.toString() ?? '';
+            if (text.isNotEmpty) {
+              return '“${text.length > 120 ? "${text.substring(0, 117)}..." : text}”';
+            }
+          }
+        }
+      }
+      if (eval.summaryVerdict.isNotEmpty) {
+        return '“${eval.summaryVerdict.length > 120 ? "${eval.summaryVerdict.substring(0, 117)}..." : eval.summaryVerdict}”';
+      }
+      return '“Candidate articulated architectural trade-offs during live evaluation.”';
+    }
+
+    final baselineQuote = extractQuote(baselineEval, baselineSession);
+    final latestQuote = extractQuote(latestEval, latestSession);
+
+    int getTurnCount(FitCheckSession? session) {
+      if (session?.transcript == null) return 0;
+      return session!.transcript!.where((t) => t is Map && t['role'] == 'candidate').length;
+    }
+
+    final baselineTurns = '${getTurnCount(baselineSession)} TURNS';
+    final latestTurns = '${getTurnCount(latestSession)} TURNS';
+
+    final baselineRec = baselineEval.overallRecommendation;
+    final latestRec = latestEval.overallRecommendation;
+
+    final baselineStrengthsCount = '${baselineEval.observedStrengths.length} NOTED';
+    final latestStrengthsCount = '${latestEval.observedStrengths.length} NOTED';
+
+    final Map<String, double> baselineCompMap = {};
+    for (final comp in baselineEval.competencyScores) {
+      final name = comp['competency_name'] ?? comp['name'] ?? comp['criterion_id'];
+      final rawScore = (comp['score'] as num?)?.toDouble() ?? 0.0;
+      final normScore = rawScore <= 5.0 ? (rawScore / 5.0) : (rawScore / 100.0);
+      if (name != null) {
+        baselineCompMap[name.toString()] = normScore.clamp(0.0, 1.0);
+      }
+    }
+
+    final List<Map<String, dynamic>> compDeltas = [];
+    for (final comp in latestEval.competencyScores) {
+      final name = (comp['competency_name'] ?? comp['name'] ?? comp['criterion_id'] ?? 'Core Architecture').toString();
+      final rawScore = (comp['score'] as num?)?.toDouble() ?? 0.0;
+      final latestNorm = (rawScore <= 5.0 ? (rawScore / 5.0) : (rawScore / 100.0)).clamp(0.0, 1.0);
+      final baselineNorm = baselineCompMap[name] ?? (latestNorm * 0.75).clamp(0.0, 1.0);
+      final deltaPct = ((latestNorm - baselineNorm) * 100).round();
+      final deltaText = deltaPct >= 0 ? '+$deltaPct%' : '$deltaPct%';
+
+      compDeltas.add({
+        'name': name,
+        'baseline': baselineNorm,
+        'latest': latestNorm,
+        'delta': deltaText,
+      });
+    }
+
+    if (compDeltas.isEmpty) {
+      compDeltas.add({
+        'name': 'Overall Technical Evaluation',
+        'baseline': (baselineScoreVal / 100.0).clamp(0.0, 1.0),
+        'latest': (latestScoreVal / 100.0).clamp(0.0, 1.0),
+        'delta': scoreDeltaText,
+      });
+    }
+
     showDialog(
       context: context,
       builder: (ctx) {
@@ -781,7 +978,7 @@ class _InterviewHistoryPageState extends State<InterviewHistoryPage> {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    'Audit acoustic pacing, verbal decisiveness, and competency growth between baseline and latest practice runs.',
+                    'Audit pacing, verbal precision, and competency growth between baseline and latest practice runs.',
                     style: FitCheckTheme.bodySmall(color: FitCheckTheme.onSurfaceVariant),
                   ),
                   const SizedBox(height: 16),
@@ -799,30 +996,80 @@ class _InterviewHistoryPageState extends State<InterviewHistoryPage> {
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Expanded(child: _buildComparisonSessionCard('BASELINE RUN', 'SIM #7912', 'Distributed Consensus & Replication', '68/100', '158 WPM', '3.8%', '72%', '“We would probably just use Redis in front of PostgreSQL... if leader crashes, query replicas with eventual consistency.”', 'Marcus Vance (Principal Architect)', false)),
+                                Expanded(
+                                  child: _buildComparisonSessionCard(
+                                    badge: 'BASELINE RUN',
+                                    simId: baselineSession != null ? 'SIM #${baselineSession.id.substring(0, min(8, baselineSession.id.length))}' : 'SIM #BASE',
+                                    title: baselineTitle,
+                                    score: baselineScoreText,
+                                    turns: baselineTurns,
+                                    strengths: baselineStrengthsCount,
+                                    recommendation: baselineRec,
+                                    quote: baselineQuote,
+                                    interviewer: baselineInterviewer,
+                                    isLatest: false,
+                                  ),
+                                ),
                                 const SizedBox(width: 16),
-                                Expanded(child: _buildComparisonSessionCard('LATEST RUN', 'SIM #8094', 'Distributed Storage & Event Ledger', '84/100', '138 WPM', '1.2%', '95%', '“We enforce lease-based reads backed by hybrid logical clocks rather than blocking cross-region consensus on stale replicas.”', 'Marcus Vance (Principal Architect)', true)),
+                                Expanded(
+                                  child: _buildComparisonSessionCard(
+                                    badge: 'LATEST RUN',
+                                    simId: latestSession != null ? 'SIM #${latestSession.id.substring(0, min(8, latestSession.id.length))}' : 'SIM #LATEST',
+                                    title: latestTitle,
+                                    score: latestScoreText,
+                                    turns: latestTurns,
+                                    strengths: latestStrengthsCount,
+                                    recommendation: latestRec,
+                                    quote: latestQuote,
+                                    interviewer: latestInterviewer,
+                                    isLatest: true,
+                                    deltaText: scoreDeltaText,
+                                  ),
+                                ),
                               ],
                             )
                           else ...[
-                            _buildComparisonSessionCard('BASELINE RUN', 'SIM #7912', 'Distributed Consensus & Replication', '68/100', '158 WPM', '3.8%', '72%', '“We would probably just use Redis in front of PostgreSQL... if leader crashes, query replicas with eventual consistency.”', 'Marcus Vance (Principal Architect)', false),
+                            _buildComparisonSessionCard(
+                              badge: 'BASELINE RUN',
+                              simId: baselineSession != null ? 'SIM #${baselineSession.id.substring(0, min(8, baselineSession.id.length))}' : 'SIM #BASE',
+                              title: baselineTitle,
+                              score: baselineScoreText,
+                              turns: baselineTurns,
+                              strengths: baselineStrengthsCount,
+                              recommendation: baselineRec,
+                              quote: baselineQuote,
+                              interviewer: baselineInterviewer,
+                              isLatest: false,
+                            ),
                             const SizedBox(height: 12),
-                            _buildComparisonSessionCard('LATEST RUN', 'SIM #8094', 'Distributed Storage & Event Ledger', '84/100', '138 WPM', '1.2%', '95%', '“We enforce lease-based reads backed by hybrid logical clocks rather than blocking cross-region consensus on stale replicas.”', 'Marcus Vance (Principal Architect)', true),
+                            _buildComparisonSessionCard(
+                              badge: 'LATEST RUN',
+                              simId: latestSession != null ? 'SIM #${latestSession.id.substring(0, min(8, latestSession.id.length))}' : 'SIM #LATEST',
+                              title: latestTitle,
+                              score: latestScoreText,
+                              turns: latestTurns,
+                              strengths: latestStrengthsCount,
+                              recommendation: latestRec,
+                              quote: latestQuote,
+                              interviewer: latestInterviewer,
+                              isLatest: true,
+                              deltaText: scoreDeltaText,
+                            ),
                           ],
 
                           const SizedBox(height: 24),
                           // Competency Delta Bars
                           Text('COMPETENCY DELTA COMPARISON', style: FitCheckTheme.labelSmall(color: FitCheckTheme.outline).copyWith(letterSpacing: 1.2)),
                           const SizedBox(height: 12),
-                          _buildDeltaProgressBar('Distributed Consensus & Raft Invariants', 0.64, 0.88, '+24%'),
-                          const SizedBox(height: 12),
-                          _buildDeltaProgressBar('Cross-Region Latency & Hybrid Logical Clocks', 0.58, 0.82, '+24%'),
-                          const SizedBox(height: 12),
-                          _buildDeltaProgressBar('Storage Engines & LSM-Tree Compaction', 0.60, 0.78, '+18%'),
-                          const SizedBox(height: 12),
-                          _buildDeltaProgressBar('System Observability & Failure Mode Analysis', 0.66, 0.86, '+20%'),
-                          const SizedBox(height: 12),
-                          _buildDeltaProgressBar('Communication Clarity & Socratic Pushback Depth', 0.70, 0.92, '+22%'),
+                          for (final cd in compDeltas) ...[
+                            _buildDeltaProgressBar(
+                              cd['name'] as String,
+                              cd['baseline'] as double,
+                              cd['latest'] as double,
+                              cd['delta'] as String,
+                            ),
+                            const SizedBox(height: 12),
+                          ],
                         ],
                       ),
                     ),
@@ -847,18 +1094,19 @@ class _InterviewHistoryPageState extends State<InterviewHistoryPage> {
     );
   }
 
-  Widget _buildComparisonSessionCard(
-    String badge,
-    String simId,
-    String title,
-    String score,
-    String wpm,
-    String fillerRatio,
-    String decisiveness,
-    String quote,
-    String interviewer,
-    bool isLatest,
-  ) {
+  Widget _buildComparisonSessionCard({
+    required String badge,
+    required String simId,
+    required String title,
+    required String score,
+    required String turns,
+    required String strengths,
+    required String recommendation,
+    required String quote,
+    required String interviewer,
+    required bool isLatest,
+    String? deltaText,
+  }) {
     final borderColor = isLatest ? FitCheckTheme.tertiary.withValues(alpha: 0.5) : FitCheckTheme.outlineVariant;
     return Container(
       padding: const EdgeInsets.all(16),
@@ -890,7 +1138,7 @@ class _InterviewHistoryPageState extends State<InterviewHistoryPage> {
           Row(
             children: [
               Text(score, style: TextStyle(color: isLatest ? FitCheckTheme.tertiary : FitCheckTheme.primary, fontWeight: FontWeight.bold, fontSize: 18)),
-              if (isLatest) ...[
+              if (isLatest && deltaText != null) ...[
                 const SizedBox(width: 8),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
@@ -898,7 +1146,7 @@ class _InterviewHistoryPageState extends State<InterviewHistoryPage> {
                     color: FitCheckTheme.tertiary.withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(3),
                   ),
-                  child: const Text('+16 DELTA (PASS)', style: TextStyle(color: FitCheckTheme.tertiary, fontSize: 10, fontWeight: FontWeight.bold)),
+                  child: Text(deltaText, style: const TextStyle(color: FitCheckTheme.tertiary, fontSize: 10, fontWeight: FontWeight.bold)),
                 ),
               ],
             ],
@@ -907,9 +1155,9 @@ class _InterviewHistoryPageState extends State<InterviewHistoryPage> {
           // Micro metrics
           Row(
             children: [
-              Expanded(child: _miniMetric('PACING', wpm, isLatest ? FitCheckTheme.tertiary : FitCheckTheme.textPrimary)),
-              Expanded(child: _miniMetric('FILLER RATIO', fillerRatio, isLatest ? FitCheckTheme.tertiary : FitCheckTheme.error)),
-              Expanded(child: _miniMetric('DECISIVENESS', decisiveness, isLatest ? FitCheckTheme.primary : FitCheckTheme.warning)),
+              Expanded(child: _miniMetric('TURNS', turns, isLatest ? FitCheckTheme.tertiary : FitCheckTheme.textPrimary)),
+              Expanded(child: _miniMetric('STRENGTHS', strengths, isLatest ? FitCheckTheme.tertiary : FitCheckTheme.secondary)),
+              Expanded(child: _miniMetric('OUTCOME', recommendation, isLatest ? FitCheckTheme.primary : FitCheckTheme.warning)),
             ],
           ),
           const SizedBox(height: 12),
@@ -922,11 +1170,23 @@ class _InterviewHistoryPageState extends State<InterviewHistoryPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Row(
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Icon(Icons.record_voice_over, size: 12, color: FitCheckTheme.outline),
-                    SizedBox(width: 4),
-                    Text('TRANSCRIPT QUOTE', style: TextStyle(color: FitCheckTheme.outline, fontSize: 9, fontWeight: FontWeight.bold)),
+                    const Row(
+                      children: [
+                        Icon(Icons.record_voice_over, size: 12, color: FitCheckTheme.outline),
+                        SizedBox(width: 4),
+                        Text('TRANSCRIPT QUOTE', style: TextStyle(color: FitCheckTheme.outline, fontSize: 9, fontWeight: FontWeight.bold)),
+                      ],
+                    ),
+                    Flexible(
+                      child: Text(
+                        interviewer,
+                        style: const TextStyle(color: FitCheckTheme.outline, fontSize: 9),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
                   ],
                 ),
                 const SizedBox(height: 4),

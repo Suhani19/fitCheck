@@ -168,6 +168,10 @@ class InterviewSessionModel(Base):
     )
     ended_at = Column(DateTime(timezone=True), nullable=True)
 
+    @property
+    def agent_status(self) -> str:
+        return "active" if self.agent_id else "standby"
+
     user = relationship("UserModel", back_populates="interview_sessions")
     candidate = relationship("CandidateModel", back_populates="interview_sessions")
     job = relationship("JobModel", back_populates="interview_sessions")

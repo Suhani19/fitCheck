@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import '../../../core/auth/auth_service.dart';
 import '../../../core/theme/fitcheck_theme.dart';
@@ -45,6 +47,11 @@ class _CandidateProfileDetailPageState extends State<CandidateProfileDetailPage>
   String? _resumeError;
   Map<String, dynamic>? _extractedResumePreview;
   int _selectedResumeInputTab = 0; // 0 = Paste Text/Markdown, 1 = Upload File
+
+  // Uploaded Resume Document State
+  Uint8List? _uploadedFileBytes;
+  String? _uploadedFileName;
+  int? _uploadedFileSize;
 
   List<Map<String, dynamic>> _workExperience = [];
   List<Map<String, dynamic>> _projects = [];
@@ -165,6 +172,86 @@ class _CandidateProfileDetailPageState extends State<CandidateProfileDetailPage>
     try {
       if (widget.apiService != null) {
         final result = await widget.apiService!.parseResumeText(text, filename: 'pasted_resume.txt');
+        if (!mounted) return;
+        setState(() {
+          _extractedResumePreview = result;
+          _extractingResume = false;
+        });
+      } else {
+        throw Exception('API service unavailable.');
+      }
+    } catch (e) {
+      if (!mounted) return;
+      setState(() {
+        _extractingResume = false;
+        _resumeError = e.toString().replaceFirst('Exception: ', '');
+      });
+    }
+  }
+
+  Future<void> _handlePickResumeFile() async {
+    setState(() => _resumeError = null);
+    try {
+      final files = await FilePicker.pickFiles(
+        type: FileType.custom,
+        allowedExtensions: ['pdf', 'docx', 'txt'],
+      );
+
+      if (files.isEmpty) {
+        return;
+      }
+
+      final file = files.first;
+      final name = file.name;
+      final ext = file.extension?.toLowerCase() ?? (name.contains('.') ? name.split('.').last.toLowerCase() : '');
+
+      if (!['pdf', 'docx', 'txt'].contains(ext)) {
+        setState(() => _resumeError = 'Unsupported format ($ext). Only PDF (.pdf), Word (.docx), and plain text (.txt) files are supported.');
+        return;
+      }
+
+      final bytes = await file.readAsBytes();
+      if (bytes.isEmpty) {
+        setState(() => _resumeError = 'Could not read document contents. Please select a valid local file.');
+        return;
+      }
+
+      if (bytes.length > maxResumeBytes) {
+        final mb = (bytes.length / (1024 * 1024)).toStringAsFixed(1);
+        setState(() => _resumeError = 'Selected file is $mb MB, which exceeds the 5 MB maximum file limit.');
+        return;
+      }
+
+      setState(() {
+        _uploadedFileBytes = bytes;
+        _uploadedFileName = name;
+        _uploadedFileSize = bytes.length;
+        _resumeError = null;
+      });
+    } catch (e) {
+      if (!mounted) return;
+      setState(() => _resumeError = 'Error selecting file: $e');
+    }
+  }
+
+  Future<void> _handleExtractUploadedFile() async {
+    if (_uploadedFileBytes == null || _uploadedFileName == null) {
+      setState(() => _resumeError = 'Please select a resume file (.pdf, .docx, or .txt) first.');
+      return;
+    }
+
+    setState(() {
+      _extractingResume = true;
+      _resumeError = null;
+    });
+
+    try {
+      if (widget.apiService != null) {
+        final result = await widget.apiService!.uploadResume(
+          fileBytes: _uploadedFileBytes!,
+          filename: _uploadedFileName!,
+          candidateId: widget.candidate?.id,
+        );
         if (!mounted) return;
         setState(() {
           _extractedResumePreview = result;
@@ -490,9 +577,9 @@ class _CandidateProfileDetailPageState extends State<CandidateProfileDetailPage>
             ),
           ] else ...[
             Container(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: FitCheckTheme.surfaceContainerHigh,
+                color: FitCheckTheme.surfaceContainerLowest,
                 borderRadius: BorderRadius.circular(6),
                 border: Border.all(color: FitCheckTheme.outlineVariant),
               ),
@@ -500,29 +587,120 @@ class _CandidateProfileDetailPageState extends State<CandidateProfileDetailPage>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Icon(Icons.info_outline, size: 18, color: FitCheckTheme.primary),
-                      const SizedBox(width: 8),
-                      Text('NATIVE FILE PICKER PENDING', style: FitCheckTheme.labelSmall(color: FitCheckTheme.primary)),
+                      Row(
+                        children: [
+                          const Icon(Icons.upload_file, size: 20, color: FitCheckTheme.primary),
+                          const SizedBox(width: 8),
+                          Text('Upload PDF or Word Document', style: FitCheckTheme.titleMedium(color: FitCheckTheme.onSurface)),
+                        ],
+                      ),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                        decoration: BoxDecoration(
+                          color: FitCheckTheme.surfaceContainerHigh,
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        child: const Text('MAX 5 MB • PDF / DOCX / TXT', style: TextStyle(color: FitCheckTheme.outline, fontSize: 10, fontWeight: FontWeight.bold)),
+                      ),
                     ],
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Direct PDF/Word document file picking requires adding the "file_picker" platform package to pubspec.yaml. To avoid substituting mock bytes, please use the operational text extraction engine instead.',
+                    'Select your resume document to automatically extract work experience, core competencies, education, and target technical roles using Gemini.',
                     style: FitCheckTheme.bodySmall(color: FitCheckTheme.onSurfaceVariant),
                   ),
-                  const SizedBox(height: 12),
-                  ElevatedButton.icon(
-                    key: const Key('switch_to_text_resume_btn'),
-                    onPressed: () => setState(() => _selectedResumeInputTab = 0),
-                    icon: const Icon(Icons.description_outlined, size: 14),
-                    label: const Text('Switch to Paste Resume Text Tab'),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: FitCheckTheme.primary,
-                      foregroundColor: FitCheckTheme.onPrimary,
-                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                  const SizedBox(height: 16),
+                  if (_uploadedFileBytes == null) ...[
+                    InkWell(
+                      key: const Key('pick_resume_file_btn'),
+                      onTap: _extractingResume ? null : _handlePickResumeFile,
+                      borderRadius: BorderRadius.circular(6),
+                      child: Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.symmetric(vertical: 28, horizontal: 16),
+                        decoration: BoxDecoration(
+                          color: FitCheckTheme.surfaceContainerLow,
+                          borderRadius: BorderRadius.circular(6),
+                          border: Border.all(color: FitCheckTheme.outlineVariant.withValues(alpha: 0.6)),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(Icons.cloud_upload_outlined, size: 36, color: FitCheckTheme.primary),
+                            const SizedBox(height: 10),
+                            const Text('Click to choose your resume file', style: TextStyle(color: FitCheckTheme.textPrimary, fontSize: 13, fontWeight: FontWeight.bold)),
+                            const SizedBox(height: 4),
+                            Text('Supports PDF (.pdf), Microsoft Word (.docx), and text (.txt)', style: FitCheckTheme.labelSmall(color: FitCheckTheme.outline)),
+                          ],
+                        ),
+                      ),
                     ),
-                  ),
+                  ] else ...[
+                    Container(
+                      padding: const EdgeInsets.all(14),
+                      decoration: BoxDecoration(
+                        color: FitCheckTheme.surfaceContainerLow,
+                        borderRadius: BorderRadius.circular(6),
+                        border: Border.all(color: FitCheckTheme.tertiary.withValues(alpha: 0.4)),
+                      ),
+                      child: Row(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: FitCheckTheme.tertiary.withValues(alpha: 0.15),
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            child: const Icon(Icons.description, color: FitCheckTheme.tertiary, size: 24),
+                          ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  _uploadedFileName ?? 'Selected Document',
+                                  style: const TextStyle(color: FitCheckTheme.textPrimary, fontWeight: FontWeight.bold, fontSize: 13),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                const SizedBox(height: 2),
+                                Text(
+                                  _uploadedFileSize != null
+                                      ? '${(_uploadedFileSize! / 1024).toStringAsFixed(1)} KB'
+                                      : 'Ready for ingestion',
+                                  style: const TextStyle(color: FitCheckTheme.outline, fontSize: 11),
+                                ),
+                              ],
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: _extractingResume ? null : _handlePickResumeFile,
+                            child: const Text('Change', style: TextStyle(color: FitCheckTheme.outline, fontSize: 12)),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 14),
+                    ElevatedButton.icon(
+                      key: const Key('extract_resume_file_btn'),
+                      onPressed: _extractingResume ? null : _handleExtractUploadedFile,
+                      icon: _extractingResume
+                          ? const SizedBox(
+                              width: 14,
+                              height: 14,
+                              child: CircularProgressIndicator(strokeWidth: 2, color: FitCheckTheme.onPrimary),
+                            )
+                          : const Icon(Icons.auto_awesome, size: 14),
+                      label: Text(_extractingResume ? 'Extracting via AI...' : 'Extract Profile from Document'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: FitCheckTheme.primary,
+                        foregroundColor: FitCheckTheme.onPrimary,
+                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                      ),
+                    ),
+                  ],
                 ],
               ),
             ),

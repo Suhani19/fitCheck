@@ -20,6 +20,7 @@ class HardwareReadinessPage extends StatefulWidget {
   final ValueChanged<FitCheckInterviewer>? onInterviewerChanged;
   final VoidCallback? onChangeInterviewer;
   final VoidCallback? onChangeJob;
+  final bool isDemoMode;
 
   const HardwareReadinessPage({
     super.key,
@@ -35,6 +36,7 @@ class HardwareReadinessPage extends StatefulWidget {
     this.onInterviewerChanged,
     this.onChangeInterviewer,
     this.onChangeJob,
+    this.isDemoMode = false,
   });
 
   @override
@@ -61,6 +63,34 @@ class _HardwareReadinessPageState extends State<HardwareReadinessPage>
   bool _realtimeTranscription = true;
   bool _interruptionDetection = true;
   bool _isCreatingSession = false;
+
+  // Real backend latency telemetry
+  int? _backendLatencyMs;
+  bool _isLoadingLatency = false;
+  String? _latencyError;
+
+  Future<void> _checkBackendLatency() async {
+    if (widget.apiService == null) return;
+    setState(() {
+      _isLoadingLatency = true;
+      _latencyError = null;
+    });
+    try {
+      final ms = await widget.apiService!.measureBackendLatency();
+      if (!mounted) return;
+      setState(() {
+        _backendLatencyMs = ms;
+        _isLoadingLatency = false;
+        _latencyError = null;
+      });
+    } catch (e) {
+      if (!mounted) return;
+      setState(() {
+        _isLoadingLatency = false;
+        _latencyError = e.toString().replaceFirst('Exception: ', '');
+      });
+    }
+  }
 
   Future<void> _handleEnterLiveRoom() async {
     if (_isCreatingSession) return;
@@ -103,44 +133,66 @@ class _HardwareReadinessPageState extends State<HardwareReadinessPage>
         }
       }
 
-      // If candidate is in demo mode, create simulated session without throwing 401
-      if (candidate?.id == 'demo-elena-cand') {
-        final demoSession = FitCheckSession(
-          id: 'demo-sess-${DateTime.now().millisecondsSinceEpoch}',
-          candidateId: 'demo-elena-cand',
-          jobId: jobId,
-          interviewerId: interviewerId,
-          difficulty: difficulty,
-          status: 'active',
-          channel: 'fitcheck-demo-channel',
-          startedAt: DateTime.now().toIso8601String(),
-          transcript: [
-            {
-              'role': 'interviewer',
-              'text': "Hi ${candidate?.fullName.split(' ').first ?? 'Elena'}, I'm ${effectiveInterviewer.name}. Let's walk through your systems and architectural strategy.",
-              'timestamp': '00:05',
-            }
-          ],
-        );
-        widget.onSessionCreated?.call(demoSession);
-        widget.onEnterLiveRoom();
-        return;
-      }
-
+      // Proceed to start real session via backend
       if (widget.apiService != null && candidate != null) {
-        final session = await widget.apiService!.startSession(
-          candidateId: candidate.id,
-          jobId: jobId,
-          interviewerId: interviewerId,
-          difficulty: difficulty,
-        );
-        if (!mounted) return;
-        widget.onSessionCreated?.call(session);
-        widget.onEnterLiveRoom();
-        return;
+        try {
+          final session = await widget.apiService!.startSession(
+            candidateId: candidate.id,
+            jobId: jobId,
+            interviewerId: interviewerId,
+            difficulty: difficulty,
+          );
+          if (!mounted) return;
+          widget.onSessionCreated?.call(session);
+          widget.onEnterLiveRoom();
+          return;
+        } catch (e) {
+          debugPrint('[HardwareReadiness] Session creation note: $e');
+          if (widget.isDemoMode) {
+            final fallbackSession = FitCheckSession(
+              id: 'sess-demo-${DateTime.now().millisecondsSinceEpoch}',
+              candidateId: candidate.id,
+              jobId: jobId,
+              interviewerId: interviewerId,
+              status: 'active',
+              difficulty: difficulty,
+              channel: 'fitcheck-demo',
+              rtcToken: 'demo-token',
+              startedAt: DateTime.now().toIso8601String(),
+              sessionPlan: const {
+                'opening_question': 'Welcome. Please walk me through a distributed system you designed.',
+                'challenge': 'Distributed consensus under network partitions',
+              },
+            );
+            widget.onSessionCreated?.call(fallbackSession);
+            widget.onEnterLiveRoom();
+            return;
+          }
+          rethrow;
+        }
       }
 
       if (candidate == null && widget.apiService != null) {
+        if (widget.isDemoMode) {
+          final fallbackSession = FitCheckSession(
+            id: 'sess-demo-${DateTime.now().millisecondsSinceEpoch}',
+            candidateId: 'cand-demo',
+            jobId: jobId,
+            interviewerId: interviewerId,
+            status: 'active',
+            difficulty: difficulty,
+            channel: 'fitcheck-demo',
+            rtcToken: 'demo-token',
+            startedAt: DateTime.now().toIso8601String(),
+            sessionPlan: const {
+              'opening_question': 'Welcome. Please walk me through a distributed system you designed.',
+              'challenge': 'Distributed consensus under network partitions',
+            },
+          );
+          widget.onSessionCreated?.call(fallbackSession);
+          widget.onEnterLiveRoom();
+          return;
+        }
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
@@ -224,6 +276,7 @@ class _HardwareReadinessPageState extends State<HardwareReadinessPage>
     _audioService.micLevelNotifier.addListener(_onAudioServiceStateChanged);
 
     _initHardwareReadiness();
+    _checkBackendLatency();
   }
 
   @override
@@ -433,7 +486,7 @@ class _HardwareReadinessPageState extends State<HardwareReadinessPage>
                 const SizedBox(width: 6),
                 Flexible(
                   child: Text(
-                    'Interview Setup & Hardware Readiness',
+                    'Interview Setup & Audio Check',
                     style: FitCheckTheme.bodySmall(color: FitCheckTheme.onSurface),
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -991,12 +1044,30 @@ class _HardwareReadinessPageState extends State<HardwareReadinessPage>
               ),
               const SizedBox(height: 14),
 
-              // Telemetry stats row
+              // Telemetry stats row: Real Backend HTTP Latency, Service Health, Codec Spec
               Row(
                 children: [
-                  _telemetryMiniCard('WEBRTC PING', '18 ms', FitCheckTheme.tertiary),
+                  _telemetryMiniCard(
+                    'BACKEND HTTP PING',
+                    _isLoadingLatency
+                        ? 'Measuring...'
+                        : (_latencyError != null
+                            ? 'Offline'
+                            : (_backendLatencyMs != null ? '$_backendLatencyMs ms' : '--')),
+                    _latencyError != null
+                        ? FitCheckTheme.error
+                        : (_backendLatencyMs != null
+                            ? (_backendLatencyMs! < 300 ? FitCheckTheme.tertiary : FitCheckTheme.warning)
+                            : FitCheckTheme.outline),
+                  ),
                   const SizedBox(width: 8),
-                  _telemetryMiniCard('PACKET DROP', '0.0 %', FitCheckTheme.onSurface),
+                  _telemetryMiniCard(
+                    'API HEALTH',
+                    _latencyError != null
+                        ? 'Error'
+                        : (_backendLatencyMs != null ? '200 OK' : 'Checking'),
+                    _latencyError != null ? FitCheckTheme.error : FitCheckTheme.tertiary,
+                  ),
                   const SizedBox(width: 8),
                   _telemetryMiniCard('CODEC SPEC', 'Opus 48k', FitCheckTheme.primary),
                 ],
@@ -1271,7 +1342,7 @@ class _HardwareReadinessPageState extends State<HardwareReadinessPage>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text('All 4 pre-flight readiness checks verified • 100% READY', style: FitCheckTheme.bodySmall(color: FitCheckTheme.onSurface).copyWith(fontWeight: FontWeight.bold)),
+                  Text('All 4 audio & connection checks verified • 100% READY', style: FitCheckTheme.bodySmall(color: FitCheckTheme.onSurface).copyWith(fontWeight: FontWeight.bold)),
                   Text('Audio loopback active (48kHz) • WebRTC socket primed • Difficulty L6 Locked', style: FitCheckTheme.labelSmall(color: FitCheckTheme.outline)),
                 ],
               ),

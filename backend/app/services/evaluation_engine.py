@@ -317,10 +317,7 @@ EVALUATION RULES:
             user_id=user_id,
             overall_score=overall_score,
             overall_recommendation=recommendation,
-            summary_verdict=(
-                f"Candidate completed {difficulty} interview session with overall score of {overall_score}/5.0. "
-                f"Evaluation is based on verified transcript quotations mapped directly to role competencies."
-            ),
+            summary_verdict=summary_verdict,
             competency_scores=competency_scores,
             observed_strengths=observed_strengths or ["Participated constructively in technical dialogue."],
             technical_gaps=demonstrated_gaps,

@@ -27,15 +27,14 @@ void main() {
     await tester.pump();
 
     expect(find.text('AI Real-Time Interview Simulation & Screening'), findsOneWidget);
-    expect(find.text('Explore as Demo Candidate (Elena Rostova)'), findsOneWidget);
+    expect(find.byKey(const Key('demo_candidate_sign_in_button')), findsOneWidget);
 
     // 4. Authenticate as candidate -> enters Candidate Command Center flightdeck
-    await tester.tap(find.text('Explore as Demo Candidate (Elena Rostova)'));
+    await tester.tap(find.byKey(const Key('demo_candidate_sign_in_button')));
     await tester.pump();
 
     expect(find.text('Candidate Command Center'), findsOneWidget);
-    expect(find.text('LIVE READINESS FLIGHTDECK'), findsOneWidget);
+    expect(find.text('INTERVIEW READINESS DASHBOARD'), findsOneWidget);
     expect(find.text('Start Live Interview'), findsOneWidget);
-    expect(find.text('Elena Rostova'), findsWidgets);
   });
 }

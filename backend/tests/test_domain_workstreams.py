@@ -266,6 +266,33 @@ startxref
     assert "Rohan" in data["full_name"]
 
 
+def test_docx_resume_upload_extraction(client):
+    """Tests uploading and parsing a valid binary Word (.docx) resume."""
+    import io
+    import zipfile
+    app.dependency_overrides[get_current_user] = lambda: make_user("user-candidate-1")
+
+    # Generate minimal valid docx in memory
+    buf = io.BytesIO()
+    with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as z:
+        doc_xml = b"""<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+    <w:body>
+        <w:p><w:r><w:t>Aarav Patel Staff Systems Architect Go Raft Kafka PostgreSQL</w:t></w:r></w:p>
+    </w:body>
+</w:document>"""
+        z.writestr("word/document.xml", doc_xml)
+    raw_docx = buf.getvalue()
+
+    files = {"file": ("aarav_resume.docx", raw_docx, "application/vnd.openxmlformats-officedocument.wordprocessingml.document")}
+    resp = client.post("/api/v1/candidates/upload-resume", files=files)
+    assert resp.status_code == 200
+    data = resp.json()
+    assert any("Go" in s or "Kafka" in s for s in data["skills"])
+    assert "Aarav" in data["full_name"]
+
+
+
 
 def test_attach_resume_to_candidate_flow(client):
     """Tests creating candidate, uploading a text resume, and verifying profile population."""

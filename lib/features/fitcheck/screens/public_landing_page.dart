@@ -5,12 +5,14 @@ import '../../../core/widgets/fitcheck_logo.dart';
 
 class PublicLandingPage extends StatefulWidget {
   final VoidCallback onStartPreparing;
-  final VoidCallback onSignIn;
+  final VoidCallback? onSignIn;
+  final VoidCallback? onTryDemo;
 
   const PublicLandingPage({
     super.key,
     required this.onStartPreparing,
-    required this.onSignIn,
+    this.onSignIn,
+    this.onTryDemo,
   });
 
   @override
@@ -29,6 +31,7 @@ class _PublicLandingPageState extends State<PublicLandingPage>
   final GlobalKey _pricingKey = GlobalKey();
 
   int _selectedPersonaTab = 0;
+  Offset? _mousePos;
 
   final List<String> _personaTabs = [
     'Marcus Vance (Distributed Systems)',
@@ -131,51 +134,125 @@ class _PublicLandingPageState extends State<PublicLandingPage>
             ),
           ),
 
-          // Nav Items
+          // Nav Items in Middle (Desktop)
           if (isDesktop)
             Expanded(
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _navItem('Platform', () => _scrollToSection(_platformKey)),
-                    _navItem('Interviewer Personas', () => _scrollToSection(_personasKey)),
-                    _navItem('Voice Studio', () => _scrollToSection(_voiceStudioKey)),
-                    _navItem('Evaluations', () => _scrollToSection(_evaluationsKey)),
-                    _navItem('Pricing', () => _scrollToSection(_pricingKey)),
+              child: Center(
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      _navItem('Platform', () => _scrollToSection(_platformKey)),
+                      _navItem('Interviewers', () => _scrollToSection(_personasKey)),
+                      _navItem('Voice Studio', () => _scrollToSection(_voiceStudioKey)),
+                      _navItem('Evaluations', () => _scrollToSection(_evaluationsKey)),
+                      _navItem('Pricing', () => _scrollToSection(_pricingKey)),
+                    ],
+                  ),
+                ),
+              ),
+            )
+          else
+            const Spacer(),
+
+          // Actions on Right
+          if (isDesktop)
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                OutlinedButton.icon(
+                  key: const Key('landing_try_demo_btn'),
+                  onPressed: widget.onTryDemo ?? widget.onStartPreparing,
+                  icon: const Icon(Icons.bolt_rounded, size: 16, color: FitCheckTheme.primary),
+                  label: const Text('Try Demo'),
+                  style: OutlinedButton.styleFrom(
+                    foregroundColor: FitCheckTheme.primary,
+                    side: const BorderSide(color: FitCheckTheme.primary),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                  ),
+                ),
+                const SizedBox(width: 10),
+                ElevatedButton.icon(
+                  key: const Key('landing_start_preparing_btn'),
+                  onPressed: widget.onStartPreparing,
+                  icon: const Icon(Icons.arrow_forward_rounded, size: 16),
+                  label: const Text('Start Preparing Free'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: FitCheckTheme.primary,
+                    foregroundColor: FitCheckTheme.onPrimary,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  ),
+                ),
+              ],
+            )
+          else
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                OutlinedButton(
+                  key: const Key('landing_try_demo_btn'),
+                  onPressed: widget.onTryDemo ?? widget.onStartPreparing,
+                  style: OutlinedButton.styleFrom(
+                    foregroundColor: FitCheckTheme.primary,
+                    side: const BorderSide(color: FitCheckTheme.primary),
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+                  ),
+                  child: const Text('Try Demo', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
+                ),
+                const SizedBox(width: 8),
+                ElevatedButton(
+                  key: const Key('landing_start_preparing_btn'),
+                  onPressed: widget.onStartPreparing,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: FitCheckTheme.primary,
+                    foregroundColor: FitCheckTheme.onPrimary,
+                    padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+                  ),
+                  child: const Text('Start Preparing Free', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
+                ),
+                const SizedBox(width: 8),
+                PopupMenuButton<String>(
+                  key: const Key('compact_nav_menu_button'),
+                  icon: const Icon(Icons.menu_rounded, color: FitCheckTheme.onSurface),
+                  color: FitCheckTheme.surfaceContainerHigh,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    side: const BorderSide(color: FitCheckTheme.outlineVariant),
+                  ),
+                  onSelected: (val) {
+                    switch (val) {
+                      case 'platform':
+                        _scrollToSection(_platformKey);
+                        break;
+                      case 'personas':
+                        _scrollToSection(_personasKey);
+                        break;
+                      case 'voice':
+                        _scrollToSection(_voiceStudioKey);
+                        break;
+                      case 'evaluations':
+                        _scrollToSection(_evaluationsKey);
+                        break;
+                      case 'pricing':
+                        _scrollToSection(_pricingKey);
+                        break;
+                    }
+                  },
+                  itemBuilder: (context) => [
+                    const PopupMenuItem(value: 'platform', child: Text('Platform')),
+                    const PopupMenuItem(value: 'personas', child: Text('Interviewers')),
+                    const PopupMenuItem(value: 'voice', child: Text('Voice Studio')),
+                    const PopupMenuItem(value: 'evaluations', child: Text('Evaluations')),
+                    const PopupMenuItem(value: 'pricing', child: Text('Pricing')),
                   ],
                 ),
-              ),
+              ],
             ),
-
-          // CTA Actions
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextButton(
-                key: const Key('landing_sign_in_btn'),
-                onPressed: widget.onSignIn,
-                child: Text(
-                  'Sign In',
-                  style: FitCheckTheme.bodyMedium(color: FitCheckTheme.onSurfaceVariant),
-                ),
-              ),
-              const SizedBox(width: 12),
-              ElevatedButton.icon(
-                key: const Key('landing_get_started_btn'),
-                onPressed: widget.onStartPreparing,
-                icon: const Icon(Icons.arrow_forward, size: 16),
-                label: const Text('Start Preparing Free'),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: FitCheckTheme.primary,
-                  foregroundColor: FitCheckTheme.onPrimary,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                ),
-              ),
-            ],
-          ),
         ],
       ),
     );
@@ -201,118 +278,157 @@ class _PublicLandingPageState extends State<PublicLandingPage>
   }
 
   Widget _buildHeroSection(bool isDesktop) {
-    return Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: isDesktop ? 48 : 20,
-        vertical: isDesktop ? 56 : 32,
-      ),
-      child: Column(
+    final isReducedMotion = MediaQuery.of(context).disableAnimations;
+
+    return MouseRegion(
+      onHover: (event) {
+        if (!isReducedMotion && isDesktop) {
+          setState(() => _mousePos = event.localPosition);
+        }
+      },
+      onExit: (_) {
+        if (_mousePos != null) {
+          setState(() => _mousePos = null);
+        }
+      },
+      child: Stack(
         children: [
-          // Eyebrow Pill
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
-            decoration: BoxDecoration(
-              color: FitCheckTheme.surfaceContainerHigh,
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: FitCheckTheme.outlineVariant),
+          // Background ambient constellation painter
+          Positioned.fill(
+            child: IgnorePointer(
+              child: AnimatedBuilder(
+                animation: _animController,
+                builder: (context, _) {
+                  return CustomPaint(
+                    painter: HeroConstellationPainter(
+                      progress: _animController.value,
+                      mousePos: _mousePos,
+                      isReducedMotion: isReducedMotion,
+                    ),
+                  );
+                },
+              ),
             ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
+          ),
+
+          // Hero Content
+          Container(
+            padding: EdgeInsets.symmetric(
+              horizontal: isDesktop ? 48 : 20,
+              vertical: isDesktop ? 56 : 32,
+            ),
+            child: Column(
               children: [
+                // Eyebrow Pill
                 Container(
-                  width: 8,
-                  height: 8,
-                  decoration: const BoxDecoration(
-                    color: FitCheckTheme.primary,
-                    shape: BoxShape.circle,
+                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+                  decoration: BoxDecoration(
+                    color: FitCheckTheme.surfaceContainerHigh,
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(color: FitCheckTheme.outlineVariant),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        width: 8,
+                        height: 8,
+                        decoration: const BoxDecoration(
+                          color: FitCheckTheme.primary,
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        'OVERFIT LABS • FITCHECK 2.0 • ULTRA-LOW LATENCY VOICE AI',
+                        style: FitCheckTheme.labelSmall(color: FitCheckTheme.onSurface)
+                            .copyWith(letterSpacing: 1.1, fontWeight: FontWeight.w600),
+                      ),
+                    ],
                   ),
                 ),
-                const SizedBox(width: 8),
+                const SizedBox(height: 24),
+
+                // Main Headline
                 Text(
-                  'OVERFIT LABS • FITCHECK 2.0 • ULTRA-LOW LATENCY VOICE AI',
-                  style: FitCheckTheme.labelSmall(color: FitCheckTheme.onSurface)
-                      .copyWith(letterSpacing: 1.1, fontWeight: FontWeight.w600),
+                  "Your next interview shouldn't be a surprise.",
+                  textAlign: TextAlign.center,
+                  style: isDesktop
+                      ? FitCheckTheme.displayLarge().copyWith(fontSize: 48, height: 1.15)
+                      : FitCheckTheme.headlineXLarge().copyWith(fontSize: 30),
                 ),
+                const SizedBox(height: 16),
+
+                // Subheadline
+                ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 720),
+                  child: Text(
+                    'Practice with AI interviewers who adapt to your answers, challenge your architectural reasoning, and pressure-test you for the role you actually want.',
+                    textAlign: TextAlign.center,
+                    style: FitCheckTheme.bodyLarge(color: FitCheckTheme.onSurfaceVariant),
+                  ),
+                ),
+                const SizedBox(height: 28),
+
+                // CTAs with clear visual hierarchy: exactly two actions
+                Wrap(
+                  spacing: 16,
+                  runSpacing: 12,
+                  alignment: WrapAlignment.center,
+                  children: [
+                    ElevatedButton.icon(
+                      key: const Key('hero_try_demo_btn'),
+                      onPressed: widget.onTryDemo ?? widget.onStartPreparing,
+                      icon: const Icon(Icons.play_arrow_rounded, size: 20),
+                      label: const Text('Try Demo'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: FitCheckTheme.primary,
+                        foregroundColor: FitCheckTheme.onPrimary,
+                        padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 16),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                        textStyle: FitCheckTheme.bodyLarge().copyWith(fontWeight: FontWeight.bold),
+                        elevation: 4,
+                        shadowColor: FitCheckTheme.primary.withValues(alpha: 0.4),
+                      ),
+                    ),
+                    ElevatedButton.icon(
+                      key: const Key('hero_start_preparing_btn'),
+                      onPressed: widget.onStartPreparing,
+                      icon: const Icon(Icons.arrow_forward_rounded, size: 18),
+                      label: const Text('Start Preparing Free'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: FitCheckTheme.surfaceContainerHigh,
+                        foregroundColor: FitCheckTheme.onSurface,
+                        side: const BorderSide(color: FitCheckTheme.outlineVariant),
+                        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                        textStyle: FitCheckTheme.bodyLarge().copyWith(fontWeight: FontWeight.w600),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 18),
+
+                // Trust Badges
+                Wrap(
+                  spacing: 16,
+                  runSpacing: 8,
+                  alignment: WrapAlignment.center,
+                  children: [
+                    _badgeDot(FitCheckTheme.tertiary, 'No credit card required'),
+                    const Text('•', style: TextStyle(color: FitCheckTheme.outline)),
+                    _badgeDot(FitCheckTheme.primary, 'Realistic voice synthesis'),
+                    const Text('•', style: TextStyle(color: FitCheckTheme.outline)),
+                    _badgeDot(FitCheckTheme.secondary, '48kHz audio telemetry'),
+                  ],
+                ),
+                const SizedBox(height: 48),
+
+                // Hero Interactive Preview Card
+                _buildHeroPreviewCard(isDesktop),
               ],
             ),
           ),
-          const SizedBox(height: 24),
-
-          // Main Headline
-          Text(
-            "Your next interview shouldn't be a surprise.",
-            textAlign: TextAlign.center,
-            style: isDesktop
-                ? FitCheckTheme.displayLarge().copyWith(fontSize: 48, height: 1.15)
-                : FitCheckTheme.headlineXLarge().copyWith(fontSize: 30),
-          ),
-          const SizedBox(height: 16),
-
-          // Subheadline
-          ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 720),
-            child: Text(
-              'Practice with AI interviewers who adapt to your answers, challenge your architectural reasoning, and pressure-test you for the role you actually want.',
-              textAlign: TextAlign.center,
-              style: FitCheckTheme.bodyLarge(color: FitCheckTheme.onSurfaceVariant),
-            ),
-          ),
-          const SizedBox(height: 28),
-
-          // CTAs
-          Wrap(
-            spacing: 16,
-            runSpacing: 12,
-            alignment: WrapAlignment.center,
-            children: [
-              ElevatedButton.icon(
-                key: const Key('hero_start_preparing_btn'),
-                onPressed: widget.onStartPreparing,
-                icon: const Icon(Icons.arrow_forward_rounded, size: 18),
-                label: const Text('Start Preparing Free'),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: FitCheckTheme.primary,
-                  foregroundColor: FitCheckTheme.onPrimary,
-                  padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 16),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-                  textStyle: FitCheckTheme.bodyLarge().copyWith(fontWeight: FontWeight.bold),
-                ),
-              ),
-              OutlinedButton.icon(
-                key: const Key('hero_live_flightdeck_btn'),
-                onPressed: widget.onStartPreparing,
-                icon: const Icon(Icons.play_circle_fill, size: 18, color: FitCheckTheme.primary),
-                label: const Text('Live Simulation Flightdeck'),
-                style: OutlinedButton.styleFrom(
-                  foregroundColor: FitCheckTheme.onSurface,
-                  backgroundColor: FitCheckTheme.surfaceContainerHigh,
-                  side: const BorderSide(color: FitCheckTheme.outlineVariant),
-                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-                  textStyle: FitCheckTheme.bodyLarge(),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 18),
-
-          // Trust Badges
-          Wrap(
-            spacing: 16,
-            runSpacing: 8,
-            alignment: WrapAlignment.center,
-            children: [
-              _badgeDot(FitCheckTheme.tertiary, 'No credit card required'),
-              const Text('•', style: TextStyle(color: FitCheckTheme.outline)),
-              _badgeDot(FitCheckTheme.primary, 'Realistic voice synthesis'),
-              const Text('•', style: TextStyle(color: FitCheckTheme.outline)),
-              _badgeDot(FitCheckTheme.secondary, '48kHz audio telemetry'),
-            ],
-          ),
-          const SizedBox(height: 48),
-
-          // Hero Interactive Preview Card
-          _buildHeroPreviewCard(isDesktop),
         ],
       ),
     );
@@ -1226,7 +1342,7 @@ class _PublicLandingPageState extends State<PublicLandingPage>
           _pricingFeatureRow(Icons.check, 'Socratic voice interview simulations with preset interviewers', true),
           _pricingFeatureRow(Icons.check, 'Evidence-backed scorecard evaluations with rubric criteria', true),
           _pricingFeatureRow(Icons.check, 'Practice drill library across systems, storage, and concurrency', true),
-          _pricingFeatureRow(Icons.check, 'Hardware readiness & audio telemetry diagnostics', true),
+          _pricingFeatureRow(Icons.check, 'Audio & connection check with telemetry diagnostics', true),
           const SizedBox(height: 12),
           Text('Current Limitations:', style: FitCheckTheme.labelSmall(color: FitCheckTheme.outline)),
           const SizedBox(height: 4),
@@ -1517,8 +1633,8 @@ class _PublicLandingPageState extends State<PublicLandingPage>
           ElevatedButton.icon(
             key: const Key('bottom_cta_launch_btn'),
             onPressed: widget.onStartPreparing,
-            icon: const Icon(Icons.rocket_launch, size: 16),
-            label: const Text('Launch FitCheck Flightdeck'),
+            icon: const Icon(Icons.arrow_forward_rounded, size: 16),
+            label: const Text('Start Preparing Free'),
             style: ElevatedButton.styleFrom(
               backgroundColor: FitCheckTheme.primary,
               foregroundColor: FitCheckTheme.onPrimary,
@@ -1544,6 +1660,7 @@ class _PublicLandingPageState extends State<PublicLandingPage>
             const FitCheckLogo(
               size: 24,
               showWordmark: true,
+              showTagline: false,
               wordmarkSize: 14,
             ),
             const SizedBox(height: 10),
@@ -1557,3 +1674,122 @@ class _PublicLandingPageState extends State<PublicLandingPage>
     );
   }
 }
+
+class HeroConstellationPainter extends CustomPainter {
+  final double progress;
+  final Offset? mousePos;
+  final bool isReducedMotion;
+
+  HeroConstellationPainter({
+    required this.progress,
+    this.mousePos,
+    this.isReducedMotion = false,
+  });
+
+  static final List<_ConstellationNode> _nodes = _generateNodes();
+
+  static List<_ConstellationNode> _generateNodes() {
+    final rand = Random(42);
+    final symbols = ['λ', 'O(1)', '∑', '01', '⊕', '∂', '⚡', 'μ'];
+    return List.generate(22, (i) {
+      return _ConstellationNode(
+        x: rand.nextDouble(),
+        y: rand.nextDouble(),
+        vx: (rand.nextDouble() - 0.5) * 0.04,
+        vy: (rand.nextDouble() - 0.5) * 0.04,
+        symbol: i < symbols.length ? symbols[i] : null,
+        baseRadius: 1.2 + rand.nextDouble() * 1.6,
+      );
+    });
+  }
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    if (size.width <= 0 || size.height <= 0) return;
+
+    final paintNode = Paint()..style = PaintingStyle.fill;
+    final paintLine = Paint()..style = PaintingStyle.stroke..strokeWidth = 0.8;
+
+    final nodePoints = <Offset>[];
+
+    for (var i = 0; i < _nodes.length; i++) {
+      final node = _nodes[i];
+      final shift = isReducedMotion ? 0.0 : sin(progress * 2 * pi + i) * 8.0;
+      final px = (node.x * size.width + shift * node.vx * 100) % size.width;
+      final py = (node.y * size.height + shift * node.vy * 100) % size.height;
+      final pt = Offset(px, py);
+      nodePoints.add(pt);
+
+      // Draw math/CS symbols faintly
+      if (node.symbol != null) {
+        final tp = TextPainter(
+          text: TextSpan(
+            text: node.symbol,
+            style: TextStyle(
+              color: FitCheckTheme.primary.withValues(alpha: 0.12),
+              fontSize: 11,
+              fontFamily: 'monospace',
+            ),
+          ),
+          textDirection: TextDirection.ltr,
+        )..layout();
+        tp.paint(canvas, Offset(pt.dx - tp.width / 2, pt.dy - tp.height / 2));
+      } else {
+        // Draw subtle glowing node
+        final isCyan = i % 2 == 0;
+        paintNode.color = (isCyan ? FitCheckTheme.primary : FitCheckTheme.secondary)
+            .withValues(alpha: 0.18 + 0.08 * sin(progress * pi + i));
+        canvas.drawCircle(pt, node.baseRadius, paintNode);
+      }
+    }
+
+    // Draw constellation connection lines between close nodes
+    for (var i = 0; i < nodePoints.length; i++) {
+      for (var j = i + 1; j < nodePoints.length; j++) {
+        final dist = (nodePoints[i] - nodePoints[j]).distance;
+        if (dist < 120) {
+          final alpha = (1.0 - (dist / 120)) * 0.10;
+          paintLine.color = FitCheckTheme.primary.withValues(alpha: alpha);
+          canvas.drawLine(nodePoints[i], nodePoints[j], paintLine);
+        }
+      }
+    }
+
+    // React to cursor position if available
+    final m = mousePos;
+    if (m != null && !isReducedMotion) {
+      for (final pt in nodePoints) {
+        final dist = (pt - m).distance;
+        if (dist < 140) {
+          final alpha = (1.0 - (dist / 140)) * 0.22;
+          paintLine.color = FitCheckTheme.primary.withValues(alpha: alpha);
+          canvas.drawLine(m, pt, paintLine);
+        }
+      }
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant HeroConstellationPainter oldDelegate) {
+    return oldDelegate.progress != progress || oldDelegate.mousePos != mousePos;
+  }
+}
+
+class _ConstellationNode {
+  final double x;
+  final double y;
+  final double vx;
+  final double vy;
+  final String? symbol;
+  final double baseRadius;
+
+  _ConstellationNode({
+    required this.x,
+    required this.y,
+    required this.vx,
+    required this.vy,
+    this.symbol,
+    required this.baseRadius,
+  });
+}
+

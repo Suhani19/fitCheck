@@ -555,7 +555,7 @@ class _InterviewerLibraryPageState extends State<InterviewerLibraryPage> {
         Text('Interviewer Library & Style Matrix', style: isDesktop ? FitCheckTheme.headlineXLarge() : FitCheckTheme.headlineMedium()),
         const SizedBox(height: 6),
         Text(
-          'Select an AI interviewer persona calibrated for your target domain, systems architecture, or leadership bar. Your selection persists across setup, hardware readiness, and live simulation.',
+          'Select an AI interviewer persona calibrated for your target domain, systems architecture, or leadership bar. Your selection persists across setup, audio check, and live interview.',
           style: FitCheckTheme.bodyMedium(color: FitCheckTheme.onSurfaceVariant),
         ),
       ],

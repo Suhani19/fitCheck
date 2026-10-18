@@ -1,8 +1,10 @@
-from __future__ import annotations
-
 import logging
+import os
 import re
 from typing import Any
+
+from google import genai
+from google.genai import types
 
 from app.domain.schemas import (
     AdaptiveQuestionResult,
@@ -19,9 +21,18 @@ logger = logging.getLogger(__name__)
 class AdaptiveInterviewOrchestrator:
     """Tracks interview stage progression, competency evidence, and generates adaptive follow-up questions."""
 
-    def __init__(self, session_plan: InterviewSessionPlan) -> None:
+    def __init__(self, session_plan: InterviewSessionPlan, api_key: str | None = None) -> None:
         self.session_plan = session_plan
         self.difficulty = session_plan.difficulty.lower()
+        self.api_key = api_key or os.getenv("GEMINI_API_KEY")
+        if self.api_key:
+            try:
+                self.client = genai.Client(api_key=self.api_key)
+            except Exception as e:
+                logger.warning("Could not initialize Gemini client for AdaptiveInterviewOrchestrator: %s", e)
+                self.client = None
+        else:
+            self.client = None
 
     def track_competency_coverage(
         self,
@@ -252,7 +263,15 @@ class AdaptiveInterviewOrchestrator:
             target_comp = unexplored_comps[0]
 
         # Check if candidate mentioned key technical concepts in their last turn to make an adaptive follow-up
-        tech_matches = re.findall(r"\b(Kafka|PostgreSQL|Redis|FastAPI|Docker|Kubernetes|AWS|Go|Python|gRPC|GraphQL|DynamoDB|Elasticsearch|Cassandra)\b", last_candidate_turn, re.IGNORECASE)
+        tech_matches = re.findall(
+            r"\b(Kafka|PostgreSQL|Postgres|Redis|FastAPI|Docker|Kubernetes|AWS|GCP|Azure|Go|Python|Rust|Java|"
+            r"gRPC|GraphQL|REST|DynamoDB|Elasticsearch|Cassandra|MongoDB|RabbitMQ|"
+            r"sharding|partition|replication|consensus|Raft|Paxos|caching|cache|concurrency|deadlock|mutex|"
+            r"latency|throughput|p99|microservices|monolith|circuit breaker|rate limit|load balancer|"
+            r"ownership|conflict|incident|postmortem|outage|scale|zero-trust|oauth|encryption)\b",
+            last_candidate_turn,
+            re.IGNORECASE,
+        )
 
         if tech_matches and len(candidate_turns) >= 1:
             tech = tech_matches[0]
@@ -289,6 +308,31 @@ class AdaptiveInterviewOrchestrator:
                     difficulty_tone=self.session_plan.difficulty_config.tone,
                 )
 
+        # Contextual extraction for non-keyword answers
+        if not tech_matches and len(candidate_turns) >= 1 and len(last_candidate_turn) > 15:
+            content_words = [
+                w for w in re.findall(r"\b[A-Za-z]{4,}\b", last_candidate_turn)
+                if w.lower() not in ("that", "this", "with", "from", "have", "were", "been", "would", "could", "should", "about", "just", "like", "when", "into", "their", "there", "what", "which", "some", "more", "then", "than")
+            ]
+            if content_words:
+                concept = f"'{content_words[0]}'" if len(content_words) == 1 else f"'{content_words[0]}' and '{content_words[1]}'"
+                if self.difficulty == DifficultyMode.CHALLENGING:
+                    follow_up = f"You discussed {concept}. In a high-traffic production scenario where that layer fails, what specific metric alerts your team, and how is availability preserved?"
+                elif self.difficulty == DifficultyMode.EXPERT_STRESS:
+                    follow_up = f"Regarding {concept}, suppose network latency spikes across your regions. What trade-offs will you accept to prevent cascading timeouts?"
+                else:
+                    follow_up = f"You highlighted {concept}. What alternative approaches did you evaluate before settling on this direction, and what was the main operational trade-off?"
+
+                if not self._is_duplicate_question(follow_up, past_interviewer_questions):
+                    return AdaptiveQuestionResult(
+                        question=follow_up,
+                        stage=current_stage,
+                        targeted_competency=target_comp.name if target_comp else None,
+                        rationale=f"Contextual follow-up grounded in candidate discussion of {concept}.",
+                        is_follow_up=True,
+                        difficulty_tone=self.session_plan.difficulty_config.tone,
+                    )
+
         # Fallback to next planned competency question
         if target_comp and not self._is_duplicate_question(target_comp.planned_question, past_interviewer_questions):
             return AdaptiveQuestionResult(
@@ -313,6 +357,95 @@ class AdaptiveInterviewOrchestrator:
             is_follow_up=False,
             difficulty_tone=self.session_plan.difficulty_config.tone,
         )
+
+    async def select_next_question_async(
+        self,
+        transcript: list[dict[str, Any]],
+        current_stage: str = InterviewStage.INTRODUCTION,
+        interviewer_persona: dict[str, Any] | None = None,
+    ) -> AdaptiveQuestionResult:
+        """Asynchronously synthesizes an adaptive follow-up using Gemini LLM if configured, falling back to deterministic generation."""
+        candidate_turns = [
+            t for t in transcript if t.get("role", "").lower() in ("candidate", "user")
+        ]
+
+        if self.client and candidate_turns:
+            try:
+                result = await self._generate_with_gemini(
+                    transcript=transcript,
+                    current_stage=current_stage,
+                    interviewer_persona=interviewer_persona,
+                )
+                if result:
+                    return result
+            except Exception as exc:
+                logger.warning("Gemini adaptive follow-up synthesis failed: %s. Using deterministic fallback.", exc)
+
+        return self.select_next_question(transcript, current_stage=current_stage)
+
+    async def _generate_with_gemini(
+        self,
+        transcript: list[dict[str, Any]],
+        current_stage: str,
+        interviewer_persona: dict[str, Any] | None = None,
+    ) -> AdaptiveQuestionResult | None:
+        interviewer_name = (interviewer_persona or {}).get("name") or "Alex Rivera"
+        interviewer_title = (interviewer_persona or {}).get("title") or "Staff Distributed Systems Architect"
+        interviewer_style = (interviewer_persona or {}).get("questioning_style") or "Socratic, analytical, direct, probes on edge cases"
+
+        formatted_turns = []
+        for t in transcript[-8:]:
+            role = "Interviewer" if t.get("role") in ("interviewer", "assistant") else "Candidate"
+            formatted_turns.append(f"{role}: {t.get('text', '')}")
+        history_text = "\n".join(formatted_turns)
+
+        candidate_turns = [t for t in transcript if t.get("role", "").lower() in ("candidate", "user")]
+        last_candidate_turn = candidate_turns[-1].get("text", "") if candidate_turns else ""
+
+        coverage = self.track_competency_coverage(transcript)
+        unexplored = [c.name for c in self.session_plan.competency_plans if coverage.get(c.name, CompetencyCoverageStatus(competency_name=c.name)).status == "unexplored"]
+        target_focus = unexplored[0] if unexplored else "system trade-offs and operational resilience"
+
+        prompt = f"""You are {interviewer_name}, {interviewer_title} conducting a high-stakes technical interview on FitCheck.
+Questioning Style: {interviewer_style}
+Current Stage: {current_stage}
+Difficulty Mode: {self.difficulty.upper()} ({self.session_plan.difficulty_config.tone})
+Rubric Focus: {target_focus}
+
+CONVERSATION TRANSCRIPT:
+{history_text}
+
+LATEST CANDIDATE ANSWER:
+"{last_candidate_turn}"
+
+OBJECTIVE:
+Generate your immediate verbal response as {interviewer_name}.
+- Ground your question directly in what the candidate just said. Challenge any hand-waving, unverified assumptions, or missing failure modes.
+- If they gave an architectural claim, ask them to justify the trade-off or explain how it handles a specific disaster/bottleneck.
+- Keep the response concise (2-3 sentences), direct, and spoken naturally for low-latency text-to-speech.
+- Ask ONE focused question.
+"""
+        response = await self.client.aio.models.generate_content(
+            model="gemini-3.5-flash-lite",
+            contents=prompt,
+            config=types.GenerateContentConfig(
+                temperature=0.3,
+                max_output_tokens=150,
+            ),
+        )
+        text = response.text.strip()
+        if text:
+            if text.startswith('"') and text.endswith('"'):
+                text = text[1:-1].strip()
+            return AdaptiveQuestionResult(
+                question=text,
+                stage=current_stage,
+                targeted_competency=target_focus,
+                rationale=f"Gemini Socratic follow-up grounded in candidate answer as {interviewer_name}.",
+                is_follow_up=True,
+                difficulty_tone=self.session_plan.difficulty_config.tone,
+            )
+        return None
 
     def _is_duplicate_question(self, new_question: str, past_questions: list[str]) -> bool:
         """Checks for substantial semantic and keyword overlap with previous questions."""

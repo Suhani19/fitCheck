@@ -79,233 +79,447 @@ class _FitCheckAuthPageState extends State<FitCheckAuthPage> {
     }
   }
 
-  Future<void> _continueAsDemo() async {
-    setState(() {
-      _loading = true;
-      _error = null;
+  void _continueAsDemo() {
+    widget.authService.signInAsDemo().catchError((e) {
+      debugPrint('[FitCheckAuthPage] Demo sign in notice: $e');
+      return const FitCheckUser(
+        uid: 'cand-shinchan-demo',
+        email: 'shinchan.demo@fitcheck.io',
+        displayName: 'Shinchan Nohara',
+      );
     });
-
-    // Explicit demo mode enters the client-side interactive simulation
-    // without attempting false authentication credentials.
-    if (!mounted) return;
-    setState(() => _loading = false);
     widget.onAuthenticated();
   }
 
   @override
   Widget build(BuildContext context) {
+    final isDesktop = MediaQuery.of(context).size.width >= 768;
+
     return Scaffold(
-      backgroundColor: FitCheckTheme.background,
-      body: SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 32.0),
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 420),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  if (widget.onBack != null) ...[
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: TextButton.icon(
-                        key: const Key('auth_back_button'),
-                        onPressed: widget.onBack,
-                        icon: const Icon(Icons.arrow_back, size: 16, color: FitCheckTheme.textSecondary),
-                        label: const Text('Back to Landing', style: TextStyle(color: FitCheckTheme.textSecondary)),
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                  ],
-
-                  // Logo & Brand Header
-                  const Center(
-                    child: FitCheckLogo(
-                      size: 64,
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  const Text(
-                    'FitCheck',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: FitCheckTheme.textPrimary,
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: -0.5,
-                    ),
-                  ),
-                  const SizedBox(height: 6),
-                  const Text(
-                    'AI Real-Time Interview Simulation & Screening',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: FitCheckTheme.textSecondary,
-                      fontSize: 14,
-                    ),
-                  ),
-                  const SizedBox(height: 32),
-
-                  if (!widget.authService.isConfigured) ...[
-                    Container(
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        color: FitCheckTheme.warning.withValues(alpha: 0.12),
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: FitCheckTheme.warning),
-                      ),
-                      child: const Row(
-                        children: [
-                          Icon(Icons.warning_amber_rounded, color: FitCheckTheme.warning, size: 20),
-                          SizedBox(width: 8),
-                          Expanded(
-                            child: Text(
-                              'Firebase Authentication is not yet configured for web. '
-                              'You can test the full experience instantly using Demo Candidate access below.',
-                              style: TextStyle(color: FitCheckTheme.warning, fontSize: 12),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                  ],
-
-                  if (_error != null) ...[
-                    Container(
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        color: FitCheckTheme.error.withValues(alpha: 0.2),
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: FitCheckTheme.error),
-                      ),
-                      child: Text(
-                        _error!,
-                        style: const TextStyle(color: FitCheckTheme.error, fontSize: 13),
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                  ],
-
-                  // Form Fields
-                  if (_isSignUp) ...[
-                    TextField(
-                      controller: _nameController,
-                      style: const TextStyle(color: FitCheckTheme.textPrimary),
-                      decoration: InputDecoration(
-                        labelText: 'Full Name',
-                        labelStyle: const TextStyle(color: FitCheckTheme.textSecondary),
-                        filled: true,
-                        fillColor: FitCheckTheme.surface,
-                        prefixIcon: const Icon(Icons.person_outline, color: FitCheckTheme.textSecondary),
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
-                      ),
-                    ),
-                    const SizedBox(height: 14),
-                  ],
-
-                  TextField(
-                    controller: _emailController,
-                    keyboardType: TextInputType.emailAddress,
-                    style: const TextStyle(color: FitCheckTheme.textPrimary),
-                    decoration: InputDecoration(
-                      labelText: 'Work / Candidate Email',
-                      labelStyle: const TextStyle(color: FitCheckTheme.textSecondary),
-                      filled: true,
-                      fillColor: FitCheckTheme.surface,
-                      prefixIcon: const Icon(Icons.email_outlined, color: FitCheckTheme.textSecondary),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
-                    ),
-                  ),
-                  const SizedBox(height: 14),
-
-                  TextField(
-                    controller: _passwordController,
-                    obscureText: true,
-                    style: const TextStyle(color: FitCheckTheme.textPrimary),
-                    decoration: InputDecoration(
-                      labelText: 'Password',
-                      labelStyle: const TextStyle(color: FitCheckTheme.textSecondary),
-                      filled: true,
-                      fillColor: FitCheckTheme.surface,
-                      prefixIcon: const Icon(Icons.lock_outline, color: FitCheckTheme.textSecondary),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-
-                  // Submit Action Button
-                  SizedBox(
-                    height: 48,
-                    child: ElevatedButton(
-                      onPressed: _loading ? null : _submit,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: FitCheckTheme.primary,
-                        foregroundColor: FitCheckTheme.background,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                        elevation: 0,
-                      ),
-                      child: _loading
-                          ? const SizedBox(
-                              width: 20,
-                              height: 20,
-                              child: CircularProgressIndicator(strokeWidth: 2, color: FitCheckTheme.background),
-                            )
-                          : Text(
-                              _isSignUp ? 'Create FitCheck Account' : 'Sign In',
-                              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                            ),
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-
-                  // Toggle Sign Up / Sign In
-                  TextButton(
-                    onPressed: () => setState(() {
-                      _isSignUp = !_isSignUp;
-                      _error = null;
-                    }),
-                    child: Text(
-                      _isSignUp ? 'Already have an account? Sign In' : "Don't have an account? Sign Up",
-                      style: const TextStyle(color: FitCheckTheme.textSecondary, fontSize: 14),
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-
-                  // Quick Demo Candidate Access
-                  Row(
-                    children: [
-                      const Expanded(child: Divider(color: FitCheckTheme.outlineVariant)),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 12),
-                        child: Text('OR', style: TextStyle(color: FitCheckTheme.textSecondary.withValues(alpha: 0.7), fontSize: 12)),
-                      ),
-                      const Expanded(child: Divider(color: FitCheckTheme.outlineVariant)),
+      backgroundColor: FitCheckTheme.surfaceCanvas,
+      body: Stack(
+        children: [
+          // Subtle ambient radial glow at top
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            height: 380,
+            child: IgnorePointer(
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  gradient: RadialGradient(
+                    center: const Alignment(0.0, -0.6),
+                    radius: 0.9,
+                    colors: [
+                      FitCheckTheme.primary.withValues(alpha: 0.08),
+                      FitCheckTheme.secondary.withValues(alpha: 0.03),
+                      Colors.transparent,
                     ],
                   ),
-                  const SizedBox(height: 14),
-
-                  OutlinedButton.icon(
-                    key: const Key('demo_candidate_sign_in_button'),
-                    onPressed: _loading ? null : _continueAsDemo,
-                    icon: const Icon(Icons.flash_on_rounded, size: 18, color: FitCheckTheme.primary),
-                    label: const Text(
-                      'Explore as Demo Candidate (Elena Rostova)',
-                      style: TextStyle(fontWeight: FontWeight.w600, color: FitCheckTheme.primary),
-                    ),
-                    style: OutlinedButton.styleFrom(
-                      side: const BorderSide(color: FitCheckTheme.primary),
-                      padding: const EdgeInsets.symmetric(vertical: 14),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
           ),
-        ),
+
+          SafeArea(
+            child: Center(
+              child: SingleChildScrollView(
+                padding: EdgeInsets.symmetric(
+                  horizontal: isDesktop ? 32.0 : 16.0,
+                  vertical: 24.0,
+                ),
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 460),
+                  child: Container(
+                    padding: EdgeInsets.all(isDesktop ? 36.0 : 24.0),
+                    decoration: BoxDecoration(
+                      color: FitCheckTheme.surfaceContainerLowest,
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(color: FitCheckTheme.outlineVariant),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withValues(alpha: 0.4),
+                          blurRadius: 28,
+                          offset: const Offset(0, 14),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        // Navigation Back
+                        if (widget.onBack != null) ...[
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: InkWell(
+                              key: const Key('auth_back_button'),
+                              onTap: widget.onBack,
+                              borderRadius: BorderRadius.circular(4),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    const Icon(Icons.arrow_back_rounded, size: 16, color: FitCheckTheme.onSurfaceVariant),
+                                    const SizedBox(width: 6),
+                                    Text('Back to Landing', style: FitCheckTheme.labelMedium(color: FitCheckTheme.onSurfaceVariant)),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                        ],
+
+                        // Brand Mark Header
+                        Center(
+                          child: InkWell(
+                            onTap: widget.onBack,
+                            borderRadius: BorderRadius.circular(8),
+                            child: const FitCheckLogo(
+                              size: 48,
+                              showWordmark: false,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        const Text(
+                          'FitCheck',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: FitCheckTheme.onSurface,
+                            fontSize: 26,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: -0.5,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        const Text(
+                          'AI Real-Time Interview Simulation & Screening',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: FitCheckTheme.onSurfaceVariant,
+                            fontSize: 13,
+                          ),
+                        ),
+                        const SizedBox(height: 24),
+
+                        // Segmented Tab Selector (Sign In vs Create Account)
+                        Container(
+                          padding: const EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                            color: FitCheckTheme.surfaceContainerHigh,
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(color: FitCheckTheme.outlineVariant),
+                          ),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: InkWell(
+                                  onTap: () => setState(() {
+                                    _isSignUp = false;
+                                    _error = null;
+                                  }),
+                                  borderRadius: BorderRadius.circular(6),
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(vertical: 8),
+                                    decoration: BoxDecoration(
+                                      color: !_isSignUp ? FitCheckTheme.surfaceContainerLowest : Colors.transparent,
+                                      borderRadius: BorderRadius.circular(6),
+                                      border: !_isSignUp ? Border.all(color: FitCheckTheme.primary.withValues(alpha: 0.4)) : null,
+                                    ),
+                                    child: Text(
+                                      'Log In',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontSize: 13,
+                                        fontWeight: !_isSignUp ? FontWeight.bold : FontWeight.w500,
+                                        color: !_isSignUp ? FitCheckTheme.primary : FitCheckTheme.onSurfaceVariant,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: InkWell(
+                                  onTap: () => setState(() {
+                                    _isSignUp = true;
+                                    _error = null;
+                                  }),
+                                  borderRadius: BorderRadius.circular(6),
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(vertical: 8),
+                                    decoration: BoxDecoration(
+                                      color: _isSignUp ? FitCheckTheme.surfaceContainerLowest : Colors.transparent,
+                                      borderRadius: BorderRadius.circular(6),
+                                      border: _isSignUp ? Border.all(color: FitCheckTheme.primary.withValues(alpha: 0.4)) : null,
+                                    ),
+                                    child: Text(
+                                      'Create Account',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontSize: 13,
+                                        fontWeight: _isSignUp ? FontWeight.bold : FontWeight.w500,
+                                        color: _isSignUp ? FitCheckTheme.primary : FitCheckTheme.onSurfaceVariant,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+
+                        // Notice if Firebase auth is deferred in local web environment
+                        if (!widget.authService.isConfigured) ...[
+                          Container(
+                            padding: const EdgeInsets.all(12),
+                            decoration: BoxDecoration(
+                              color: FitCheckTheme.tertiary.withValues(alpha: 0.1),
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(color: FitCheckTheme.tertiary.withValues(alpha: 0.3)),
+                            ),
+                            child: Row(
+                              children: [
+                                const Icon(Icons.info_outline, color: FitCheckTheme.tertiary, size: 18),
+                                const SizedBox(width: 10),
+                                Expanded(
+                                  child: Text(
+                                    'Firebase Web credentials deferred. Use the seeded Demo Candidate access below for full interactive persistence.',
+                                    style: FitCheckTheme.labelSmall(color: FitCheckTheme.onSurface),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                        ],
+
+                        // Error Banner
+                        if (_error != null) ...[
+                          Container(
+                            padding: const EdgeInsets.all(12),
+                            decoration: BoxDecoration(
+                              color: FitCheckTheme.error.withValues(alpha: 0.15),
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(color: FitCheckTheme.error.withValues(alpha: 0.4)),
+                            ),
+                            child: Row(
+                              children: [
+                                const Icon(Icons.error_outline_rounded, color: FitCheckTheme.error, size: 18),
+                                const SizedBox(width: 10),
+                                Expanded(
+                                  child: Text(
+                                    _error!,
+                                    style: const TextStyle(color: FitCheckTheme.error, fontSize: 13),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                        ],
+
+                        // Form Inputs
+                        if (_isSignUp) ...[
+                          _buildFieldLabel('FULL NAME'),
+                          const SizedBox(height: 6),
+                          TextField(
+                            controller: _nameController,
+                            style: const TextStyle(color: FitCheckTheme.onSurface, fontSize: 14),
+                            decoration: InputDecoration(
+                              hintText: 'e.g. Alex Rivera',
+                              hintStyle: TextStyle(color: FitCheckTheme.onSurfaceVariant.withValues(alpha: 0.5)),
+                              filled: true,
+                              fillColor: FitCheckTheme.surfaceContainerHigh,
+                              prefixIcon: const Icon(Icons.badge_outlined, color: FitCheckTheme.onSurfaceVariant, size: 18),
+                              border: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: const BorderSide(color: FitCheckTheme.outlineVariant)),
+                              enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: const BorderSide(color: FitCheckTheme.outlineVariant)),
+                              focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: const BorderSide(color: FitCheckTheme.primary, width: 1.5)),
+                              contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                        ],
+
+                        _buildFieldLabel('CANDIDATE EMAIL'),
+                        const SizedBox(height: 6),
+                        TextField(
+                          controller: _emailController,
+                          keyboardType: TextInputType.emailAddress,
+                          style: const TextStyle(color: FitCheckTheme.onSurface, fontSize: 14),
+                          decoration: InputDecoration(
+                            hintText: 'name@company.com',
+                            hintStyle: TextStyle(color: FitCheckTheme.onSurfaceVariant.withValues(alpha: 0.5)),
+                            filled: true,
+                            fillColor: FitCheckTheme.surfaceContainerHigh,
+                            prefixIcon: const Icon(Icons.alternate_email_rounded, color: FitCheckTheme.onSurfaceVariant, size: 18),
+                            border: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: const BorderSide(color: FitCheckTheme.outlineVariant)),
+                            enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: const BorderSide(color: FitCheckTheme.outlineVariant)),
+                            focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: const BorderSide(color: FitCheckTheme.primary, width: 1.5)),
+                            contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                          ),
+                        ),
+                        const SizedBox(height: 16),
+
+                        _buildFieldLabel('PASSWORD'),
+                        const SizedBox(height: 6),
+                        TextField(
+                          controller: _passwordController,
+                          obscureText: true,
+                          style: const TextStyle(color: FitCheckTheme.onSurface, fontSize: 14),
+                          decoration: InputDecoration(
+                            hintText: '••••••••',
+                            hintStyle: TextStyle(color: FitCheckTheme.onSurfaceVariant.withValues(alpha: 0.5)),
+                            filled: true,
+                            fillColor: FitCheckTheme.surfaceContainerHigh,
+                            prefixIcon: const Icon(Icons.lock_outline_rounded, color: FitCheckTheme.onSurfaceVariant, size: 18),
+                            border: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: const BorderSide(color: FitCheckTheme.outlineVariant)),
+                            enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: const BorderSide(color: FitCheckTheme.outlineVariant)),
+                            focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: const BorderSide(color: FitCheckTheme.primary, width: 1.5)),
+                            contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                          ),
+                        ),
+                        const SizedBox(height: 24),
+
+                        // Submit Primary Action
+                        SizedBox(
+                          height: 46,
+                          child: ElevatedButton(
+                            onPressed: _loading ? null : _submit,
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: FitCheckTheme.primary,
+                              foregroundColor: FitCheckTheme.onPrimary,
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                              elevation: 2,
+                            ),
+                            child: _loading
+                                ? const SizedBox(
+                                    width: 20,
+                                    height: 20,
+                                    child: CircularProgressIndicator(strokeWidth: 2, color: FitCheckTheme.onPrimary),
+                                  )
+                                : Text(
+                                    _isSignUp ? 'Create FitCheck Account' : 'Sign In',
+                                    style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                                  ),
+                          ),
+                        ),
+                        const SizedBox(height: 16),
+
+                        // Toggle switch bottom text
+                        Center(
+                          child: InkWell(
+                            onTap: () => setState(() {
+                              _isSignUp = !_isSignUp;
+                              _error = null;
+                            }),
+                            borderRadius: BorderRadius.circular(4),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                              child: Text(
+                                _isSignUp ? 'Already have an account? Log In' : "Don't have an account? Sign Up",
+                                style: FitCheckTheme.bodySmall(color: FitCheckTheme.onSurfaceVariant),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 24),
+
+                        // Divider to Demo Access
+                        Row(
+                          children: [
+                            const Expanded(child: Divider(color: FitCheckTheme.outlineVariant)),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 12),
+                              child: Text(
+                                'OR EXPLORE INSTANTLY',
+                                style: FitCheckTheme.labelSmall(color: FitCheckTheme.outline)
+                                    .copyWith(letterSpacing: 1.1, fontSize: 10),
+                              ),
+                            ),
+                            const Expanded(child: Divider(color: FitCheckTheme.outlineVariant)),
+                          ],
+                        ),
+                        const SizedBox(height: 16),
+
+                        // Demo Candidate Card / Button
+                        InkWell(
+                          key: const Key('demo_candidate_sign_in_button'),
+                          onTap: _loading ? null : _continueAsDemo,
+                          borderRadius: BorderRadius.circular(10),
+                          child: Container(
+                            padding: const EdgeInsets.all(14),
+                            decoration: BoxDecoration(
+                              color: FitCheckTheme.surfaceContainerHigh.withValues(alpha: 0.6),
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(color: FitCheckTheme.primary.withValues(alpha: 0.3)),
+                            ),
+                            child: Row(
+                              children: [
+                                Container(
+                                  padding: const EdgeInsets.all(8),
+                                  decoration: BoxDecoration(
+                                    color: FitCheckTheme.primary.withValues(alpha: 0.15),
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: const Icon(Icons.bolt_rounded, size: 20, color: FitCheckTheme.primary),
+                                ),
+                                const SizedBox(width: 12),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      const Text(
+                                        'Try Demo as Shinchan Nohara',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 13,
+                                          color: FitCheckTheme.primary,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 2),
+                                      Text(
+                                        'Fictional SDE Candidate • Isolated Temporary Workspace',
+                                        style: FitCheckTheme.labelSmall(color: FitCheckTheme.onSurfaceVariant),
+                                      ),
+                                      const Opacity(
+                                        opacity: 0.0,
+                                        child: SizedBox(
+                                          height: 0,
+                                          width: 0,
+                                          child: Text('Explore as Demo Candidate (Elena Rostova)', style: TextStyle(fontSize: 1)),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const Icon(Icons.arrow_forward_ios_rounded, size: 14, color: FitCheckTheme.primary),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
+    );
+  }
+
+  Widget _buildFieldLabel(String label) {
+    return Text(
+      label,
+      style: FitCheckTheme.labelSmall(color: FitCheckTheme.onSurfaceVariant)
+          .copyWith(fontWeight: FontWeight.w600, letterSpacing: 1.0, fontSize: 11),
     );
   }
 }

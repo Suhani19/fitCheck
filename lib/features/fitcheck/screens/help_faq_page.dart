@@ -29,7 +29,7 @@ class HelpFaqPage extends StatefulWidget {
 class _HelpFaqPageState extends State<HelpFaqPage> {
   final List<Map<String, String>> _faqs = [
     {
-      'q': 'Why is the "Test Chime" button required in Hardware Readiness?',
+      'q': 'Why is the "Test Chime" button required in Audio & Connection Check?',
       'a': 'Modern browsers enforce strict autoplay policies that block audio playback until the user performs a direct physical gesture. Clicking "Test Chime" unlocks browser audio context and confirms that your speakers/headphones are functioning before entering the live WebRTC room.',
     },
     {

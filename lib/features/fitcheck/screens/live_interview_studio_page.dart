@@ -221,7 +221,7 @@ class _LiveInterviewStudioPageState extends State<LiveInterviewStudioPage>
                 children: [
                   Container(width: 6, height: 6, decoration: const BoxDecoration(color: FitCheckTheme.tertiary, shape: BoxShape.circle)),
                   const SizedBox(width: 6),
-                  Text('28ms Latency • 48kHz Audio', style: FitCheckTheme.labelSmall(color: FitCheckTheme.tertiary)),
+                  Text('Real-Time Audio Active', style: FitCheckTheme.labelSmall(color: FitCheckTheme.tertiary)),
                 ],
               ),
               const SizedBox(width: 16),

@@ -9,9 +9,11 @@ from sqlalchemy.orm import Session
 
 logger = logging.getLogger(__name__)
 
+from datetime import datetime, timezone
 from app.core.auth import AuthenticatedUser, get_current_user
 from app.db.database import get_db
 from app.domain.schemas import (
+    AppendTranscriptTurnRequest,
     CandidateCreateRequest,
     CandidateMemoryClearResponse,
     CandidateMemoryResponse,
@@ -29,6 +31,7 @@ from app.domain.schemas import (
     JobCreateRequest,
     JobResponse,
     JobUpdateRequest,
+    NextAdaptiveQuestionRequest,
     ResumeExtractionResult,
     ResumeTextInputRequest,
     RubricGenerationRequest,
@@ -75,6 +78,21 @@ def list_candidates(
 ):
     repo = SQLCandidateRepository(db)
     return repo.list(current_user.uid)
+
+
+@router.get("/candidates/me", response_model=CandidateResponse)
+def get_current_candidate(
+    current_user: AuthenticatedUser = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    repo = SQLCandidateRepository(db)
+    candidates = repo.list(current_user.uid)
+    if not candidates:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="No candidate profile associated with current authenticated user.",
+        )
+    return candidates[0]
 
 
 @router.get("/candidates/{candidate_id}", response_model=CandidateResponse)
@@ -578,6 +596,7 @@ async def create_interview_session(
         status=session.status,
         channel=session.channel,
         agent_id=session.agent_id,
+        agent_status=runtime_info.get("agent_status") or ("active" if session.agent_id else "standby"),
         session_plan=session.session_plan,
         rtc_token=runtime_info.get("rtc_token"),
         app_id=runtime_info.get("app_id"),
@@ -623,12 +642,15 @@ def get_session_plan(
 
 
 @router.post("/sessions/{session_id}/next-question")
-def get_next_adaptive_question(
+async def get_next_adaptive_question(
     session_id: str,
+    request: NextAdaptiveQuestionRequest | None = None,
     current_user: AuthenticatedUser = Depends(get_current_user),
     db: Session = Depends(get_db),
 ):
-    """Evaluates conversation history and returns the next adaptive question and stage transition."""
+    """Evaluates conversation history and returns the next adaptive question and stage transition,
+    persisting actual candidate turns and dynamic interviewer turns to the session transcript in the DB.
+    """
     from app.services.adaptive_orchestrator import AdaptiveInterviewOrchestrator
 
     sess_repo = SQLInterviewSessionRepository(db)
@@ -638,16 +660,98 @@ def get_next_adaptive_question(
 
     plan = InterviewSessionPlan.model_validate(session.session_plan)
     orchestrator = AdaptiveInterviewOrchestrator(plan)
-    transcript = session.transcript or []
+    transcript = list(session.transcript or [])
+
+    # If request contains a candidate answer, append candidate turn
+    if request and request.candidate_answer and request.candidate_answer.strip():
+        ans_text = request.candidate_answer.strip()
+        candidate_turn = {
+            "role": "candidate",
+            "text": ans_text,
+            "turn_index": len(transcript),
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+        }
+        transcript.append(candidate_turn)
+
+    # If request contains full transcript_turns synchronization
+    if request and request.transcript_turns:
+        existing_texts = {t.get("text") for t in transcript if isinstance(t, dict)}
+        for turn in request.transcript_turns:
+            if isinstance(turn, dict) and turn.get("text") and turn.get("text") not in existing_texts:
+                turn["turn_index"] = len(transcript)
+                transcript.append(turn)
+                existing_texts.add(turn.get("text"))
+
+    # Fetch interviewer persona if available
+    interviewer_persona = None
+    if session.interviewer_id:
+        int_repo = SQLInterviewerRepository(db)
+        interviewer = int_repo.get(session.interviewer_id, current_user.uid)
+        if interviewer:
+            interviewer_persona = {
+                "name": interviewer.name,
+                "role": getattr(interviewer, "title", "Technical Interviewer"),
+                "questioning_style": getattr(interviewer, "questioning_style", "rigorous"),
+                "company_context": getattr(interviewer, "company_context", ""),
+            }
+
+    forced_stage = request.stage if request and request.stage else None
     decision = orchestrator.evaluate_stage_transition(transcript)
-    next_q = orchestrator.select_next_question(transcript, current_stage=decision.next_stage)
+    current_stage = forced_stage or decision.next_stage
+
+    next_q = await orchestrator.select_next_question_async(
+        transcript,
+        current_stage=current_stage,
+        interviewer_persona=interviewer_persona,
+    )
+
+    # Append the interviewer turn to transcript
+    interviewer_turn = {
+        "role": "interviewer",
+        "text": next_q.question,
+        "target_competency": next_q.targeted_competency,
+        "turn_index": len(transcript),
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+    }
+    transcript.append(interviewer_turn)
+
+    # Persist updated transcript to database
+    sess_repo.update_transcript(session_id, current_user.uid, transcript)
+
     coverage = orchestrator.track_competency_coverage(transcript)
 
     return {
         "question": next_q.model_dump(),
         "stage_decision": decision.model_dump(),
         "competency_coverage": {k: v.model_dump() for k, v in coverage.items()},
+        "transcript": transcript,
     }
+
+
+@router.post("/sessions/{session_id}/transcript-turn")
+def append_transcript_turn(
+    session_id: str,
+    request: AppendTranscriptTurnRequest,
+    current_user: AuthenticatedUser = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    """Appends an individual transcript turn directly to a live interview session."""
+    sess_repo = SQLInterviewSessionRepository(db)
+    session = sess_repo.get(session_id, current_user.uid)
+    if not session:
+        raise HTTPException(status_code=404, detail=f"Session '{session_id}' not found.")
+
+    transcript = list(session.transcript or [])
+    new_turn = {
+        "role": request.role,
+        "text": request.text.strip(),
+        "turn_index": len(transcript),
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        **({"metadata": request.metadata} if request.metadata else {}),
+    }
+    transcript.append(new_turn)
+    sess_repo.update_transcript(session_id, current_user.uid, transcript)
+    return {"status": "ok", "turn": new_turn, "turn_count": len(transcript)}
 
 
 @router.post("/sessions/{session_id}/end", response_model=InterviewSessionResponse)
@@ -753,6 +857,15 @@ async def end_interview_session(
     return sess
 
 
+@router.get("/evaluations", response_model=list[EvaluationResponse])
+def list_evaluations(
+    current_user: AuthenticatedUser = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    eval_repo = SQLEvaluationRepository(db)
+    return eval_repo.list(current_user.uid)
+
+
 @router.get("/evaluations/{session_id}", response_model=EvaluationResponse)
 def get_evaluation(
     session_id: str,
@@ -766,10 +879,79 @@ def get_evaluation(
     return evaluation
 
 
-@router.get("/evaluations", response_model=list[EvaluationResponse])
-def list_evaluations(
+# ---------------------------------------------------------------------------
+# Workstream 5: Secure Seeded Demo Candidate Access
+# ---------------------------------------------------------------------------
+
+
+@router.post("/auth/demo-session")
+def create_demo_session(db: Session = Depends(get_db)):
+    """Issues a cryptographically isolated workspace for demo candidate Shinchan Nohara.
+
+    Atomically provisions a fresh, temporary tenant-isolated workspace cloned from
+    the canonical immutable Shinchan Nohara template, allowing visitors to test the
+    entire product (profile edits, resume upload, live audio interviews, and rubric evaluations)
+    with 100% tenant isolation and zero shared state.
+    """
+    from app.db.shinchan_master_template import provision_isolated_demo_workspace
+
+    token, workspace_id, candidate_id = provision_isolated_demo_workspace(db)
+
+    return {
+        "access_token": token,
+        "token_type": "bearer",
+        "candidate_id": candidate_id,
+        "workspace_id": workspace_id,
+        "is_demo": True,
+        "user": {
+            "uid": workspace_id,
+            "email": f"shinchan.{workspace_id}@demo.fitcheck.io",
+            "display_name": "Shinchan Nohara",
+        },
+    }
+
+
+@router.post("/auth/demo-reset")
+def reset_demo_candidate_data(
     current_user: AuthenticatedUser = Depends(get_current_user),
     db: Session = Depends(get_db),
 ):
-    eval_repo = SQLEvaluationRepository(db)
-    return eval_repo.list(current_user.uid)
+    """Resets the caller's authenticated demo workspace back to the clean Shinchan baseline.
+
+    Only callable by an authenticated demo session. Resets ONLY the authenticated
+    caller's workspace, preserving concurrent visitors' data and active sessions.
+    """
+    from app.core.demo_token import DEMO_USER_UID
+    from app.db.shinchan_master_template import reset_isolated_demo_workspace
+
+    # Support both isolated workspaces (demo-ws-*) and legacy demo-candidate-elena
+    if not (current_user.uid.startswith("demo-ws-") or current_user.uid == DEMO_USER_UID):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Reset endpoint only available for demo candidate sessions.",
+        )
+
+    if current_user.uid == DEMO_USER_UID:
+        from app.db.seed_demo_candidate import seed_demo_candidate
+        result = seed_demo_candidate(db, force_reset=True)
+    else:
+        result = reset_isolated_demo_workspace(db, current_user.uid)
+
+    return {
+        "status": "reset",
+        "message": "Demo candidate data successfully reset to clean baseline.",
+        "details": result,
+    }
+
+
+@router.post("/auth/demo-cleanup")
+def cleanup_demo_workspaces(
+    max_age_hours: int = 48,
+    db: Session = Depends(get_db),
+):
+    """Prunes expired demo workspaces while strictly preserving active sessions."""
+    from app.db.shinchan_master_template import cleanup_expired_demo_workspaces
+
+    cleaned = cleanup_expired_demo_workspaces(db, max_age_hours=max_age_hours)
+    return {"status": "success", "cleaned_workspaces": cleaned}
+

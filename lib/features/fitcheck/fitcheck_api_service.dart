@@ -264,6 +264,7 @@ class FitCheckSession {
   final String status;
   final String channel;
   final String? agentId;
+  final String? agentStatus;
   final Map<String, dynamic>? sessionPlan;
   final String? rtcToken;
   final String? appId;
@@ -280,6 +281,7 @@ class FitCheckSession {
     required this.status,
     required this.channel,
     this.agentId,
+    this.agentStatus,
     this.sessionPlan,
     this.rtcToken,
     this.appId,
@@ -298,6 +300,7 @@ class FitCheckSession {
       status: json['status'] as String? ?? 'active',
       channel: json['channel'] as String? ?? '',
       agentId: json['agent_id'] as String?,
+      agentStatus: (json['agent_status'] as String?) ?? (json['agent_id'] != null ? 'active' : 'standby'),
       sessionPlan: json['session_plan'] as Map<String, dynamic>?,
       rtcToken: json['rtc_token'] as String?,
       appId: json['app_id'] as String?,
@@ -373,6 +376,12 @@ class FitCheckApiService {
 
   Future<FitCheckCandidate?> getCurrentCandidate() async {
     try {
+      final resp = await client.get('/api/v1/candidates/me');
+      if (resp.statusCode == 200) {
+        return FitCheckCandidate.fromJson(jsonDecode(resp.body) as Map<String, dynamic>);
+      }
+    } catch (_) {}
+    try {
       final list = await listCandidates();
       if (list.isNotEmpty) return list.first;
       return null;
@@ -436,6 +445,17 @@ class FitCheckApiService {
       throw Exception('Failed to upload and extract resume: ${resp.body}');
     }
     return jsonDecode(resp.body) as Map<String, dynamic>;
+  }
+
+  /// Measures real round-trip HTTP request latency to the backend /health endpoint.
+  Future<int> measureBackendLatency() async {
+    final sw = Stopwatch()..start();
+    final resp = await client.get('/health');
+    sw.stop();
+    if (resp.statusCode != 200) {
+      throw Exception('Health probe returned HTTP ${resp.statusCode}');
+    }
+    return sw.elapsedMilliseconds;
   }
 
   // Job Endpoints
@@ -535,9 +555,46 @@ class FitCheckApiService {
     return jsonDecode(resp.body) as Map<String, dynamic>;
   }
 
-  Future<Map<String, dynamic>> getNextAdaptiveQuestion(String sessionId) async {
-    final resp = await client.post('/api/v1/sessions/$sessionId/next-question');
+  Future<Map<String, dynamic>> getNextAdaptiveQuestion(
+    String sessionId, {
+    String? candidateAnswer,
+    List<Map<String, dynamic>>? transcriptTurns,
+    String? stage,
+  }) async {
+    final Map<String, dynamic> body = {};
+    if (candidateAnswer != null && candidateAnswer.trim().isNotEmpty) {
+      body['candidate_answer'] = candidateAnswer.trim();
+    }
+    if (transcriptTurns != null && transcriptTurns.isNotEmpty) {
+      body['transcript_turns'] = transcriptTurns;
+    }
+    if (stage != null && stage.isNotEmpty) {
+      body['stage'] = stage;
+    }
+    final resp = await client.post(
+      '/api/v1/sessions/$sessionId/next-question',
+      body: body.isNotEmpty ? body : null,
+    );
     if (resp.statusCode != 200) throw Exception('Failed to get next question: ${resp.body}');
+    return jsonDecode(resp.body) as Map<String, dynamic>;
+  }
+
+  Future<Map<String, dynamic>> appendTranscriptTurn(
+    String sessionId, {
+    required String role,
+    required String text,
+    Map<String, dynamic>? metadata,
+  }) async {
+    final resp = await client.post(
+      '/api/v1/sessions/$sessionId/transcript-turn',
+      body: {
+        'role': role,
+        'text': text,
+        // ignore: use_null_aware_elements
+        if (metadata != null) 'metadata': metadata,
+      },
+    );
+    if (resp.statusCode != 200) throw Exception('Failed to append turn: ${resp.body}');
     return jsonDecode(resp.body) as Map<String, dynamic>;
   }
 

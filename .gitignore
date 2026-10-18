@@ -62,3 +62,6 @@ GoogleService-Info.plist
 # Symbolication & Obfuscation
 app.*.symbols
 app.*.map.json
+
+# Firebase CLI cache
+.firebase/

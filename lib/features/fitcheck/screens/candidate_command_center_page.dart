@@ -25,6 +25,7 @@ class CandidateCommandCenterPage extends StatefulWidget {
   final ValueChanged<FitCheckCandidate>? onProfileUpdated;
   final ValueChanged<String>? onSelectSession;
   final VoidCallback? onRefresh;
+  final VoidCallback? onStartFreshDemo;
   final bool isLoading;
 
   const CandidateCommandCenterPage({
@@ -46,6 +47,7 @@ class CandidateCommandCenterPage extends StatefulWidget {
     this.onProfileUpdated,
     this.onSelectSession,
     this.onRefresh,
+    this.onStartFreshDemo,
     this.isLoading = false,
   });
 
@@ -351,42 +353,48 @@ class _CandidateCommandCenterPageState extends State<CandidateCommandCenterPage>
                           .where((s) => s.isNotEmpty)
                           .toList();
 
-                      if (widget.isDemoMode) {
-                        final updated = FitCheckCandidate(
-                          id: widget.candidate?.id ?? 'demo-elena-cand',
-                          fullName: name,
-                          headline: headlineCtrl.text.trim(),
-                          skills: rawSkills,
-                        );
-                        if (ctx.mounted) Navigator.of(ctx).pop();
-                        widget.onProfileUpdated?.call(updated);
-                        if (context.mounted) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('Demo profile updated in memory. (Sign in with a real account to persist to database).'),
-                            ),
-                          );
-                        }
-                        return;
-                      }
-
                       try {
                         FitCheckCandidate updated;
                         if (widget.candidate != null && widget.apiService != null) {
-                          updated = await widget.apiService!.updateCandidate(
-                            widget.candidate!.id,
-                            {
+                          try {
+                            updated = await widget.apiService!.updateCandidate(
+                              widget.candidate!.id,
+                              {
+                                'full_name': name,
+                                'headline': headlineCtrl.text.trim(),
+                                'skills': rawSkills,
+                              },
+                            );
+                          } catch (e) {
+                            if (widget.isDemoMode) {
+                              updated = widget.candidate!.copyWith(
+                                fullName: name,
+                                headline: headlineCtrl.text.trim(),
+                                skills: rawSkills,
+                              );
+                            } else {
+                              rethrow;
+                            }
+                          }
+                        } else if (widget.apiService != null) {
+                          try {
+                            updated = await widget.apiService!.createCandidate({
                               'full_name': name,
                               'headline': headlineCtrl.text.trim(),
                               'skills': rawSkills,
-                            },
-                          );
-                        } else if (widget.apiService != null) {
-                          updated = await widget.apiService!.createCandidate({
-                            'full_name': name,
-                            'headline': headlineCtrl.text.trim(),
-                            'skills': rawSkills,
-                          });
+                            });
+                          } catch (e) {
+                            if (widget.isDemoMode) {
+                              updated = FitCheckCandidate(
+                                id: widget.currentUser?.uid ?? 'cand-local',
+                                fullName: name,
+                                headline: headlineCtrl.text.trim(),
+                                skills: rawSkills,
+                              );
+                            } else {
+                              rethrow;
+                            }
+                          }
                         } else {
                           updated = FitCheckCandidate(
                             id: widget.candidate?.id ?? 'cand-local',
@@ -399,7 +407,11 @@ class _CandidateCommandCenterPageState extends State<CandidateCommandCenterPage>
                         widget.onProfileUpdated?.call(updated);
                         if (context.mounted) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Candidate profile updated and persisted to database!')),
+                            SnackBar(
+                              content: Text(widget.isDemoMode
+                                  ? 'Demo profile updated in memory and synchronized to isolated workspace!'
+                                  : 'Candidate profile updated and persisted to database!'),
+                            ),
                           );
                         }
                       } catch (err) {
@@ -439,11 +451,25 @@ class _CandidateCommandCenterPageState extends State<CandidateCommandCenterPage>
           const SizedBox(width: 12),
           const Expanded(
             child: Text(
-              'DEMO MODE (Simulated Candidate): You are exploring FitCheck with sample data. Profile edits and simulations run in-memory. Sign in with an account to persist real candidate data and AI evaluations.',
+              'DEMO MODE (Simulated Candidate - Shinchan Nohara): You have an isolated temporary workspace. Profile edits, resume uploads, and AI interview evaluations persist to this workspace. Sign in or register to preserve permanently.',
               style: TextStyle(color: FitCheckTheme.textSecondary, fontSize: 13, height: 1.35),
             ),
           ),
           const SizedBox(width: 12),
+          if (widget.onStartFreshDemo != null) ...[
+            OutlinedButton.icon(
+              key: const Key('start_fresh_demo_button'),
+              onPressed: widget.onStartFreshDemo,
+              icon: const Icon(Icons.refresh_rounded, size: 14, color: FitCheckTheme.warning),
+              label: const Text('Start Fresh Demo', style: TextStyle(color: FitCheckTheme.warning, fontSize: 12, fontWeight: FontWeight.bold)),
+              style: OutlinedButton.styleFrom(
+                side: const BorderSide(color: FitCheckTheme.warning),
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+              ),
+            ),
+            const SizedBox(width: 8),
+          ],
           OutlinedButton(
             onPressed: widget.onBackToLanding,
             style: OutlinedButton.styleFrom(
@@ -451,7 +477,7 @@ class _CandidateCommandCenterPageState extends State<CandidateCommandCenterPage>
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
             ),
-            child: const Text('Sign In to Persist', style: TextStyle(color: FitCheckTheme.primary, fontSize: 12, fontWeight: FontWeight.bold)),
+            child: const Text('Sign In / Register', style: TextStyle(color: FitCheckTheme.primary, fontSize: 12, fontWeight: FontWeight.bold)),
           ),
         ],
       ),
@@ -461,7 +487,7 @@ class _CandidateCommandCenterPageState extends State<CandidateCommandCenterPage>
   Widget _buildTopIdentityBar(bool isDesktop) {
     final candidateName = widget.candidate?.fullName ??
         widget.currentUser?.displayName ??
-        (widget.isDemoMode ? 'Elena Rostova' : 'Candidate');
+        (widget.isDemoMode ? 'Shinchan Nohara' : 'Candidate');
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -495,7 +521,7 @@ class _CandidateCommandCenterPageState extends State<CandidateCommandCenterPage>
                         ),
                         const SizedBox(width: 6),
                         Text(
-                          'LIVE READINESS FLIGHTDECK',
+                          'INTERVIEW READINESS DASHBOARD',
                           style: FitCheckTheme.labelSmall(color: FitCheckTheme.primary),
                         ),
                       ],
@@ -524,11 +550,9 @@ class _CandidateCommandCenterPageState extends State<CandidateCommandCenterPage>
                     ),
                   const SizedBox(width: 8),
                   Text(
-                    widget.isDemoMode
-                        ? 'SAMPLE SESSION // ID-8094-STRP'
-                        : (widget.sessions.isNotEmpty
-                            ? 'ACTIVE CANDIDATE // ${widget.sessions.first.id.substring(0, min(8, widget.sessions.first.id.length)).toUpperCase()}'
-                            : 'CANDIDATE READY // CALIBRATION PENDING'),
+                    widget.sessions.isNotEmpty
+                        ? 'ACTIVE WORKSPACE // ${widget.sessions.first.id.substring(0, min(8, widget.sessions.first.id.length)).toUpperCase()}'
+                        : 'WORKSPACE READY // CALIBRATION PENDING',
                     style: FitCheckTheme.labelSmall(color: FitCheckTheme.outline),
                   ),
                 ],
@@ -551,12 +575,12 @@ class _CandidateCommandCenterPageState extends State<CandidateCommandCenterPage>
         ),
         const SizedBox(height: 8),
         Text(
-          widget.isDemoMode
+          widget.isDemoMode && widget.candidate == null
               ? 'Good evening, Elena. Ready for your Stripe simulation?'
               : 'Welcome back, $candidateName. Ready for your simulation?',
           style: isDesktop ? FitCheckTheme.headlineXLarge() : FitCheckTheme.headlineMedium(),
         ),
-        if (!widget.isDemoMode && widget.candidate?.skills.isNotEmpty == true) ...[
+        if (widget.candidate?.skills.isNotEmpty == true) ...[
           const SizedBox(height: 8),
           Wrap(
             spacing: 6,
@@ -583,7 +607,7 @@ class _CandidateCommandCenterPageState extends State<CandidateCommandCenterPage>
 
   Widget _buildQuickStats(bool isDesktop) {
     final List<Map<String, dynamic>> stats;
-    if (widget.isDemoMode) {
+    if (widget.isDemoMode && widget.sessions.isEmpty) {
       stats = [
         {'title': 'SIMULATIONS COMPLETED', 'val': '14', 'sub': 'Sample history', 'subColor': FitCheckTheme.tertiary, 'icon': Icons.done_all},
         {'title': 'VOICE TELEMETRY TIME', 'val': '9.4 hrs', 'sub': 'Sample stream time', 'subColor': FitCheckTheme.outline, 'icon': Icons.mic},
@@ -595,20 +619,20 @@ class _CandidateCommandCenterPageState extends State<CandidateCommandCenterPage>
       final hours = (sessCount * 0.75).toStringAsFixed(1);
       final readinessStr = widget.evaluations.isNotEmpty
           ? '${(widget.evaluations.map((e) => (e.overallScore <= 5.0 ? e.overallScore * 20 : e.overallScore)).reduce((a, b) => a + b) / widget.evaluations.length).round()}%'
-          : 'Pending';
+          : (widget.isDemoMode ? '84%' : 'Pending');
       final readinessSub = widget.evaluations.isNotEmpty
           ? widget.evaluations.first.overallRecommendation
-          : 'Requires 1 simulation';
+          : (widget.isDemoMode ? 'Sample evaluation' : 'Requires 1 simulation');
       final readinessColor = widget.evaluations.isNotEmpty
           ? FitCheckTheme.tertiary
-          : FitCheckTheme.outline;
+          : (widget.isDemoMode ? FitCheckTheme.tertiary : FitCheckTheme.outline);
       final totalCriteria = widget.evaluations.fold<int>(0, (sum, e) => sum + e.competencyScores.length);
 
       stats = [
         {
           'title': 'SIMULATIONS COMPLETED',
           'val': '$sessCount',
-          'sub': sessCount == 0 ? 'No simulations yet' : '+$sessCount recorded',
+          'sub': widget.isDemoMode && sessCount <= 2 ? 'Sample history' : (sessCount == 0 ? 'No simulations yet' : '+$sessCount recorded'),
           'subColor': sessCount > 0 ? FitCheckTheme.tertiary : FitCheckTheme.outline,
           'icon': Icons.done_all,
         },
@@ -628,8 +652,8 @@ class _CandidateCommandCenterPageState extends State<CandidateCommandCenterPage>
         },
         {
           'title': 'EVALUATED CRITERIA',
-          'val': sessCount > 0 ? '$totalCriteria' : '--',
-          'sub': sessCount > 0 ? 'Rubric dimensions' : 'Requires 1 simulation',
+          'val': sessCount > 0 ? '$totalCriteria' : (widget.isDemoMode ? '10' : '--'),
+          'sub': sessCount > 0 ? 'Rubric dimensions' : (widget.isDemoMode ? 'Sample rubric scope' : 'Requires 1 simulation'),
           'subColor': sessCount > 0 ? FitCheckTheme.secondary : FitCheckTheme.outline,
           'icon': Icons.checklist,
         },
@@ -1052,14 +1076,45 @@ class _CandidateCommandCenterPageState extends State<CandidateCommandCenterPage>
           const SizedBox(height: 8),
           Text('Past Simulations', style: FitCheckTheme.headlineMedium().copyWith(fontSize: 16)),
           const SizedBox(height: 14),
-          if (widget.isDemoMode) ...[
+          if (widget.sessions.isNotEmpty) ...[
+            ...widget.sessions.take(3).map((sess) {
+              final eval = widget.evaluations.where((e) => e.sessionId == sess.id).firstOrNull;
+              final scoreNum = eval != null
+                  ? (eval.overallScore <= 5.0 ? eval.overallScore * 20 : eval.overallScore).round()
+                  : null;
+              final scoreText = scoreNum != null ? '$scoreNum/100' : 'RECORDED';
+              final verdictText = eval?.overallRecommendation.toUpperCase() ?? sess.status.toUpperCase();
+              final verdictColor = eval != null
+                  ? ((scoreNum ?? 0) >= 80 ? FitCheckTheme.tertiary : FitCheckTheme.primary)
+                  : FitCheckTheme.secondary;
+
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 10),
+                child: _sessionItem(
+                  role: sess.sessionPlan?['role']?.toString() ?? 'Session // ${sess.difficulty.toUpperCase()}',
+                  score: scoreText,
+                  verdict: verdictText,
+                  verdictColor: verdictColor,
+                  interviewer: sess.interviewerId.isNotEmpty ? sess.interviewerId : 'AI Interviewer',
+                  date: sess.startedAt.isNotEmpty ? sess.startedAt.split('T').first : 'Recent',
+                  onTap: () {
+                    if (widget.onSelectSession != null) {
+                      widget.onSelectSession!(sess.id);
+                    } else {
+                      widget.onViewScorecard();
+                    }
+                  },
+                ),
+              );
+            }),
+          ] else if (widget.isDemoMode) ...[
             _sessionItem(
               role: 'Stripe L6 Systems Simulation',
               score: '88/100',
               verdict: 'STRONG HIRE',
               verdictColor: FitCheckTheme.tertiary,
               interviewer: 'Marcus Vance',
-              date: 'Yesterday',
+              date: 'Sample',
               onTap: widget.onViewScorecard,
             ),
             const SizedBox(height: 10),
@@ -1069,10 +1124,10 @@ class _CandidateCommandCenterPageState extends State<CandidateCommandCenterPage>
               verdict: 'LEAN HIRE',
               verdictColor: FitCheckTheme.primary,
               interviewer: 'Sarah Chen',
-              date: '3 days ago',
+              date: 'Sample',
               onTap: widget.onViewScorecard,
             ),
-          ] else if (widget.sessions.isEmpty) ...[
+          ] else ...[
             Container(
               padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
               alignment: Alignment.center,
@@ -1093,34 +1148,6 @@ class _CandidateCommandCenterPageState extends State<CandidateCommandCenterPage>
                 ],
               ),
             ),
-          ] else ...[
-            ...widget.sessions.take(3).map((sess) {
-              final eval = widget.evaluations.where((e) => e.sessionId == sess.id).firstOrNull;
-              final scoreText = eval != null ? '${(eval.overallScore * 20).round()}/100' : 'RECORDED';
-              final verdictText = eval?.overallRecommendation.toUpperCase() ?? sess.status.toUpperCase();
-              final verdictColor = eval != null
-                  ? (eval.overallScore >= 4.0 ? FitCheckTheme.tertiary : FitCheckTheme.primary)
-                  : FitCheckTheme.secondary;
-
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 10),
-                child: _sessionItem(
-                  role: 'Session // ${sess.difficulty.toUpperCase()}',
-                  score: scoreText,
-                  verdict: verdictText,
-                  verdictColor: verdictColor,
-                  interviewer: 'AI Interviewer',
-                  date: sess.startedAt.isNotEmpty ? sess.startedAt.split('T').first : 'Recent',
-                  onTap: () {
-                    if (widget.onSelectSession != null) {
-                      widget.onSelectSession!(sess.id);
-                    } else {
-                      widget.onViewScorecard();
-                    }
-                  },
-                ),
-              );
-            }),
           ],
         ],
       ),
@@ -1153,10 +1180,17 @@ class _CandidateCommandCenterPageState extends State<CandidateCommandCenterPage>
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(score, style: FitCheckTheme.metricDisplay(color: FitCheckTheme.onSurface).copyWith(fontSize: 18)),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                  decoration: BoxDecoration(color: verdictColor.withValues(alpha: 0.15), borderRadius: BorderRadius.circular(2)),
-                  child: Text(verdict, style: FitCheckTheme.labelSmall(color: verdictColor).copyWith(fontSize: 9)),
+                Flexible(
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                    decoration: BoxDecoration(color: verdictColor.withValues(alpha: 0.15), borderRadius: BorderRadius.circular(2)),
+                    child: Text(
+                      verdict,
+                      style: FitCheckTheme.labelSmall(color: verdictColor).copyWith(fontSize: 9),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ),
+                  ),
                 ),
               ],
             ),

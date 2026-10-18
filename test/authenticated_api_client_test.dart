@@ -44,6 +44,13 @@ class MockTestAuthService implements AuthService {
   }
 
   @override
+  Future<FitCheckUser> signInAsDemo() async {
+    _user = const FitCheckUser(uid: 'demo-candidate-elena', email: 'elena.demo@fitcheck.io', displayName: 'Elena Rostova');
+    token = 'demo_session_token';
+    return _user!;
+  }
+
+  @override
   Future<void> signOut() async {
     _user = null;
     token = null;

@@ -45,6 +45,12 @@ class MockAuthServiceForWidgetTest implements AuthService {
   }
 
   @override
+  Future<FitCheckUser> signInAsDemo() async {
+    _user = const FitCheckUser(uid: 'demo-candidate-elena', email: 'elena.demo@fitcheck.io', displayName: 'Elena Rostova');
+    return _user!;
+  }
+
+  @override
   Future<void> signOut() async {
     _user = null;
   }

@@ -198,9 +198,12 @@ CONVERSATIONAL RULES FOR LIVE AUDIO:
             except Exception as exc:
                 logger.warning("[RUNTIME] Agora Cloud Agent start deferred or mocked: %s", exc)
 
+        agent_status = "active" if agent_id else "standby"
+
         return {
             "channel": channel,
             "agent_id": agent_id,
+            "agent_status": agent_status,
             "rtc_token": rtc_token,
             "app_id": app_id,
             "compiled_prompt": system_prompt,

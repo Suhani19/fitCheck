@@ -312,6 +312,20 @@ class AdaptiveQuestionResult(BaseModel):
     difficulty_tone: str
 
 
+class NextAdaptiveQuestionRequest(BaseModel):
+    candidate_answer: str | None = None
+    transcript_turns: list[dict[str, Any]] | None = None
+    stage: str | None = None
+
+
+class AppendTranscriptTurnRequest(BaseModel):
+    role: str = Field(description="Turn speaker: 'candidate' or 'interviewer'")
+    text: str = Field(description="Verbatim utterance text")
+    turn_index: int | None = None
+    stage: str | None = None
+    metadata: dict[str, Any] | None = None
+
+
 # ---------------------------------------------------------------------------
 # Phase 3: Evidence-Backed Evaluation Schemas
 # ---------------------------------------------------------------------------
@@ -353,6 +367,7 @@ class InterviewSessionResponse(BaseModel):
     status: str
     channel: str
     agent_id: str | None = None
+    agent_status: str = "standby"
     session_plan: dict[str, Any] | None = None
     rtc_token: str | None = None
     app_id: str | None = None

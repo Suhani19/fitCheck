@@ -1,5 +1,7 @@
 <div align="center">
 
+  <img src="assets/images/fitcheck_logo_light.png" alt="FitCheck Logo" width="100" style="border-radius: 12px; margin-bottom: 8px;" />
+
   # FitCheck
   ### *AI-Powered Real-Time Interview Simulation & Candidate Practice Platform*
 

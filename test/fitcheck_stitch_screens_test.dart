@@ -64,7 +64,7 @@ void main() {
       );
       await tester.pump();
 
-      expect(find.text('LIVE READINESS FLIGHTDECK'), findsOneWidget);
+      expect(find.text('INTERVIEW READINESS DASHBOARD'), findsOneWidget);
       expect(find.text('Simulations Completed'.toUpperCase()), findsOneWidget);
       expect(find.text('Voice Telemetry Time'.toUpperCase()), findsOneWidget);
       expect(find.text('Hire Readiness'.toUpperCase()), findsOneWidget);
@@ -200,9 +200,9 @@ void main() {
       expect(find.text('AI Real-Time Interview Simulation & Screening'), findsOneWidget);
 
       // Authenticate via Demo Candidate -> navigate to Command Center
-      await tester.tap(find.text('Explore as Demo Candidate (Elena Rostova)'));
+      await tester.tap(find.byKey(const Key('demo_candidate_sign_in_button')));
       await tester.pump();
-      expect(find.text('LIVE READINESS FLIGHTDECK'), findsOneWidget);
+      expect(find.text('INTERVIEW READINESS DASHBOARD'), findsOneWidget);
       expect(find.text('Create Character'), findsNothing);
 
       // Tap "Start Live Interview" on Command Center -> navigate to Hardware Setup
@@ -224,12 +224,12 @@ void main() {
       await tester.pump();
       expect(find.text('STRONG HIRE • LEVEL 6 READY'), findsOneWidget);
 
-      // Tap "Return to Flightdeck" -> back to Command Center
-      await tester.ensureVisible(find.text('Return to Flightdeck'));
+      // Tap "Return to Command Center" -> back to Command Center
+      await tester.ensureVisible(find.text('Return to Command Center'));
       await tester.pumpAndSettle();
-      await tester.tap(find.text('Return to Flightdeck'));
+      await tester.tap(find.text('Return to Command Center'));
       await tester.pump();
-      expect(find.text('LIVE READINESS FLIGHTDECK'), findsOneWidget);
+      expect(find.text('INTERVIEW READINESS DASHBOARD'), findsOneWidget);
 
       // Tap "Sign Out" in sidebar -> returns to Public Landing Page
       await tester.tap(find.byKey(const Key('sidebar_sign_out_button')));

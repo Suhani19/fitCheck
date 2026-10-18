@@ -43,6 +43,12 @@ class MockAuthService implements AuthService {
   }
 
   @override
+  Future<FitCheckUser> signInAsDemo() async {
+    _user = const FitCheckUser(uid: 'demo-candidate-elena', email: 'elena.demo@fitcheck.io', displayName: 'Elena Rostova');
+    return _user!;
+  }
+
+  @override
   Future<void> signOut() async {
     _user = null;
   }
@@ -93,14 +99,14 @@ void main() {
       );
       await tester.pump();
 
-      expect(find.text('Explore as Demo Candidate (Elena Rostova)'), findsOneWidget);
-      await tester.tap(find.text('Explore as Demo Candidate (Elena Rostova)'));
+      expect(find.byKey(const Key('demo_candidate_sign_in_button')), findsOneWidget);
+      await tester.tap(find.byKey(const Key('demo_candidate_sign_in_button')));
       await tester.pump();
 
       // Enters Command Center with DEMO MODE banner and badge
-      expect(find.text('LIVE READINESS FLIGHTDECK'), findsOneWidget);
+      expect(find.text('INTERVIEW READINESS DASHBOARD'), findsOneWidget);
       expect(find.text('DEMO MODE • SAMPLE DATA'), findsOneWidget);
-      expect(find.textContaining('DEMO MODE (Simulated Candidate)'), findsOneWidget);
+      expect(find.textContaining('DEMO MODE (Simulated Candidate'), findsOneWidget);
 
       // In Demo Mode, Edit Profile updates in-memory and shows explanatory feedback
       expect(find.byKey(const Key('edit_candidate_profile_button')), findsOneWidget);
@@ -135,7 +141,7 @@ void main() {
       await tester.pump();
 
       // Enter as candidate
-      await tester.tap(find.text('Explore as Demo Candidate (Elena Rostova)'));
+      await tester.tap(find.byKey(const Key('demo_candidate_sign_in_button')));
       await tester.pump();
 
       // Navigate to hardware setup

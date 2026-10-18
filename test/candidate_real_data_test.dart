@@ -41,7 +41,7 @@ void main() {
       );
       await tester.pump();
 
-      expect(find.text('LIVE READINESS FLIGHTDECK'), findsOneWidget);
+      expect(find.text('INTERVIEW READINESS DASHBOARD'), findsOneWidget);
       expect(find.text('Welcome back, Jane Doe. Ready for your simulation?'), findsOneWidget);
       expect(find.text('Raft'), findsOneWidget);
       expect(find.text('Kubernetes'), findsOneWidget);
@@ -114,7 +114,7 @@ void main() {
       );
       await tester.pump();
 
-      expect(find.text('LIVE READINESS FLIGHTDECK'), findsOneWidget);
+      expect(find.text('INTERVIEW READINESS DASHBOARD'), findsOneWidget);
       expect(find.text('DEMO MODE • SAMPLE DATA'), findsOneWidget);
       expect(find.text('Good evening, Elena. Ready for your Stripe simulation?'), findsOneWidget);
       expect(find.text('14'), findsOneWidget);

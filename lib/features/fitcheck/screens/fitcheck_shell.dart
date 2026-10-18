@@ -102,8 +102,10 @@ class _FitCheckShellState extends State<FitCheckShell> {
     }
 
     if (_authService.currentUser != null) {
-      _isDemoMode = false;
+      _isDemoMode = _authService.isDemoUser;
       _loadCandidateData();
+    } else {
+      _restoreDemoSessionIfAny();
     }
 
     _authSubscription = _authService.authStateChanges.listen((user) {
@@ -124,10 +126,27 @@ class _FitCheckShellState extends State<FitCheckShell> {
           _isDemoMode = false;
         });
       } else if (user != null) {
-        _isDemoMode = false;
+        _isDemoMode = _authService.isDemoUser;
         _loadCandidateData();
       }
     });
+  }
+
+  Future<void> _restoreDemoSessionIfAny() async {
+    try {
+      final restoredUser = await _authService.restoreDemoSession();
+      if (restoredUser != null && mounted) {
+        setState(() {
+          _isDemoMode = true;
+          if (_currentRoute == FitCheckRoute.landing) {
+            _currentRoute = FitCheckRoute.commandCenter;
+          }
+        });
+        await _loadCandidateData();
+      }
+    } catch (e) {
+      debugPrint('[FitCheckShell] Error during demo session restore: $e');
+    }
   }
 
   @override
@@ -170,6 +189,49 @@ class _FitCheckShellState extends State<FitCheckShell> {
     } catch (e) {
       debugPrint('[FitCheckShell] Error loading candidate data: $e');
       if (!mounted) return;
+      if (_isDemoMode || _authService.isDemoUser) {
+        setState(() {
+          _candidateProfile ??= FitCheckCandidate(
+            id: user.uid,
+            fullName: user.displayName ?? 'Shinchan Nohara',
+            headline: 'Aspiring Full Stack Engineer & SDE Candidate',
+            skills: const ['Python', 'C++', 'Data Structures & Algorithms', 'AI Tools', 'Web Development'],
+          );
+          if (_interviewers.isEmpty) {
+            _interviewers = [
+              const FitCheckInterviewer(
+                id: 'int-marcus-001',
+                name: 'Marcus Vance',
+                title: 'Lead System Security Engineer',
+                companyContext: 'Fintech & Cloud Systems',
+                questioningStyle: 'challenging',
+                voiceId: 'Puck',
+                isPreset: true,
+              ),
+              const FitCheckInterviewer(
+                id: 'int-alex-001',
+                name: 'Alex Rivera',
+                title: 'Staff Distributed Systems Architect',
+                companyContext: 'High-Scale Infrastructure',
+                questioningStyle: 'rigorous',
+                voiceId: 'Fenrir',
+                isPreset: true,
+              ),
+            ];
+          }
+          _selectedInterviewer ??= _interviewers.first;
+          _selectedJob ??= const FitCheckJob(
+            id: 'job-default',
+            title: 'Software Development Engineer',
+            seniority: 'Mid-Level',
+            description: 'Core software engineering role focusing on distributed systems and APIs.',
+            requiredSkills: ['Python', 'Distributed Systems'],
+            competencies: [],
+          );
+          _loadingData = false;
+        });
+        return;
+      }
       setState(() => _loadingData = false);
     }
   }
@@ -243,8 +305,19 @@ class _FitCheckShellState extends State<FitCheckShell> {
     switch (_currentRoute) {
       case FitCheckRoute.landing:
         return PublicLandingPage(
+          onTryDemo: () async {
+            try {
+              await _authService.signInAsDemo();
+              _isDemoMode = true;
+              await _loadCandidateData();
+              _navigateTo(FitCheckRoute.commandCenter);
+            } catch (e) {
+              debugPrint('[FitCheckShell] Try Demo error: $e');
+              _navigateTo(FitCheckRoute.auth);
+            }
+          },
           onStartPreparing: () {
-            if (activeUser != null) {
+            if (_authService.currentUser != null && !_isDemoMode) {
               _navigateTo(FitCheckRoute.commandCenter);
             } else {
               _navigateTo(FitCheckRoute.auth);
@@ -266,19 +339,19 @@ class _FitCheckShellState extends State<FitCheckShell> {
           onAuthenticated: () {
             if (_authService.currentUser == null) {
               _demoUser = const FitCheckUser(
-                uid: 'demo-elena-101',
-                email: 'elena@engineer.io',
-                displayName: 'Elena Rostova',
+                uid: 'cand-shinchan-demo',
+                email: 'shinchan.demo@fitcheck.io',
+                displayName: 'Shinchan Nohara',
               );
               _isDemoMode = true;
-              _candidateProfile = const FitCheckCandidate(
-                id: 'demo-elena-cand',
-                fullName: 'Elena Rostova',
-                headline: 'Staff Systems Eng @ Stripe',
-                skills: ['Go', 'Distributed Systems', 'Raft', 'Kubernetes'],
+              _candidateProfile ??= const FitCheckCandidate(
+                id: 'cand-shinchan-demo',
+                fullName: 'Shinchan Nohara',
+                headline: 'Aspiring Full Stack Engineer & SDE Candidate',
+                skills: ['Python', 'C++', 'Data Structures & Algorithms', 'AI Tools', 'Web Development'],
               );
               _selectedInterviewer ??= const FitCheckInterviewer(
-                id: 'marcus-arch-001',
+                id: 'int-marcus-001',
                 name: 'Marcus Vance',
                 title: 'Principal Distributed Systems Architect',
                 companyContext: 'Stripe',
@@ -290,11 +363,12 @@ class _FitCheckShellState extends State<FitCheckShell> {
                 id: 'job-dist-sys',
                 title: 'Staff Distributed Systems Engineer',
                 seniority: 'L6 / Staff',
-                requiredSkills: ['Raft', 'Distributed Storage', 'Consensus', 'Go', 'High Concurrency'],
+                requiredSkills: ['Raft', 'Distributed Storage', 'Consensus', 'Python', 'Algorithms'],
                 description: 'Calibrated hiring standard for systems architecture.',
               );
             } else {
-              _isDemoMode = false;
+              final isDemo = _authService.isDemoUser;
+              _isDemoMode = isDemo;
               _loadCandidateData();
             }
             _navigateTo(FitCheckRoute.commandCenter);
@@ -311,6 +385,17 @@ class _FitCheckShellState extends State<FitCheckShell> {
           apiService: _apiService,
           isLoading: _loadingData,
           onRefresh: _loadCandidateData,
+          onStartFreshDemo: () async {
+            try {
+              await _authService.clearDemoSession();
+              await _authService.signInAsDemo();
+              _isDemoMode = true;
+              await _loadCandidateData();
+              _navigateTo(FitCheckRoute.commandCenter);
+            } catch (e) {
+              debugPrint('[FitCheckShell] Start fresh demo error: $e');
+            }
+          },
           onNavigate: _navigateTo,
           onProfileUpdated: (updated) {
             setState(() => _candidateProfile = updated);
@@ -337,6 +422,7 @@ class _FitCheckShellState extends State<FitCheckShell> {
         return HardwareReadinessPage(
           candidate: _candidateProfile,
           apiService: _apiService,
+          isDemoMode: _isDemoMode,
           interviewer: _selectedInterviewer,
           job: _selectedJob,
           availableInterviewers: _interviewers.isNotEmpty ? _interviewers : null,
@@ -647,7 +733,11 @@ class _FitCheckShellState extends State<FitCheckShell> {
     _selectedInterviewer = null;
     _selectedJob = null;
     _isDemoMode = false;
-    await _authService.signOut();
     _navigateTo(FitCheckRoute.landing);
+    try {
+      await _authService.signOut();
+    } catch (e) {
+      debugPrint('[FitCheckShell] Sign out notice: $e');
+    }
   }
 }

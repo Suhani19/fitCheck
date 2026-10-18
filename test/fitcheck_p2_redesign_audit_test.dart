@@ -51,6 +51,12 @@ class MockAuthService implements AuthService {
   }
 
   @override
+  Future<FitCheckUser> signInAsDemo() async {
+    _user = const FitCheckUser(uid: 'demo-candidate-elena', email: 'elena.demo@fitcheck.io', displayName: 'Elena Rostova');
+    return _user!;
+  }
+
+  @override
   Future<void> signOut() async {
     _user = null;
   }
@@ -168,7 +174,6 @@ void main() {
       tester.view.devicePixelRatio = 1.0;
       addTearDown(() => tester.view.resetPhysicalSize());
 
-      bool signInTapped = false;
       bool getStartedTapped = false;
 
       await tester.pumpWidget(
@@ -176,7 +181,7 @@ void main() {
           theme: FitCheckTheme.darkThemeData,
           home: Scaffold(
             body: PublicLandingPage(
-              onSignIn: () => signInTapped = true,
+              onSignIn: () {},
               onStartPreparing: () => getStartedTapped = true,
             ),
           ),
@@ -189,14 +194,16 @@ void main() {
 
       // Header Navigation Items
       expect(find.text('Platform'), findsOneWidget);
-      expect(find.text('Interviewer Personas'), findsOneWidget);
+      expect(find.text('Interviewers'), findsOneWidget);
       expect(find.text('Voice Studio'), findsOneWidget);
       expect(find.text('Evaluations'), findsOneWidget);
       expect(find.text('Pricing'), findsOneWidget);
 
-      // Auth actions
-      expect(find.text('Sign In'), findsAtLeastNWidgets(1));
-      expect(find.text('Start Preparing Free'), findsAtLeastNWidgets(1));
+      // Auth actions: exactly two CTAs (Try Demo and Start Preparing Free)
+      expect(find.text('Try Demo'), findsAtLeastNWidgets(2));
+      expect(find.text('Start Preparing Free'), findsAtLeastNWidgets(2));
+      expect(find.byKey(const Key('hero_sign_in_btn')), findsNothing);
+      expect(find.text('Get Started'), findsNothing);
 
       // Verify Honest Pricing Content
       expect(find.text('HONEST ACCESS & PLANS'), findsOneWidget);
@@ -210,11 +217,7 @@ void main() {
       expect(find.textContaining('Video interview calls [Planned / Roadmap]'), findsOneWidget);
       expect(find.textContaining('Multiple concurrent interviewer voices'), findsOneWidget);
 
-      // Verify sign in trigger
-      await tester.tap(find.text('Sign In').first);
-      expect(signInTapped, isTrue);
-
-      // Verify start preparing trigger
+      // Verify CTA triggers
       await tester.tap(find.text('Start Preparing Free').first);
       expect(getStartedTapped, isTrue);
     });
